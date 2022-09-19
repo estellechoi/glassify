@@ -1,3 +1,31 @@
 {
-  "extends": "next/core-web-vitals"
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      // Allows for the parsing of JSX
+      "jsx": true
+    }
+  },
+  "extends": [
+    "next/core-web-vitals", 
+    "plugin:@next/next/recommended",
+    "prettier",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "prettier/prettier": "error"
+  },
+  "ignorePatterns": [
+    "node_modules",
+    "coverage",
+    "build",
+    "dist",
+    ".DS_Store",
+    ".env",
+    ".vscode/",
+    "package-lock.json",
+    "yarn.lock"
+  ]
 }
