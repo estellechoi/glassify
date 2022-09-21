@@ -1,14 +1,8 @@
 import Layout from '../../components/Layout'
 import { GetStaticProps, GetStaticPaths, GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
-export const getStaticPaths: GetStaticPaths = async () => {
-  return {
-    paths: [{ params: { id: '1' } }],
-    fallback: false,
-  }
-}
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   return {
     props: {
       tokenData: params,
@@ -16,12 +10,14 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 }
 
-export default function Token({ tokenData }: { tokenData: { id: number } }) {
+export default function Token() {
   const router = useRouter()
-  const className = router.query.id === '1' ? 'text-pink-300' : 'text-white'
+  const { id } = router.query
+  const className = id === '1' ? 'text-pink-300' : 'text-white'
+
   return (
     <Layout>
-      <div className={className}>{tokenData.id}</div>
+      <div className={className}>{id}</div>
     </Layout>
   )
 }
