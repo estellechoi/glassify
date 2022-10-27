@@ -1,12 +1,12 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
-import Layout from '../components/Layout'
-import usePools from '../hooks/usePools'
+import type { NextPage } from 'next';
+import Head from 'next/head';
+// import Image from 'next/image'
+// import Link from 'next/link'
+import Layout from '../components/Layout';
+import { useAssetInfoQuery } from '../data/useReactQuery';
 
 const Home: NextPage = () => {
-  const pools = usePools([])
+  const { isLoading, error, data } = useAssetInfoQuery();
 
   return (
     <Layout>
@@ -16,7 +16,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/images/favicon_glow.svg" />
       </Head>
     </Layout>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

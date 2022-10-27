@@ -6,15 +6,29 @@
     "ecmaFeatures": {
       // Allows for the parsing of JSX
       "jsx": true
-    }
+    },
+    "project": "./tsconfig.json"
   },
   "extends": [
     "next/core-web-vitals", 
     "plugin:@next/next/recommended",
     "prettier",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "airbnb",
+    "airbnb-typescript"
   ],
   "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/require-default-props": "off",
+    "react/function-component-definition": "off",
+    "import/prefer-default-export": "off",
+    "implicit-arrow-linebreak": "off",
+    "max-len": "off",
+    "object-curly-newline": "off",
+    "@typescript-eslint/indent": "off",
+    "@typescript-eslint/comma-dangle": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
     "prettier/prettier": "error"
   },
   "ignorePatterns": [
