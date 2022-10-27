@@ -17,7 +17,6 @@ export interface TableFieldHTML {
   type?: 'html';
   align?: TableFieldAlign;
   clickable?: boolean;
-  excludeMinWidth?: boolean;
   tooltip?: boolean;
 }
 
@@ -91,7 +90,6 @@ export interface TableProps<T extends TableRow> {
   list: T[];
   fields: TableField[];
   overflow?: boolean;
-  cellMinWidthPx?: number;
   useSearch?: boolean;
   mergedFields?: string[][];
   mergedFieldLabels?: string[];

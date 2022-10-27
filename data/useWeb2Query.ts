@@ -1,12 +1,12 @@
 import { useQuery } from 'react-query';
 import { AssetInfoRaw } from '../types/asset';
-import { fetchAssetInfo } from './fetchers';
-import { QueryResponse } from './types';
+import { QueryRes } from './types';
 import { handleResponse } from './utils';
+import web2 from './web2';
 
 export const useAssetInfoQuery = (refetchInterval?: number) =>
-  handleResponse<QueryResponse<AssetInfoRaw[]>>(
-    useQuery('assetInfo', fetchAssetInfo, {
+  handleResponse<QueryRes<AssetInfoRaw[]>>(
+    useQuery('assetInfo', () => web2.get('/asset/info'), {
       refetchInterval,
     })
   );

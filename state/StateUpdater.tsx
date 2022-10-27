@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { useAssetInfoQuery } from '../data/useReactQuery';
+import { useAssetInfoQuery } from '../data/useWeb2Query';
 import { assetInfosAtom } from './states';
 
 export default function StateUpdater() {

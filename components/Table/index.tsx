@@ -1,4 +1,4 @@
-import { useCallback, useLayoutEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
 import BigNumber from 'bignumber.js';
 import RadioGroup, { RadioOption, RADIO_DEFAULT_OPTION } from '../RadioGroup';
@@ -20,7 +20,6 @@ export default function Table<T extends TableRow>({
   list,
   fields,
   overflow,
-  cellMinWidthPx,
   mergedFields = [],
   mergedFieldLabels = [],
   showTitle = true,
@@ -45,6 +44,7 @@ export default function Table<T extends TableRow>({
     () => fields.filter((field) => !allMergedList.includes(field.value)),
     [fields, allMergedList]
   );
+
   const merged: TableField[][] = useMemo(
     () =>
       mergedFields
@@ -56,7 +56,7 @@ export default function Table<T extends TableRow>({
   // col width ratio
   const [colWidthRatio, setColWidthRatio] = useState(100);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setColWidthRatio(100 / (nonMerged.length + 1));
   }, [nonMerged]);
 
@@ -142,8 +142,6 @@ export default function Table<T extends TableRow>({
                   <li
                     key={`field-${field.value}`}
                     style={{
-                      minWidth:
-                        cellMinWidthPx && !field.excludeMinWidth ? `${cellMinWidthPx}px` : '',
                       flexBasis: `${field.widthRatio ?? colWidthRatio}%`,
                       justifyContent: field.align
                         ? getFlexAlign(field.align)
@@ -170,8 +168,6 @@ export default function Table<T extends TableRow>({
                         key={`field-${field.value}`}
                         className={`${field.responsive ? 'hidden' : 'flex'} ${FIELD_CSS_CLASS}`}
                         style={{
-                          minWidth:
-                            cellMinWidthPx && !field.excludeMinWidth ? `${cellMinWidthPx}px` : '',
                           flexBasis: `${
                             items.reduce((m, item) => m + (field.widthRatio ?? colWidthRatio), 0) ??
                             colWidthRatio
@@ -220,7 +216,6 @@ export default function Table<T extends TableRow>({
                         useNarrow={useNarrow}
                         colWidthRatio={colWidthRatio}
                         nowrap={nowrap}
-                        cellMinWidthPx={cellMinWidthPx}
                         onClick={onRowClick}
                         onCellClick={onCellClick}
                       />
@@ -239,7 +234,6 @@ export default function Table<T extends TableRow>({
 //   TRow
 function TRow<T extends TableRow>({
   data,
-  cellMinWidthPx,
   merged,
   nonMerged,
   useNarrow,
@@ -249,7 +243,6 @@ function TRow<T extends TableRow>({
   onCellClick,
 }: {
   data: T;
-  cellMinWidthPx?: number;
   merged: TableField[][];
   nonMerged: TableField[];
   useNarrow?: boolean;
@@ -284,7 +277,6 @@ function TRow<T extends TableRow>({
               onCellClick && field.clickable ? '!cursor-pointer' : ''
             }`}
             style={{
-              minWidth: cellMinWidthPx && !field.excludeMinWidth ? `${cellMinWidthPx}px` : '',
               flexBasis: `${field.widthRatio ?? colWidthRatio}%`,
               flexShrink: field.type === 'imgUrl' ? '0' : '1',
               justifyContent: field.align
@@ -305,7 +297,6 @@ function TRow<T extends TableRow>({
             key={`item-merged-field-${index}`}
             className="grow shrink flex flex-col justify-start items-stretch space-y-1 md:space-y-2"
             style={{
-              // minWidth: cellMinWidthPx && !field.excludeMinWidth ? `${cellMinWidthPx}px` : '',
               flexBasis: `${
                 list.reduce((m, item) => m + (item.widthRatio ?? colWidthRatio), 0) ?? colWidthRatio
               }%`,
