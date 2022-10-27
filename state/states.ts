@@ -1,16 +1,20 @@
-import { atom, selector } from 'recoil';
+import { atom, RecoilEnv, selector } from 'recoil';
 import { AssetInfoRaw } from '../types/asset';
+
+/**
+ * @summary recoil atom key dupl warning issue resolved by Recoil team
+ * https://github.com/facebookexperimental/Recoil/pull/2046/commits/95b345605b5ff015e98bb5185d433310908b34d3
+ * */
+RecoilEnv.RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED = false;
 
 /** @summary assetInfos */
 export const assetInfosAtom = atom<AssetInfoRaw[]>({
-  // recoil atom duplicate key issue in next
-  // https://github.com/facebookexperimental/Recoil/issues/733
-  key: `assetInfos${new Date().toString()}`,
+  key: 'assetInfos',
   default: [],
 });
 
 export const assetCountState = selector<number>({
-  key: `assetCount${new Date().toString()}`,
+  key: 'assetCount',
   get: ({ get }) => {
     const assetInfos = get(assetInfosAtom);
     return assetInfos?.length ?? 0;
@@ -19,6 +23,6 @@ export const assetCountState = selector<number>({
 
 /** @summary watchlist */
 export const watchListAtom = atom<AssetInfoRaw[]>({
-  key: `watchList${new Date().toString()}`,
+  key: 'watchList',
   default: []
 });
