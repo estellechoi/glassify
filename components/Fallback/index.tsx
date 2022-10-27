@@ -1,5 +1,5 @@
-import Layout from '../components/Layout';
-import { FallbackProps } from '../components/ErrorBoundary';
+import { FallbackProps } from '../ErrorBoundary';
+import Layout from '../Layout';
 
 export default function Fallback({ error, resetErrorBoundary }: FallbackProps) {
   console.log(error);
