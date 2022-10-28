@@ -1,5 +1,5 @@
-import Link from 'next/link'
-import Layout from '../../components/Layout'
+import Link from 'next/link';
+import Layout from '../../components/Layout';
 
 export default function DashBoard() {
   return (
@@ -16,5 +16,5 @@ export default function DashBoard() {
         </Link>
       </div>
     </Layout>
-  )
+  );
 }

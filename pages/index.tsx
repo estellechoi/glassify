@@ -2,9 +2,10 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useCallback } from 'react';
 import { useRecoilState } from 'recoil';
+import { useRouter } from 'next/router';
 import Layout from '../components/Layout';
 import Table from '../components/Table';
-import { coinsAtom, watchListAtom } from '../state/states';
+import { coinsAtom } from '../state/states';
 import { Coin } from '../types/coin';
 
 /** @summary next.js dynamic import example when the whole component must not be pre-rendered */
@@ -13,18 +14,11 @@ import { Coin } from '../types/coin';
 
 const Home: NextPage = () => {
   const [coins] = useRecoilState(coinsAtom);
-  const [watchList, setWatchList] = useRecoilState(watchListAtom);
 
+  const router = useRouter();
   const onAllTokensRowClick = useCallback((row: Coin) => {
-    const included = watchList.map((item) => item.id).includes(row.id);
-    if (!included) {
-      setWatchList(watchList.concat([row]));
-    }
-  }, [watchList, setWatchList]);
-
-  const onWatchListRowClick = useCallback((row: Coin) => {
-    setWatchList(watchList.filter((item) => item.id !== row.id));
-}, [setWatchList, watchList]);
+    router.push(`/tokens/${row.id}`);
+  }, [router]);
 
   return (
     <>
@@ -54,25 +48,6 @@ const Home: NextPage = () => {
             }
           ]}
             onRowClick={onAllTokensRowClick}
-          />
-
-          <Table<Coin>
-            title="Watch List"
-            showTitle
-            list={watchList}
-            fields={[
-              {
-                label: 'Rank',
-                value: 'rank',
-              },
-              {
-                label: 'Token',
-                value: 'symbol',
-                abbrOver: 8,
-                responsive: true,
-              }
-            ]}
-            onRowClick={onWatchListRowClick}
           />
         </div>
       </Layout>

@@ -13,6 +13,8 @@ export default function StateUpdater() {
     data: coinsData,
   } = useCoinsQuery();
 
+  console.log('useCoinsQuery', coinsData?.slice(0, 20));
+
   const [, setCoinsAtom] = useRecoilState(coinsAtom);
 
   useEffect(() => {
