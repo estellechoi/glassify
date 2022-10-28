@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { useAssetInfoQuery } from '../data/useWeb2Query';
-import { assetInfosAtom } from './states';
+import { useCoinsQuery } from '@/data/useWeb2Query';
+import { coinsAtom } from '@/state/states';
 
 export default function StateUpdater() {
   const {
@@ -10,16 +10,14 @@ export default function StateUpdater() {
     isSuccess,
     error,
     errorMsg,
-    data: assetInfosData,
-  } = useAssetInfoQuery();
+    data: coinsData,
+  } = useCoinsQuery();
 
-  console.log('assetInfosData', assetInfosData);
-
-  const [, setAssetInfos] = useRecoilState(assetInfosAtom);
+  const [, setCoinsAtom] = useRecoilState(coinsAtom);
 
   useEffect(() => {
-    setAssetInfos(assetInfosData?.data ?? []);
-  }, [setAssetInfos, assetInfosData]);
+    if (coinsData) setCoinsAtom(coinsData);
+  }, [setCoinsAtom, coinsData]);
 
   return <></>;
 }

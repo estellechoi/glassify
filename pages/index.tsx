@@ -1,32 +1,29 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useCallback } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import Layout from '../components/Layout';
 import Table from '../components/Table';
-import { assetCountState, assetInfosAtom, watchListAtom } from '../state/states';
-import { AssetInfoRaw } from '../types/asset';
+import { coinsAtom, watchListAtom } from '../state/states';
+import { Coin } from '../types/coin';
 
 /** @summary next.js dynamic import example when the whole component must not be pre-rendered */
 // import dynamic from 'next/dynamic';
 // const Table = dynamic(() => import('../components/Table'), { ssr: false }) as <T extends TableRow>({ ...args }: TableProps<T>) => JSX.Element;
 
 const Home: NextPage = () => {
-  /** @summary atoms & selector */
-  const [assetInfos] = useRecoilState(assetInfosAtom);
-  const assetCount = useRecoilValue(assetCountState);
-
+  const [coins] = useRecoilState(coinsAtom);
   const [watchList, setWatchList] = useRecoilState(watchListAtom);
 
-  const onAllTokensRowClick = useCallback((row: AssetInfoRaw) => {
-    const included = watchList.map((item) => item.denom).includes(row.denom);
+  const onAllTokensRowClick = useCallback((row: Coin) => {
+    const included = watchList.map((item) => item.id).includes(row.id);
     if (!included) {
       setWatchList(watchList.concat([row]));
     }
   }, [watchList, setWatchList]);
 
-  const onWatchListRowClick = useCallback((row: AssetInfoRaw) => {
-    setWatchList(watchList.filter((item) => item.denom !== row.denom));
+  const onWatchListRowClick = useCallback((row: Coin) => {
+    setWatchList(watchList.filter((item) => item.id !== row.id));
 }, [setWatchList, watchList]);
 
   return (
@@ -39,21 +36,19 @@ const Home: NextPage = () => {
       </Head>
 
       <Layout>
-        <div className="mb-8">{assetCount} assets fetched.</div>
-
         <div className="grid grid-cols-2 gap-8">
-          <Table<AssetInfoRaw>
+          <Table<Coin>
             title="All Tokens"
             showTitle
-            list={assetInfos}
+            list={coins.slice(0, 20)}
             fields={[
             {
-              label: 'Ticker',
-              value: 'ticker',
+              label: 'Rank',
+              value: 'rank',
             },
             {
-              label: 'Denom',
-              value: 'denom',
+              label: 'Token',
+              value: 'symbol',
               abbrOver: 8,
               responsive: true,
             }
@@ -61,18 +56,18 @@ const Home: NextPage = () => {
             onRowClick={onAllTokensRowClick}
           />
 
-          <Table<AssetInfoRaw>
+          <Table<Coin>
             title="Watch List"
             showTitle
             list={watchList}
             fields={[
               {
-                label: 'Ticker',
-                value: 'ticker',
+                label: 'Rank',
+                value: 'rank',
               },
               {
-                label: 'Denom',
-                value: 'denom',
+                label: 'Token',
+                value: 'symbol',
                 abbrOver: 8,
                 responsive: true,
               }

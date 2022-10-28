@@ -1,14 +1,14 @@
-import '../styles/globals.css';
+import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
-import { QueryClientProvider, useQueryErrorResetBoundary } from 'react-query';
+import { QueryClientProvider, useQueryErrorResetBoundary } from '@tanstack/react-query';
 import { Suspense } from 'react';
 import { RecoilRoot } from 'recoil';
-import BlockProvider from '../providers/BlockProvider';
-import Web3Provider from '../providers/Web3Provider';
-import queryClient from '../data/queryClient';
-import ErrorBoundary from '../components/ErrorBoundary';
-import Fallback from '../components/Fallback';
-import StateUpdater from '../state/StateUpdater';
+import BlockProvider from '@/providers/BlockProvider';
+import Web3Provider from '@/providers/Web3Provider';
+import queryClient from '@/data/queryClient';
+import ErrorBoundary from '@/components/ErrorBoundary';
+import Fallback from '@/components/Fallback';
+import StateUpdater from '@/state/StateUpdater';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { reset } = useQueryErrorResetBoundary();

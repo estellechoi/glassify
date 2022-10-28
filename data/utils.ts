@@ -1,6 +1,6 @@
-import axios, { AxiosError, AxiosResponse } from 'axios';
-import type { UseQueryResult } from 'react-query';
-import { isDevEnv } from '../utils/env';
+import axios, { AxiosError } from 'axios';
+import { isDevEnv } from '@/utils/env';
+import type { QueryResult } from '@/data/types';
 
 export function handleError(error: Error | AxiosError | null): string {
   let errorMsg = '';
@@ -41,7 +41,7 @@ export function handleResponse<T>({
   isSuccess,
   error,
   data,
-}: UseQueryResult<AxiosResponse<T>, Error | AxiosError>) {
+}: QueryResult<T>) {
   const errorMsg = handleError(error);
 
   return {

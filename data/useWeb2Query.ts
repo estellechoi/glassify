@@ -1,12 +1,12 @@
-import { useQuery } from 'react-query';
-import { AssetInfoRaw } from '../types/asset';
-import { QueryRes } from './types';
-import { handleResponse } from './utils';
-import web2 from './web2';
+import { useQuery } from '@tanstack/react-query';
+import { Coin } from '@/types/coin';
+import { handleResponse } from '@/data/utils';
+import web2 from '@/data/web2';
+import { QueryResult } from '@/data/types';
 
-export const useAssetInfoQuery = (refetchInterval?: number) =>
-  handleResponse<QueryRes<AssetInfoRaw[]>>(
-    useQuery('assetInfo', () => web2.get('/asset/info'), {
-      refetchInterval,
-    })
-  );
+export const useCoinsQuery = (refetchInterval?: number) => {
+  const result: QueryResult<Coin[]> = useQuery(['coins'], () => web2.get('/coins'), {
+    refetchInterval,
+  });
+  return handleResponse(result);
+};
