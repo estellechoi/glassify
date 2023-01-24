@@ -16,9 +16,12 @@ const Home: NextPage = () => {
   const [coins] = useRecoilState(coinsAtom);
 
   const router = useRouter();
-  const onAllTokensRowClick = useCallback((row: Coin) => {
-    router.push(`/tokens/${row.id}`);
-  }, [router]);
+  const onAllTokensRowClick = useCallback(
+    (row: Coin) => {
+      router.push(`/tokens/${row.id}`);
+    },
+    [router]
+  );
 
   return (
     <>
@@ -36,17 +39,17 @@ const Home: NextPage = () => {
             showTitle
             list={coins.slice(0, 20)}
             fields={[
-            {
-              label: 'Rank',
-              value: 'rank',
-            },
-            {
-              label: 'Token',
-              value: 'symbol',
-              abbrOver: 8,
-              responsive: true,
-            }
-          ]}
+              {
+                label: 'Rank',
+                value: 'rank',
+              },
+              {
+                label: 'Token',
+                value: 'symbol',
+                abbrOver: 8,
+                responsive: true,
+              },
+            ]}
             onRowClick={onAllTokensRowClick}
           />
         </div>

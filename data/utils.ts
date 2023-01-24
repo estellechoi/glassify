@@ -10,9 +10,7 @@ export function handleError(error: Error | AxiosError | null): string {
       console.group();
 
       if (error.response) {
-        errorMsg = `Error occured: \n${
-          error.response.data?.message ?? error.response.data ?? 'Unknown error'
-        }`;
+        errorMsg = `Error occured: \n${error.response.data?.message ?? error.response.data ?? 'Unknown error'}`;
         if (isDevEnv) {
           console.log('Error response', error.response);
         }
@@ -35,13 +33,7 @@ export function handleError(error: Error | AxiosError | null): string {
   return errorMsg;
 }
 
-export function handleResponse<T>({
-  isLoading,
-  isFetching,
-  isSuccess,
-  error,
-  data,
-}: QueryResult<T>) {
+export function handleResponse<T>({ isLoading, isFetching, isSuccess, error, data }: QueryResult<T>) {
   const errorMsg = handleError(error);
 
   return {

@@ -9,6 +9,7 @@ import queryClient from '@/data/queryClient';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import Fallback from '@/components/Fallback';
 import StateUpdater from '@/state/StateUpdater';
+import AppHeader from '@/components/AppHeader';
 
 function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: DehydratedState }>) {
   const { reset } = useQueryErrorResetBoundary();
@@ -22,6 +23,7 @@ function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: DehydratedS
               <StateUpdater />
               <Web3Provider>
                 <BlockProvider>
+                  <AppHeader className="fixed top-0 left-0 right-0" />
                   <Component {...pageProps} />
                 </BlockProvider>
               </Web3Provider>

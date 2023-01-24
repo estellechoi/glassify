@@ -1,47 +1,53 @@
 import { useCoinByIdQuery } from '@/data/useWeb2Query';
-import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import queryClient from '@/data/queryClient';
-import { fetchCoinById } from '@/data/fetchers';
-import { dehydrate } from '@tanstack/react-query';
 import Layout from '../../components/Layout';
+import { useRouter } from 'next/router';
+import { NextPage } from 'next';
+import Image from 'next/image';
 
 interface Params extends ParsedUrlQuery {
-  id: string
+  id: string;
 }
 
 /** react-query ssr docs: https://tanstack.com/query/v4/docs/guides/ssr */
-export const getServerSideProps: GetServerSideProps = async ({ params }: GetServerSidePropsContext) => {
-  /** @todo research - is it okay to assert params? */
-  const { id } = params as Params;
+// export const getServerSideProps: GetServerSideProps = async ({ params }: GetServerSidePropsContext) => {
+//   const { id } = params as Params;
 
-  /**
-   * @todo error - react-query dehydrate serializing /w axios response
-   * @link https://stackoverflow.com/questions/71630615/next-js-error-serializing-dehydratedstate-queries0-state-data-config-adapter
-   * @link https://stackoverflow.com/questions/71763805/not-work-dehydrate-methodreact-query-in-nextjs
-   * */
-  await queryClient.prefetchQuery(['coins', params], () => fetchCoinById({ coin_id: id }));
+//   const fetcher = async () => {
+//     const res = await fetchCoinById({ id });
+//     return res?.data;
+//   };
 
-  return ({
-    props: {
-      dehydratedState: dehydrate(queryClient),
-      id
-    },
-  });
-};
+//   await queryClient.prefetchQuery<CoinDetail>(['coins', id], fetcher);
 
-export default function Token({ id }: Params) {
-  // const router = useRouter();
-  // const { id } = router.query as Params;
-  const className = id === 'btc-bitcoin' ? 'text-pink-300' : 'text-white';
+//   return {
+//     props: {
+//       dehydratedState: dehydrate(queryClient),
+//       id,
+//     },
+//   };
+// };
 
-  const { isLoading, data: coinData } = useCoinByIdQuery({ coin_id: id });
+const Token: NextPage = () => {
+  const router = useRouter();
+  const { id } = router.query as Params;
 
-  console.log('coinData', coinData);
+  const { data: coinDetail } = useCoinByIdQuery({ id });
+
+  console.log('coinDetail', coinDetail);
 
   return (
     <Layout>
-      <div className={className}>{id}</div>
+      <div className="flex items-center gap-x-2">
+        {coinDetail && (
+          <div className="flex justify-center items-center object-contain rounded-full w-6 h-6">
+            <Image src={coinDetail.logo} width={24} height={24} />
+          </div>
+        )}
+        <div className="">{coinDetail?.name}</div>
+      </div>
     </Layout>
   );
-}
+};
+
+export default Token;
