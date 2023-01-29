@@ -26,7 +26,8 @@
       "@/state/*": ["state/*"],
       "@/styles/*": ["styles/*"],
       "@/types/*": ["types/*"],
-      "@/utils/*": ["utils/*"]
+      "@/utils/*": ["utils/*"],
+      "@/resources/*": ["resources/*"]
     },
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

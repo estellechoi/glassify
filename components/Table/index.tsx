@@ -5,7 +5,7 @@ import RadioGroup, { RadioOption, RADIO_DEFAULT_OPTION } from '../RadioGroup';
 import { useMatchedTable } from './hook';
 import { TableField, TableFieldAlign, TableFieldBignumber, TableFieldUSD, TableProps, TableRow } from './types';
 import CopyHelper from '../CopyHelper';
-import { abbrOver } from '../../utils/text';
+import { getAbbrOf } from '../../utils/text';
 import { NotiStatus } from '../../types/noti';
 import { formatUSDAmount } from '../../utils/number';
 import LoadingRows from '../LoadingRows';
@@ -46,10 +46,7 @@ export default function Table<T extends TableRow>({
   );
 
   const merged: TableField[][] = useMemo(
-    () =>
-      mergedFields
-        .map((items) => fields.filter((field) => items.includes(field.value)))
-        .filter((items) => items.length),
+    () => mergedFields.map((items) => fields.filter((field) => items.includes(field.value))).filter((items) => items.length),
     [mergedFields, fields]
   );
 
@@ -145,10 +142,7 @@ export default function Table<T extends TableRow>({
                       flexBasis: `${field.widthRatio ?? colWidthRatio}%`,
                       justifyContent: field.align
                         ? getFlexAlign(field.align)
-                        : field.type === 'bignumber' ||
-                          field.type === 'usd' ||
-                          field.type === 'change' ||
-                          field.type === 'number'
+                        : field.type === 'bignumber' || field.type === 'usd' || field.type === 'change' || field.type === 'number'
                         ? 'flex-end'
                         : 'flex-start',
                     }}
@@ -158,20 +152,17 @@ export default function Table<T extends TableRow>({
                     {field.label}
                     {sortBy && sortBy === (field.sortValue ?? field.value) ? (
                       <span className="ml-2">{isSortASC ? '↓' : '↑'}</span>
-                      ) : null}
+                    ) : null}
                   </li>
                 ))}
                 {merged.map((items, index) =>
                   items.map((field, i) =>
-                    (i === 0 ? (
+                    i === 0 ? (
                       <li
                         key={`field-${field.value}`}
                         className={`${field.responsive ? 'hidden' : 'flex'} ${FIELD_CSS_CLASS}`}
                         style={{
-                          flexBasis: `${
-                            items.reduce((m, item) => m + (field.widthRatio ?? colWidthRatio), 0) ??
-                            colWidthRatio
-                          }%`,
+                          flexBasis: `${items.reduce((m, item) => m + (field.widthRatio ?? colWidthRatio), 0) ?? colWidthRatio}%`,
                           justifyContent: field.align
                             ? getFlexAlign(field.align)
                             : field.type === 'bignumber' ||
@@ -186,9 +177,11 @@ export default function Table<T extends TableRow>({
                         {mergedFieldLabels[index] ?? ''}
                         {sortBy && sortBy === (field.sortValue ?? field.value) ? (
                           <span className="ml-2">{isSortASC ? '↓' : '↑'}</span>
-                          ) : null}
+                        ) : null}
                       </li>
-                    ) : null)))}
+                    ) : null
+                  )
+                )}
               </ul>
             </div>
           ) : null}
@@ -273,18 +266,13 @@ function TRow<T extends TableRow>({
             onClick={() => {
               if (onCellClick && field.clickable) onCellClick(data[field.value], field.value, data);
             }}
-            className={`${cellClass(field)} flex space-x-2 ${
-              onCellClick && field.clickable ? '!cursor-pointer' : ''
-            }`}
+            className={`${cellClass(field)} flex space-x-2 ${onCellClick && field.clickable ? '!cursor-pointer' : ''}`}
             style={{
               flexBasis: `${field.widthRatio ?? colWidthRatio}%`,
               flexShrink: field.type === 'imgUrl' ? '0' : '1',
               justifyContent: field.align
                 ? getFlexAlign(field.align)
-                : field.type === 'bignumber' ||
-                  field.type === 'usd' ||
-                  field.type === 'change' ||
-                  field.type === 'number'
+                : field.type === 'bignumber' || field.type === 'usd' || field.type === 'change' || field.type === 'number'
                 ? 'flex-end'
                 : 'flex-start',
             }}
@@ -297,9 +285,7 @@ function TRow<T extends TableRow>({
             key={`item-merged-field-${index}`}
             className="grow shrink flex flex-col justify-start items-stretch space-y-1 md:space-y-2"
             style={{
-              flexBasis: `${
-                list.reduce((m, item) => m + (item.widthRatio ?? colWidthRatio), 0) ?? colWidthRatio
-              }%`,
+              flexBasis: `${list.reduce((m, item) => m + (item.widthRatio ?? colWidthRatio), 0) ?? colWidthRatio}%`,
             }}
           >
             {list.map((field) => (
@@ -310,17 +296,12 @@ function TRow<T extends TableRow>({
                     onCellClick(data[field.value], field.value, data);
                   }
                 }}
-                className={`${cellClass(field)} flex space-x-2 ${
-                  onCellClick && field.clickable ? '!cursor-pointer' : ''
-                }`}
+                className={`${cellClass(field)} flex space-x-2 ${onCellClick && field.clickable ? '!cursor-pointer' : ''}`}
                 style={{
                   flexShrink: field.type === 'imgUrl' ? '0' : '1',
                   justifyContent: field.align
                     ? getFlexAlign(field.align)
-                    : field.type === 'bignumber' ||
-                      field.type === 'usd' ||
-                      field.type === 'change' ||
-                      field.type === 'number'
+                    : field.type === 'bignumber' || field.type === 'usd' || field.type === 'change' || field.type === 'number'
                     ? 'flex-end'
                     : 'flex-start',
                 }}
@@ -340,18 +321,11 @@ function TRowCell({ data, field }: { data: TableRow; field: TableField }) {
 
   if (field.type === 'imgUrl' && typeof value === 'string') {
     return value.length > 0 ? (
-      <Image
-        src={value}
-        alt=""
-        style={{ width: `${field.size ?? 24}px`, height: `${field.size ?? 24}px` }}
-      />
+      <Image src={value} alt="" style={{ width: `${field.size ?? 24}px`, height: `${field.size ?? 24}px` }} />
     ) : null;
   }
   if (field.type === 'bignumber' || field.type === 'usd') {
-    const numberVal =
-      value === null || value === undefined
-        ? '-'
-        : bignumberToFormat({ value, exponent: data.exponent, field });
+    const numberVal = value === null || value === undefined ? '-' : bignumberToFormat({ value, exponent: data.exponent, field });
 
     return (
       <div title={numberVal} className="FONT-MONO">
@@ -361,7 +335,7 @@ function TRowCell({ data, field }: { data: TableRow; field: TableField }) {
   }
   if (field.abbrOver && typeof value === 'string') {
     const abbrLength = field.abbrOver ?? value.length;
-    const abbrVal = abbrOver(value, abbrLength);
+    const abbrVal = getAbbrOf(value, abbrLength);
     return (
       <CopyHelper toCopy={value} iconPosition="left">
         {' '}
@@ -373,12 +347,7 @@ function TRowCell({ data, field }: { data: TableRow; field: TableField }) {
   }
   if (field.type === 'change' && typeof value === 'number') {
     const absValue = Math.abs(value);
-    const changeValue =
-      absValue === 0
-        ? '0'
-        : absValue < 0.01
-        ? '<0.01'
-        : absValue.toFixed(field.toFixedFallback ?? 2);
+    const changeValue = absValue === 0 ? '0' : absValue < 0.01 ? '<0.01' : absValue.toFixed(field.toFixedFallback ?? 2);
 
     const direction = value > 0 ? '+' : value < 0 ? '-' : null;
     const CSSByDirection = field.strong
@@ -398,9 +367,9 @@ function TRowCell({ data, field }: { data: TableRow; field: TableField }) {
     return (
       <div
         title={`${value}%`}
-        className={`FONT-MONO TYPO-BODY-XS md:TYPO-BODY-S ${isGt ? field.gtCSS : ''} ${
-          isLt ? field.ltCSS : ''
-        } ${isEt ? field.etCSS : ''} ${CSSByDirection}`}
+        className={`FONT-MONO TYPO-BODY-XS md:TYPO-BODY-S ${isGt ? field.gtCSS : ''} ${isLt ? field.ltCSS : ''} ${
+          isEt ? field.etCSS : ''
+        } ${CSSByDirection}`}
       >
         {!field.neutral && direction}
         {changeValue}%
@@ -416,9 +385,9 @@ function TRowCell({ data, field }: { data: TableRow; field: TableField }) {
     return (
       <div
         title={`${value}`}
-        className={`FONT-MONO TYPO-BODY-XS md:TYPO-BODY-S ${isGt ? field.gtCSS : ''} ${
-          isLt ? field.ltCSS : ''
-        } ${isEt ? field.etCSS : ''}`}
+        className={`FONT-MONO TYPO-BODY-XS md:TYPO-BODY-S ${isGt ? field.gtCSS : ''} ${isLt ? field.ltCSS : ''} ${
+          isEt ? field.etCSS : ''
+        }`}
       >
         {value}
       </div>
@@ -427,10 +396,7 @@ function TRowCell({ data, field }: { data: TableRow; field: TableField }) {
   if (field.type === 'object' && typeof value === 'object') {
     const display = value[field.displayValue];
     return (
-      <div
-        title={typeof display === 'object' ? '' : display}
-        className="TYPO-BODY-XS md:TYPO-BODY-S"
-      >
+      <div title={typeof display === 'object' ? '' : display} className="TYPO-BODY-XS md:TYPO-BODY-S">
         {display}
       </div>
     );
@@ -442,25 +408,28 @@ function TRowCell({ data, field }: { data: TableRow; field: TableField }) {
   );
 }
 
-function EmptyData({ isLoading = false, label, loadingRowsCnt = 4, useNarrow = false }: {
-    isLoading?: boolean;
-    label?: string | JSX.Element;
-    loadingRowsCnt?: number;
-    useNarrow?: boolean
+function EmptyData({
+  isLoading = false,
+  label,
+  loadingRowsCnt = 4,
+  useNarrow = false,
+}: {
+  isLoading?: boolean;
+  label?: string | JSX.Element;
+  loadingRowsCnt?: number;
+  useNarrow?: boolean;
 }) {
-    return (
-      <div
-        className={`bg-neutral-800 relative flex flex-col p-4 ${useNarrow ? 'rounded-md' : 'rounded-xl'}`}
-      >
-        {isLoading ? <LoadingRows rowsCnt={loadingRowsCnt} /> : label}
-      </div>
-    );
+  return (
+    <div className={`bg-neutral-800 relative flex flex-col p-4 ${useNarrow ? 'rounded-md' : 'rounded-xl'}`}>
+      {isLoading ? <LoadingRows rowsCnt={loadingRowsCnt} /> : label}
+    </div>
+  );
 }
 
 function cellClass(field: TableField) {
-    return `${
-        field.responsive && !field.assertThoughResponsive ? 'hidden' : 'flex'
-      } grow shrink items-center TYPO-BODY-S !font-medium overflow-hidden md:flex md:TYPO-BODY-M`;
+  return `${
+    field.responsive && !field.assertThoughResponsive ? 'hidden' : 'flex'
+  } grow shrink items-center TYPO-BODY-S !font-medium overflow-hidden md:flex md:TYPO-BODY-M`;
 }
 
 function getTRowClassByStatus(status: NotiStatus): string {

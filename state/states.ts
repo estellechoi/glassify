@@ -1,5 +1,6 @@
 import { atom, RecoilEnv } from 'recoil';
 import { Coin } from '@/types/coin';
+import { Wallet } from '@/types/account';
 
 /**
  * @summary recoil atom key dupl warning issue resolved by Recoil team
@@ -13,16 +14,13 @@ export const coinsAtom = atom<Coin[]>({
   default: [],
 });
 
-// export const assetCountState = selector<number>({
-//   key: 'assetCount',
-//   get: ({ get }) => {
-//     const assetInfos = get(coinsAtom);
-//     return assetInfos?.length ?? 0;
-//   },
-// });
-
 /** @summary watchlist */
 export const watchListAtom = atom<Coin[]>({
   key: 'watchList',
-  default: []
+  default: [],
+});
+
+export const walletAtom = atom<Wallet | undefined>({
+  key: 'wallet',
+  default: undefined,
 });

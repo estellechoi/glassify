@@ -1,3 +1,250 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    /* primary typeface */
+    @font-face {
+        font-family: 'Montserrat';
+        src: url('/../resources/fonts/Montserrat/static/Montserrat-Black.ttf') format('truetype');
+        font-weight: 900;
+    }
+
+    @font-face {
+        font-family: 'Montserrat';
+        src: url('./../resources/fonts/Montserrat/static/Montserrat-BlackItalic.ttf') format('truetype');
+        font-weight: 900;
+        font-style: italic;
+    }
+
+    @font-face {
+        font-family: 'Montserrat';
+        src: url('./../resources/fonts/Montserrat/static/Montserrat-Bold.ttf') format('truetype');
+        font-weight: 700;
+    }
+
+    @font-face {
+        font-family: 'Montserrat';
+        src: url('./../resources/fonts/Montserrat/static/Montserrat-BoldItalic.ttf') format('truetype');
+        font-weight: 700;
+        font-style: italic;
+    }
+
+    @font-face {
+        font-family: 'Montserrat';
+        src: url('./../resources/fonts/Montserrat/static/Montserrat-ExtraBold.ttf') format('truetype');
+        font-weight: 800;
+    }
+
+    @font-face {
+        font-family: 'Montserrat';
+        src: url('./../resources/fonts/Montserrat/static/Montserrat-ExtraBoldItalic.ttf') format('truetype');
+        font-weight: 800;
+        font-style: italic;
+    }
+
+    @font-face {
+        font-family: 'Montserrat';
+        src: url('./../resources/fonts/Montserrat/static/Montserrat-ExtraLight.ttf') format('truetype');
+        font-weight: 200;
+    }
+
+    @font-face {
+        font-family: 'Montserrat';
+        src: url('./../resources/fonts/Montserrat/static/Montserrat-ExtraLightItalic.ttf') format('truetype');
+        font-weight: 200;
+        font-style: italic;
+    }
+
+    @font-face {
+        font-family: 'Montserrat';
+        src: url('./../resources/fonts/Montserrat/static/Montserrat-Italic.ttf') format('truetype');
+        font-weight: 400;
+        font-style: italic;
+    }
+
+    @font-face {
+        font-family: 'Montserrat';
+        src: url('./../resources/fonts/Montserrat/static/Montserrat-Light.ttf') format('truetype');
+        font-weight: 300;
+    }
+
+    @font-face {
+        font-family: 'Montserrat';
+        src: url('./../resources/fonts/Montserrat/static/Montserrat-LightItalic.ttf') format('truetype');
+        font-weight: 300;
+        font-style: italic;
+    }
+
+    @font-face {
+        font-family: 'Montserrat';
+        src: url('./../resources/fonts/Montserrat/static/Montserrat-Medium.ttf') format('truetype');
+        font-weight: 500;
+    }
+
+    @font-face {
+        font-family: 'Montserrat';
+        src: url('./../resources/fonts/Montserrat/static/Montserrat-MediumItalic.ttf') format('truetype');
+        font-weight: 500;
+        font-style: italic;
+    }
+
+    @font-face {
+        font-family: 'Montserrat';
+        src: url('./../resources/fonts/Montserrat/static/Montserrat-Regular.ttf') format('truetype');
+        font-weight: 400;
+    }
+
+    @font-face {
+        font-family: 'Montserrat';
+        src: url('./../resources/fonts/Montserrat/static/Montserrat-SemiBold.ttf') format('truetype');
+        font-weight: 600;
+    }
+
+    @font-face {
+        font-family: 'Montserrat';
+        src: url('./../resources/fonts/Montserrat/static/Montserrat-SemiBoldItalic.ttf') format('truetype');
+        font-weight: 600;
+        font-style: italic;
+    }
+
+    @font-face {
+        font-family: 'Montserrat';
+        src: url('./../resources/fonts/Montserrat/static/Montserrat-Thin.ttf') format('truetype');
+        font-weight: 100;
+    }
+
+    @font-face {
+        font-family: 'Montserrat';
+        src: url('./../resources/fonts/Montserrat/static/Montserrat-ThinItalic.ttf') format('truetype');
+        font-weight: 100;
+        font-style: italic;
+    }
+
+    /* secondary typeface */
+    @font-face {
+        font-family: 'Lato';
+        src: url('./../resources/fonts/Lato/Lato-Black.ttf') format('truetype');
+        font-weight: 900;
+    }
+
+    @font-face {
+        font-family: 'Lato';
+        src: url('./../resources/fonts/Lato/Lato-Bold.ttf') format('truetype');
+        font-weight: 700;
+    }
+
+    @font-face {
+        font-family: 'Lato';
+        src: url('./../resources/fonts/Lato/Lato-Regular.ttf') format('truetype');
+        font-weight: 400;
+    }
+
+    @font-face {
+        font-family: 'Lato';
+        src: url('./../resources/fonts/Lato/Lato-Light.ttf') format('truetype');
+        font-weight: 300;
+    }
+
+    @font-face {
+        font-family: 'Lato';
+        src: url('./../resources/fonts/Lato/Lato-Thin.ttf') format('truetype');
+        font-weight: 100;
+    }
+
+    /* monospace typeface */
+    @font-face {
+        font-family: 'Azeret Mono';
+        src: url('./../resources/fonts/Azeret_Mono/static/AzeretMono-Bold.ttf') format('truetype');
+        font-weight: 700;
+    }
+
+    @font-face {
+        font-family: 'Azeret Mono';
+        src: url('./../resources/fonts/Azeret_Mono/static/AzeretMono-BoldItalic.ttf') format('truetype');
+        font-weight: 700;
+        font-style: italic;
+    }
+
+    @font-face {
+        font-family: 'Azeret Mono';
+        src: url('./../resources/fonts/Azeret_Mono/static/AzeretMono-Regular.ttf') format('truetype');
+        font-weight: 400;
+    }
+
+    @font-face {
+        font-family: 'Azeret Mono';
+        src: url('./../resources/fonts/Azeret_Mono/static/AzeretMono-Italic.ttf') format('truetype');
+        font-weight: 400;
+        font-style: italic;
+    }
+
+    html, body {
+        overflow-x:hidden;
+        min-height: 100vh;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    ::-webkit-scrollbar {
+        -webkit-appearance: none;
+        width: 2px;
+        height: 2px;
+    }
+    
+        ::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        background-color: rgba(166, 166, 166, .5);
+    }
+
+    body {
+        background-color: #FFF;
+    }
+
+    .dark body {
+        background-color: #000;
+    }
+}
+
+@layer utilities {
+    /* typography - button */
+    .Typeface_mono {
+        font-family: 'Azeret Mono', monospace;
+    }
+
+    .Typeface_secondary {
+        font-family: 'Lato', sans-serif;
+    }
+
+    .Font_button_sm {
+        @apply text-sm leading-5 font-semibold
+    }
+
+    .Font_button_md {
+        @apply text-base leading-5 font-semibold
+    }
+
+    .Font_button_lg {
+        @apply text-lg leading-5 font-bold
+    }
+
+    .Font_button_xl {
+        @apply text-xl leading-5 font-black
+    }
+
+    /* typography - body */
+    .Font_body_xs {
+        @apply text-xs leading-6 font-medium
+    }
+    
+    .Font_body_sm {
+        @apply text-sm leading-6 font-medium
+    }
+
+    .Font_body_md {
+        @apply text-base leading-6 font-medium
+    }
+
+    .Font_body_lg {
+        @apply text-xl leading-6 font-medium
+    }
+}

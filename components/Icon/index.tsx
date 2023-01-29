@@ -1,46 +1,34 @@
 import React from 'react';
 import { IconContext } from 'react-icons';
-import {
-  AiOutlineLink,
-} from 'react-icons/ai';
-import { BiLinkExternal } from 'react-icons/bi';
+import { AiOutlineCheckCircle, AiOutlineCopy, AiOutlineLink, AiOutlineLogout } from 'react-icons/ai';
 import { ImCheckboxChecked, ImCheckboxUnchecked } from 'react-icons/im';
 import { IoMdClose } from 'react-icons/io';
-import { MdOutlineContentCopy } from 'react-icons/md';
-import { FaRegCheckCircle } from 'react-icons/fa';
 
-export type IconType =
-  | 'close'
-  | 'copy'
-  | 'link'
-  | 'copylink'
-  | 'checked'
-  | 'unchecked'
-  | 'success';
+export type IconType = 'close' | 'copy' | 'link' | 'copylink' | 'checked' | 'unchecked' | 'success' | 'disconnect';
 
 const Icons: { [key: string]: React.ElementType } = {
   close: IoMdClose,
-  copy: MdOutlineContentCopy,
-  link: BiLinkExternal,
+  copy: AiOutlineCopy,
+  link: AiOutlineLink,
   copylink: AiOutlineLink,
   checked: ImCheckboxChecked,
   unchecked: ImCheckboxUnchecked,
-  success: FaRegCheckCircle
+  success: AiOutlineCheckCircle,
+  disconnect: AiOutlineLogout,
 };
 
 interface IconProps {
-  type: IconType
-  className?: string
+  type: IconType;
+  className?: string;
 }
 
 function Icon({ type, className = '' }: IconProps) {
   const IconComponent = Icons[type];
-  //   as ReactNode
 
   return (
     <IconContext.Provider
       value={{
-        className,
+        className: `${className} w-4 h-4`,
       }}
     >
       {/* @ts-ignore */}

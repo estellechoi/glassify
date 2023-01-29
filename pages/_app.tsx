@@ -23,8 +23,10 @@ function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: DehydratedS
               <StateUpdater />
               <Web3Provider>
                 <BlockProvider>
-                  <AppHeader className="fixed top-0 left-0 right-0" />
-                  <Component {...pageProps} />
+                  <div className="Font_body_md">
+                    <AppHeader className="fixed top-0 left-0 right-0" />
+                    <Component {...pageProps} />
+                  </div>
                 </BlockProvider>
               </Web3Provider>
             </Hydrate>
