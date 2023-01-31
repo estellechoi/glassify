@@ -1,6 +1,6 @@
 import { atom, RecoilEnv } from 'recoil';
-import { Coin } from '@/types/coin';
-import { Wallet } from '@/types/account';
+import type { ChainBalance, Wallet } from '@/types/account';
+import { CoinDetailDict } from '@/types/coin';
 
 /**
  * @summary recoil atom key dupl warning issue resolved by Recoil team
@@ -8,19 +8,17 @@ import { Wallet } from '@/types/account';
  * */
 RecoilEnv.RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED = false;
 
-/** @summary assetInfos */
-export const coinsAtom = atom<Coin[]>({
-  key: 'coins',
-  default: [],
-});
-
-/** @summary watchlist */
-export const watchListAtom = atom<Coin[]>({
-  key: 'watchList',
-  default: [],
-});
-
 export const walletAtom = atom<Wallet | undefined>({
   key: 'wallet',
   default: undefined,
+});
+
+export const coinDetailDictAtom = atom<CoinDetailDict>({
+  key: 'coinDetailDict',
+  default: {},
+});
+
+export const chainBalancesAtom = atom<ChainBalance[]>({
+  key: 'chainBalances',
+  default: [],
 });

@@ -12,4 +12,4 @@ export enum DEXs {
 
 export const POOL_ADDR: { [key in DEXs]: string } = {
   [DEXs.UNISWAP_V3]: '0x8ad599c3A0ff1De082011EFDDc58f1908eb6e6D8',
-}
+};

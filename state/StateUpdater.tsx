@@ -1,16 +1,13 @@
-import { useEffect } from 'react';
-import { useRecoilState } from 'recoil';
-import { useCoinsQuery } from '@/data/useWeb2Query';
-import { coinsAtom } from '@/state/states';
+import useCoinDetailUpdater from './useCoinDetailUpdater';
+import useBalanceUpdater from '@/state/useBalanceUpdater';
 
+/** @todo to SSR */
 export default function StateUpdater() {
-  const { isLoading, isFetching, isSuccess, error, errorMsg, data: coinsData } = useCoinsQuery();
+  /** coin prices dict */
+  useCoinDetailUpdater();
 
-  const [, setCoinsAtom] = useRecoilState(coinsAtom);
-
-  useEffect(() => {
-    if (coinsData) setCoinsAtom(coinsData);
-  }, [setCoinsAtom, coinsData]);
+  /** balance */
+  useBalanceUpdater();
 
   return <></>;
 }

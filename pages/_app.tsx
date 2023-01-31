@@ -3,8 +3,6 @@ import type { AppProps } from 'next/app';
 import { DehydratedState, Hydrate, QueryClientProvider, useQueryErrorResetBoundary } from '@tanstack/react-query';
 import { Suspense } from 'react';
 import { RecoilRoot } from 'recoil';
-import BlockProvider from '@/providers/BlockProvider';
-import Web3Provider from '@/providers/Web3Provider';
 import queryClient from '@/data/queryClient';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import Fallback from '@/components/Fallback';
@@ -21,14 +19,11 @@ function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: DehydratedS
           <QueryClientProvider client={queryClient}>
             <Hydrate state={pageProps.dehydratedState}>
               <StateUpdater />
-              <Web3Provider>
-                <BlockProvider>
-                  <div className="pt-[var(--height-navbar)]">
-                    <AppHeader className="fixed top-0 left-0 right-0" />
-                    <Component {...pageProps} />
-                  </div>
-                </BlockProvider>
-              </Web3Provider>
+
+              <div className="pt-[var(--height-navbar)]">
+                <AppHeader className="fixed top-0 left-0 right-0" />
+                <Component {...pageProps} />
+              </div>
             </Hydrate>
           </QueryClientProvider>
         </RecoilRoot>
