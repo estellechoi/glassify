@@ -51,7 +51,7 @@ const AppHeader = ({ className = '' }: { className?: string }) => {
 
   return (
     <header
-      className={`${className} relative w-full h-navbar bg-blend-saturation flex justify-between items-center gap-x-4 px-5 py-2`}
+      className={`${className} w-full h-navbar bg-groundo10 backdrop-blur-2xl flex justify-between items-center gap-x-4 px-5 py-4`}
     >
       {/* left */}
       <Image src="https://static.coinpaprika.com/coin/usdt-tether/logo.png" width={24} height={24} />
@@ -63,12 +63,13 @@ const AppHeader = ({ className = '' }: { className?: string }) => {
             <Button
               label={connectedUser}
               size="sm"
+              color="neutral"
               type="outline"
               className="ConnectedUserButton w-full"
               onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
             />
           ) : (
-            <Button label="Connect Wallet" size="sm" className="w-full" onClick={onConnectWallet} />
+            <Button label="Connect Wallet" color="neutral" size="sm" className="w-full" onClick={onConnectWallet} />
           )}
         </div>
 

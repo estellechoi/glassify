@@ -12,13 +12,13 @@ const BUTTON_PAINT_DICT: {
   };
 } = {
   fill: {
-    primary: 'bg-primary text-black border border-primary hover:bg-primary_hover hover:border-primary_hover',
-    neutral: 'bg-transparent text-gray200 border border-gray200 hover:bg-white hover:border-white',
+    primary: 'bg-primary text-white border border-primary hover:bg-primary_hover hover:border-primary_hover',
+    neutral: 'bg-gray900 text-white border border-gray900 hover:bg-gray700 hover:border-gray700',
   },
   outline: {
     primary:
       'bg-transparent text-primary border border-primary hover:text-primary_hover hover:bg-primary_hovero10 hover:border-primary_hover',
-    neutral: 'bg-transparent text-gray200 border border-gray200 hover:text-white hover:bg-whiteo10 hover:border-white',
+    neutral: 'bg-transparent text-gray900 border border-gray900 hover:text-gray700 hover:bg-groundo10 hover:border-gray700',
   },
 };
 

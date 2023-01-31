@@ -32,9 +32,9 @@ const AppProfileMenu = ({ open = false, className = '', onDisconnect }: AppProfi
             <div className="Typeface_mono Font_body_lg">$234.76</div>
           </div>
 
-          <div className="flex items-center gap-x-1 text-whiteo70">
+          <div className="flex items-center gap-x-1 text-text_70">
             <div className="Typeface_mono Font_body_sm">21.490245</div>
-            <div className="Typeface_secondary Font_body_xs">ATOM</div>
+            <div className="Font_body_xs">ATOM</div>
           </div>
         </div>
 

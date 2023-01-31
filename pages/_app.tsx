@@ -23,7 +23,7 @@ function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: DehydratedS
               <StateUpdater />
               <Web3Provider>
                 <BlockProvider>
-                  <div className="Font_body_md">
+                  <div className="pt-[var(--height-navbar)]">
                     <AppHeader className="fixed top-0 left-0 right-0" />
                     <Component {...pageProps} />
                   </div>
