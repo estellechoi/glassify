@@ -12,6 +12,7 @@ import useBalance from '@/hooks/useBalance';
 import { CoinId } from '@/constants/coin';
 import { formatNumber } from '@/utils/number';
 import Coin from '../Coin';
+import CoinList from '../CoinList';
 
 const AppHeader = ({ className = '' }: { className?: string }) => {
   const { connectTo } = useConnect();
@@ -19,7 +20,7 @@ const AppHeader = ({ className = '' }: { className?: string }) => {
   const [wallet] = useRecoilState(walletAtom);
 
   /** balance */
-  const { totalBalanceUSD } = useBalance(ChainId.COSMOS);
+  const { totalBalanceUSD, holdings } = useBalance();
 
   /** @todo to be a component */
   const connectedBalance = useMemo<JSX.Element | undefined>(() => {
@@ -27,11 +28,11 @@ const AppHeader = ({ className = '' }: { className?: string }) => {
 
     return (
       <div className="flex items-center gap-x-2">
-        <Coin coinId={CoinId.ATOM} pxSize={20} />
+        <CoinList coinIds={holdings.map((holding) => holding.coinGeckoId)} pxSize={20} />
         <div className="Typeface_mono">{formatNumber(totalBalanceUSD, { fiat: true })}</div>
       </div>
     );
-  }, [wallet, totalBalanceUSD]);
+  }, [wallet, holdings, totalBalanceUSD]);
 
   const onConnectWallet = useCallback(() => {
     connectTo(WalletType.KEPLR);

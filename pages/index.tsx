@@ -3,8 +3,11 @@ import Head from 'next/head';
 import Layout from '../components/Layout';
 
 /** @summary next.js dynamic import example when the whole component must not be pre-rendered */
-// import dynamic from 'next/dynamic';
-// const Table = dynamic(() => import('../components/Table'), { ssr: false }) as <T extends TableRow>({ ...args }: TableProps<T>) => JSX.Element;
+import dynamic from 'next/dynamic';
+
+const PortfolioPieChart = dynamic(() => import('@/components/charts/PortfolioPieChart'), {
+  ssr: false,
+});
 
 const Home: NextPage = () => {
   return (
@@ -16,7 +19,9 @@ const Home: NextPage = () => {
         <link rel="icon" href="/images/favicon_glow.svg" />
       </Head>
 
-      <Layout> </Layout>
+      <Layout>
+        <PortfolioPieChart />
+      </Layout>
     </>
   );
 };

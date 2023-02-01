@@ -8,18 +8,9 @@ export default function LoadingRows({ rowsCnt }: { rowsCnt: number }) {
       {rows.map((_, index) => (
         <div
           key={index}
-          className={`rounded-xl h-[2.4em] animate-loading-bg ${
-            isNthChild(index + 1, 4, 1)
-              ? 'col-start-1 col-end-3'
-              : isNthChild(index + 1, 4, 0)
-              ? 'col-start-3 col-end-4'
-              : ''
+          className={`h-[2.4em] Bg_skeleton ${
+            isNthChild(index + 1, 4, 1) ? 'col-start-1 col-end-3' : isNthChild(index + 1, 4, 0) ? 'col-start-3 col-end-4' : ''
           }`}
-          style={{
-            willChange: 'background-position',
-            background: 'linear-gradient(to left, rgb(23 23 23) 25%, rgb(38 38 38) 50%, rgb(23 23 23) 75%)',
-            backgroundSize: '400%',
-          }}
         />
       ))}
     </div>
@@ -27,5 +18,5 @@ export default function LoadingRows({ rowsCnt }: { rowsCnt: number }) {
 }
 
 function isNthChild(index: number, n: number, a: number) {
-    return index % n === a;
+  return index % n === a;
 }

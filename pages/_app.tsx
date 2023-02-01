@@ -21,7 +21,7 @@ function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: DehydratedS
               <StateUpdater />
 
               <div className="pt-[var(--height-navbar)]">
-                <AppHeader className="fixed top-0 left-0 right-0" />
+                <AppHeader className="fixed top-0 left-0 right-0 z-10" />
                 <Component {...pageProps} />
               </div>
             </Hydrate>

@@ -212,4 +212,9 @@
     .Font_caption_lg {
         @apply text-xl leading-6 font-semibold
     }
+
+    /* background effect */
+    .Bg_skeleton {
+        @apply bg-skeleton-pulse bg-[length:200%] bg-no-repeat animate-skeleton-pulse;
+    }
 }

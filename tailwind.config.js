@@ -54,6 +54,22 @@ module.exports = {
           primary_hover: '#FF8A65',
           primary_hovero35: 'rgb(255 138 101 / 35%)',
           primary_hovero10: 'rgb(255 138 101 / 10%)',
+        },
+        backgroundImage: {
+          'skeleton-pulse': 'linear-gradient(90deg, #e1e1e1 0%, #ffffff 100%)',
+        },
+        keyframes: {
+          'skeleton-pulse': {
+            '0%': { 
+              'background-position': '100% 0%'
+             },
+            '100%': { 
+              'background-position': '0% 0%'
+             },
+          }
+        },
+        animation: {
+          'skeleton-pulse': 'skeleton-pulse 1.5s ease-in-out infinite',
         }
       },
     },
