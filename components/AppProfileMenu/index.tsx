@@ -67,7 +67,7 @@ const AppProfileMenu = ({ open = false, className = '', onDisconnect }: AppProfi
                 <div className="Typeface_mono Font_body_lg">
                   {formatNumber(totalBalanceUSD, { fiat: true, semiequate: true })}
                 </div>
-                <div className="flex items-center gap-x-1 text-text_70">
+                <div className="flex items-center gap-x-1">
                   <div className="Typeface_mono Font_body_sm">{formatNumber(repBalance?.amount, { dp: 6 })}</div>
                   <div className="Font_body_xs">{repBalance?.ticker}</div>
                 </div>
