@@ -4,7 +4,7 @@ Paper is web3 portfolio visualizer, which is to be built using Next, Recoil, Rea
 
 ## 1. Overview
 
-<img src="./overview2.jpg" />
+<img src="./overview.jpg" />
 
 ## 2. Plan
 
