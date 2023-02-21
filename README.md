@@ -1,6 +1,6 @@
 # Paper
 
-<img src="./logo_xl.png" />
+<img src="./docs/logo_xl.png" />
 
 <br />
 
@@ -10,27 +10,27 @@ Paper is web3 portfolio visualizer, which is to be built using Next, Recoil, Rea
 
 ## 1. Overview
 
-<img src="./overview.jpg" />
+<img src="./docs/overview.jpg" />
 <br />
-<img src="./overview2.jpg" />
+<img src="./docs/overview2.jpg" />
 <br />
-<img src="./overview3.jpg" />
+<img src="./docs/overview3.jpg" />
 <br />
-<img src="./overview5.jpg" />
+<img src="./docs/overview5.jpg" />
 <br />
-<img src="./overview6.jpg" />
+<img src="./docs/overview6.jpg" />
 <br />
-<img src="./overview7.jpg" />
+<img src="./docs/overview7.jpg" />
 <br />
-<img src="./overview8.jpg" />
+<img src="./docs/overview8.jpg" />
 <br />
-<img src="./overview9.jpg" />
+<img src="./docs/overview9.jpg" />
 <br />
-<img src="./overview91.jpg" />
+<img src="./docs/overview91.jpg" />
 <br />
-<img src="./overview92.jpg" />
+<img src="./docs/overview92.jpg" />
 <br />
-<img src="./overview93.jpg" />
+<img src="./docs/overview93.jpg" />
 <br />
 
 ## 2. Plan
