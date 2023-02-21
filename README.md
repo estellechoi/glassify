@@ -1,6 +1,6 @@
 # Paper
 
-<img src="./docs/logo_xl.png" />
+<img src="./docs/logo_xl.png" width="320" />
 
 <br />
 
