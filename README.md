@@ -1,6 +1,6 @@
 # Paper
 
-<img src="./docs/logo_overview.jpg" width="320" />
+<img src="./docs/logo_overview.jpg" width="720" />
 
 <br />
 
