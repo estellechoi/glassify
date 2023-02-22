@@ -1,18 +1,18 @@
 import Button from '@/components/Button';
 import { useCallback, useState } from 'react';
-import Image from 'next/image';
 import { useMemo } from 'react';
 import AppProfileMenu from '../AppProfileMenu';
 import { useRecoilState } from 'recoil';
 import { walletAtom } from '@/state/states';
 import { useEffect } from 'react';
 import useConnect from '@/connection/useConnect';
-import { ChainId, WalletType } from '@/constants/connect';
+import { WalletType } from '@/constants/connect';
 import useBalance from '@/hooks/useBalance';
-import { CoinId } from '@/constants/coin';
 import { formatNumber } from '@/utils/number';
-import Coin from '../Coin';
 import CoinList from '../CoinList';
+import Image from 'next/image';
+import LogoLightSvg from '@/resources/logos/logo_light.svg';
+import Link from 'next/link';
 
 const AppHeader = ({ className = '' }: { className?: string }) => {
   const { connectTo } = useConnect();
@@ -63,7 +63,9 @@ const AppHeader = ({ className = '' }: { className?: string }) => {
       className={`${className} w-full h-navbar bg-groundo10 backdrop-blur-2xl flex justify-between items-center gap-x-4 px-5 py-4`}
     >
       {/* left */}
-      <div className="w-6 h-6 bg-red-500"></div>
+      <Link href="/">
+        <Image src={LogoLightSvg} alt="Paper logo" width={40} height={20} />
+      </Link>
 
       {/* right */}
       <div className="relative flex items-center gap-x-4">
