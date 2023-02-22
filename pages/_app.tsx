@@ -4,13 +4,13 @@ import { DehydratedState, Hydrate, QueryClientProvider, useQueryErrorResetBounda
 import { Suspense } from 'react';
 import { RecoilRoot } from 'recoil';
 import queryClient from '@/data/queryClient';
-import ErrorBoundary from '@/components/ErrorBoundary';
 import Fallback from '@/components/Fallback';
 import StateUpdater from '@/state/StateUpdater';
 import AppHeader from '@/components/AppHeader';
 import Head from 'next/head';
 import { NextSeo } from 'next-seo';
 import { SEO } from 'next-seo.config';
+import SentryErrorBoundary from '@/components/ErrorBoundary/SentryErrorBoundary';
 
 function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: DehydratedState }>) {
   const { reset } = useQueryErrorResetBoundary();
@@ -30,7 +30,7 @@ function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: DehydratedS
 
       <NextSeo {...SEO} />
 
-      <ErrorBoundary fallbackComponent={Fallback} onReset={reset}>
+      <SentryErrorBoundary fallbackComponent={Fallback} onReset={reset}>
         <Suspense>
           <RecoilRoot>
             <QueryClientProvider client={queryClient}>
@@ -45,7 +45,7 @@ function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: DehydratedS
             </QueryClientProvider>
           </RecoilRoot>
         </Suspense>
-      </ErrorBoundary>
+      </SentryErrorBoundary>
     </>
   );
 }

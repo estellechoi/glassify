@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import Layout from '../components/Layout';
+import Layout from '@/components/Layout';
 
 /** @summary next.js dynamic import example when the whole component must not be pre-rendered */
 import dynamic from 'next/dynamic';
