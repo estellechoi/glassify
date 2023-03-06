@@ -7,7 +7,9 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  ...withBundleAnalyzer(withSentryConfig({})),
+  ...withBundleAnalyzer(withSentryConfig({
+    sentry: { hideSourceMaps: true }
+  }, { })),
   reactStrictMode: true,
   swcMinify: true,
   images: {

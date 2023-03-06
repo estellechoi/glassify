@@ -14,7 +14,7 @@ const useBalance = (chainId?: ChainId) => {
     (chainBalance: ChainBalance): BalanceDetail[] => {
       return Object.keys(coinDetailDict).map((coinId) => {
         const coinDetail = coinDetailDict[coinId];
-        const balance = chainBalance?.balances.find((bal) => bal.denom === coinDetail.denom);
+        const balance = chainBalance?.balances?.find((bal) => bal.denom === coinDetail.denom);
 
         const amount = new BigNumber(balance?.amount ?? 0).shiftedBy(-coinDetail.decimal);
         const amountFiat = { usd: amount.multipliedBy(coinDetail.priceFiat.usd) };
