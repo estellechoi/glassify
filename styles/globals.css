@@ -1,5 +1,6 @@
 @import './fonts.css';
 @import './variables.css';
+@import './tippy.css';
 
 @tailwind base;
 @tailwind components;
@@ -24,7 +25,7 @@
     html, body {
         overflow-x: hidden;
         min-height: 100vh;
-        font-family: 'Inter', sans-serif;
+        @apply font-primary;
     }
 
     body {
@@ -37,21 +38,6 @@
 }
 
 @layer utilities {
-    /* typography - typefaces */
-    .Typeface_mono_bold {
-        font-family: 'Azeret Mono', monospace;
-        @apply font-bold;
-    }
-
-    .Typeface_mono {
-        font-family: 'Azeret Mono', monospace;
-        @apply font-normal;
-    }
-
-    .Typeface_secondary {
-        font-family: 'Lato', sans-serif;
-    }
-
     /* typography - button */
     .Font_button_sm {
         @apply text-sm leading-5 font-semibold
@@ -84,6 +70,44 @@
 
     .Font_body_lg {
         @apply text-xl leading-6 font-medium
+    }
+
+    /** typography - label */
+    .Font_label_12px {
+        @apply text-xs leading-5 font-medium
+    }
+
+    .Font_label_14px {
+        @apply text-[0.875rem] leading-5 font-medium
+    }
+
+    /** typography - data */
+    .Font_data_12px_num {
+        @apply font-num text-xs leading-5 font-light tracking-tight
+    }
+
+    .Font_data_16px_num {
+        @apply font-num text-base leading-5 font-semibold tracking-tight
+    }
+
+    .Font_data_20px_num {
+        @apply font-num text-xl leading-6 font-bold tracking-tight
+    }
+
+    .Font_data_32px_num {
+        @apply font-num text-[2rem] leading-10 font-bold tracking-tight
+    }
+
+    .Font_data_12px_unit {
+        @apply text-[0.625rem] leading-5 font-light
+    }
+
+    .Font_data_20px_unit {
+        @apply text-[0.875rem] leading-6 font-bold
+    }
+
+    .Font_data_32px_unit {
+        @apply text-2xl leading-10 font-bold
     }
 
     /* typography - caption */

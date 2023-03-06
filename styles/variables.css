@@ -3,11 +3,17 @@
 }
 
 :root {
+    /* black */
     --color-black: #000;
+    --color-black-o70: rgba(0, 0, 0, 0.7);
+    --color-black-o35: rgba(0, 0, 0, 0.35);
+    --color-black-o10: rgba(0, 0, 0, 0.1);
+    /* white */
     --color-white: #fff;
     --color-white-o70: rgba(255, 255, 255, 0.7);
     --color-white-o35: rgba(255, 255, 255, 0.35);
     --color-white-o10: rgba(255, 255, 255, 0.1);
+    /* gray */
     --color-gray50: #f9f9f9;
     --color-gray100: #f3f3f3;
     --color-gray200: #ebebeb;
@@ -21,6 +27,7 @@
     --color-gray900-o80: rgba(29, 29, 29, 0.8);
     --color-gray900-o10: rgba(29, 29, 29, 0.1);
     --color-gray900-o4: rgba(29, 29, 29, 0.04);
+    --color-gray900-o2: rgba(29, 29, 29, 0.02);
     --color-gray900-o0: rgba(29, 29, 29, 0);
     --color-coolgray50: #fafafa;
     --color-coolgray100: #f5f5f5;
@@ -33,6 +40,7 @@
     --color-coolgray700: #626262;
     --color-coolgray800: #434343;
     --color-coolgray900: #222;
+    /* scarlet */
     --color-scarlet50: #fce9e8;
     --color-scarlet100: #ffccbe;
     --color-scarlet200: #ffaa95;
@@ -46,4 +54,13 @@
     --color-scarlet700: #f14123;
     --color-scarlet800: #e33a1e;
     --color-scarlet900: #c92c15;
+    /* sky */
+    --color-sky400: #E0F9FF;
+    --color-sky400-o50: rgba(224, 249, 255, 0.5);
+    --color-sky400-o20: rgba(224, 249, 255, 0.2);
+    --color-sky400-o10: rgba(224, 249, 255, 0.1);
+}
+
+:root {
+    --shadow-glass: 0px 1px 4px 4px rgba(0, 0, 0, 0.1), inset -2px 2px 4px rgba(255, 255, 255, 0.1);
 }

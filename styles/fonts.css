@@ -100,6 +100,19 @@
 
 @font-face {
     font-family: 'Azeret Mono';
+    src: url('./../resources/fonts/Azeret_Mono/static/AzeretMono-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'Azeret Mono';
+    src: url('./../resources/fonts/Azeret_Mono/static/AzeretMono-SemiBoldItalic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Azeret Mono';
     src: url('./../resources/fonts/Azeret_Mono/static/AzeretMono-Regular.ttf') format('truetype');
     font-weight: 400;
 }
@@ -108,5 +121,18 @@
     font-family: 'Azeret Mono';
     src: url('./../resources/fonts/Azeret_Mono/static/AzeretMono-Italic.ttf') format('truetype');
     font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Azeret Mono';
+    src: url('./../resources/fonts/Azeret_Mono/static/AzeretMono-Light.ttf') format('truetype');
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: 'Azeret Mono';
+    src: url('./../resources/fonts/Azeret_Mono/static/AzeretMono-LightItalic.ttf') format('truetype');
+    font-weight: 300;
     font-style: italic;
 }

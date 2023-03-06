@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
@@ -6,22 +8,44 @@ module.exports = {
       height: {
         navbar: 'var(--height-navbar)',
       },
+      fontFamily: {
+        primary: ['Inter', ...defaultTheme.fontFamily.sans],
+        num: ['"Azeret Mono"', 'monospace'],
+      },
       colors: {
         /* color tokens */
-        ground: 'var(--color-coolgray100)',
-        ground_o: 'var(--color-coolgray100-o10)',
-        ground_dark: 'var(--color-gray900)',
-        ground_dark_o: 'var(--color-gray900-o10)',
+        black: 'var(--color-black)',
+        black_o70: 'var(--color-black-o70)',
+        black_o35: 'var(--color-black-o35)',
+        black_o10: 'var(--color-black-o10)',
+        white: 'var(--color-white)',
+        white_o70: 'var(--color-white-o70)',
+        white_o35: 'var(--color-white-o35)',
+        white_o10: 'var(--color-white-o10)',
+        /* app colors */
         primary: 'var(--color-scarlet600)',
         primary_hover: 'var(--color-scarlet600-o80)',
         secondary: 'var(--color-gray900)',
         secondary_hover: 'var(--color-gray900-o80)',
+        glass: 'var(--color-sky400-o10)',
+        ground: 'var(--color-coolgray100)',
+        ground_o: 'var(--color-coolgray100-o10)',
+        ground_dark: 'var(--color-gray900)',
+        ground_dark_o: 'var(--color-gray900-o10)',
+        body: 'var(--color-black)',
+        caption: 'var(--color-gray600)',
+        caption_dark: 'var(--color-gray800)',
         disabled: 'var(--color-gray300)',
       },
       backgroundImage: {
         primary_linear_4: 'linear-gradient(90deg, var(--color-scarlet600-o4) 0%, var(--color-scarlet600-o0) 100%)',
         secondary_linear_4: 'linear-gradient(90deg, var(--color-gray900-o4) 0%, var(--color-gray900-o0) 100%)',
+        secondary_linear_2: 'linear-gradient(90deg, var(--color-gray900-o2) 0%, var(--color-gray900-o0) 100%)',
         'skeleton-pulse': 'linear-gradient(90deg, #e1e1e1 0%, #ffffff 100%)',
+      },
+      boxShadow: {
+        subtle: '0px 1px 4px 4px var(--color-black-o10),',
+        subtle_glass: '0px 1px 4px 4px var(--color-black-o10), inset -2px 2px 4px var(--color-white-o10)',
       },
       keyframes: {
         'skeleton-pulse': {
