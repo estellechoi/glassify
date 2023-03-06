@@ -1,13 +1,13 @@
 import { CoinId } from '@/constants/coin';
 import { ChainId } from '@/constants/connect';
-import { chainBalancesAtom, coinDetailDictAtom } from '@/state/states';
+import { balancesDictAtom, coinDetailDictAtom } from '@/state/states';
 import type { BalanceDetail, ChainBalance } from '@/types/account';
 import { BigNumber } from 'bignumber.js';
 import { useCallback, useMemo } from 'react';
 import { useRecoilState } from 'recoil';
 
 const useBalance = (chainId?: ChainId) => {
-  const [chainBalances] = useRecoilState(chainBalancesAtom);
+  const [balancesDict] = useRecoilState(balancesDictAtom);
   const [coinDetailDict] = useRecoilState(coinDetailDictAtom);
 
   const getBalancesByChain = useCallback(
@@ -31,8 +31,8 @@ const useBalance = (chainId?: ChainId) => {
   );
 
   const targetChainBalances = useMemo<ChainBalance[]>(
-    () => (chainId ? chainBalances.filter((balance) => balance.chainId === chainId) : chainBalances),
-    [chainBalances, chainId]
+    () => (chainId ? (balancesDict[chainId] ? [balancesDict[chainId]] : []) : Object.values(balancesDict)),
+    [balancesDict, chainId]
   );
 
   const balances = useMemo<BalanceDetail[]>(() => {

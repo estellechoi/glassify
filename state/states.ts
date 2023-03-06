@@ -1,4 +1,4 @@
-import { atom, RecoilEnv } from 'recoil';
+import { atom, RecoilEnv, selector } from 'recoil';
 import type { ChainBalance, Wallet } from '@/types/account';
 import { CoinDetailDict } from '@/types/coin';
 
@@ -21,4 +21,10 @@ export const coinDetailDictAtom = atom<CoinDetailDict>({
 export const chainBalancesAtom = atom<ChainBalance[]>({
   key: 'chainBalances',
   default: [],
+});
+
+/** @wip refactor of above */
+export const balancesDictAtom = atom<Record<string, ChainBalance>>({
+  key: 'chainBalancesDict',
+  default: {},
 });

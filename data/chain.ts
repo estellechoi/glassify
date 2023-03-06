@@ -19,10 +19,10 @@ const CHAIN_LCD_ENDPOINT_DICT: { [key in ChainId]: string } = {
     : 'https://api.mycryptoapi.com/eth',
 };
 
-const getAxios = (chainId: ChainId) =>
+const Axios = (chainId: ChainId) =>
   axios.create({
     baseURL: CHAIN_LCD_ENDPOINT_DICT[chainId],
   });
 
 export const fetchBalances = ({ chainId, address }: { chainId: ChainId; address: string }) =>
-  getAxios(chainId).get<BalanceResponse>(`/cosmos/bank/v1beta1/balances/${address}`);
+  Axios(chainId).get<BalanceResponse>(`/cosmos/bank/v1beta1/balances/${address}`);

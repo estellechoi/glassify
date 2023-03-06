@@ -1,7 +1,6 @@
 import { CoinId, COIN_DETAIL_DICT } from '@/constants/coin';
-import { fetchCoinGeckoPrice } from '@/data/coingecko';
+import { useQueryCoinPrices } from '@/data/queryHooks';
 import { CoinDetail } from '@/types/coin';
-import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { coinDetailDictAtom } from './states';
@@ -9,9 +8,7 @@ import { coinDetailDictAtom } from './states';
 const useCoinDetailUpdater = () => {
   const [, setCoinDetailDict] = useRecoilState(coinDetailDictAtom);
 
-  const { data: coinPricesData } = useQuery(['coinPrices'], () =>
-    fetchCoinGeckoPrice({ ids: Object.values(CoinId), vs_currencies: ['usd'] })
-  );
+  const { data: coinPricesData } = useQueryCoinPrices();
 
   useEffect(() => {
     if (coinPricesData?.data) {

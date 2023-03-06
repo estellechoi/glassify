@@ -1,19 +1,20 @@
+import { getCSS } from '@/utils/styles';
 import { useMemo, useState } from 'react';
 import PieChart from '../PieChart';
 import { PieChartEntry } from '../PieChart/types';
 import Tooltip from '../Tooltip';
 
 export const PORTFOLIO_COLORS = [
-  '#FFDEC0',
-  '#FFBF83',
-  '#FFA049',
-  '#FD810E',
-  '#DE6B00',
-  '#B65800',
-  '#914600',
-  '#6E3500',
-  '#4A2400',
-  '#261200',
+  getCSS('--color-gray50'),
+  getCSS('--color-gray100'),
+  getCSS('--color-gray200'),
+  getCSS('--color-gray300'),
+  getCSS('--color-gray400'),
+  getCSS('--color-gray500'),
+  getCSS('--color-gray600'),
+  getCSS('--color-gray700'),
+  getCSS('--color-gray800'),
+  getCSS('--color-gray900'),
 ];
 
 type PortfolioPieChartProps = {
