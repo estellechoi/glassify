@@ -1,24 +1,25 @@
 import type { IconType } from '../Icon';
 import Icon from '../Icon';
 
-type ButtonColor = 'primary' | 'neutral';
+type ButtonColor = 'primary' | 'secondary';
 type ButtonType = 'fill' | 'outline';
 type ButtonShape = 'rounded' | 'square';
 type ButtonSize = 'sm' | 'md' | 'lg' | 'xl';
 
 const BUTTON_PAINT_DICT: {
   [key in ButtonType]: {
-    [key in ButtonColor]: string;
+    [key in ButtonColor | 'disabled']: string;
   };
 } = {
   fill: {
     primary: 'bg-primary text-white border border-primary hover:bg-primary_hover hover:border-primary_hover',
-    neutral: 'bg-gray900 text-white border border-gray900 hover:bg-gray700 hover:border-gray700',
+    secondary: 'bg-secondary text-white hover:bg-secondary_hover',
+    disabled: 'bg-disabled text-white',
   },
   outline: {
-    primary:
-      'bg-transparent text-primary border border-primary hover:text-primary_hover hover:bg-primary_hovero10 hover:border-primary_hover',
-    neutral: 'bg-transparent text-gray900 border border-gray900 hover:text-gray700 hover:bg-groundo10 hover:border-gray700',
+    primary: 'bg-transparent text-primary border border-primary hover:border-primary_hover hover:bg-primary_linear_4',
+    secondary: 'bg-transparent text-secondary border border-secondary hover:border-secondary_hover hover:bg-secondary_linear_4',
+    disabled: 'bg-transparent text-disabled border border-disabled',
   },
 };
 
@@ -42,6 +43,7 @@ type ButtonProps = {
   shape?: ButtonShape;
   size?: ButtonSize;
   iconType?: IconType;
+  disabled?: boolean;
   className?: string;
 };
 
@@ -53,16 +55,25 @@ const Button = ({
   shape = 'rounded',
   size = 'md',
   iconType,
+  disabled = false,
   className = '',
 }: ButtonProps) => {
   return (
     <button
       type="button"
       onClick={onClick}
-      className={`${className} inline-flex justify-center items-center gap-x-1 overflow-hidden text-ellipsis whitespace-nowrap backdrop-blur-xl transition-all ${BUTTON_PAINT_DICT[type][color]} ${BUTTON_RADIUS_DICT[shape]} ${BUTTON_SIZE_DICT[size]}`}
+      className={`${className} transition-all ${BUTTON_PAINT_DICT[type][disabled ? 'disabled' : color]} ${
+        BUTTON_RADIUS_DICT[shape]
+      }`}
     >
-      {iconType && <Icon type={iconType} />}
-      <div>{label}</div>
+      <div
+        className={`inline-flex justify-center items-center gap-x-1 overflow-hidden text-ellipsis whitespace-nowrap ${
+          BUTTON_SIZE_DICT[size]
+        } ${disabled ? 'opacity-50' : ''}`}
+      >
+        {iconType && <Icon type={iconType} />}
+        <div>{label}</div>
+      </div>
     </button>
   );
 };

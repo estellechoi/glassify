@@ -77,7 +77,14 @@ const AppProfileMenu = ({ open = false, className = '', onDisconnect }: AppProfi
         </div>
 
         <div className="flex justify-end px-4 py-5">
-          <Button iconType="disconnect" label="Disconnect" size="sm" type="outline" color="neutral" onClick={onClickDisconnect} />
+          <Button
+            iconType="disconnect"
+            label="Disconnect"
+            size="sm"
+            type="outline"
+            color="secondary"
+            onClick={onClickDisconnect}
+          />
         </div>
       </div>
     </Float>

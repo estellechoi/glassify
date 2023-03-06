@@ -60,7 +60,7 @@ const AppHeader = ({ className = '' }: { className?: string }) => {
 
   return (
     <header
-      className={`${className} w-full h-navbar bg-groundo10 backdrop-blur-2xl flex justify-between items-center gap-x-4 px-5 py-4`}
+      className={`${className} w-full h-navbar bg-ground_o backdrop-blur-2xl flex justify-between items-center gap-x-4 px-5 py-4`}
     >
       {/* left */}
       <Link href="/">
@@ -74,13 +74,13 @@ const AppHeader = ({ className = '' }: { className?: string }) => {
             <Button
               label={connectedBalance}
               size="sm"
-              color="neutral"
+              color="secondary"
               type="outline"
               className="connectedWalletButton w-full"
               onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
             />
           ) : (
-            <Button label="Connect Wallet" color="neutral" size="sm" className="w-full" onClick={onConnectWallet} />
+            <Button label="Connect Wallet" color="secondary" size="sm" className="w-full" onClick={onConnectWallet} />
           )}
         </div>
 

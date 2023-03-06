@@ -1,0 +1,49 @@
+:root {
+    --height-navbar: 5rem;
+}
+
+:root {
+    --color-black: #000;
+    --color-white: #fff;
+    --color-white-o70: rgba(255, 255, 255, 0.7);
+    --color-white-o35: rgba(255, 255, 255, 0.35);
+    --color-white-o10: rgba(255, 255, 255, 0.1);
+    --color-gray50: #f9f9f9;
+    --color-gray100: #f3f3f3;
+    --color-gray200: #ebebeb;
+    --color-gray300: #dcdcdc;
+    --color-gray400: #b8b8b8;
+    --color-gray500: #989898;
+    --color-gray600: #707070;
+    --color-gray700: #5c5c5c;
+    --color-gray800: #3d3d3d;
+    --color-gray900: #1d1d1d;
+    --color-gray900-o80: rgba(29, 29, 29, 0.8);
+    --color-gray900-o10: rgba(29, 29, 29, 0.1);
+    --color-gray900-o4: rgba(29, 29, 29, 0.04);
+    --color-gray900-o0: rgba(29, 29, 29, 0);
+    --color-coolgray50: #fafafa;
+    --color-coolgray100: #f5f5f5;
+    --color-coolgray100-o10: rgb(245 245 245 / 10%);
+    --color-coolgray200: #efefef;
+    --color-coolgray300: #e1e1e1;
+    --color-coolgray400: #bebebe;
+    --color-coolgray500: #9f9f9f;
+    --color-coolgray600: #767676;
+    --color-coolgray700: #626262;
+    --color-coolgray800: #434343;
+    --color-coolgray900: #222;
+    --color-scarlet50: #fce9e8;
+    --color-scarlet100: #ffccbe;
+    --color-scarlet200: #ffaa95;
+    --color-scarlet300: #ff876a;
+    --color-scarlet400: #ff6b4a;
+    --color-scarlet500: #ff4e2c;
+    --color-scarlet600: #ff4828;
+    --color-scarlet600-o80: rgba(255, 72, 40, 0.8);
+    --color-scarlet600-o4: rgba(255, 72, 40, 0.04);
+    --color-scarlet600-o0: rgba(255, 72, 40, 0);
+    --color-scarlet700: #f14123;
+    --color-scarlet800: #e33a1e;
+    --color-scarlet900: #c92c15;
+}
