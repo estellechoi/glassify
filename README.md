@@ -188,6 +188,10 @@ and groupd by:
 
 <br />
 
+Importantly, should infrom that [Think Aloud](https://www.nngroup.com/articles/thinking-aloud-the-1-usability-tool/) is required! It is necessary so the observer can record the thoughts users have and problems they face.
+
+<br />
+
 Background and tasks should be set like:
 
 Background example
@@ -230,7 +234,7 @@ The below is an example for usability test sheet an abserver will fill during te
 <img src="./docs/ut_records.png" />
 <br />
 
-Important! To review, [Think Aloud](https://www.nngroup.com/articles/thinking-aloud-the-1-usability-tool/) is required for users. Finally, find users' pain points and needs by reviewing with the below standards:
+Finally, find users' pain points and needs by reviewing with the below standards:
 
 - Time: how long the test took
 - Error: How many errors user made
