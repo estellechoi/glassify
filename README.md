@@ -227,7 +227,7 @@ Task and scenario can be derived from:
 
 The below is an example for usability test sheet an abserver will fill during test
 
-<img src="./docs/ut.png" />
+<img src="./docs/ut_records.png" />
 <br />
 
 Important! To review, [Think Aloud](https://www.nngroup.com/articles/thinking-aloud-the-1-usability-tool/) is required for users. Finally, find users' pain points and needs by reviewing with the below standards:
