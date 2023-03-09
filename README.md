@@ -118,6 +118,15 @@ Have looked up the following of other apps, in terms of 3 factors; Usefulness, U
 
 <br />
 
+#### Example
+
+Target: [Zapper](https://zapper.xyz/)
+
+- [Review Figjam file](https://www.figma.com/file/HOGzfVFGedXXev35EX0qSo/PAPER?node-id=0%3A1&t=ju63Ku8ihumgVO0A-1)
+
+<img src="./docs/figjam.png" />
+<br />
+
 #### 2-1-4. Usability Test
 
 #### 5 Elements of Usability
@@ -144,16 +153,7 @@ This is based on [Jakob Nielsen](https://www.nngroup.com/people/jakob-nielsen/)'
 </p>
 <br />
 
-#### Example
-
-Target: [Zapper](https://zapper.xyz/)
-
-- [Review Figjam file](https://www.figma.com/file/HOGzfVFGedXXev35EX0qSo/PAPER?node-id=0%3A1&t=ju63Ku8ihumgVO0A-1)
-
-<img src="./docs/figjam.png" />
-<br />
-
-- Hueristics Evaluation & Collection
+Hueristics Evaluation & Collection Sheet Example is as following.
 
 <img src="./docs/hue1.png" />
 <img src="./docs/hue2.png" />
