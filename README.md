@@ -32,7 +32,7 @@ This is scheduling table example. Work items are based on the real use-cases I'v
 
 ### 2-1. Desk Research
 
-#### Research Goals
+#### 2-1-1. Research Goals
 
 - To find repeated keywords about industry
 - To find main players in the same market category
@@ -41,7 +41,7 @@ This is scheduling table example. Work items are based on the real use-cases I'v
 
 <br />
 
-#### Industry Analysis Search Keywords
+#### 2-1-2. Industry Analysis Search Keywords
 
 ```
 web3 portfolio app 
@@ -53,7 +53,7 @@ web3 portfolio app trend
 
 <br />
 
-#### Raw Result
+##### Raw Result Examples
 
 Key features that a Web3 portfolio app might include:
 
@@ -108,13 +108,35 @@ Examples of Web3 portfolio apps:
 ...
 <br />
 
-#### Anatomy of Main Players
+#### 2-1-3. App Analysis
 
-##### Check Points
+Should look up the following of other apps, in terms of 3 factors; Usefulness, Usability, Emotion
 
 - User flow
-- UI tone and manner
+- Tone and manner
 - Differntiating points
+
+<br />
+
+Among the above 3 factors, usability analysis is mainly performed, and this is the examples of usability analysis methods.
+
+<img src="./docs/methods.png" />
+<br />
+
+Heuristics Evaluation is based on [Jakob Nielsen](https://www.nngroup.com/people/jakob-nielsen/)'s [Ten Usability Heuristics](https://pdfs.semanticscholar.org/5f03/b251093aee730ab9772db2e1a8a7eb8522cb.pdf)
+
+<p align="center">
+      <img src="./docs/jacob.png" width="500" />
+</p>
+<br />
+
+##### 5 Elements of Usability
+
+1. Learnability: users can learn easily
+2. Efficiency: users can achieve their goal fast
+3. Memorability: users can reuse the app without difficulty when they come back in a while
+4. Error: users can undo what they did wrong easily
+5. Satisfaction: users feel satisfied
 
 <br />
 
@@ -127,14 +149,7 @@ Target: [Zapper](https://zapper.xyz/)
 <img src="./docs/figjam.png" />
 <br />
 
-The above heuristics review was based on [Jakob Nielsen](https://www.nngroup.com/people/jakob-nielsen/)'s [Ten Usability Heuristics](https://pdfs.semanticscholar.org/5f03/b251093aee730ab9772db2e1a8a7eb8522cb.pdf)
-
-<p align="center">
-      <img src="./docs/jacob.png" width="500" />
-</p>
-<br />
-
-#### Cool Ideas to Benchmark
+#### 2-1-4. Cool Ideas to Benchmark
 
 - [iPhone14](https://www.apple.com/uk/iphone-14/)
 
