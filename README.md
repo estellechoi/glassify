@@ -225,22 +225,22 @@ Task and scenario can be derived from:
 
 <br />
 
-Important! To review, [Think Aloud](https://www.nngroup.com/articles/thinking-aloud-the-1-usability-tool/) is required for users. 
-
-<br />
-
 The below is an example for usability test sheet an abserver will fill during test
 
 <img src="./docs/ut.png" />
 <br />
 
-Finally, review sheet should include the following standards:
+Important! To review, [Think Aloud](https://www.nngroup.com/articles/thinking-aloud-the-1-usability-tool/) is required for users. Finally, find users' pain points and needs by reviewing with the below standards:
 
 - Time: how long the test took
 - Error: How many errors user made
 - Learnability: How many questions user asked
 - Success: How many tasks user completed
 - Behavior: by 10 Hueristics
+
+<br />
+
+List up the pain points ordered by the times repeated, and get insights about how to improve!
 
 <br />
 
