@@ -85,70 +85,30 @@ their investments and participate in yield farming, staking, and other
 DeFi activities.
 ```
 
-Examples of Web3 portfolio dapps:
+Examples of Web3 portfolio apps:
 
 ```
-1. Aave Portfolio Manager: Aave is a decentralized finance (DeFi) protocol 
-that allows users to lend and borrow cryptocurrency. Aave Portfolio 
-Manager is a dApp that helps users manage their Aave investments by providing 
-a real-time view of their portfolio performance, yield earned, and asset 
-allocation.
-
-2. Zapper: Zapper is a portfolio management dApp that allows users to 
+1. Zapper: Zapper is a portfolio management dApp that allows users to 
 track their cryptocurrency holdings across multiple DeFi protocols, 
 including Uniswap, Sushiswap, and Curve. It also provides tools for 
 swapping, staking, and borrowing assets.
 
-3. Instadapp: Instadapp is a DeFi management platform that allows users 
-to manage their assets across different DeFi protocols. Its portfolio
- management tool provides a real-time view of portfolio performance, 
- asset allocation, and yield earned.
-
-4. DeFi Saver: DeFi Saver is a dApp that allows users to manage their 
+2. DeFi Saver: DeFi Saver is a dApp that allows users to manage their 
 DeFi investments across different protocols, including MakerDAO and 
 Compound. It provides tools for portfolio rebalancing, collateral 
 management, and liquidation protection.
 
 
-5. Nansen: Nansen is a blockchain analytics platform that provides 
+3. Nansen: Nansen is a blockchain analytics platform that provides 
 insights into on-chain activity across different DeFi protocols. 
 Its portfolio management tool allows users to track their investments 
 across multiple chains and protocols and provides analytics on portfolio 
 performance and asset allocation.
 
-6. Pulsar: Pulsar is a portfolio management and trading dApp built on 
+4. Pulsar: Pulsar is a portfolio management and trading dApp built on 
 the Cosmos blockchain. It allows users to manage their cryptocurrency 
 investments across different Cosmos-based DeFi protocols, including 
 IBC-enabled chains.
-```
-
-Examples of Web3 portfolio apps:
-
-```
-1. CoinTracking: CoinTracking is a cryptocurrency portfolio management 
-tool that supports over 8,000 coins and tokens from more than 300 
-exchanges. It offers a range of features including real-time portfolio 
-tracking, tax reports, and customizable dashboards.
-
-2. Accointing: Accointing is a crypto portfolio management platform that 
-offers real-time portfolio tracking, tax optimization tools, and 
-integration with popular exchanges and wallets. It also provides 
-a mobile app for on-the-go portfolio management.
-
-3. Koinly: Koinly is a cryptocurrency tax and portfolio management 
-platform that offers real-time tracking of over 300 exchanges and 
-wallets. It also provides automated tax reports, support for multiple 
-accounting methods, and integration with popular tax filing software.
-
-4. Blockfolio: Blockfolio is a popular mobile app for tracking 
-cryptocurrency prices and managing portfolios. It offers real-time 
-price tracking for over 10,000 cryptocurrencies, portfolio tracking, 
-and alerts for price changes and news updates.
-
-5. Delta: Delta is a crypto portfolio management app that provides 
-real-time tracking of over 6,000 cryptocurrencies across more than 
-300 exchanges. It offers a range of features including portfolio 
-tracking, price alerts, and integration with popular wallets and exchanges.
 ```
 
 ...
