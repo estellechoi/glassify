@@ -41,7 +41,7 @@ This is scheduling table example. Work items are based on the real use-cases I'v
 
 <br />
 
-#### Search Keywords
+#### Industry Analysis Search Keywords
 
 ```
 web3 portfolio app 
@@ -122,10 +122,12 @@ Examples of Web3 portfolio apps:
 
 Target: [Zapper](https://zapper.xyz/)
 
+- [Review Figjam file](https://www.figma.com/file/HOGzfVFGedXXev35EX0qSo/PAPER?node-id=0%3A1&t=ju63Ku8ihumgVO0A-1)
+
 <img src="./docs/review.png" />
 <br />
 
-[Review Figjam file](https://www.figma.com/file/HOGzfVFGedXXev35EX0qSo/PAPER?node-id=0%3A1&t=ju63Ku8ihumgVO0A-1); based on [Jacob Nielsen](https://www.nngroup.com/people/jakob-nielsen/)'s [Ten Usability Heuristics](https://pdfs.semanticscholar.org/5f03/b251093aee730ab9772db2e1a8a7eb8522cb.pdf)
+The above heuristics review was based on [Jacob Nielsen](https://www.nngroup.com/people/jakob-nielsen/)'s [Ten Usability Heuristics](https://pdfs.semanticscholar.org/5f03/b251093aee730ab9772db2e1a8a7eb8522cb.pdf)
 
 <p align="center">
       <img src="./docs/jacob.png" width="500" />
