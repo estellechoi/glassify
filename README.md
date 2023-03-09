@@ -58,51 +58,97 @@ web3 portfolio app trend
 Key features that a Web3 portfolio app might include:
 
 ```
-1. Multi-chain support: The app should support multiple blockchain networks, such as Ethereum, Binance Smart Chain, and Polygon, to allow users to manage their assets across various blockchains.
+1. Multi-chain support: The app should support multiple blockchain networks, 
+such as Ethereum, Binance Smart Chain, and Polygon, to allow users to manage 
+their assets across various blockchains.
 
-2. Portfolio tracking: The app should allow users to track the performance of their investments and monitor the value of their holdings in real-time.
+2. Portfolio tracking: The app should allow users to track the performance 
+of their investments and monitor the value of their holdings in real-time.
 
-3. Transactions history: Users should be able to view their transaction history and keep track of all their past transactions.
+3. Transactions history: Users should be able to view their transaction 
+history and keep track of all their past transactions.
 
-4. Price alerts: The app should provide users with price alerts and notifications to keep them updated on the price movements of their assets.
+4. Price alerts: The app should provide users with price alerts and 
+notifications to keep them updated on the price movements of their assets.
 
-5. Analytics and insights: The app should provide users with detailed analytics and insights into their portfolio, such as asset allocation, investment performance, and risk assessment.
+5. Analytics and insights: The app should provide users with detailed 
+analytics and insights into their portfolio, such as asset allocation, 
+investment performance, and risk assessment.
 
-6. Security: The app should have strong security measures in place, such as multi-factor authentication, encryption, and private key management, to ensure the safety of users' assets.
+6. Security: The app should have strong security measures in place, 
+such as multi-factor authentication, encryption, and private key management, 
+to ensure the safety of users' assets.
 
-7. Integration with DeFi protocols: The app could integrate with decentralized finance (DeFi) protocols to enable users to easily manage their investments and participate in yield farming, staking, and other DeFi activities.
+7. Integration with DeFi protocols: The app could integrate with 
+decentralized finance (DeFi) protocols to enable users to easily manage 
+their investments and participate in yield farming, staking, and other 
+DeFi activities.
 ```
 
 Examples of Web3 portfolio dapps:
 
 ```
-1. Aave Portfolio Manager: Aave is a decentralized finance (DeFi) protocol that allows users to lend and borrow cryptocurrency. Aave Portfolio Manager is a dApp that helps users manage their Aave investments by providing a real-time view of their portfolio performance, yield earned, and asset allocation.
+1. Aave Portfolio Manager: Aave is a decentralized finance (DeFi) protocol 
+that allows users to lend and borrow cryptocurrency. Aave Portfolio 
+Manager is a dApp that helps users manage their Aave investments by providing 
+a real-time view of their portfolio performance, yield earned, and asset 
+allocation.
 
-2. Zapper: Zapper is a portfolio management dApp that allows users to track their cryptocurrency holdings across multiple DeFi protocols, including Uniswap, Sushiswap, and Curve. It also provides tools for swapping, staking, and borrowing assets.
+2. Zapper: Zapper is a portfolio management dApp that allows users to 
+track their cryptocurrency holdings across multiple DeFi protocols, 
+including Uniswap, Sushiswap, and Curve. It also provides tools for 
+swapping, staking, and borrowing assets.
 
-3. Instadapp: Instadapp is a DeFi management platform that allows users to manage their assets across different DeFi protocols. Its portfolio management tool provides a real-time view of portfolio performance, asset allocation, and yield earned.
+3. Instadapp: Instadapp is a DeFi management platform that allows users 
+to manage their assets across different DeFi protocols. Its portfolio
+ management tool provides a real-time view of portfolio performance, 
+ asset allocation, and yield earned.
 
-4. DeFi Saver: DeFi Saver is a dApp that allows users to manage their DeFi investments across different protocols, including MakerDAO and Compound. It provides tools for portfolio rebalancing, collateral management, and liquidation protection.
+4. DeFi Saver: DeFi Saver is a dApp that allows users to manage their 
+DeFi investments across different protocols, including MakerDAO and 
+Compound. It provides tools for portfolio rebalancing, collateral 
+management, and liquidation protection.
 
 
-5. Nansen: Nansen is a blockchain analytics platform that provides insights into on-chain activity across different DeFi protocols. Its portfolio management tool allows users to track their investments across multiple chains and protocols and provides analytics on portfolio performance and asset allocation.
+5. Nansen: Nansen is a blockchain analytics platform that provides 
+insights into on-chain activity across different DeFi protocols. 
+Its portfolio management tool allows users to track their investments 
+across multiple chains and protocols and provides analytics on portfolio 
+performance and asset allocation.
 
-6. Pulsar: Pulsar is a portfolio management and trading dApp built on the Cosmos blockchain. It allows users to manage their cryptocurrency investments across different Cosmos-based DeFi protocols, including IBC-enabled chains.
+6. Pulsar: Pulsar is a portfolio management and trading dApp built on 
+the Cosmos blockchain. It allows users to manage their cryptocurrency 
+investments across different Cosmos-based DeFi protocols, including 
+IBC-enabled chains.
 ```
 
 Examples of Web3 portfolio apps:
 
 ```
-1. CoinTracking: CoinTracking is a cryptocurrency portfolio management tool that supports over 8,000 coins and tokens from more than 300 exchanges. It offers a range of features including real-time portfolio tracking, tax reports, and customizable dashboards.
+1. CoinTracking: CoinTracking is a cryptocurrency portfolio management 
+tool that supports over 8,000 coins and tokens from more than 300 
+exchanges. It offers a range of features including real-time portfolio 
+tracking, tax reports, and customizable dashboards.
 
-2. Accointing: Accointing is a crypto portfolio management platform that offers real-time portfolio tracking, tax optimization tools, and integration with popular exchanges and wallets. It also provides a mobile app for on-the-go portfolio management.
+2. Accointing: Accointing is a crypto portfolio management platform that 
+offers real-time portfolio tracking, tax optimization tools, and 
+integration with popular exchanges and wallets. It also provides 
+a mobile app for on-the-go portfolio management.
 
-3. Koinly: Koinly is a cryptocurrency tax and portfolio management platform that offers real-time tracking of over 300 exchanges and wallets. It also provides automated tax reports, support for multiple accounting methods, and integration with popular tax filing software.
+3. Koinly: Koinly is a cryptocurrency tax and portfolio management 
+platform that offers real-time tracking of over 300 exchanges and 
+wallets. It also provides automated tax reports, support for multiple 
+accounting methods, and integration with popular tax filing software.
 
-4. Blockfolio: Blockfolio is a popular mobile app for tracking cryptocurrency prices and managing portfolios. It offers real-time price tracking for over 10,000 cryptocurrencies, portfolio tracking, and alerts for price changes and news updates.
+4. Blockfolio: Blockfolio is a popular mobile app for tracking 
+cryptocurrency prices and managing portfolios. It offers real-time 
+price tracking for over 10,000 cryptocurrencies, portfolio tracking, 
+and alerts for price changes and news updates.
 
-5. Delta: Delta is a crypto portfolio management app that provides real-time tracking of over 6,000 cryptocurrencies across more than 300 exchanges. It offers a range of features including portfolio tracking, price alerts, and integration with popular wallets and exchanges.
-
+5. Delta: Delta is a crypto portfolio management app that provides 
+real-time tracking of over 6,000 cryptocurrencies across more than 
+300 exchanges. It offers a range of features including portfolio 
+tracking, price alerts, and integration with popular wallets and exchanges.
 ```
 
 ...
@@ -127,7 +173,7 @@ Target: [Zapper](https://zapper.xyz/)
 <img src="./docs/figjam.png" />
 <br />
 
-#### 2-1-4. Usability Test
+#### 2-1-4. Usability Analysis
 
 #### 5 Elements of Usability
 
@@ -139,7 +185,7 @@ Target: [Zapper](https://zapper.xyz/)
 
 <br />
 
-#### Usability analysis methods examples
+#### Analysis methods examples
 
 <img src="./docs/methods.png" width="800" />
 <br />
@@ -157,6 +203,80 @@ Hueristics Evaluation & Collection Sheet Example is as following.
 
 <img src="./docs/hue1.png" />
 <img src="./docs/hue2.png" />
+<br />
+
+#### Usability Test(UT)
+
+1. Test goals should be set like:
+
+- To see if a user explore the service and finish buying easily
+- To see which flow a user goes through according to how much experienced he/she is
+
+<br />
+
+2. Target users should be defined like:
+
+- Target users should represent the actual users
+- Target users are derived from initial research or internal team interview
+
+<br />
+
+and groupd by:
+
+- Demographic factors: age, gender, job, region
+- Behaviors: pattern, use time, frequency, if experienced, device, subscription level
+
+<br />
+
+3. Background and tasks should be set like:
+
+Background example
+
+```
+You came to doubt you have been earning money on DeFi protocols, 
+because you don't see clear growth in your fiat balance.
+What you want to do is see where your money is invested, and check
+if it has been good investment or not. If not, you want to withdraw 
+or sell the asset so hold other assets and invest in new compromising
+vaults.
+You found a portfolio app called Zapper and decided to try.
+So, you got the url and landed on home page. Now, you started to explore.
+```
+
+<br />
+
+Tasks example
+
+```
+1. Connect all available wallets and find investments which are not
+earning income as much as you expected.
+
+2. Withdraw your money from the sources you found bad performing.
+
+3. Find new opportunities and start improved investing.
+```
+
+<br />
+
+Task and scenario can be derived from:
+
+- Bad scored features from hueristics evaluation result
+- Frequent features
+- Important features
+- New features
+
+<br />
+
+4. Review test with the following standards:
+
+- Time: how long the test took
+- Error: How many errors user made
+- Learnability: How many questions user asked
+- Success: How many tasks user completed
+- Behavior: by 10 Hueristics
+
+Overally, compare the expected scenario and the actual one users went through
+
 <br />
 
 #### 2-1-5. Cool Ideas to Benchmark
