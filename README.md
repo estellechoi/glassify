@@ -187,7 +187,7 @@ Target: [Zapper](https://zapper.xyz/)
 
 #### Analysis methods examples
 
-<img src="./docs/analysis_methods.png" width="520" />
+<img src="./docs/methods_ex.png" />
 <br />
 
 #### Heuristics Evaluation
