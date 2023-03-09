@@ -124,7 +124,7 @@ Target: [Zapper](https://zapper.xyz/)
 
 - [Review Figjam file](https://www.figma.com/file/HOGzfVFGedXXev35EX0qSo/PAPER?node-id=0%3A1&t=ju63Ku8ihumgVO0A-1)
 
-<img src="./docs/review.png" />
+<img src="./docs/figjam.png" />
 <br />
 
 The above heuristics review was based on [Jakob Nielsen](https://www.nngroup.com/people/jakob-nielsen/)'s [Ten Usability Heuristics](https://pdfs.semanticscholar.org/5f03/b251093aee730ab9772db2e1a8a7eb8522cb.pdf)
@@ -136,7 +136,7 @@ The above heuristics review was based on [Jakob Nielsen](https://www.nngroup.com
 
 #### Cool Ideas to Benchmark
 
-WIP in Figma
+- [iPhone14](https://www.apple.com/uk/iphone-14/)
 
 <br />
 
