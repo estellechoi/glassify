@@ -53,7 +53,7 @@ web3 portfolio app trend
 
 <br />
 
-##### Raw Result Examples
+#### Raw Result Examples
 
 Key features that a Web3 portfolio app might include:
 
@@ -120,7 +120,7 @@ Have looked up the following of other apps, in terms of 3 factors; Usefulness, U
 
 #### 2-1-4. Usability Test
 
-##### 5 Elements of Usability
+#### 5 Elements of Usability
 
 1. Learnability: users can learn easily
 2. Efficiency: users can achieve their goal fast
@@ -130,12 +130,12 @@ Have looked up the following of other apps, in terms of 3 factors; Usefulness, U
 
 <br />
 
-##### Usability analysis methods examples
+#### Usability analysis methods examples
 
 <img src="./docs/methods.png" width="800" />
 <br />
 
-##### Heuristics Evaluation
+#### Heuristics Evaluation
 
 This is based on [Jakob Nielsen](https://www.nngroup.com/people/jakob-nielsen/)'s [Ten Usability Heuristics](https://pdfs.semanticscholar.org/5f03/b251093aee730ab9772db2e1a8a7eb8522cb.pdf)
 
@@ -144,7 +144,7 @@ This is based on [Jakob Nielsen](https://www.nngroup.com/people/jakob-nielsen/)'
 </p>
 <br />
 
-##### Example
+#### Example
 
 Target: [Zapper](https://zapper.xyz/)
 
