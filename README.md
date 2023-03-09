@@ -127,7 +127,7 @@ Target: [Zapper](https://zapper.xyz/)
 <img src="./docs/review.png" />
 <br />
 
-The above heuristics review was based on [Jacob Nielsen](https://www.nngroup.com/people/jakob-nielsen/)'s [Ten Usability Heuristics](https://pdfs.semanticscholar.org/5f03/b251093aee730ab9772db2e1a8a7eb8522cb.pdf)
+The above heuristics review was based on [Jakob Nielsen](https://www.nngroup.com/people/jakob-nielsen/)'s [Ten Usability Heuristics](https://pdfs.semanticscholar.org/5f03/b251093aee730ab9772db2e1a8a7eb8522cb.pdf)
 
 <p align="center">
       <img src="./docs/jacob.png" width="500" />
