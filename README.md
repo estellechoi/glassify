@@ -225,7 +225,11 @@ Task and scenario can be derived from:
 
 <br />
 
-To review, [Think Aloud](https://www.nngroup.com/articles/thinking-aloud-the-1-usability-tool/) is required for users. The below is an example for usability test sheet an abserver will fill during test
+Important! To review, [Think Aloud](https://www.nngroup.com/articles/thinking-aloud-the-1-usability-tool/) is required for users. 
+
+<br />
+
+The below is an example for usability test sheet an abserver will fill during test
 
 <img src="./docs/ut.png" />
 <br />
