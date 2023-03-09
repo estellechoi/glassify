@@ -120,7 +120,7 @@ Have looked up the following of other apps, in terms of 3 factors; Usefulness, U
 
 Among the above 3 factors, usability analysis is mainly performed, and this is the examples of usability analysis methods.
 
-<img src="./docs/methods.png" />
+<img src="./docs/methods.png" width="800" />
 <br />
 
 Heuristics Evaluation is based on [Jakob Nielsen](https://www.nngroup.com/people/jakob-nielsen/)'s [Ten Usability Heuristics](https://pdfs.semanticscholar.org/5f03/b251093aee730ab9772db2e1a8a7eb8522cb.pdf)
