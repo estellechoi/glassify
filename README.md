@@ -118,17 +118,7 @@ Have looked up the following of other apps, in terms of 3 factors; Usefulness, U
 
 <br />
 
-Among the above 3 factors, usability analysis is mainly performed, and this is the examples of usability analysis methods.
-
-<img src="./docs/methods.png" width="800" />
-<br />
-
-Heuristics Evaluation is based on [Jakob Nielsen](https://www.nngroup.com/people/jakob-nielsen/)'s [Ten Usability Heuristics](https://pdfs.semanticscholar.org/5f03/b251093aee730ab9772db2e1a8a7eb8522cb.pdf)
-
-<p align="center">
-      <img src="./docs/jacob.png" width="500" />
-</p>
-<br />
+#### 2-1-4. Usability Test
 
 ##### 5 Elements of Usability
 
@@ -140,6 +130,20 @@ Heuristics Evaluation is based on [Jakob Nielsen](https://www.nngroup.com/people
 
 <br />
 
+##### Usability analysis methods examples
+
+<img src="./docs/methods.png" width="800" />
+<br />
+
+##### Heuristics Evaluation
+
+This is based on [Jakob Nielsen](https://www.nngroup.com/people/jakob-nielsen/)'s [Ten Usability Heuristics](https://pdfs.semanticscholar.org/5f03/b251093aee730ab9772db2e1a8a7eb8522cb.pdf)
+
+<p align="center">
+      <img src="./docs/jacob.png" width="500" />
+</p>
+<br />
+
 ##### Example
 
 Target: [Zapper](https://zapper.xyz/)
@@ -149,7 +153,13 @@ Target: [Zapper](https://zapper.xyz/)
 <img src="./docs/figjam.png" />
 <br />
 
-#### 2-1-4. Cool Ideas to Benchmark
+- Hueristics Evaluation & Collection
+
+<img src="./docs/hue1.png" />
+<img src="./docs/hue2.png" />
+<br />
+
+#### 2-1-5. Cool Ideas to Benchmark
 
 - [iPhone14](https://www.apple.com/uk/iphone-14/)
 
