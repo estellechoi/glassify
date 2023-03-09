@@ -145,7 +145,7 @@ Target: [Zapper](https://zapper.xyz/)
 
 <br />
 
-#### Analysis methods examples
+#### Analysis Methods Examples
 
 <img src="./docs/methods_ex.png" />
 <br />
@@ -167,14 +167,14 @@ Hueristics Evaluation & Collection Sheet Example is as following.
 
 #### Usability Test(UT)
 
-1 Test goals should be set like:
+Test goals should be set like:
 
 - To see if a user explore the service and finish buying easily
 - To see which flow a user goes through according to how much experienced he/she is
 
 <br />
 
-2 Target users should be defined like:
+Target users should be defined like:
 
 - Target users should represent the actual users
 - Target users are derived from initial research or internal team interview
@@ -188,7 +188,7 @@ and groupd by:
 
 <br />
 
-3 Background and tasks should be set like:
+Background and tasks should be set like:
 
 Background example
 
@@ -225,7 +225,12 @@ Task and scenario can be derived from:
 
 <br />
 
-4 Review sheet should include the following standards:
+To review, [Think Aloud](https://www.nngroup.com/articles/thinking-aloud-the-1-usability-tool/) is required for users. The below is an example for usability test sheet an abserver will fill during test
+
+<img src="./docs/ut.png" />
+<br />
+
+Finally, review sheet should include the following standards:
 
 - Time: how long the test took
 - Error: How many errors user made
@@ -233,13 +238,6 @@ Task and scenario can be derived from:
 - Success: How many tasks user completed
 - Behavior: by 10 Hueristics
 
-<br />
-
-5 To review, [Think Aloud](https://www.nngroup.com/articles/thinking-aloud-the-1-usability-tool/) is required for users
-
-<br />
-
-<img src="./docs/ut.png" />
 <br />
 
 #### 2-1-5. Cool Ideas to Benchmark
