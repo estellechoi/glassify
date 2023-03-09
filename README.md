@@ -23,7 +23,7 @@ Paper is web3 portfolio visualizer, which is to be built using Next, Recoil, Rea
 
 ### 1-2. Schedule
 
-This is scheduling table example. Work items are based on the real use-cases I've learned.
+This is scheduling table example. Work items are based on the real use-cases I've learned from lectures.
 
 <img src="./docs/schedules.png" />
 <br />
@@ -34,8 +34,8 @@ This is scheduling table example. Work items are based on the real use-cases I'v
 
 #### Research Goals
 
-- To find repeated keywords
-- To find main players in the same market category.
+- To find repeated keywords about industry
+- To find main players in the same market category
 - To see the trend in market; how current services has been changed from the old ones
 - To get trailing questions to use in the following user interviews.
 
@@ -118,29 +118,21 @@ Examples of Web3 portfolio apps:
 
 <br />
 
-##### Target
+##### Example
 
-[Zapper](https://zapper.xyz/)
+Target: [Zapper](https://zapper.xyz/)
 
-<img src="./docs/zapper.png" />
-
+<img src="./docs/review.png" />
 <br />
 
-##### Review
-
-WIP in Figma
-
-
-<br />
-
-based on [Jacob Nielsen](https://www.nngroup.com/people/jakob-nielsen/)'s [Ten Usability Heuristics](https://pdfs.semanticscholar.org/5f03/b251093aee730ab9772db2e1a8a7eb8522cb.pdf)
+[Review Figjam file](https://www.figma.com/file/HOGzfVFGedXXev35EX0qSo/PAPER?node-id=0%3A1&t=ju63Ku8ihumgVO0A-1); based on [Jacob Nielsen](https://www.nngroup.com/people/jakob-nielsen/)'s [Ten Usability Heuristics](https://pdfs.semanticscholar.org/5f03/b251093aee730ab9772db2e1a8a7eb8522cb.pdf)
 
 <p align="center">
       <img src="./docs/jacob.png" width="500" />
 </p>
 <br />
 
-#### Cool Ideas from Any Other Apps
+#### Cool Ideas to Benchmark
 
 WIP in Figma
 
