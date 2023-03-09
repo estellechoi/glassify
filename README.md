@@ -110,7 +110,7 @@ Examples of Web3 portfolio apps:
 
 #### 2-1-3. App Analysis
 
-Should look up the following of other apps, in terms of 3 factors; Usefulness, Usability, Emotion
+Have looked up the following of other apps, in terms of 3 factors; Usefulness, Usability, Emotion
 
 - User flow
 - Tone and manner
