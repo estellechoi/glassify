@@ -69,13 +69,13 @@ const PortfolioPieChart = ({ holdings, totalBalanceUSD, className }: PortfolioPi
 
         <div className="flex items-center gap-x-3">
           <Coin coinId={hoverHolding.coinGeckoId} pxSize={32} />
-          <div className="space-y-1">
+          <div className="space-y-0">
             <div className="Font_data_16px_num">
               {formatNumber(hoverHolding.amountFiat.usd, {
                 fiat: true,
               })}
             </div>
-            <div className="flex items-center gap-x-1 text-caption_dark">
+            <div className="flex items-baseline gap-x-1 text-caption_dark">
               <div className="Font_data_12px_num">{formatNumber(hoverHolding.amount, { dp: hoverHolding.decimal })}</div>
               <div className="Font_data_12px_unit">{hoverHolding.ticker}</div>
             </div>
