@@ -1,6 +1,6 @@
 import { CoinId } from '@/constants/coin';
 import { ChainId } from '@/constants/connect';
-import { balancesDictAtom, coinDetailDictSelector } from '@/state/atoms';
+import { balancesDictAtom, coinDetailDictSelector } from '@/store/atoms';
 import type { BalanceDetail, ChainBalance } from '@/types/account';
 import { BigNumber } from 'bignumber.js';
 import { useCallback, useMemo } from 'react';

@@ -12,7 +12,7 @@ import { Suspense, useRef } from 'react';
 import { RecoilRoot } from 'recoil';
 import queryClient from '@/data/queryClient';
 import Fallback from '@/components/Fallback';
-import DataPolling from '@/state/DataPolling';
+import DataPolling from '@/store/DataPolling';
 import AppHeader from '@/components/AppHeader';
 import Head from 'next/head';
 import { NextSeo } from 'next-seo';

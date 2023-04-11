@@ -3,7 +3,7 @@ import { useCallback, useState } from 'react';
 import { useMemo } from 'react';
 import AppProfileMenu from '../AppProfileMenu';
 import { useRecoilState } from 'recoil';
-import { walletAtom } from '@/state/atoms';
+import { walletAtom } from '@/store/atoms';
 import { useEffect } from 'react';
 import useConnect from '@/connection/useConnect';
 import { WalletType } from '@/constants/connect';

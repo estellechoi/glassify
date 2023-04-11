@@ -1,5 +1,5 @@
 import { useChainBalancesQuery } from '@/data/queryHooks';
-import { balancesDictAtom, walletAtom } from '@/state/atoms';
+import { balancesDictAtom, walletAtom } from '@/store/atoms';
 import type { ChainAccount } from '@/types/account';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';

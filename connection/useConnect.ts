@@ -2,7 +2,7 @@ import { PREFERRED_WALLET_KEY, WalletType } from '@/constants/connect';
 import { useCallback, useEffect } from 'react';
 // import { bech32 } from 'bech32';
 import { useRecoilState } from 'recoil';
-import { walletAtom } from '@/state/atoms';
+import { walletAtom } from '@/store/atoms';
 // import type { Key } from '@keplr-wallet/types';
 import { connectKeplrThen } from '@/connection/utils';
 
