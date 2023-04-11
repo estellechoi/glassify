@@ -1,6 +1,7 @@
 import { ChainId } from '@/constants/connect';
 import axios from 'axios';
-import { BalanceResponse } from './types';
+import type { BalanceResponse } from './types';
+import * as coingeckoApi from './coingeckoApi';
 
 const INFURA_ETH2_KEY = process.env.NEXT_PUBLIC_INFURA_ETH2_KEY;
 
@@ -24,5 +25,7 @@ const Axios = (chainId: ChainId) =>
     baseURL: CHAIN_LCD_ENDPOINT_DICT[chainId],
   });
 
-export const fetchBalances = ({ chainId, address }: { chainId: ChainId; address: string }) =>
+export const getBalances = ({ chainId, address }: { chainId: ChainId; address: string }) =>
   Axios(chainId).get<BalanceResponse>(`/cosmos/bank/v1beta1/balances/${address}`);
+
+export const coingecko = coingeckoApi;

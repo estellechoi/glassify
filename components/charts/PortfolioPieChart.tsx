@@ -1,25 +1,30 @@
 import useBalance from '@/hooks/useBalance';
 import { BalanceDetail } from '@/types/account';
 import { formatNumber } from '@/utils/number';
-import { getCSS } from '@/utils/styles';
 import BigNumber from 'bignumber.js';
 import { useMemo, useState } from 'react';
 import Coin from '../Coin';
-import PieChart from '../PieChart';
 import { PieChartEntry } from '../PieChart/types';
 import Tooltip from '../Tooltip';
+import dynamic from 'next/dynamic';
+import { PieChartProps } from '@/components/PieChart';
+
+/** @description rechart components must not be pre-rendered, it uses browser apis */
+const PieChart = dynamic<PieChartProps<string>>(() => import('@/components/PieChart'), {
+  ssr: false,
+});
 
 export const PORTFOLIO_COLORS = [
-  getCSS('--color-gray900'),
-  getCSS('--color-gray800'),
-  getCSS('--color-gray700'),
-  getCSS('--color-gray600'),
-  getCSS('--color-gray500'),
-  getCSS('--color-gray400'),
-  getCSS('--color-gray300'),
-  getCSS('--color-gray200'),
-  getCSS('--color-gray100'),
-  getCSS('--color-gray50'),
+  'var(--color-gray900)',
+  'var(--color-gray800)',
+  'var(--color-gray700)',
+  'var(--color-gray600)',
+  'var(--color-gray500)',
+  'var(--color-gray400)',
+  'var(--color-gray300)',
+  'var(--color-gray200)',
+  'var(--color-gray100)',
+  'var(--color-gray50)',
 ];
 
 type PortfolioPieChartProps = {
@@ -90,13 +95,7 @@ const PortfolioPieChart = ({ holdings, totalBalanceUSD, className }: PortfolioPi
       {/* chart */}
       <div className="grow-0 shrink-0 w-min">
         <Tooltip followCursor={true} type="any" content={chartHoverContent}>
-          <PieChart<string>
-            data={pieChartData}
-            colorMap={colorMap}
-            size={128}
-            type={chartHoverType}
-            setType={setChartHoverType}
-          />
+          <PieChart data={pieChartData} colorMap={colorMap} size={128} type={chartHoverType} setType={setChartHoverType} />
         </Tooltip>
       </div>
 

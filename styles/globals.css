@@ -22,6 +22,14 @@
         background-color: rgba(166, 166, 166, .5);
     }
 
+    ::-webkit-scrollbar-thumb:hover {
+        @apply opacity-80;
+    }
+
+    ::-webkit-scrollbar-corner {
+        @apply bg-transparent;
+    }
+
     html, body {
         overflow-x: hidden;
         min-height: 100vh;

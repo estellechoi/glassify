@@ -1,12 +1,12 @@
 /** @memo wip */
 import { ErrorBoundary } from '@sentry/nextjs';
 
-import { ReactNode, useMemo } from 'react';
+import { ReactNode } from 'react';
 import { ErrorBoundaryProps } from './types';
 
 const SentryErrorBoundary = ({ children, fallbackComponent, onReset }: { children: ReactNode } & ErrorBoundaryProps) => {
   // this is to follow typescript rule for react component to be in upper case
-  const FallbackComponent = useMemo(() => fallbackComponent, [fallbackComponent]);
+  const FallbackComponent = fallbackComponent;
 
   return (
     <ErrorBoundary

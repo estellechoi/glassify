@@ -1,7 +1,7 @@
 import { CoinId } from '@/constants/coin';
 import { ChainId } from '@/constants/connect';
 import useBalance from '@/hooks/useBalance';
-import { walletAtom } from '@/state/states';
+import { walletAtom } from '@/state/atoms';
 import { BalanceDetail } from '@/types/account';
 import { formatNumber } from '@/utils/number';
 import { useCallback, useMemo } from 'react';

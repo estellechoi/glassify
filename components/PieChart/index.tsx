@@ -8,7 +8,7 @@ const DEFAULT_PX_SIZE = 150;
 const EMPTY_DATA: PieChartEntry<string>[] = [{ type: '', label: '', value: 100 }];
 const EMPTY_COLOR = '#e1e1e1';
 
-type PieChartProps<T extends PieChartKey> = {
+export type PieChartProps<T extends PieChartKey> = {
   data: PieChartEntry<T>[];
   colorMap: { [key in T]: string };
   size?: number;

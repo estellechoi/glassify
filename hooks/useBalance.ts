@@ -1,14 +1,14 @@
 import { CoinId } from '@/constants/coin';
 import { ChainId } from '@/constants/connect';
-import { balancesDictAtom, coinDetailDictAtom } from '@/state/states';
+import { balancesDictAtom, coinDetailDictSelector } from '@/state/atoms';
 import type { BalanceDetail, ChainBalance } from '@/types/account';
 import { BigNumber } from 'bignumber.js';
 import { useCallback, useMemo } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 const useBalance = (chainId?: ChainId) => {
   const [balancesDict] = useRecoilState(balancesDictAtom);
-  const [coinDetailDict] = useRecoilState(coinDetailDictAtom);
+  const coinDetailDict = useRecoilValue(coinDetailDictSelector);
 
   const getBalancesByChain = useCallback(
     (chainBalance: ChainBalance): BalanceDetail[] => {

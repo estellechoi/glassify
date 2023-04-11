@@ -1,4 +1,4 @@
-import { CoinPriceDict } from '@/types/coin';
+import type { CoinPriceDict } from '@/types/coin';
 import axios from 'axios';
 
 const COINGECKO_ENDPOINT = 'https://api.coingecko.com/api/v3';
@@ -9,7 +9,7 @@ const coinGecko = axios.create({
 
 // export const fetchAllCoins = () => coinGecko.get<Coin[]>('/coins/list');
 
-export const fetchCoinGeckoPrice = ({ ids, vs_currencies }: { ids: string[]; vs_currencies: string[] }) =>
+export const getCoinGeckoPrice = ({ ids, vs_currencies }: { ids: string[]; vs_currencies: string[] }) =>
   coinGecko.get<CoinPriceDict>('/simple/price', {
     params: {
       ids: ids.join(','),

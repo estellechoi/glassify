@@ -1,11 +1,18 @@
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
-import { DehydratedState, Hydrate, QueryClientProvider, useQueryErrorResetBoundary } from '@tanstack/react-query';
-import { Suspense } from 'react';
+import {
+  DehydratedState,
+  Hydrate,
+  QueryClient,
+  QueryClientProvider,
+  useHydrate,
+  useQueryErrorResetBoundary,
+} from '@tanstack/react-query';
+import { Suspense, useRef } from 'react';
 import { RecoilRoot } from 'recoil';
 import queryClient from '@/data/queryClient';
 import Fallback from '@/components/Fallback';
-import StateUpdater from '@/state/StateUpdater';
+import DataPolling from '@/state/DataPolling';
 import AppHeader from '@/components/AppHeader';
 import Head from 'next/head';
 import { NextSeo } from 'next-seo';
@@ -14,6 +21,17 @@ import SentryErrorBoundary from '@/components/ErrorBoundary/SentryErrorBoundary'
 
 function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: DehydratedState }>) {
   const { reset } = useQueryErrorResetBoundary();
+
+  /** @description ensure that it persists across multiple renders */
+  const queryClientRef = useRef<QueryClient>();
+  if (!queryClientRef.current) {
+    queryClientRef.current = queryClient;
+    queryClientRef.current.setDefaultOptions({
+      queries: {
+        initialData: pageProps.dehydratedState,
+      },
+    });
+  }
 
   return (
     <>
@@ -33,10 +51,9 @@ function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: DehydratedS
       <SentryErrorBoundary fallbackComponent={Fallback} onReset={reset}>
         <Suspense>
           <RecoilRoot>
-            <QueryClientProvider client={queryClient}>
+            <QueryClientProvider client={queryClientRef.current}>
               <Hydrate state={pageProps.dehydratedState}>
-                <StateUpdater />
-
+                <DataPolling />
                 <div className="pt-[var(--height-navbar)]">
                   <AppHeader className="fixed top-0 left-0 right-0 z-10" />
                   <Component {...pageProps} />

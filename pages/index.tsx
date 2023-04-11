@@ -1,15 +1,9 @@
 import type { NextPage } from 'next';
 import Layout from '@/components/Layout';
-
-/** @summary next.js dynamic import example when the whole component must not be pre-rendered */
-import dynamic from 'next/dynamic';
 import Card from '@/components/Card';
 import { formatNumber } from '@/utils/number';
 import useBalance from '@/hooks/useBalance';
-
-const PortfolioPieChart = dynamic(() => import('@/components/charts/PortfolioPieChart'), {
-  ssr: false,
-});
+import PortfolioPieChart from '@/components/charts/PortfolioPieChart';
 
 const Home: NextPage = () => {
   const { holdings, totalBalanceUSD } = useBalance();
@@ -21,7 +15,7 @@ const Home: NextPage = () => {
 
       <Layout>
         <div className="flex items-stretch gap-x-10">
-          <Card className="basis-full">
+          <Card className="grow shrink basis-full">
             <div className="space-y-[3.52rem]">
               <div className="space-y-2">
                 <div className="Font_label_12px">Total Balance</div>
@@ -32,7 +26,7 @@ const Home: NextPage = () => {
             </div>
           </Card>
 
-          <Card className="basis-full" weak={true}>
+          <Card className="grow shrink basis-full" weak={true}>
             Lorem..
           </Card>
         </div>

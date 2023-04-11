@@ -23,7 +23,7 @@
       "@/hooks/*": ["hooks/*"],
       "@/pages/*": ["pages/*"],
       "@/providers/*": ["providers/*"],
-      "@/state/*": ["state/*"],
+      "@/state/*": ["store/*"],
       "@/styles/*": ["styles/*"],
       "@/types/*": ["types/*"],
       "@/utils/*": ["utils/*"],
