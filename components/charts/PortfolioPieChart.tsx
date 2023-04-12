@@ -1,4 +1,3 @@
-import useBalance from '@/hooks/useBalance';
 import { BalanceDetail } from '@/types/account';
 import { formatNumber } from '@/utils/number';
 import BigNumber from 'bignumber.js';

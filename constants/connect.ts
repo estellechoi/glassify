@@ -1,6 +1,7 @@
 export enum ChainId {
   COSMOS = 'cosmoshub-4',
   CRESCENT = 'crescent-1',
+  OSMOSIS = 'osmosis-1',
   TERRA = 'phoenix-1',
   ETHEREUM = 'ethereum',
 }

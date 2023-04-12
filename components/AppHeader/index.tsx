@@ -1,13 +1,11 @@
 import Button from '@/components/Button';
 import { useCallback, useState } from 'react';
 import { useMemo } from 'react';
-import AppProfileMenu from '../AppProfileMenu';
 import { useRecoilState } from 'recoil';
 import { walletAtom } from '@/store/atoms';
 import { useEffect } from 'react';
 import useConnect from '@/connection/useConnect';
 import { WalletType } from '@/constants/connect';
-import useBalance from '@/hooks/useBalance';
 import { formatNumber } from '@/utils/number';
 import CoinList from '../CoinList';
 import Image from 'next/image';
@@ -20,7 +18,7 @@ const AppHeader = ({ className = '' }: { className?: string }) => {
   const [wallet] = useRecoilState(walletAtom);
 
   /** balance */
-  const { totalBalanceUSD, holdings } = useBalance();
+  // const { totalBalanceUSD, holdings } = useBalance();
 
   /** @todo to be a component */
   const connectedBalance = useMemo<JSX.Element | undefined>(() => {
@@ -28,11 +26,11 @@ const AppHeader = ({ className = '' }: { className?: string }) => {
 
     return (
       <div className="flex items-center gap-x-2">
-        <CoinList coinIds={holdings.map((holding) => holding.coinGeckoId)} pxSize={20} />
-        <div className="Typeface_mono">{formatNumber(totalBalanceUSD, { fiat: true })}</div>
+        {/* <CoinList coinIds={holdings.map((holding) => holding.coinGeckoId)} pxSize={20} /> */}
+        {/* <div className="Typeface_mono">{formatNumber(totalBalanceUSD, { fiat: true })}</div> */}
       </div>
     );
-  }, [wallet, holdings, totalBalanceUSD]);
+  }, [wallet]);
 
   const onConnectWallet = useCallback(() => {
     connectTo(WalletType.KEPLR);
@@ -83,12 +81,6 @@ const AppHeader = ({ className = '' }: { className?: string }) => {
             <Button label="Connect Wallet" color="secondary" size="sm" className="w-full" onClick={onConnectWallet} />
           )}
         </div>
-
-        <AppProfileMenu
-          open={isProfileMenuOpen}
-          className="AppProfileMenu absolute top-[3rem] right-0"
-          onDisconnect={() => setIsProfileMenuOpen(false)}
-        />
       </div>
     </header>
   );

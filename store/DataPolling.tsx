@@ -1,12 +1,11 @@
-import useCoinPricesUpdater from './useCoinPricesUpdater';
+import CoinsUpdater from './CoinsUpdater';
 import AllChainBalanceUpdater from 'store/AllChainBalanceUpdater';
 
 /** @todo to SSR */
 const DataPolling = () => {
-  useCoinPricesUpdater();
-
   return (
     <>
+      <CoinsUpdater />
       <AllChainBalanceUpdater />
     </>
   );
