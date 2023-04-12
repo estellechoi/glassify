@@ -1,6 +1,5 @@
 import { ChainId, WalletType } from '@/constants/connect';
 import { BigNumber } from 'bignumber.js';
-import { CoinAmount, CoinDetail } from './coin';
 
 export type ChainAccount = {
   name: string;
@@ -18,16 +17,9 @@ export type Wallet = {
 
 export type ChainBalance = {
   chainId: ChainId;
-  balances: CoinAmount[];
+  balances: { denom: string; amount: string }[];
 };
 
 export type AmountFiat = {
   usd: BigNumber;
-};
-
-export type BalanceDetail = CoinDetail & {
-  onChainId: ChainId;
-  denom: string;
-  amount: BigNumber;
-  amountFiat: AmountFiat;
 };

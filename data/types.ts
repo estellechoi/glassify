@@ -1,4 +1,3 @@
-import { CoinAmount } from '@/types/coin';
 import type { UseQueryResult } from '@tanstack/react-query';
 import type { AxiosError, AxiosResponse } from 'axios';
 
@@ -10,6 +9,6 @@ type Pagination = {
 };
 
 export type BalanceResponse = {
-  balances: CoinAmount[];
+  balances: { denom: string; amount: string }[];
   pagination: Pagination;
 };

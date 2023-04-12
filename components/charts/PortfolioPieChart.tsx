@@ -1,4 +1,3 @@
-import { BalanceDetail } from '@/types/account';
 import { formatNumber } from '@/utils/number';
 import BigNumber from 'bignumber.js';
 import { useMemo, useState } from 'react';
@@ -27,7 +26,7 @@ export const PORTFOLIO_COLORS = [
 ];
 
 type PortfolioPieChartProps = {
-  holdings: BalanceDetail[];
+  holdings: any[];
   totalBalanceUSD: BigNumber;
   className?: string;
 };

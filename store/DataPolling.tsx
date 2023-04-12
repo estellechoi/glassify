@@ -1,7 +1,6 @@
 import CoinsUpdater from './CoinsUpdater';
 import AllChainBalanceUpdater from 'store/AllChainBalanceUpdater';
 
-/** @todo to SSR */
 const DataPolling = () => {
   return (
     <>

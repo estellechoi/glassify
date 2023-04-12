@@ -5,8 +5,6 @@ import { formatNumber } from '@/utils/number';
 import PortfolioPieChart from '@/components/charts/PortfolioPieChart';
 
 const Home: NextPage = () => {
-  // const { holdings, totalBalanceUSD } = useBalance();
-
   return (
     <>
       {/* page-specific head */}

@@ -4,7 +4,7 @@ import { useRecoilState } from 'recoil';
 import { coinsDictAtom } from './atoms';
 import { CoinId } from '@/types/coin';
 
-const useCoinPricesUpdater = (id: CoinId) => {
+const Updater = ({ id }: { id: CoinId }) => {
   const [, setCoinsDictAtom] = useRecoilState(coinsDictAtom);
 
   const { data: coinData } = useCoinByIdQuery({ id });
@@ -19,20 +19,17 @@ const useCoinPricesUpdater = (id: CoinId) => {
       }));
     }
   }, [coinData?.data]);
-};
-
-const Updater = ({ id }: { id: CoinId }) => {
-  useCoinPricesUpdater(id);
 
   return <></>;
 };
 
 const CoinsUpdater = () => {
+  console.log(Object.values(CoinId));
   return (
     <>
-      {Object.values(CoinId).map((coinId) => (
+      {/* {Object.values(CoinId).map((coinId) => (
         <Updater key={coinId} id={coinId} />
-      ))}
+      ))} */}
     </>
   );
 };
