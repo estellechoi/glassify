@@ -1,13 +1,6 @@
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
-import {
-  DehydratedState,
-  Hydrate,
-  QueryClient,
-  QueryClientProvider,
-  useHydrate,
-  useQueryErrorResetBoundary,
-} from '@tanstack/react-query';
+import { DehydratedState, Hydrate, QueryClient, QueryClientProvider, useQueryErrorResetBoundary } from '@tanstack/react-query';
 import { Suspense, useRef } from 'react';
 import { RecoilRoot } from 'recoil';
 import queryClient from '@/data/queryClient';

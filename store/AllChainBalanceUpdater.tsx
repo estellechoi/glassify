@@ -9,6 +9,7 @@ const BalanceUpdator = ({ account }: { account: ChainAccount }) => {
   const [, setBalancesDict] = useRecoilState(balancesDictAtom);
 
   const { data: chainBalancesData } = useChainBalancesQuery({ chainId: account.chainId, bech32Address: account.bech32Address });
+  // console.log('chainBalancesData', chainBalancesData?.data);
 
   useEffect(() => {
     setBalancesDict((prev) => ({

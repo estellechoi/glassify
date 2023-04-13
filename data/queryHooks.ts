@@ -11,10 +11,11 @@ export const useCoinsQuery = () => {
   });
 };
 
-export const useCoinByIdQuery = ({ id }: { id: CoinId }) => {
+export const useCoinByIdQuery = ({ id, enabled = true }: { id: CoinId; enabled?: boolean }) => {
   return useQuery({
-    queryKey: ['coin', id],
+    queryKey: ['coins', id],
     queryFn: () => api.coingecko.getCoinById({ id }),
+    enabled,
   });
 };
 

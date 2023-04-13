@@ -13,8 +13,9 @@ export const walletAtom = atom<Wallet | undefined>({
   default: undefined,
 });
 
-export const coinsDictAtom = atom<Record<CoinId, CoinCeckoCoinDetail>>({
+export const coinsDictAtom = atom<Record<CoinId, CoinCeckoCoinDetail> | {}>({
   key: 'coinPriceDict',
+  default: {},
 });
 
 /** @wip refactor of above */

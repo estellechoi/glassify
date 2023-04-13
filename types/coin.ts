@@ -5,7 +5,7 @@ export enum CoinId {
   // LUNA = 'terra-luna-2',
   // AXL = 'axelar',
   // AGORIC = 'agoric',
-  // CANTO = 'canto',
+  CANTO = 'canto',
   // INJ = 'injective',
   // EVMOS = 'evmos',
   // USDC_AXL = 'axlusdc',

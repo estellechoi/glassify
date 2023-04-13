@@ -1,35 +1,33 @@
 import { useCoinByIdQuery } from '@/data/queryHooks';
+import { coinsDictAtom } from '@/store/atoms';
+import { CoinId } from '@/types/coin';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { coinsDictAtom } from './atoms';
-import { CoinId } from '@/types/coin';
 
-const Updater = ({ id }: { id: CoinId }) => {
-  const [, setCoinsDictAtom] = useRecoilState(coinsDictAtom);
+/** @description JSX was used instead of hook to have useQuery in loop */
+const CoinUpdater = ({ coinId }: { coinId: CoinId }) => {
+  const [, setCoinsDict] = useRecoilState(coinsDictAtom);
 
-  const { data: coinData } = useCoinByIdQuery({ id });
-  console.log('coinData', coinData?.data);
+  const { data: coinData } = useCoinByIdQuery({ id: coinId });
 
   useEffect(() => {
-    const data = coinData?.data;
-    if (data) {
-      setCoinsDictAtom((prev) => ({
+    if (coinData?.data) {
+      setCoinsDict((prev) => ({
         ...prev,
-        [data.id]: data,
+        [coinId]: coinData?.data,
       }));
     }
-  }, [coinData?.data]);
+  }, [coinData?.data, coinId, setCoinsDict]);
 
   return <></>;
 };
 
 const CoinsUpdater = () => {
-  console.log(Object.values(CoinId));
   return (
     <>
-      {/* {Object.values(CoinId).map((coinId) => (
-        <Updater key={coinId} id={coinId} />
-      ))} */}
+      {Object.values(CoinId).map((coinId, index) => (
+        <CoinUpdater key={index} coinId={coinId} />
+      ))}
     </>
   );
 };
