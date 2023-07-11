@@ -1,9 +1,7 @@
-import { FallbackProps } from '../ErrorBoundary';
-import Layout from '../Layout';
+import Layout from '@/components/Layout';
+import type { FallbackProps } from '@/components/ErrorBoundary/types';
 
-export default function Fallback({ error, resetErrorBoundary }: FallbackProps) {
-  console.log(error);
-
+const Fallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   return (
     <Layout>
       <div className="text-white">ErrorFallback</div>
@@ -14,4 +12,6 @@ export default function Fallback({ error, resetErrorBoundary }: FallbackProps) {
       </div>
     </Layout>
   );
-}
+};
+
+export default Fallback;

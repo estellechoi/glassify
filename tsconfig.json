@@ -18,6 +18,7 @@
     "paths": {
       "@/components/*": ["components/*"],
       "@/connection/*": ["connection/*"],
+      "@/connectors/*": ["connectors/*"],
       "@/constants/*": ["constants/*"],
       "@/data/*": ["data/*"],
       "@/hooks/*": ["hooks/*"],

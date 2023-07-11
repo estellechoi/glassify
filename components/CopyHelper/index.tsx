@@ -9,7 +9,7 @@ interface BaseProps {
 
 type CopyHelperProps = BaseProps & Omit<ButtonHTMLAttributes<HTMLButtonElement>, keyof BaseProps>;
 
-const CopyHelper = ({ toCopy, children, iconPosition }: CopyHelperProps) => {
+const CopyHelper = ({ children, toCopy, iconPosition }: CopyHelperProps) => {
   const [isCopied, setCopied] = useCopyClipboard();
   const copy = useCallback(() => {
     setCopied(toCopy);

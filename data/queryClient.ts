@@ -8,6 +8,6 @@ const queryClient = new QueryClient({
       refetchOnWindowFocus: true,
     },
   },
-}); // global config
+});
 
 export default queryClient;

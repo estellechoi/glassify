@@ -1,4 +1,5 @@
-import { ChainId, PREFERRED_WALLET_KEY, WalletType } from '@/constants/connect';
+import { LOCAL_STORAGE_KEYS } from '@/constants/app';
+import { Chain, WalletType } from '@/constants/connect';
 import type { Wallet } from '@/types/account';
 
 /** @see https://docs.keplr.app/api/ */
@@ -9,13 +10,13 @@ export const connectKeplrThen = async (onConnected: (wallet: Wallet) => void) =>
   }
 
   try {
-    const cosmosChainIds = Object.values(ChainId).filter((chainId) => chainId !== ChainId.ETHEREUM);
+    const cosmosChainIds = Object.values(Chain).filter((chainId) => chainId !== Chain.ETHEREUM);
 
     await window.keplr.enable(cosmosChainIds);
 
-    const key = await window.keplr.getKey(ChainId.COSMOS);
+    const key = await window.keplr.getKey(Chain.COSMOS);
     const repAccount = {
-      chainId: ChainId.COSMOS,
+      chainId: Chain.COSMOS,
       isKeystone: key.isKeystone,
       isNanoLedger: key.isNanoLedger,
       name: key.name,
@@ -42,7 +43,8 @@ export const connectKeplrThen = async (onConnected: (wallet: Wallet) => void) =>
       accounts,
     });
 
-    localStorage.setItem(PREFERRED_WALLET_KEY, WalletType.KEPLR);
+    const { PREFERRED_WALLET } = LOCAL_STORAGE_KEYS;
+    localStorage.setItem(PREFERRED_WALLET, WalletType.KEPLR);
   } catch (e) {
     console.log('Wallet connection error', e);
   }

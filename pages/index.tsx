@@ -1,8 +1,6 @@
-import type { NextPage } from 'next';
 import Layout from '@/components/Layout';
 import Card from '@/components/Card';
-import { formatNumber } from '@/utils/number';
-import PortfolioPieChart from '@/components/charts/PortfolioPieChart';
+import type { NextPage } from 'next';
 
 const Home: NextPage = () => {
   return (
