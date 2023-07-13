@@ -46,6 +46,15 @@
 }
 
 @layer utilities {
+    /* typography - display */
+    .Font_display_xs {
+        @apply text-3xl font-semibold
+    }
+
+    .Font_display_sm {
+        @apply text-5xl font-semibold
+    }
+
     /* typography - button */
     .Font_button_sm {
         @apply text-sm leading-5 font-semibold
@@ -56,11 +65,11 @@
     }
 
     .Font_button_lg {
-        @apply text-lg leading-5 font-bold
+        @apply text-lg leading-5 font-semibold
     }
 
     .Font_button_xl {
-        @apply text-xl leading-5 font-black
+        @apply text-xl leading-5 font-semibold
     }
 
     /* typography - body */
@@ -138,5 +147,36 @@
     /* background effect */
     .Bg_skeleton {
         @apply bg-skeleton-pulse bg-[length:200%] bg-no-repeat animate-skeleton-pulse;
+    }
+
+     /* transition */
+     .Transition_500 {
+        @apply duration-500 ease-[cubic-bezier(.19,1,.22,1)];
+     }
+
+     .Transition_1000 {
+        @apply duration-1000 ease-[cubic-bezier(.19,1,.22,1)];
+     }
+
+    /* animation */
+    .Animate_fast_in_downward {
+        @apply origin-top animate-fast_in;
+    }
+
+    .Animate_fast_in_downward_back {
+        @apply origin-top animate-fast_in_back;
+    }
+
+    .Animate_fast_in_upward {
+        @apply origin-bottom animate-fast_in;
+    }
+
+    .Animate_fast_in_upward_back {
+        @apply origin-bottom animate-fast_in_back;
+    }
+
+    /* @see https://developer.mozilla.org/en-US/docs/Web/CSS/contain */
+    .Component {
+        contain: content;
     }
 }

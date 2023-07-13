@@ -1,4 +1,4 @@
-import { Connector, Provider, ProviderRpcError } from '@/connectors/types';
+import { ChainId, Connector, Provider, ProviderRpcError } from '@/connectors/types';
 
 /**
  *
@@ -32,16 +32,24 @@ class MetaMask extends Connector {
   constructor(provider: MetaMaskProvider, onError?: (error: Error) => void) {
     super(provider, onError);
     this.provider = provider;
+    this.connect = this.connect.bind(this);
+    this.disconnect = this.disconnect.bind(this);
   }
 
-  public async connect(chainIdOrChainParams?: number | AddEthereumChainParameter): Promise<void> {
-    // const accounts: readonly string[] = await this.provider.request({ method: 'eth_requestAccounts' });
+  public async connect(chainIdOrChainParams?: ChainId | AddEthereumChainParameter): Promise<MetaMask | undefined> {
+    const accounts: readonly string[] = (await this.provider.request({ method: 'eth_requestAccounts' })) as string[];
+    this.account = accounts[0];
+
+    if (!this.account) {
+      this.onError?.(new Error('No accounts returned'));
+      return undefined;
+    }
 
     const detectedChainId = Number.parseInt((await this.provider.request({ method: 'eth_chainId' })) as string, 16);
     const desiredChainId = typeof chainIdOrChainParams === 'number' ? chainIdOrChainParams : chainIdOrChainParams?.chainId;
 
     if (!desiredChainId || detectedChainId === desiredChainId) {
-      return;
+      return this;
     }
 
     const desiredChainIdHex = `0x${desiredChainId.toString(16)}`;
@@ -51,7 +59,7 @@ class MetaMask extends Connector {
         method: 'wallet_switchEthereumChain',
         params: [{ chainId: desiredChainIdHex }],
       })
-      .catch((error: ProviderRpcError) => {
+      .catch(async (error: ProviderRpcError) => {
         const errorCode = (error.data as any)?.originalError?.code ?? error.code;
 
         // 4902: the chain has not been added to MetaMask and wallet_addEthereumChain needs to be called
@@ -59,10 +67,12 @@ class MetaMask extends Connector {
           const addEthereumChainParams =
             typeof chainIdOrChainParams !== 'number' ? [{ ...chainIdOrChainParams, chainId: desiredChainIdHex }] : undefined;
 
-          return this.provider.request({
+          await this.provider.request({
             method: 'wallet_addEthereumChain',
             params: addEthereumChainParams,
           });
+
+          this.connect(addEthereumChainParams ? desiredChainId : undefined);
         }
 
         this.onError?.(error);
@@ -70,9 +80,11 @@ class MetaMask extends Connector {
       .then(() => {
         this.connect(desiredChainId);
       });
+
+    return undefined;
   }
 
-  public async disconnect(): Promise<void> {}
+  public async disconnect(): Promise<undefined> {}
 }
 
 export default MetaMask;

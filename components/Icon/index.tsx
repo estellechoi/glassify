@@ -3,10 +3,29 @@ import { IconContext } from 'react-icons';
 import { AiOutlineCheckCircle, AiOutlineCopy, AiOutlineLink, AiOutlineLogout } from 'react-icons/ai';
 import { ImCheckboxChecked, ImCheckboxUnchecked } from 'react-icons/im';
 import { IoMdClose } from 'react-icons/io';
+import { MdLogin, MdMenu } from 'react-icons/md';
 
-export type IconType = 'close' | 'copy' | 'link' | 'copylink' | 'checked' | 'unchecked' | 'success' | 'disconnect';
+export type IconSize = 'sm' | 'md' | 'lg' | 'xl';
+export type IconType =
+  | 'close'
+  | 'copy'
+  | 'link'
+  | 'copylink'
+  | 'checked'
+  | 'unchecked'
+  | 'success'
+  | 'disconnect'
+  | 'login'
+  | 'menu';
 
-const Icons: { [key: string]: React.ElementType } = {
+const ICON_SIZE_CLASS_DICT: Record<IconSize, string> = {
+  sm: 'w-3 h-3',
+  md: 'w-4 h-4',
+  lg: 'w-6 h-6',
+  xl: 'w-9 h-9',
+};
+
+const ICON_DICT: Record<IconType, React.ElementType> = {
   close: IoMdClose,
   copy: AiOutlineCopy,
   link: AiOutlineLink,
@@ -15,26 +34,29 @@ const Icons: { [key: string]: React.ElementType } = {
   unchecked: ImCheckboxUnchecked,
   success: AiOutlineCheckCircle,
   disconnect: AiOutlineLogout,
+  login: MdLogin,
+  menu: MdMenu,
 };
 
-interface IconProps {
+type IconProps = {
   type: IconType;
+  size?: IconSize;
   className?: string;
-}
+};
 
-function Icon({ type, className = '' }: IconProps) {
-  const IconComponent = Icons[type];
+const Icon = ({ type, size = 'md', className = '' }: IconProps) => {
+  const IconComponent = ICON_DICT[type];
+  const sizeClassName = ICON_SIZE_CLASS_DICT[size];
 
   return (
     <IconContext.Provider
       value={{
-        className: `${className} w-4 h-4`,
+        className: `${sizeClassName} ${className}`,
       }}
     >
-      {/* @ts-ignore */}
       <IconComponent />
     </IconContext.Provider>
   );
-}
+};
 
 export default Icon;

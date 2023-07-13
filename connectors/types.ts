@@ -1,3 +1,7 @@
+export enum ChainId {
+  ETHEREUM_MAINNET = 1,
+}
+
 /**
  *
  * @see https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1193.md#request EIP-1193
@@ -25,6 +29,7 @@ export abstract class Connector {
    * @see https://github.com/ethereum/EIPs/blob/master/EIPS/eip-3085.md EIP-3085
    */
   public readonly provider: Provider;
+  public account?: string;
   protected onError?: (error: Error) => void;
 
   /**
@@ -38,8 +43,8 @@ export abstract class Connector {
     this.onError = onError;
   }
 
-  public abstract connect(...args: unknown[]): Promise<void> | void;
-  public abstract disconnect?(...args: unknown[]): Promise<void> | void;
+  public abstract connect(...args: unknown[]): Promise<Connector | undefined>;
+  public abstract disconnect?(...args: unknown[]): Promise<Connector | undefined>;
 }
 
 /**

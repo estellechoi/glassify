@@ -8,6 +8,9 @@ import Head from 'next/head';
 import { NextSeo } from 'next-seo';
 import { SEO } from 'next-seo.config';
 import SentryErrorBoundary from '@/components/ErrorBoundary/SentryErrorBoundary';
+import useConnectors from '@/connection/useWallets';
+import AppHeader from '@/components/AppHeader';
+import { ModalProvider } from '@/hooks/useModal/ModalProvider';
 
 function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: DehydratedState }>) {
   const { reset } = useQueryErrorResetBoundary();
@@ -26,6 +29,8 @@ function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: DehydratedS
       },
     });
   }
+
+  useConnectors();
 
   return (
     <>
@@ -46,10 +51,12 @@ function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: DehydratedS
         <Suspense>
           <QueryClientProvider client={queryClientRef.current}>
             <Hydrate state={pageProps.dehydratedState}>
-              <div className="pt-[var(--height-navbar)]">
-                {/* <AppHeader className="fixed top-0 left-0 right-0 z-10" /> */}
-                <Component {...pageProps} />
-              </div>
+              <ModalProvider>
+                <div className="pt-[var(--height-navbar)]">
+                  <AppHeader className="fixed top-0 left-0 right-0 z-10" />
+                  <Component {...pageProps} />
+                </div>
+              </ModalProvider>
             </Hydrate>
           </QueryClientProvider>
         </Suspense>

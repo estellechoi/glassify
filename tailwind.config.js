@@ -23,8 +23,9 @@ module.exports = {
         white_o35: 'var(--color-white-o35)',
         white_o10: 'var(--color-white-o10)',
         /* app colors */
-        primary: 'var(--color-scarlet600)',
-        primary_hover: 'var(--color-scarlet600-o80)',
+        primary: 'var(--color-gray900)',
+        primary_hover: 'var(--color-gray900-o80)',
+        primary_variant_dark: 'var(--color-black)',
         secondary: 'var(--color-gray900)',
         secondary_hover: 'var(--color-gray900-o80)',
         glass: 'var(--color-sky400-o10)',
@@ -38,7 +39,7 @@ module.exports = {
         disabled: 'var(--color-gray300)',
       },
       backgroundImage: {
-        primary_linear_4: 'linear-gradient(90deg, var(--color-scarlet600-o4) 0%, var(--color-scarlet600-o0) 100%)',
+        primary_linear_4: 'linear-gradient(90deg, var(--color-gray900-o4) 0%, var(--color-gray900-o0) 100%)',
         secondary_linear_4: 'linear-gradient(90deg, var(--color-gray900-o4) 0%, var(--color-gray900-o0) 100%)',
         secondary_linear_2: 'linear-gradient(90deg, var(--color-gray900-o2) 0%, var(--color-gray900-o0) 100%)',
         'skeleton-pulse': 'linear-gradient(90deg, #e1e1e1 0%, #ffffff 100%)',
@@ -56,9 +57,45 @@ module.exports = {
             'background-position': '0% 0%',
           },
         },
+        fast_in: {
+          '0%': {
+            transform: 'scale(1, 0)',
+          },
+          '100%': {
+            transform: 'scale(1, 1)',
+          },
+        },
+        fast_out: {
+          '0%': {
+            transform: 'scale(1, 1)',
+          },
+          '100%': {
+            transform: 'scale(1, 0)',
+          },
+        },
+        fade_in: {
+          '0%': {
+            opacity: 0,
+          },
+          '100%': {
+            opacity: 1,
+          },
+        },
+        fade_out: {
+          '0%': {
+            opacity: 1,
+          },
+          '100%': {
+            opacity: 0,
+          },
+        },
       },
       animation: {
         'skeleton-pulse': 'skeleton-pulse 1.5s ease-in-out infinite',
+        fast_in: 'fast_in 0.8s cubic-bezier(0.73, 0, 0, 1) both',
+        fast_in_back: 'fast_out 0.8s cubic-bezier(0.73, 0, 0, 1) both',
+        fade_in: 'fade_in 0.4s cubic-bezier(0, 0, 0.27, 1) 0.6s both',
+        fade_out: 'fade_out 0.4s cubic-bezier(0, 0, 0.27, 1) both',
       },
     },
   },
