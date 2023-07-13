@@ -38,12 +38,13 @@ class MetaMask extends Connector {
 
   public async connect(chainIdOrChainParams?: ChainId | AddEthereumChainParameter): Promise<MetaMask | undefined> {
     const accounts: readonly string[] = (await this.provider.request({ method: 'eth_requestAccounts' })) as string[];
-    this.account = accounts[0];
 
-    if (!this.account) {
+    if (!accounts.length) {
       this.onError?.(new Error('No accounts returned'));
       return undefined;
     }
+
+    this.account = accounts[0];
 
     const detectedChainId = Number.parseInt((await this.provider.request({ method: 'eth_chainId' })) as string, 16);
     const desiredChainId = typeof chainIdOrChainParams === 'number' ? chainIdOrChainParams : chainIdOrChainParams?.chainId;

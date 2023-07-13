@@ -18,11 +18,7 @@ const AppHeader = ({ className = '' }: AppHeaderProps) => {
   const [userWallet, setUserWallet] = useAtom(userWalletAtom);
 
   const wallets = useWallets();
-  const autoConnect = useAutoConnect(wallets);
-
-  useEffect(() => {
-    autoConnect();
-  }, []);
+  useAutoConnect(wallets);
 
   const modal = useModal();
   const openConnectModal = useCallback(async () => {

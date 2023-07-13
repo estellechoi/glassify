@@ -1,21 +1,28 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useAtom } from 'jotai';
 import { LOCAL_STORAGE_KEYS } from '@/constants/app';
 import { userWalletAtom } from '@/store/states';
-import type { Wallet } from '@/types/wallet';
+import type { Wallet, WalletType } from '@/types/wallet';
 
 const useAutoConnect = (wallets: readonly Wallet[]) => {
+  const [lastUsedWalletType, setLastUsedWalletType] = useState<WalletType | null>(null);
+  useEffect(() => {
+    const storedLastUsedWalletType = localStorage.getItem(LOCAL_STORAGE_KEYS.LAST_USED_WALLET) as WalletType | null;
+    setLastUsedWalletType(storedLastUsedWalletType ?? null);
+  }, []);
+
   const [, setUserWallet] = useAtom(userWalletAtom);
 
-  return useCallback(async () => {
-    const lastUsedWalletType = localStorage.getItem(LOCAL_STORAGE_KEYS.LAST_USED_WALLET);
-    const lastUsedWallet = wallets.find((wallet) => wallet.type === lastUsedWalletType);
+  const lastUsedWallet = wallets.find((wallet) => wallet.type === lastUsedWalletType) ?? null;
 
-    if (!lastUsedWallet) return;
-
-    const connected = await lastUsedWallet.connector?.connect();
+  const connect = useCallback(async () => {
+    const connected = await lastUsedWallet?.connector?.connect();
     if (connected) setUserWallet(lastUsedWallet);
-  }, [setUserWallet, wallets]);
+  }, [lastUsedWallet?.connector]);
+
+  useEffect(() => {
+    connect();
+  }, [lastUsedWallet?.connector]);
 };
 
 export default useAutoConnect;

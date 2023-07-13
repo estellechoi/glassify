@@ -9,7 +9,6 @@ import type { Wallet } from '@/types/wallet';
 
 const useWallets = (): readonly Wallet[] => {
   const metamaskConnector = useConnector<MetaMask>(initializeMetamask);
-
   const metamask: Wallet = {
     type: 'metamask',
     name: 'MetaMask',
@@ -21,7 +20,6 @@ const useWallets = (): readonly Wallet[] => {
   };
 
   const uniswapWalletConnector = useConnector<UniswapWallet>(initializeUniswapWallet);
-
   const uniswapWallet: Wallet = {
     type: 'uniswap',
     name: 'Uniswap Wallet',
