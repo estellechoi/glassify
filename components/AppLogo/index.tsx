@@ -24,7 +24,7 @@ const AppLogo = ({ color = 'light', size = 'md' }: AppLogoProps) => {
   const src = LOGO_IMG_URL_DICT[color];
   const sizeClassName = LOGO_SIZE_CLASS_DICT[size];
 
-  return <Image src={src} alt="App logo" className={sizeClassName} />;
+  return <Image priority src={src} alt="App logo" className={sizeClassName} />;
 };
 
 export default AppLogo;

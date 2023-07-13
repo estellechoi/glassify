@@ -1,6 +1,10 @@
-import Layout from '@/components/Layout';
 import type { NextPage } from 'next';
-import Globe from 'canvas/Globe';
+import dynamic from 'next/dynamic';
+import Layout from '@/components/Layout';
+
+const AsciiGlobe = dynamic(() => import('@/components/AsciiGlobe'), {
+  ssr: false,
+});
 
 const Home: NextPage = () => {
   return (
@@ -8,8 +12,9 @@ const Home: NextPage = () => {
       {/* page-specific head */}
       {/* <Head></Head> */}
 
+      <AsciiGlobe />
+
       <Layout>
-        <Globe />
         <section></section>
       </Layout>
     </>
