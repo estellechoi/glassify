@@ -257,10 +257,6 @@ WIP
 
 ## 3. UI Design System
 
-[Figma draft](https://www.figma.com/file/MOkJ3REJI1movw8thd1q7H/PAPER---Web3-Portfolio-Visualizer?node-id=95%3A29298&t=zmYK4fvwkTFkVLkV-1) is work in progress.
-
-<br />
-
 ### 3-1. Main Foundations
 
 - Typography: [Major Second Ratio](https://en.wikipedia.org/wiki/Major_second#Epogdoon) based type scales
