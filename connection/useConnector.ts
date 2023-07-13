@@ -5,8 +5,12 @@ const useConnector = <T extends Connector>(initialize: () => Promise<T | undefin
   const [connector, setConnector] = useState<T>();
 
   const initializeConnector = useCallback(async () => {
-    const initializedConnector = await initialize();
-    setConnector(initializedConnector);
+    try {
+      const initializedConnector = await initialize();
+      setConnector(initializedConnector);
+    } catch (e) {
+      console.log(e);
+    }
   }, [initialize]);
 
   useEffect(() => {
