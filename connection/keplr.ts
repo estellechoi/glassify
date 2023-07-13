@@ -48,3 +48,5 @@
 //     console.log('Wallet connection error', e);
 //   }
 // };
+
+export const DUMMY = '';

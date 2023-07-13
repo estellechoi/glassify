@@ -1,7 +1,6 @@
 /** @memo wip */
-import { ErrorBoundary } from '@sentry/nextjs';
-
 import { ReactNode } from 'react';
+import { ErrorBoundary } from '@sentry/nextjs';
 import { ErrorBoundaryProps } from './types';
 
 const SentryErrorBoundary = ({ children, fallbackComponent, onReset }: { children: ReactNode } & ErrorBoundaryProps) => {

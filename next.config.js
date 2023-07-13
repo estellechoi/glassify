@@ -16,9 +16,32 @@ const nextConfig = {
       },
     ],
   },
+  distDir: 'build',
 };
 
-const sentryCliPluginOptions = {};
+/**
+ *
+ * @see https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/#extend-your-nextjs-configuration
+ */
+const sentryWebpackPluginOptions = {
+  // Additional config options for the Sentry Webpack plugin. Keep in mind that
+  // the following options are set automatically, and overriding them is not
+  // recommended:
+  //   release, url, configFile, stripPrefix, urlPrefix, include, ignore
+
+  org: 'example-org',
+  project: 'example-project',
+
+  // An auth token is required for uploading source maps.
+  // You can get an auth token from https://sentry.io/settings/account/api/auth-tokens/
+  // The token must have `project:releases` and `org:read` scopes for uploading source maps
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+
+  silent: true, // Suppresses all logs
+
+  // For all available options, see:
+  // https://github.com/getsentry/sentry-webpack-plugin#options.
+};
 
 const sentryOptions = {
   hideSourceMaps: true,
@@ -26,6 +49,9 @@ const sentryOptions = {
 
 const withBundleAnalyzerOptions = { enabled: process.env.ANALYZE === 'true' };
 
-const config = withBundleAnalyzer(withBundleAnalyzerOptions)(withSentryConfig(nextConfig, sentryCliPluginOptions, sentryOptions));
+const config = withBundleAnalyzer(withBundleAnalyzerOptions)(
+  nextConfig
+  // withSentryConfig(nextConfig, sentryWebpackPluginOptions, sentryOptions)
+);
 
 module.exports = config;

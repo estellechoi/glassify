@@ -44,7 +44,7 @@ export abstract class Connector {
   }
 
   public abstract connect(...args: unknown[]): Promise<Connector | undefined>;
-  public abstract disconnect(...args: unknown[]): Promise<Connector | undefined>;
+  public abstract disconnect(...args: unknown[]): Promise<void>;
 }
 
 /**

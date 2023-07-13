@@ -4,8 +4,10 @@ class UniswapWallet extends Connector {
   constructor(provider: Provider, onError?: (error: Error) => void) {
     super(provider, onError);
   }
-  public async connect(): Promise<undefined> {}
-  public async disconnect(): Promise<undefined> {}
+  public async connect(): Promise<undefined> {
+    return undefined;
+  }
+  public async disconnect(): Promise<void> {}
 }
 
 export default UniswapWallet;
