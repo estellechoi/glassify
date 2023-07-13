@@ -55,6 +55,14 @@
         @apply text-5xl font-semibold
     }
 
+    .Font_display_md {
+        @apply text-7xl leading-[5rem] font-semibold
+    }
+
+    .Font_display_lg {
+        @apply text-8xl leading-[6.5rem] font-semibold
+    }
+
     /* typography - button */
     .Font_button_sm {
         @apply text-sm leading-5 font-semibold
@@ -104,15 +112,15 @@
     }
 
     .Font_data_16px_num {
-        @apply font-num text-base leading-5 font-semibold tracking-tight
+        @apply font-num text-base leading-5 font-normal tracking-tight
     }
 
     .Font_data_20px_num {
-        @apply font-num text-xl leading-6 font-bold tracking-tight
+        @apply font-num text-xl leading-6 font-normal tracking-tight
     }
 
     .Font_data_32px_num {
-        @apply font-num text-[2rem] leading-10 font-bold tracking-tight
+        @apply font-num text-[2rem] leading-10 font-normal tracking-tight
     }
 
     .Font_data_12px_unit {
@@ -152,6 +160,10 @@
      /* transition */
      .Transition_500 {
         @apply duration-500 ease-[cubic-bezier(.19,1,.22,1)];
+     }
+
+     .Transition_700 {
+        @apply duration-700 ease-[cubic-bezier(.19,1,.22,1)];
      }
 
      .Transition_1000 {

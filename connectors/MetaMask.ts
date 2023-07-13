@@ -85,7 +85,9 @@ class MetaMask extends Connector {
     return undefined;
   }
 
-  public async disconnect(): Promise<undefined> {}
+  public async disconnect(): Promise<undefined> {
+    this.account = undefined;
+  }
 }
 
 export default MetaMask;

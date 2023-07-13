@@ -76,9 +76,11 @@ module.exports = {
         fade_in: {
           '0%': {
             opacity: 0,
+            transform: 'translateY(0.5rem)',
           },
           '100%': {
             opacity: 1,
+            transform: 'translateY(0)',
           },
         },
         fade_out: {
@@ -94,7 +96,7 @@ module.exports = {
         'skeleton-pulse': 'skeleton-pulse 1.5s ease-in-out infinite',
         fast_in: 'fast_in 0.8s cubic-bezier(0.73, 0, 0, 1) both',
         fast_in_back: 'fast_out 0.8s cubic-bezier(0.73, 0, 0, 1) both',
-        fade_in: 'fade_in 0.4s cubic-bezier(0, 0, 0.27, 1) 0.6s both',
+        fade_in: 'fade_in 0.8s cubic-bezier(0, 0, 0.27, 1) 0.6s both',
         fade_out: 'fade_out 0.4s cubic-bezier(0, 0, 0.27, 1) both',
       },
     },

@@ -10,11 +10,12 @@ import useAutoConnect from '@/connection/useAutoConnect';
 import type { IconType } from '@/components/Icon';
 
 const SelectWalletModal = lazy(() => import('@/components/modals/SelectWalletModal'));
+const AccountModal = lazy(() => import('@/components/modals/AccountModal'));
 
 type AppHeaderProps = { className?: string };
 
 const AppHeader = ({ className = '' }: AppHeaderProps) => {
-  const [isConnectModalOpen, setIsConnectModalOpen] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [userWallet, setUserWallet] = useAtom(userWalletAtom);
 
   const wallets = useWallets();
@@ -22,26 +23,26 @@ const AppHeader = ({ className = '' }: AppHeaderProps) => {
 
   const modal = useModal();
   const openConnectModal = useCallback(async () => {
-    setIsConnectModalOpen(true);
+    setIsModalOpen(true);
     await modal.open((props) => (
       <Suspense>
         <SelectWalletModal {...props} wallets={wallets} onConnect={setUserWallet} />
       </Suspense>
     ));
-    setIsConnectModalOpen(false);
+    setIsModalOpen(false);
   }, [modal, wallets, setUserWallet]);
 
-  const closeConnectModal = useCallback(() => {
+  const closeModal = useCallback(() => {
     modal.close();
-    setIsConnectModalOpen(false);
+    setIsModalOpen(false);
   }, [modal]);
 
   const connectModalButtonProps = useMemo(() => {
-    const label = isConnectModalOpen ? 'Close' : 'Connect';
-    const onClick = isConnectModalOpen ? closeConnectModal : openConnectModal;
+    const label = isModalOpen ? 'Close' : 'Connect';
+    const onClick = isModalOpen ? closeModal : openConnectModal;
 
-    const iconType: IconType = isConnectModalOpen ? 'close' : 'login';
-    const labelHidden = isConnectModalOpen;
+    const iconType: IconType = isModalOpen ? 'close' : 'login';
+    const labelHidden = isModalOpen;
 
     return {
       iconType,
@@ -49,14 +50,53 @@ const AppHeader = ({ className = '' }: AppHeaderProps) => {
       onClick,
       labelHidden,
     };
-  }, [isConnectModalOpen, closeConnectModal, openConnectModal]);
+  }, [isModalOpen, closeModal, openConnectModal]);
+
+  const openAccountModal = useCallback(async () => {
+    const address = userWallet?.connector?.account;
+    if (!address) return;
+
+    setIsModalOpen(true);
+    await modal.open((props) => (
+      <Suspense>
+        <AccountModal
+          {...props}
+          address={address}
+          onDisconnect={() => {
+            userWallet?.connector?.disconnect();
+            setUserWallet(null);
+            props.onClose();
+          }}
+        />
+      </Suspense>
+    ));
+    setIsModalOpen(false);
+  }, [userWallet, modal]);
+
+  const accountModalButtonProps = useMemo(() => {
+    const address = userWallet?.connector?.account;
+    if (!address) return undefined;
+
+    const label = shortenAddress(address);
+    const onClick = isModalOpen ? closeModal : openAccountModal;
+
+    const iconType: IconType = isModalOpen ? 'close' : 'menu';
+    const labelHidden = isModalOpen;
+
+    return {
+      iconType,
+      label,
+      onClick,
+      labelHidden,
+    };
+  }, [isModalOpen, closeModal, openAccountModal, userWallet]);
 
   return (
     <header className={`flex items-center justify-between px-8 py-9 ${className}`}>
-      <AppLogo size="lg" color={isConnectModalOpen ? 'light' : 'dark'} />
+      <AppLogo size="lg" color={isModalOpen ? 'light' : 'dark'} />
 
-      {userWallet?.connector?.account ? (
-        <Button size="sm" iconType="menu" label={shortenAddress(userWallet.connector.account)} />
+      {accountModalButtonProps ? (
+        <Button size="sm" {...accountModalButtonProps} />
       ) : (
         <Button size="md" {...connectModalButtonProps} />
       )}

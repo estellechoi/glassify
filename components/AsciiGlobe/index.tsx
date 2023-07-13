@@ -1,7 +1,7 @@
 'use client';
 
 import * as THREE from 'three';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { Canvas, extend, useFrame, type MeshProps } from '@react-three/fiber';
 import { AsciiRenderer } from '@react-three/drei';
 import { Mesh, BoxGeometry, MeshStandardMaterial } from 'three';
@@ -14,8 +14,8 @@ const SphereMesh = (props: MeshProps) => {
 
   useFrame((_, delta) => {
     if (meshRef.current) {
-      meshRef.current.rotation.x += delta / 2;
-      meshRef.current.rotation.y += delta / 2;
+      meshRef.current.rotation.x += delta / 4;
+      meshRef.current.rotation.y += delta / 4;
     }
   });
 
@@ -29,30 +29,37 @@ const SphereMesh = (props: MeshProps) => {
   );
 };
 
-const AsciiGlobe = () => {
-  const [canvasProps, setCanvasProps] = useState<{ camera: THREE.PerspectiveCamera; scene: THREE.Scene }>();
+type AsciiGlobeProps = {
+  onRender?: () => void;
+};
 
-  useEffect(() => {
-    const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 1000);
-    const scene = new THREE.Scene();
-    setCanvasProps({ camera, scene });
-  }, []);
+const AsciiGlobe = ({ onRender }: AsciiGlobeProps) => {
+  const [isRendered, setIsRendered] = useState<boolean>(false);
 
-  if (!canvasProps) return null;
+  const onCreated = useCallback(() => {
+    setIsRendered(true);
+    onRender?.();
+  }, [onRender]);
 
-  /** @warning @react-three/fiber Canvas fill parent's size, which must be in inline styles */
+  const renderClassName = isRendered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2';
+
+  /**
+   *
+   * @warning @react-three/fiber Canvas fill parent's size, which must be in inline styles
+   */
   return (
     <div
-      className="fixed inset-0"
+      className={`fixed inset-0 -z-1 transition-all duration-1000 ${renderClassName}`}
       style={{
         width: '100vw',
         height: '100vh',
       }}
     >
-      <Canvas>
+      <Canvas onCreated={onCreated}>
         <color attach="background" args={[0, 0, 0]} />
 
-        <pointLight color={new THREE.Color(0xffffff)} intensity={3} distance={0} decay={0} position={[500, 500, 500]} />
+        <pointLight position={[10, 10, 10]} />
+        {/* <pointLight color={new THREE.Color(0xffffff)} intensity={3} distance={0} decay={0} position={[500, 500, 500]} /> */}
         <pointLight color={new THREE.Color(0xffffff)} intensity={3} distance={0} decay={0} position={[-500, -500, -500]} />
 
         <SphereMesh />
