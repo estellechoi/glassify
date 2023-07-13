@@ -6,7 +6,7 @@
 
 <br />
 
-Paper is web3 portfolio visualizer, which is to be built using Next, Jotai, ReactQuery, TailwindCSS and web3 libraries for study purpose.
+[Paper](https://paper-vert.vercel.app) is web3 portfolio visualizer, which is to be built using Next, Jotai, ReactQuery, TailwindCSS and web3 libraries for study purpose.
 
 <br />
 
@@ -14,7 +14,7 @@ Paper is web3 portfolio visualizer, which is to be built using Next, Jotai, Reac
 
 ### 1-1. Preview
 
-Coming
+<img src="./docs/paper_overview.png">
 
 ### 1-2. Schedule
 
