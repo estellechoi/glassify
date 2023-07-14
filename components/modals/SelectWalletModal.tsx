@@ -23,7 +23,7 @@ const SelectWalletModal = (props: SelectWalletModalProps) => {
 
   return (
     <AnimatedModal {...props} ariaLabel="Select wallet">
-      <OptionGrid className="h-full py-32">
+      <OptionGrid className="h-full Padding_modal">
         {wallets.map((wallet) => (
           <OptionGrid.Option
             key={wallet.name}

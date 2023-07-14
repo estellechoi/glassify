@@ -2,22 +2,28 @@ import type { NextPage } from 'next';
 import dynamic from 'next/dynamic';
 import Layout from '@/components/Layout';
 import { TITLES } from '@/constants/app';
-import AnimatedHeadline from '@/components/AnimatedHeadline';
+import AnimatedHeadline, { type AnimatedHeadlineProps } from '@/components/AnimatedHeadline';
+import Head from 'next/head';
 
 const AsciiGlobe = dynamic(() => import('@/components/AsciiGlobe'), {
   ssr: false,
 });
 
 const Home: NextPage = () => {
+  const headlineProps: AnimatedHeadlineProps = {
+    tagName: 'h2',
+    texts: TITLES.HOME,
+  };
+
   return (
     <>
-      {/* page-specific head */}
-      {/* <Head></Head> */}
-
       <AsciiGlobe />
 
       <Layout>
-        <AnimatedHeadline tagName="h2" texts={TITLES.HOME} className="absolute bottom-28" />
+        <section className="relative h-screen Padding_page flex flex-col justify-end items-center md:items-start">
+          <AnimatedHeadline {...headlineProps} className="hidden md:flex" />
+          <AnimatedHeadline {...headlineProps} align="center" className="md:hidden" />
+        </section>
       </Layout>
     </>
   );

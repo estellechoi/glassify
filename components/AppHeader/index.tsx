@@ -62,6 +62,7 @@ const AppHeader = ({ className = '' }: AppHeaderProps) => {
         <AccountModal
           {...props}
           address={address}
+          wallet={userWallet}
           onDisconnect={() => {
             userWallet?.connector?.disconnect();
             setUserWallet(null);

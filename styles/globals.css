@@ -48,11 +48,11 @@
 @layer utilities {
     /* typography - display */
     .Font_display_xs {
-        @apply text-3xl font-semibold
+        @apply text-5xl leading-[3.5rem] font-semibold
     }
 
     .Font_display_sm {
-        @apply text-5xl font-semibold
+        @apply text-6xl leading-[4.25rem] font-semibold
     }
 
     .Font_display_md {
@@ -61,6 +61,23 @@
 
     .Font_display_lg {
         @apply text-8xl leading-[6.5rem] font-semibold
+    }
+
+    /* typography - menu */
+    .Font_menu_xs {
+        @apply text-2xl font-medium
+    }
+    
+    .Font_menu_sm {
+        @apply text-3xl font-medium
+    }
+
+    .Font_menu_md {
+        @apply text-4xl font-medium
+    }
+
+    .Font_menu_lg {
+        @apply text-5xl font-medium
     }
 
     /* typography - button */
@@ -151,6 +168,15 @@
     .Font_caption_lg {
         @apply text-xl leading-6 font-semibold
     }
+
+     /* padding */
+     .Padding_modal {
+        @apply px-8 py-32 md:px-10 md:py-32
+     }
+
+     .Padding_page {
+        @apply px-8 pt-[8.125rem] py-20 md:px-24 md:pt-[8.125rem] md:py-28
+     }
 
     /* background effect */
     .Bg_skeleton {

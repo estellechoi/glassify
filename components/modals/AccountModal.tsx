@@ -1,18 +1,21 @@
 import AnimatedModal, { type AnimatedModalProps } from '@/components/AnimatedModal';
-import Button from '../Button';
+import Button from '@/components/Button';
+import AccountAddress from '@/components/AccountAddress';
+import type { Wallet } from '@/types/wallet';
 
 type AccountModalProps = Omit<AnimatedModalProps, 'ariaLabel'> & {
   address: string;
+  wallet: Wallet;
   onDisconnect?: () => void;
 };
 
 const AccountModal = (props: AccountModalProps) => {
-  const { address, onDisconnect } = props;
+  const { address, wallet, onDisconnect } = props;
 
   return (
     <AnimatedModal {...props} ariaLabel="Connected wallet account">
-      <div className="grid grid-cols-2 items-center px-10 py-32">
-        <span className="Font_data_16px_num text-white">{address}</span>
+      <div className="h-full flex flex-col items-start justify-between Padding_modal">
+        <AccountAddress address={address} wallet={wallet} />
 
         <Button iconType="disconnect" label="Disconnect" size="sm" onClick={onDisconnect} />
       </div>

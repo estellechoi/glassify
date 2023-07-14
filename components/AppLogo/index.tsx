@@ -10,9 +10,9 @@ const LOGO_IMG_URL_DICT: Record<AppLogoColor, string> = {
   dark: LOGO_LIGHT_URL,
 };
 
-const LOGO_SIZE_CLASS_DICT: Record<AppLogoSize, string> = {
-  md: 'w-12',
-  lg: 'w-16',
+const LOGO_SIZE_CLASS_DICT: Record<AppLogoSize, { className: string; px: number }> = {
+  md: { className: 'w-12', px: 48 },
+  lg: { className: 'w-16', px: 64 },
 };
 
 type AppLogoProps = {
@@ -22,9 +22,9 @@ type AppLogoProps = {
 
 const AppLogo = ({ color = 'light', size = 'md' }: AppLogoProps) => {
   const src = LOGO_IMG_URL_DICT[color];
-  const sizeClassName = LOGO_SIZE_CLASS_DICT[size];
+  const imgSize = LOGO_SIZE_CLASS_DICT[size];
 
-  return <Image priority src={src} alt="App logo" className={sizeClassName} />;
+  return <Image priority src={src} alt="App logo" width={imgSize.px} className={imgSize.className} />;
 };
 
 export default AppLogo;

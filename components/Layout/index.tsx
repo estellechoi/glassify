@@ -1,9 +1,11 @@
 import { ReactNode } from 'react';
 
-export default function Layout({ children }: { children: ReactNode }) {
+const Layout = ({ children, className = '' }: { children: ReactNode; className?: string }) => {
   return (
-    <main role="main" className="px-24 py-24">
+    <main role="main" className={className}>
       {children}
     </main>
   );
-}
+};
+
+export default Layout;

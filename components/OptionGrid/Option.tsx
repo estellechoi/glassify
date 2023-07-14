@@ -16,14 +16,11 @@ const Option = (props: OptionProps) => {
   const { type, label, imgUrl, disabled } = props;
 
   const Content = (
-    <span className={`relative flex items-center justify-between gap-x-3 px-5 py-4 text-white`}>
-      {imgUrl && <Image src={imgUrl} alt={label} className="w-16 h-16" />}
-      <span className="Font_display_xs md:Font_display_sm Transition_1000 transition-transform origin-left group-enabled/option:group-hover/option:translate-x-2">
-        {label}
-      </span>
+    <span className={`relative flex items-center justify-between gap-x-3 px-5 py-2 text-white`}>
+      {imgUrl && <Image src={imgUrl} alt={label} width={64} height={64} className="w-12 h-12 md:w-16 md:h-16" />}
 
-      <span aria-hidden className="absolute bottom-0 inset-x-0 w-full h-[4px] px-5">
-        <span className="block w-full h-full bg-white scale-x-0 Transition_1000 transition-transform origin-left group-enabled/option:group-hover/option:scale-x-110"></span>
+      <span className="Font_menu_xs md:Font_menu_sm Transition_1000 transition-transform origin-left group-enabled/option:group-hover/option:translate-x-2">
+        {label}
       </span>
     </span>
   );

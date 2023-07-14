@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes, useCallback } from 'react';
+import Icon from '@/components/Icon';
 import { useCopyClipboard } from './hook';
-import Icon from '../Icon';
 
 interface BaseProps {
   toCopy: string;
@@ -9,17 +9,22 @@ interface BaseProps {
 
 type CopyHelperProps = BaseProps & Omit<ButtonHTMLAttributes<HTMLButtonElement>, keyof BaseProps>;
 
-const CopyHelper = ({ children, toCopy, iconPosition }: CopyHelperProps) => {
-  const [isCopied, setCopied] = useCopyClipboard();
-  const copy = useCallback(() => {
-    setCopied(toCopy);
-  }, [toCopy, setCopied]);
+const CopyHelper = ({ children, toCopy, iconPosition = 'right', className = '' }: CopyHelperProps) => {
+  const [isCopied, copy] = useCopyClipboard();
+
+  const CopiedIcon = <Icon type="success" />;
+  const CopyIcon = <Icon type="copy" className="Transition_500 transition-opacity opacity-0 group-hover/copy:opacity-80" />;
 
   return (
-    <button type="button" className="relative shrink-0 inline-flex justify-start items-center hover:opacity-80" onClick={copy}>
-      {iconPosition === 'left' ? isCopied ? <Icon type="success" className="mr-2" /> : null : null}
-      {isCopied ? 'Copied' : children}
-      {iconPosition === 'right' ? isCopied ? <Icon type="success" className="ml-2" /> : null : null}
+    <button
+      type="button"
+      aria-label="Copy"
+      className={`group/copy relative shrink-0 inline-flex justify-start items-center gap-x-2 Transition_500 transition-opacity hover:opacity-80 ${className}`}
+      onClick={() => copy(toCopy)}
+    >
+      {iconPosition === 'left' && (isCopied ? CopiedIcon : CopyIcon)}
+      {children}
+      {iconPosition === 'right' && (isCopied ? CopiedIcon : CopyIcon)}
     </button>
   );
 };

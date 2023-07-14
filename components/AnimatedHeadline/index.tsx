@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react';
 
 type HeadingTagName = 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
 
-type AnimatedHeadlineProps = {
+export type AnimatedHeadlineProps = {
   tagName: HeadingTagName;
   texts: readonly string[];
+  align?: 'left' | 'center' | 'right';
   className?: string;
 };
 
-const AnimatedHeadline = ({ tagName, texts, className = '' }: AnimatedHeadlineProps) => {
+const AnimatedHeadline = ({ tagName, texts, align = 'left', className = '' }: AnimatedHeadlineProps) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -44,9 +45,12 @@ const AnimatedHeadline = ({ tagName, texts, className = '' }: AnimatedHeadlinePr
   });
 
   const HeadingElement = tagName;
+  const alignClassName = align === 'center' ? 'items-center' : align === 'right' ? 'items-end' : 'items-start';
 
   return (
-    <HeadingElement className={`Component flex flex-col Font_display_md whitespace-pre text-black ${className}`}>
+    <HeadingElement
+      className={`Component flex flex-col ${alignClassName} Font_display_sm md:Font_display_md whitespace-pre text-black ${className}`}
+    >
       {Texts}
     </HeadingElement>
   );

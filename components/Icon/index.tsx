@@ -1,9 +1,9 @@
 import React from 'react';
 import { IconContext } from 'react-icons';
-import { AiOutlineCheckCircle, AiOutlineCopy, AiOutlineLink, AiOutlineLogout } from 'react-icons/ai';
+import { AiOutlineCheckCircle, AiOutlineLink, AiOutlineLogout } from 'react-icons/ai';
 import { ImCheckboxChecked, ImCheckboxUnchecked } from 'react-icons/im';
 import { IoMdClose } from 'react-icons/io';
-import { MdLogin, MdMenu } from 'react-icons/md';
+import { MdContentCopy, MdLogin, MdMenu } from 'react-icons/md';
 
 export type IconSize = 'sm' | 'md' | 'lg' | 'xl';
 export type IconType =
@@ -27,7 +27,7 @@ const ICON_SIZE_CLASS_DICT: Record<IconSize, string> = {
 
 const ICON_DICT: Record<IconType, React.ElementType> = {
   close: IoMdClose,
-  copy: AiOutlineCopy,
+  copy: MdContentCopy,
   link: AiOutlineLink,
   copylink: AiOutlineLink,
   checked: ImCheckboxChecked,

@@ -2,7 +2,7 @@
 
 import * as THREE from 'three';
 import { useCallback, useRef, useState } from 'react';
-import { Canvas, extend, useFrame, type MeshProps } from '@react-three/fiber';
+import { Canvas, extend, useFrame, type MeshProps, useThree } from '@react-three/fiber';
 import { AsciiRenderer } from '@react-three/drei';
 import { Mesh, BoxGeometry, MeshStandardMaterial } from 'three';
 
@@ -10,7 +10,9 @@ extend({ Mesh, BoxGeometry, MeshStandardMaterial });
 
 const SphereMesh = (props: MeshProps) => {
   const meshRef = useRef<Mesh>(null);
-  // const viewport = useThree((state) => state.viewport);
+  const viewport = useThree((state) => state.viewport);
+  //   const meshScale = new THREE.Vector3(1, 1, 1)
+  const sphereGeometryRadius = 2.4 / (viewport.aspect >= 1 ? 1 : 1.1);
 
   useFrame((_, delta) => {
     if (meshRef.current) {
@@ -21,7 +23,7 @@ const SphereMesh = (props: MeshProps) => {
 
   return (
     <mesh ref={meshRef} {...props}>
-      <sphereGeometry args={[2.4, 20, 20, 32]} />
+      <sphereGeometry args={[sphereGeometryRadius, 20, 20, 32]} />
 
       {/** @see https://threejs.org/docs/#api/en/materials/MeshPhongMaterial performance */}
       <meshPhongMaterial flatShading={true} />
@@ -41,20 +43,16 @@ const AsciiGlobe = ({ onRender }: AsciiGlobeProps) => {
     onRender?.();
   }, [onRender]);
 
-  const renderClassName = isRendered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2';
+  const visibilityClassName = isRendered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2';
 
   /**
    *
    * @warning @react-three/fiber Canvas fill parent's size, which must be in inline styles
    */
+  const sizeStyle = { width: '100vw', height: window.innerWidth / window.innerHeight >= 1 ? '100vh' : '80vh' };
+
   return (
-    <div
-      className={`fixed inset-0 -z-1 transition-all duration-1000 ${renderClassName}`}
-      style={{
-        width: '100vw',
-        height: '100vh',
-      }}
-    >
+    <div className={`fixed inset-0 -z-1 transition-all duration-1000 ${visibilityClassName}`} style={sizeStyle}>
       <Canvas onCreated={onCreated}>
         <color attach="background" args={[0, 0, 0]} />
 

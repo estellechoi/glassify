@@ -52,10 +52,8 @@ function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: DehydratedS
           <QueryClientProvider client={queryClientRef.current}>
             <Hydrate state={pageProps.dehydratedState}>
               <ModalProvider>
-                <div className="pt-[var(--height-navbar)]">
-                  <AppHeader className="fixed top-0 left-0 right-0 z-10" />
-                  <Component {...pageProps} />
-                </div>
+                <AppHeader className="fixed top-0 left-0 right-0 z-10" />
+                <Component {...pageProps} />
               </ModalProvider>
             </Hydrate>
           </QueryClientProvider>
