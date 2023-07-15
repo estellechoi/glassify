@@ -1,12 +1,18 @@
-import { Connector, type Provider } from '@/connectors/types';
+import { ChainId, Connector, type Provider } from '@/connectors/types';
 
 class UniswapWallet extends Connector {
   constructor(provider: Provider, onError?: (error: Error) => void) {
     super(provider, onError);
   }
+
+  public get chainId(): ChainId {
+    return ChainId.ETHEREUM;
+  }
+
   public async connect(): Promise<undefined> {
     return undefined;
   }
+
   public async disconnect(): Promise<void> {}
 }
 

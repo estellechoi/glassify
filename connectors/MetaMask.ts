@@ -1,11 +1,11 @@
-import { ChainId, Connector, Provider, ProviderRpcError } from '@/connectors/types';
+import { ChainId, Connector, type EthAddress, Provider, ProviderRpcError } from '@/connectors/types';
 
 /**
  *
  * @see https://github.com/ethereum/EIPs/blob/master/EIPS/eip-3085.md#parameters EIP-3085
  */
 export interface AddEthereumChainParameter {
-  chainId: number;
+  chainId: ChainId;
   chainName: string;
   nativeCurrency: {
     name: string;
@@ -36,6 +36,10 @@ class MetaMask extends Connector {
     this.disconnect = this.disconnect.bind(this);
   }
 
+  public get chainId(): ChainId {
+    return Number.parseInt(this.provider.chainId, 16);
+  }
+
   public async connect(chainIdOrChainParams?: ChainId | AddEthereumChainParameter): Promise<MetaMask | undefined> {
     const accounts: readonly string[] = (await this.provider.request({ method: 'eth_requestAccounts' })) as string[];
 
@@ -44,7 +48,7 @@ class MetaMask extends Connector {
       return undefined;
     }
 
-    this.account = accounts[0];
+    this.account = accounts[0] as EthAddress;
 
     const detectedChainId = Number.parseInt((await this.provider.request({ method: 'eth_chainId' })) as string, 16);
     const desiredChainId = typeof chainIdOrChainParams === 'number' ? chainIdOrChainParams : chainIdOrChainParams?.chainId;

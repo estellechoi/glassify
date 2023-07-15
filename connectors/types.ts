@@ -1,6 +1,8 @@
 export enum ChainId {
-  ETHEREUM_MAINNET = 1,
+  ETHEREUM = 1,
 }
+
+export type EthAddress = `0x${string}`;
 
 /**
  *
@@ -29,7 +31,7 @@ export abstract class Connector {
    * @see https://github.com/ethereum/EIPs/blob/master/EIPS/eip-3085.md EIP-3085
    */
   public readonly provider: Provider;
-  public account?: string;
+  public account?: EthAddress;
   protected onError?: (error: Error) => void;
 
   /**
@@ -43,6 +45,7 @@ export abstract class Connector {
     this.onError = onError;
   }
 
+  public abstract get chainId(): ChainId;
   public abstract connect(...args: unknown[]): Promise<Connector | undefined>;
   public abstract disconnect(...args: unknown[]): Promise<void>;
 }

@@ -13,7 +13,7 @@ const AccountAddress = ({ address, wallet }: AccountAddressProps) => {
     <CopyHelper toCopy={address} className="text-white">
       <span className="flex items-center gap-x-2">
         <Image src={wallet.logoUrl} alt={wallet.name} width={28} height={28} className="w-7 h-7" />
-        <span className="w-full truncate Font_button_md">{shortenAddress(address)}</span>
+        <span className="w-full truncate Font_button_md">{shortenAddress(address, 4, 4)}</span>
       </span>
     </CopyHelper>
   );

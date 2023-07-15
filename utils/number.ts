@@ -1,8 +1,7 @@
-import { FORMAT_LOCALE_FALLBACK } from '@/constants/app';
+import { FORMAT_LOCALE_FALLBACK, MAX_DECIMALS } from '@/constants/app';
 import BigNumber from 'bignumber.js';
 
 type FormatAmountOptions = {
-  dp?: number;
   fiat?: boolean;
   semiequate?: boolean;
   compact?: boolean;
@@ -11,10 +10,10 @@ type FormatAmountOptions = {
   locale?: string;
 };
 
-export function formatNumber(value?: BigNumber, options?: FormatAmountOptions): string {
+export function formatNumber(value?: BigNumber, decimals?: number, options?: FormatAmountOptions): string {
   if (value === undefined) return '-';
 
-  const dp = options?.dp ?? 2;
+  const dp = decimals ?? MAX_DECIMALS;
   const currencySymbol = options?.fiat ? '$' : '';
   const semiequateSymbol = options?.semiequate ? '≈' : '';
 
