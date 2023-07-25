@@ -1,10 +1,11 @@
 import { FORMAT_LOCALE_FALLBACK } from '@/constants/app';
 import { getNumberParts } from '@/utils/number';
 
-type NumberTextSize = 'md';
+type NumberTextSize = 'md' | 'lg';
 
 const SIZE_CLASS_DICT: Record<NumberTextSize, { integer: string; fractions: string; unit: string }> = {
   md: { integer: 'Font_data_16px_num', fractions: 'Font_data_12px_num', unit: 'Font_data_12px_unit' },
+  lg: { integer: 'Font_data_20px_num', fractions: 'Font_data_12px_num', unit: 'Font_data_12px_unit' },
 };
 
 type NumberTextProps = {

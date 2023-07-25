@@ -20,24 +20,32 @@ const AccountModal = (props: AccountModalProps) => {
   const { data: balances, isLoading } = useBalancesQuery({ wallet });
 
   return (
-    <AnimatedModal ariaLabel="Connected wallet account" {...props} className="h-[50vh]">
+    <AnimatedModal ariaLabel="Connected wallet account" {...props} className="h-[80vh]">
       <div className="h-full flex flex-col items-start justify-between Padding_modal">
         <div className="space-y-3">
           <AccountAddress wallet={wallet} />
 
-          <div className="flex flex-col gap-y-2">
-            <span className="flex items-center gap-x-2">
-              <Coin />
-              <NumberText formattedNumber={formatNumber(ethBalance?.value, ethBalance?.decimals)} unit={ethBalance?.symbol} />
+          <div className="flex flex-col gap-y-3 px-1">
+            <span className="flex items-center gap-x-2.5">
+              <Coin size="lg" />
+              <NumberText
+                size="lg"
+                formattedNumber={formatNumber(ethBalance?.value, ethBalance?.decimals)}
+                unit={ethBalance?.symbol}
+              />
             </span>
 
             {isLoading ? (
               <LoadingRows rowsCnt={3} fontClassName="Font_data_20px_num" />
             ) : (
               (balances ?? []).map((balance) => (
-                <span key={balance.symbol} className="flex items-center gap-x-2">
-                  <Coin symbol={balance.symbol} />
-                  <NumberText formattedNumber={formatNumber(balance?.value, balance?.decimals)} unit={balance?.symbol} />
+                <span key={balance.symbol} className="flex items-center gap-x-2.5">
+                  <Coin size="lg" symbol={balance.symbol} />
+                  <NumberText
+                    size="lg"
+                    formattedNumber={formatNumber(balance?.value, balance?.decimals)}
+                    unit={balance?.symbol}
+                  />
                 </span>
               ))
             )}
