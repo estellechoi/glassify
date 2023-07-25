@@ -16,6 +16,11 @@
 
 <img src="./docs/paper_overview.png">
 
+<br />
+
+<img src="./docs/paper_overview_connected.png">
+
+
 ### 1-2. Schedule
 
 This is scheduling table example. Work items are based on the real use-cases I've learned from lectures.
