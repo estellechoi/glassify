@@ -3,7 +3,6 @@ import dynamic from 'next/dynamic';
 import Layout from '@/components/Layout';
 import { TITLES } from '@/constants/app';
 import AnimatedHeadline, { type AnimatedHeadlineProps } from '@/components/AnimatedHeadline';
-import Head from 'next/head';
 
 const AsciiGlobe = dynamic(() => import('@/components/AsciiGlobe'), {
   ssr: false,

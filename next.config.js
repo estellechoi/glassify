@@ -12,7 +12,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'static.coinpaprika.com',
+        hostname: 'raw.githubusercontent.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'assets.coingecko.com',
       },
     ],
   },

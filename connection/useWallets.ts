@@ -12,7 +12,7 @@ const useWallets = (): readonly Wallet[] => {
   const metamask: Wallet = {
     type: 'metamask',
     name: 'MetaMask',
-    logoUrl: METAMASK_LOGO_URL,
+    logoURL: METAMASK_LOGO_URL,
     connector: metamaskConnector,
     onNoConnector: () => {
       window.open('https://metamask.io/', 'inst_metamask');
@@ -23,7 +23,7 @@ const useWallets = (): readonly Wallet[] => {
   const uniswapWallet: Wallet = {
     type: 'uniswap',
     name: 'Uniswap Wallet',
-    logoUrl: UNISWAP_WALLET_LOGO_URL,
+    logoURL: UNISWAP_WALLET_LOGO_URL,
     connector: uniswapWalletConnector,
     onNoConnector: () => {},
   };

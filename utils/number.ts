@@ -10,7 +10,7 @@ type FormatAmountOptions = {
   locale?: string;
 };
 
-export function formatNumber(value?: BigNumber, decimals?: number, options?: FormatAmountOptions): string {
+export const formatNumber = (value?: BigNumber, decimals?: number, options?: FormatAmountOptions): string => {
   if (value === undefined) return '-';
 
   const dp = decimals ?? MAX_DECIMALS;
@@ -34,4 +34,16 @@ export function formatNumber(value?: BigNumber, decimals?: number, options?: For
 
   const amount = value.dp(dp, options?.roundMode ?? BigNumber.ROUND_DOWN);
   return `${semiequateSymbol}${currencySymbol}${formatter.format(amount.toNumber()).toLocaleLowerCase()}`;
-}
+};
+
+export const getDecimalSeperator = (locale: string): string | undefined => {
+  return new Intl.NumberFormat(locale).formatToParts(1.1).find((part) => part.type === 'decimal')?.value;
+};
+
+export const getNumberParts = (formattedNumber: string, locale: string): [string, string | null] => {
+  const decimalSeperator = getDecimalSeperator(locale);
+  if (!decimalSeperator) return [formattedNumber, null];
+
+  const [integer, fractions] = formattedNumber.split(decimalSeperator);
+  return [integer, fractions !== '' ? fractions : null];
+};

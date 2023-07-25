@@ -1,22 +1,30 @@
+type AnimatedModalSize = 'md';
+
+const MODAL_WIDTH_DICT: Record<AnimatedModalSize, string> = {
+  md: 'w-[20rem]',
+};
+
 export type AnimatedModalProps = {
   isOpen: boolean;
   onClose: () => void;
+  size?: AnimatedModalSize;
   ariaLabel: string;
   children?: React.ReactNode;
+  className?: string;
 };
 
-const AnimatedModal = ({ isOpen, onClose, ariaLabel, children }: AnimatedModalProps) => {
-  const leftAnimationClassName = isOpen ? 'Animate_fast_in_downward' : 'Animate_fast_in_downward_back';
-  const rightAnimationClassName = isOpen ? 'Animate_fast_in_upward' : 'Animate_fast_in_upward_back';
-  const contentOpacityClassName = isOpen ? 'animate-fade_in delay-800' : 'opacity-0';
+const AnimatedModal = ({ isOpen, onClose, size = 'md', ariaLabel, children, className = '' }: AnimatedModalProps) => {
+  const widthClassName = MODAL_WIDTH_DICT[size];
+  const animateClassName = isOpen ? 'Animate_slide_in_leftward' : 'Animate_slide_in_leftward_back';
+  const contentOpacityClassName = isOpen ? 'animate-fade_in delay-800' : 'animate-fade_out delay-800';
 
   return (
-    <div role="dialog" aria-label={ariaLabel} className="Component fixed inset-0 grid grid-cols-1 md:grid-cols-[20vw_1fr]">
-      <div aria-hidden className={`hidden md:block bg-primary_variant_dark ${leftAnimationClassName}`}></div>
-
-      <div className={`bg-primary ${rightAnimationClassName}`}>
-        <div className={`h-full ${contentOpacityClassName}`}>{children}</div>
-      </div>
+    <div
+      role="dialog"
+      aria-label={ariaLabel}
+      className={`Component fixed top-28 right-10 max-h-[70vh] rounded-3xl bg-primary ${widthClassName} ${animateClassName} ${className}`}
+    >
+      <div className={`w-full h-full ${contentOpacityClassName}`}>{children}</div>
     </div>
   );
 };

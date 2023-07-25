@@ -2,10 +2,13 @@ import { useCallback } from 'react';
 import AnimatedModal, { type AnimatedModalProps } from '@/components/AnimatedModal';
 import OptionGrid from '@/components/OptionGrid';
 import type { Wallet } from '@/types/wallet';
+import { Connector, EthAccount } from '@/connectors/types';
+import Button from '../Button';
+import OptionItem from '../OptionItem';
 
 type SelectWalletModalProps = Omit<AnimatedModalProps, 'ariaLabel'> & {
   wallets: readonly Wallet[];
-  onConnect: (wallet: Wallet | null) => void;
+  onConnect: ({ wallet, account, connector }: { wallet: Wallet; account: EthAccount; connector: Connector }) => void;
 };
 
 const SelectWalletModal = (props: SelectWalletModalProps) => {
@@ -13,10 +16,16 @@ const SelectWalletModal = (props: SelectWalletModalProps) => {
 
   const onClickConnect = useCallback(
     async (wallet: Wallet) => {
-      const connected = (await wallet.connector?.connect()) ?? wallet.onNoConnector();
+      if (!wallet.connector) {
+        wallet.onNoConnector();
+        return;
+      }
 
-      onConnect(connected ? wallet : null);
-      if (connected) onClose();
+      const account = await wallet.connector.connect();
+      if (!account) return;
+
+      onConnect({ wallet, account, connector: wallet.connector });
+      onClose();
     },
     [onConnect, onClose]
   );
@@ -25,13 +34,9 @@ const SelectWalletModal = (props: SelectWalletModalProps) => {
     <AnimatedModal {...props} ariaLabel="Select wallet">
       <OptionGrid className="h-full Padding_modal">
         {wallets.map((wallet) => (
-          <OptionGrid.Option
-            key={wallet.name}
-            type="button"
-            label={wallet.name}
-            imgUrl={wallet.logoUrl}
-            onClick={() => onClickConnect(wallet)}
-          ></OptionGrid.Option>
+          <OptionGrid.Option key={wallet.name}>
+            <OptionItem imgURL={wallet.logoURL} label={wallet.name} onClick={() => onClickConnect(wallet)} />
+          </OptionGrid.Option>
         ))}
       </OptionGrid>
     </AnimatedModal>

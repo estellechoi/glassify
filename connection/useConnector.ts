@@ -6,8 +6,8 @@ const useConnector = <T extends Connector>(initialize: () => Promise<T | undefin
 
   const initializeConnector = useCallback(async () => {
     try {
-      const initializedConnector = await initialize();
-      setConnector(initializedConnector);
+      const connector = await initialize();
+      setConnector(connector);
     } catch (e) {
       console.log(e);
     }

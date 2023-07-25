@@ -10,11 +10,14 @@ import { SEO } from 'next-seo.config';
 import SentryErrorBoundary from '@/components/ErrorBoundary/SentryErrorBoundary';
 import AppHeader from '@/components/AppHeader';
 import { ModalProvider } from '@/hooks/useModal/ModalProvider';
-import { getWagmiConfig } from '@/data/wagmiConfig';
 import { userWalletAtom } from '@/store/states';
 import { useAtom } from 'jotai';
-import { ChainId } from '@/connectors/types';
-import { WagmiConfig } from 'wagmi';
+import useSetupTokens from '@/hooks/useSetupTokens';
+
+const MetaDataUpdater = () => {
+  useSetupTokens();
+  return null;
+};
 
 function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: DehydratedState }>) {
   const { reset } = useQueryErrorResetBoundary();
@@ -35,7 +38,6 @@ function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: DehydratedS
   }
 
   const [userWallet] = useAtom(userWalletAtom);
-  const wagmiConfig = getWagmiConfig(userWallet?.connector?.chainId ?? ChainId.ETHEREUM);
 
   return (
     <>
@@ -56,12 +58,11 @@ function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: DehydratedS
         <Suspense>
           <QueryClientProvider client={queryClientRef.current}>
             <Hydrate state={pageProps.dehydratedState}>
-              <WagmiConfig config={wagmiConfig}>
-                <ModalProvider>
-                  <AppHeader className="fixed top-0 left-0 right-0 z-10" />
-                  <Component {...pageProps} />
-                </ModalProvider>
-              </WagmiConfig>
+              <MetaDataUpdater />
+              <ModalProvider>
+                <AppHeader className="fixed top-0 left-0 right-0 z-10" />
+                <Component {...pageProps} />
+              </ModalProvider>
             </Hydrate>
           </QueryClientProvider>
         </Suspense>

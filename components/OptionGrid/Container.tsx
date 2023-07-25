@@ -7,7 +7,7 @@ const getOptions = (children: ReactNode) => {
 };
 
 const Container = ({ children, className = '' }: { className?: string; children: ReactNode }) => {
-  return <ul className={`flex flex-col justify-start md:justify-end items-start gap-1 ${className}`}>{getOptions(children)}</ul>;
+  return <ul className={`flex flex-col items-start gap-1 ${className}`}>{getOptions(children)}</ul>;
 };
 
 export default Container;

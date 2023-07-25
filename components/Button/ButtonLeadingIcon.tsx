@@ -1,15 +1,17 @@
 import Icon, { IconSize, IconType } from '@/components/Icon';
-import { ButtonColor, ButtonSize, ButtonType } from './types';
+import type { ButtonColor, ButtonSize, ButtonType } from './types';
 
 const ICON_COLOR_CLASS_DICT: Record<ButtonType, Record<ButtonColor | 'disabled', string>> = {
   fill: {
     primary: 'bg-white text-primary',
+    primary_inverted: 'bg-primary text-white',
     secondary: 'bg-white text-secondary',
     disabled: 'bg-white text-disabled',
   },
   outline: {
-    primary: 'text-primary',
-    secondary: 'text-secondary',
+    primary: 'text-primary border border-primary',
+    primary_inverted: 'text-white border border-white',
+    secondary: 'text-secondary border border-secondary',
     disabled: 'text-disabled',
   },
 };
@@ -17,12 +19,21 @@ const ICON_COLOR_CLASS_DICT: Record<ButtonType, Record<ButtonColor | 'disabled',
 const ICON_INVERT_COLOR_CLASS_DICT: Record<ButtonType, Record<ButtonColor, string>> = {
   fill: {
     primary: 'bg-primary text-white',
+    primary_inverted: 'bg-white text-primary',
     secondary: 'bg-secondary text-white',
   },
   outline: {
-    primary: 'text-primary',
-    secondary: 'text-secondary',
+    primary: 'text-primary border border-primary',
+    primary_inverted: 'text-white border border-white',
+    secondary: 'text-secondary border border-secondary',
   },
+};
+
+const ICON_PADDING_CLASS_DICT: Record<ButtonSize, string> = {
+  sm: 'p-2',
+  md: 'p-3',
+  lg: 'p-4',
+  xl: 'p-5',
 };
 
 const ICON_SIZE_CLASS_DICT: Record<ButtonSize, IconSize> = {
@@ -43,10 +54,11 @@ type ButtonLeadingIconProps = {
 const ButtonLeadingIcon = ({ type, color, size, iconType, disabled }: ButtonLeadingIconProps) => {
   const iconColorClassName = ICON_COLOR_CLASS_DICT[type][disabled ? 'disabled' : color];
   const iconInvertColorClassName = ICON_INVERT_COLOR_CLASS_DICT[type][color];
+  const iconPaddingClassName = ICON_PADDING_CLASS_DICT[size];
   const iconSize = ICON_SIZE_CLASS_DICT[size];
 
   return (
-    <span className={`relative p-4 rounded-full transition-all Transition_500 ${iconColorClassName}`}>
+    <span className={`relative rounded-full transition-all Transition_500 ${iconPaddingClassName} ${iconColorClassName}`}>
       <Icon
         type={iconType}
         size={iconSize}

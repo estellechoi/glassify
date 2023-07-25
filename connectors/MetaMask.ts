@@ -1,4 +1,4 @@
-import { ChainId, Connector, type EthAddress, Provider, ProviderRpcError } from '@/connectors/types';
+import { ChainId, Connector, type EthAddress, Provider, ProviderRpcError, EthAccount } from '@/connectors/types';
 
 /**
  *
@@ -40,21 +40,20 @@ class MetaMask extends Connector {
     return Number.parseInt(this.provider.chainId, 16);
   }
 
-  public async connect(chainIdOrChainParams?: ChainId | AddEthereumChainParameter): Promise<MetaMask | undefined> {
-    const accounts: readonly string[] = (await this.provider.request({ method: 'eth_requestAccounts' })) as string[];
+  public async connect(chainIdOrChainParams?: ChainId | AddEthereumChainParameter): Promise<EthAccount | undefined> {
+    const addresses: readonly EthAddress[] = (await this.provider.request({ method: 'eth_requestAccounts' })) as EthAddress[];
+    const address: EthAddress | undefined = addresses[0];
 
-    if (!accounts.length) {
+    if (!address) {
       this.onError?.(new Error('No accounts returned'));
       return undefined;
     }
-
-    this.account = accounts[0] as EthAddress;
 
     const detectedChainId = Number.parseInt((await this.provider.request({ method: 'eth_chainId' })) as string, 16);
     const desiredChainId = typeof chainIdOrChainParams === 'number' ? chainIdOrChainParams : chainIdOrChainParams?.chainId;
 
     if (!desiredChainId || detectedChainId === desiredChainId) {
-      return this;
+      return { address };
     }
 
     const desiredChainIdHex = `0x${desiredChainId.toString(16)}`;
@@ -90,7 +89,7 @@ class MetaMask extends Connector {
   }
 
   public async disconnect(): Promise<void> {
-    this.account = undefined;
+    //
   }
 }
 

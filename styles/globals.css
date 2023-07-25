@@ -63,23 +63,6 @@
         @apply text-8xl leading-[6.5rem] font-semibold
     }
 
-    /* typography - menu */
-    .Font_menu_xs {
-        @apply text-2xl font-medium
-    }
-    
-    .Font_menu_sm {
-        @apply text-3xl font-medium
-    }
-
-    .Font_menu_md {
-        @apply text-4xl font-medium
-    }
-
-    .Font_menu_lg {
-        @apply text-5xl font-medium
-    }
-
     /* typography - button */
     .Font_button_sm {
         @apply text-sm leading-5 font-semibold
@@ -125,7 +108,7 @@
 
     /** typography - data */
     .Font_data_12px_num {
-        @apply font-num text-xs leading-5 font-light tracking-tight
+        @apply font-num text-xs leading-5 font-normal tracking-tight
     }
 
     .Font_data_16px_num {
@@ -141,15 +124,15 @@
     }
 
     .Font_data_12px_unit {
-        @apply text-[0.625rem] leading-5 font-light
+        @apply text-[0.625rem] leading-5 font-normal
     }
 
     .Font_data_20px_unit {
-        @apply text-[0.875rem] leading-6 font-bold
+        @apply text-[0.875rem] leading-6 font-normal
     }
 
     .Font_data_32px_unit {
-        @apply text-2xl leading-10 font-bold
+        @apply text-2xl leading-10 font-normal
     }
 
     /* typography - caption */
@@ -171,7 +154,7 @@
 
      /* padding */
      .Padding_modal {
-        @apply px-8 py-32 md:px-10 md:py-32
+        @apply px-6 py-7
      }
 
      .Padding_page {
@@ -180,7 +163,7 @@
 
     /* background effect */
     .Bg_skeleton {
-        @apply bg-skeleton-pulse bg-[length:200%] bg-no-repeat animate-skeleton-pulse;
+        @apply bg-skeleton bg-no-repeat;
     }
 
      /* transition */
@@ -198,19 +181,27 @@
 
     /* animation */
     .Animate_fast_in_downward {
-        @apply origin-top animate-fast_in;
+        @apply origin-top animate-fast_in_y;
     }
 
     .Animate_fast_in_downward_back {
-        @apply origin-top animate-fast_in_back;
+        @apply origin-top animate-fast_in_y_back;
     }
 
     .Animate_fast_in_upward {
-        @apply origin-bottom animate-fast_in;
+        @apply origin-bottom animate-fast_in_y;
     }
 
     .Animate_fast_in_upward_back {
-        @apply origin-bottom animate-fast_in_back;
+        @apply origin-bottom animate-fast_in_y_back;
+    }
+
+    .Animate_slide_in_leftward {
+        @apply animate-slide_in_x;
+    }
+
+    .Animate_slide_in_leftward_back {
+        @apply animate-slide_in_x_back;
     }
 
     /* @see https://developer.mozilla.org/en-US/docs/Web/CSS/contain */

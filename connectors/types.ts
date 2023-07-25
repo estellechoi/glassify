@@ -4,6 +4,10 @@ export enum ChainId {
 
 export type EthAddress = `0x${string}`;
 
+export type EthAccount = {
+  address: EthAddress;
+};
+
 /**
  *
  * @see https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1193.md#request EIP-1193
@@ -26,12 +30,11 @@ export interface Provider {
 export abstract class Connector {
   /**
    *
-   * @see https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1193.md EIP-1193
-   * @see https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1102.md EIP-1102
-   * @see https://github.com/ethereum/EIPs/blob/master/EIPS/eip-3085.md EIP-3085
+   * @see https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1193.md EIP-1193: JavaScript Ethereum Provider API
+   * @see https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1102.md EIP-1102: Opt-in account exposure
+   * @see https://github.com/ethereum/EIPs/blob/master/EIPS/eip-3085.md EIP-3085: Wallet Add Ethereum Chain RPC Method
    */
   public readonly provider: Provider;
-  public account?: EthAddress;
   protected onError?: (error: Error) => void;
 
   /**
@@ -46,7 +49,7 @@ export abstract class Connector {
   }
 
   public abstract get chainId(): ChainId;
-  public abstract connect(...args: unknown[]): Promise<Connector | undefined>;
+  public abstract connect(...args: unknown[]): Promise<EthAccount | undefined>;
   public abstract disconnect(...args: unknown[]): Promise<void>;
 }
 

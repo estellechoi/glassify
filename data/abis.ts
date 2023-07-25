@@ -3,6 +3,26 @@
  * @description ERC-20 Token Standard
  * @see https://ethereum.org/en/developers/docs/standards/tokens/erc-20
  */
+export const ERC20BalanceOfABI = [
+  {
+    type: 'function',
+    name: 'balanceOf',
+    stateMutability: 'view',
+    inputs: [
+      {
+        name: 'account',
+        type: 'address',
+      },
+    ],
+    outputs: [
+      {
+        name: '',
+        type: 'uint256',
+      },
+    ],
+  },
+];
+
 export const ERC20ABI = [
   {
     type: 'event',
@@ -88,23 +108,7 @@ export const ERC20ABI = [
       },
     ],
   },
-  {
-    type: 'function',
-    name: 'balanceOf',
-    stateMutability: 'view',
-    inputs: [
-      {
-        name: 'account',
-        type: 'address',
-      },
-    ],
-    outputs: [
-      {
-        name: '',
-        type: 'uint256',
-      },
-    ],
-  },
+  ...ERC20BalanceOfABI,
   {
     type: 'function',
     name: 'decimals',

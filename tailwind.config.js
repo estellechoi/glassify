@@ -42,22 +42,14 @@ module.exports = {
         primary_linear_4: 'linear-gradient(90deg, var(--color-gray900-o4) 0%, var(--color-gray900-o0) 100%)',
         secondary_linear_4: 'linear-gradient(90deg, var(--color-gray900-o4) 0%, var(--color-gray900-o0) 100%)',
         secondary_linear_2: 'linear-gradient(90deg, var(--color-gray900-o2) 0%, var(--color-gray900-o0) 100%)',
-        'skeleton-pulse': 'linear-gradient(90deg, #e1e1e1 0%, #ffffff 100%)',
+        skeleton: 'linear-gradient(90deg, var(--color-white-o35) 0%, var(--color-white-o10) 100%)',
       },
       boxShadow: {
         subtle: '0px 1px 4px 4px var(--color-black-o10),',
         subtle_glass: '0px 1px 4px 4px var(--color-black-o10), inset -2px 2px 4px var(--color-white-o10)',
       },
       keyframes: {
-        'skeleton-pulse': {
-          '0%': {
-            'background-position': '100% 0%',
-          },
-          '100%': {
-            'background-position': '0% 0%',
-          },
-        },
-        fast_in: {
+        fast_in_y: {
           '0%': {
             transform: 'scale(1, 0)',
           },
@@ -65,22 +57,38 @@ module.exports = {
             transform: 'scale(1, 1)',
           },
         },
-        fast_out: {
+        fast_out_y: {
           '0%': {
             transform: 'scale(1, 1)',
           },
           '100%': {
             transform: 'scale(1, 0)',
+          },
+        },
+        slide_in_x: {
+          '0%': {
+            transform: 'translateX(140%)',
+          },
+          '100%': {
+            transform: 'translateX(0)',
+          },
+        },
+        slide_out_x: {
+          '0%': {
+            transform: 'translateX(0)',
+          },
+          '100%': {
+            transform: 'translateX(140%)',
           },
         },
         fade_in: {
           '0%': {
             opacity: 0,
-            transform: 'translateY(0.5rem)',
+            transform: 'translateX(-0.5rem)',
           },
           '100%': {
             opacity: 1,
-            transform: 'translateY(0)',
+            transform: 'translateX(0)',
           },
         },
         fade_out: {
@@ -93,9 +101,10 @@ module.exports = {
         },
       },
       animation: {
-        'skeleton-pulse': 'skeleton-pulse 1.5s ease-in-out infinite',
-        fast_in: 'fast_in 0.8s cubic-bezier(0.73, 0, 0, 1) both',
-        fast_in_back: 'fast_out 0.8s cubic-bezier(0.73, 0, 0, 1) both',
+        fast_in_y: 'fast_in_y 0.8s cubic-bezier(0.73, 0, 0, 1) both',
+        fast_in_y_back: 'fast_out_y 0.8s cubic-bezier(0.73, 0, 0, 1) both',
+        slide_in_x: 'slide_in_x 0.8s cubic-bezier(0.73, 0, 0, 1) both',
+        slide_in_x_back: 'slide_out_x 0.8s cubic-bezier(0.73, 0, 0, 1) both',
         fade_in: 'fade_in 0.8s cubic-bezier(0, 0, 0.27, 1) 0.6s both',
         fade_out: 'fade_out 0.4s cubic-bezier(0, 0, 0.27, 1) both',
       },
