@@ -5,7 +5,7 @@ import type { BalanceData, OwnedNFTData, UniswapTokensData } from './types';
 import { parseAmount } from './utils';
 import { ethers } from 'ethers';
 import type { ConnectedWallet } from '@/types/wallet';
-import { BigNumber } from 'alchemy-sdk';
+import { BigNumber, type FloorPriceError, type FloorPriceMarketplace } from 'alchemy-sdk';
 import axios from 'axios';
 
 export const useTokensQuery = (refetchInterval = 0) => {
@@ -24,11 +24,11 @@ export const useENSNameQuery = (wallet: ConnectedWallet, refetchInterval = 0) =>
   return useQuery<string | null>(queryKey, fetcher, { refetchInterval });
 };
 
-export const useEthBalanceQuery = ({ wallet, token }: { wallet: ConnectedWallet; token?: EthAddress }, refetchInterval = 0) => {
+export const useEthBalanceQuery = ({ wallet }: { wallet: ConnectedWallet }, refetchInterval = 0) => {
   const address = wallet.account.address;
   const chainId = wallet.connector.chainId;
 
-  const queryKey = ['balance', wallet.account.address, chainId, token];
+  const queryKey = ['ethBalance', wallet.account.address, chainId];
 
   const fetcher = async () => {
     const provider = await new ethers.BrowserProvider(window.ethereum);
@@ -112,4 +112,23 @@ export const useNFTsQuery = ({ wallet }: { wallet: ConnectedWallet }, refetchInt
   };
 
   return useQuery<readonly OwnedNFTData[]>(queryKey, fetcher, { refetchInterval });
+};
+
+/**
+ *
+ * @see https://docs.alchemy.com/reference/sdk-getfloorprice
+ */
+export const useNFTFloorPriceQuery = (
+  { wallet, contractAddress }: { wallet: ConnectedWallet; contractAddress?: string },
+  refetchInterval = 0
+) => {
+  const chainId = wallet.connector.chainId;
+  const queryKey = ['nftFloorPrice', contractAddress, chainId];
+
+  const fetcher = async () => {
+    const alchemy = getAlchemy(chainId);
+    return (await alchemy.nft.getFloorPrice(contractAddress ?? '')).looksRare;
+  };
+
+  return useQuery<FloorPriceMarketplace | FloorPriceError>(queryKey, fetcher, { refetchInterval, enabled: !!contractAddress });
 };

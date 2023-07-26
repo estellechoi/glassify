@@ -2,6 +2,7 @@ import Coin, { type CoinSize } from '@/components/Coin';
 import NumberText, { type NumberTextSize } from '@/components/NumberText';
 
 const SIZE_MAPPING_DICT: Record<NumberTextSize, CoinSize> = {
+  sm: 'sm',
   md: 'md',
   lg: 'lg',
 };

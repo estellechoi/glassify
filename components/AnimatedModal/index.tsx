@@ -1,7 +1,7 @@
 type AnimatedModalSize = 'md';
 
 const MODAL_WIDTH_DICT: Record<AnimatedModalSize, string> = {
-  md: 'w-[20rem]',
+  md: 'w-[calc(100vw_-_2.5rem)] md:w-[20rem]',
 };
 
 export type AnimatedModalProps = {
@@ -22,7 +22,7 @@ const AnimatedModal = ({ isOpen, onClose, size = 'md', ariaLabel, children, clas
     <div
       role="dialog"
       aria-label={ariaLabel}
-      className={`Component fixed top-28 right-10 max-h-[80vh] rounded-3xl bg-primary ${widthClassName} ${animateClassName} ${className}`}
+      className={`Component fixed top-28 right-5 md:right-10 max-h-[80vh] rounded-3xl bg-primary ${widthClassName} ${animateClassName} ${className}`}
     >
       <div className={`w-full h-full ${contentOpacityClassName}`}>{children}</div>
     </div>

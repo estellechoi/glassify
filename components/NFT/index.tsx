@@ -15,13 +15,21 @@ type NFTProps = {
   name?: string;
   size?: NFTSize;
   caption?: string;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
 };
 
-const NFT = ({ thumbnailURL, mediaFormat, name = 'NFT', size = 'md', caption }: NFTProps) => {
+const NFT = ({ thumbnailURL, mediaFormat, name = 'NFT', size = 'md', caption, onMouseEnter, onMouseLeave }: NFTProps) => {
   const imgSize = SIZE_CLASS_DICT[size];
 
   return (
-    <div className="space-y-2">
+    <div
+      className="space-y-2"
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      onMouseOut={onMouseLeave}
+      onMouseOver={onMouseEnter}
+    >
       <div
         className={`group/nft bg-primary border-2 border-white rounded-2xl overflow-hidden ${imgSize.className} ${
           thumbnailURL ? '' : 'animate-pulse'
