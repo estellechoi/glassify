@@ -7,6 +7,10 @@
 @tailwind utilities;
 
 @layer base {
+    * {
+        @apply outline-none;
+    }
+    
     *::selection {
         background-color: #b8b8b8;
     }
