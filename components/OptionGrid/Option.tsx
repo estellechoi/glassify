@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 type OptionProps = { children: ReactNode };
 
 const Option = ({ children }: OptionProps) => {
-  return <>{children}</>;
+  return <li>{children}</li>;
 };
 
 export default Option;

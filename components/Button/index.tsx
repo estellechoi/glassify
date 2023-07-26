@@ -37,7 +37,7 @@ const Button = ({
       type="button"
       disabled={disabled}
       onClick={onClick}
-      className={`Component group/button inline-flex justify-center items-center rounded-full transition-transform Transition_500 enabled:hover:scale-110 ${paddingClassName} ${cursorClassName} ${colorClassName} ${className}`}
+      className={`Component group/button w-fit inline-flex justify-center items-center rounded-full transition-transform Transition_500 enabled:hover:scale-110 ${paddingClassName} ${cursorClassName} ${colorClassName} ${className}`}
     >
       <ButtonLeadingIcon type={type} color={color} size={size} iconType={iconType} disabled={disabled} />
       <span className={`truncate ${fontClassName} ${textVisibilityClassName}`}>{label}</span>

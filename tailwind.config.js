@@ -9,8 +9,8 @@ module.exports = {
         navbar: 'var(--height-navbar)',
       },
       fontFamily: {
-        primary: ['Inter', ...defaultTheme.fontFamily.sans],
-        num: ['"Azeret Mono"', 'monospace'],
+        primary: ['Poppins', ...defaultTheme.fontFamily.sans],
+        num: ['"Azeret Mono"', 'monospace', ...defaultTheme.fontFamily.mono],
       },
       colors: {
         /* color tokens */
@@ -23,9 +23,9 @@ module.exports = {
         white_o35: 'var(--color-white-o35)',
         white_o10: 'var(--color-white-o10)',
         /* app colors */
-        primary: 'var(--color-gray900)',
-        primary_hover: 'var(--color-gray900-o80)',
-        primary_variant_dark: 'var(--color-black)',
+        primary: 'var(--color-primary)',
+        primary_hover: 'var(--color-primary-o80)',
+        primary_variant_dark: 'var(--color-primary-variant-dark)',
         secondary: 'var(--color-gray900)',
         secondary_hover: 'var(--color-gray900-o80)',
         glass: 'var(--color-sky400-o10)',
@@ -34,7 +34,7 @@ module.exports = {
         ground_dark: 'var(--color-gray900)',
         ground_dark_o: 'var(--color-gray900-o10)',
         body: 'var(--color-black)',
-        caption: 'var(--color-gray600)',
+        caption: 'var(--color-gray400)',
         caption_dark: 'var(--color-gray800)',
         disabled: 'var(--color-gray300)',
       },
@@ -43,6 +43,12 @@ module.exports = {
         secondary_linear_4: 'linear-gradient(90deg, var(--color-gray900-o4) 0%, var(--color-gray900-o0) 100%)',
         secondary_linear_2: 'linear-gradient(90deg, var(--color-gray900-o2) 0%, var(--color-gray900-o0) 100%)',
         skeleton: 'linear-gradient(90deg, var(--color-white-o35) 0%, var(--color-white-o10) 100%)',
+        primary_right_to_left:
+          'linear-gradient(90deg, var(--color-primary-o0) 0%, var(--color-primary) 90% , var(--color-primary) 100%)',
+        primary_inverted_right_to_left:
+          'linear-gradient(90deg, var(--color-white-o0) 0%, var(--color-white) 90%, var(--color-white) 100%)',
+        primary_left_to_right:
+          'linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary) 10% , var(--color-primary-o0) 100%)',
       },
       boxShadow: {
         subtle: '0px 1px 4px 4px var(--color-black-o10),',

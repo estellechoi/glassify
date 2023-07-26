@@ -2,7 +2,7 @@ import Image from 'next/image';
 import useCoinLogoURL from './useCoinLogoURL';
 import { useCallback, useState } from 'react';
 
-type CoinSize = 'md' | 'lg';
+export type CoinSize = 'md' | 'lg';
 
 const COIN_SIZE_DICT: Record<CoinSize, { px: number; className: string }> = {
   md: { px: 20, className: 'w-5 h-5' },

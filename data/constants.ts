@@ -40,3 +40,5 @@ export const getAlchemy = (chainId: ChainId): Alchemy => {
     apiKey: ALCHEMY_API_KEY_DICT[chainId],
   });
 };
+
+export const UNISWAP_TOKENS_ENDPOINT = 'https://gateway.ipfs.io/ipns/tokens.uniswap.org';

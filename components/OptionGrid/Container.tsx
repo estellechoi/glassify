@@ -3,7 +3,7 @@ import Option from './Option';
 
 const getOptions = (children: ReactNode) => {
   const childrenArray = Children.toArray(children);
-  return childrenArray.filter((child) => isValidElement(child) && child.type === Option).slice(0, 2);
+  return childrenArray.filter((child) => isValidElement(child) && child.type === Option);
 };
 
 const Container = ({ children, className = '' }: { className?: string; children: ReactNode }) => {

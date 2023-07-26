@@ -8,7 +8,7 @@ const useCoinLogoURL = (symbol?: string, chainId?: ChainId) => {
   const [tokensDict] = useAtom(allTokensDictAtom);
 
   return useMemo<string | undefined>(() => {
-    if (!symbol) return EthLogo.src;
+    if (!symbol || symbol === 'ETH') return EthLogo.src;
     return tokensDict[symbol]?.logoURI;
   }, [symbol, tokensDict]);
 };

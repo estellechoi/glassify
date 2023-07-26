@@ -7,5 +7,5 @@ export const LOCAL_STORAGE_KEYS = {
 };
 
 export const TITLES = {
-  HOME: ['Finance', 'effortless', 'all hours'],
+  HOME: ['Finance', 'Effortless', 'All hours'],
 };

@@ -18,6 +18,22 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'assets.coingecko.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+      },
+      /**
+       *
+       * @todo remove this
+       */
+      {
+        protocol: 'https',
+        hostname: 'i.seadn.io',
+      },
     ],
   },
   distDir: 'build',

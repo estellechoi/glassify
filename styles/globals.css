@@ -48,117 +48,126 @@
 @layer utilities {
     /* typography - display */
     .Font_display_xs {
-        @apply text-5xl leading-[3.5rem] font-semibold
+        @apply text-5xl leading-[3.5rem] font-semibold;
     }
 
     .Font_display_sm {
-        @apply text-6xl leading-[4.25rem] font-semibold
+        @apply text-6xl leading-[4.25rem] font-semibold;
     }
 
     .Font_display_md {
-        @apply text-7xl leading-[5rem] font-semibold
+        @apply text-7xl leading-[5rem] font-semibold;
     }
 
     .Font_display_lg {
-        @apply text-8xl leading-[6.5rem] font-semibold
+        @apply text-8xl leading-[6.5rem] font-semibold;
     }
 
     /* typography - button */
     .Font_button_sm {
-        @apply text-sm leading-5 font-semibold
+        @apply text-sm leading-5 font-semibold;
     }
 
     .Font_button_md {
-        @apply text-base leading-5 font-semibold
+        @apply text-base leading-5 font-semibold;
     }
 
     .Font_button_lg {
-        @apply text-lg leading-5 font-semibold
+        @apply text-lg leading-5 font-semibold;
     }
 
     .Font_button_xl {
-        @apply text-xl leading-5 font-semibold
+        @apply text-xl leading-5 font-semibold;
     }
 
     /* typography - body */
     .Font_body_xs {
-        @apply text-xs leading-6 font-medium
+        @apply text-xs leading-6 font-medium;
     }
     
     .Font_body_sm {
-        @apply text-sm leading-6 font-medium
+        @apply text-sm leading-6 font-medium;
     }
 
     .Font_body_md {
-        @apply text-base leading-6 font-medium
+        @apply text-base leading-6 font-medium;
     }
 
     .Font_body_lg {
-        @apply text-xl leading-6 font-medium
+        @apply text-xl leading-6 font-medium;
     }
 
     /** typography - label */
     .Font_label_12px {
-        @apply text-xs leading-5 font-medium
+        @apply text-xs leading-5 font-medium;
     }
 
     .Font_label_14px {
-        @apply text-[0.875rem] leading-5 font-medium
+        @apply text-[0.875rem] leading-5 font-medium;
     }
 
     /** typography - data */
     .Font_data_12px_num {
-        @apply font-num text-xs leading-5 font-normal tracking-tight
+        @apply font-num text-xs leading-5 font-normal tracking-tight;
     }
 
     .Font_data_16px_num {
-        @apply font-num text-base leading-5 font-normal tracking-tight
+        @apply font-num text-base leading-5 font-normal tracking-tight;
     }
 
     .Font_data_20px_num {
-        @apply font-num text-xl leading-6 font-normal tracking-tight
+        @apply font-num text-xl leading-6 font-normal tracking-tight;
     }
 
     .Font_data_32px_num {
-        @apply font-num text-[2rem] leading-10 font-normal tracking-tight
+        @apply font-num text-[2rem] leading-10 font-normal tracking-tight;
     }
 
     .Font_data_12px_unit {
-        @apply text-[0.625rem] leading-5 font-normal
+        @apply text-[0.625rem] leading-5 font-normal;
     }
 
     .Font_data_20px_unit {
-        @apply text-[0.875rem] leading-6 font-normal
+        @apply text-[0.875rem] leading-6 font-normal;
     }
 
     .Font_data_32px_unit {
-        @apply text-2xl leading-10 font-normal
+        @apply text-2xl leading-10 font-normal;
     }
 
     /* typography - caption */
     .Font_caption_xs {
-        @apply text-xs leading-6 font-semibold
+        @apply text-xs leading-6 font-normal;
     }
     
     .Font_caption_sm {
-        @apply text-sm leading-6 font-semibold
+        @apply text-sm leading-6 font-normal;
     }
 
     .Font_caption_md {
-        @apply text-base leading-6 font-semibold
+        @apply text-base leading-6 font-normal;
     }
 
     .Font_caption_lg {
-        @apply text-xl leading-6 font-semibold
+        @apply text-xl leading-6 font-normal;
     }
 
      /* padding */
      .Padding_modal {
-        @apply px-6 py-7
+        @apply px-6 py-7;
      }
 
      .Padding_page {
-        @apply px-8 pt-[8.125rem] py-20 md:px-24 md:pt-[8.125rem] md:py-28
+        @apply px-8 pt-[8.125rem] py-20 md:px-24 md:pt-[8.125rem] md:py-28;
+     }
+
+     /* elevation */
+     .Elevation_1 {
+        @apply drop-shadow-sm;
+     }
+
+     .Elevation_2 {
+        @apply drop-shadow;
      }
 
     /* background effect */
