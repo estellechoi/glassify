@@ -1,7 +1,7 @@
 # Paper
 
 <p align="center">
-      <img src="./docs/logo_overview.jpg" width="720" />
+      <img src="./docs/docs_logo.jpg" width="704" />
 </p>
 
 <br />
