@@ -7,9 +7,9 @@ const getItems = (children: ReactNode) => {
   return childrenArray.filter((child) => isValidElement(child) && child.type === Item);
 };
 
-type ContainerProps = { children: ReactNode; xUnitPx: number; className?: string };
+type ContainerProps = { children: ReactNode; xUnitPx: number; isExpandable?: boolean; className?: string };
 
-const Container = ({ children, xUnitPx, className = '' }: ContainerProps) => {
+const Container = ({ children, xUnitPx, isExpandable = false, className = '' }: ContainerProps) => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   const onToggleExpand = useCallback(() => {
@@ -57,17 +57,19 @@ const Container = ({ children, xUnitPx, className = '' }: ContainerProps) => {
 
       <span aria-hidden className={`absolute -inset-y-0.5 -right-1 z-[11] w-24 bg-primary_right_to_left`}></span>
 
-      <Button
-        aria-hidden
-        color="primary_inverted"
-        type="outline"
-        size="sm"
-        iconType={isExpanded ? 'chevron_left' : 'chevron_right'}
-        label="View more"
-        labelHidden
-        className="absolute inset-y-0 right-0 z-[11]"
-        onClick={onToggleExpand}
-      />
+      {isExpandable && (
+        <Button
+          aria-hidden
+          color="primary_inverted"
+          type="outline"
+          size="sm"
+          iconType={isExpanded ? 'chevron_left' : 'chevron_right'}
+          label="View more"
+          labelHidden
+          className="absolute inset-y-0 right-0 z-[11]"
+          onClick={onToggleExpand}
+        />
+      )}
     </ul>
   );
 };

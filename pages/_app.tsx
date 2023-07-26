@@ -49,7 +49,7 @@ function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: DehydratedS
           content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, viewport-fit=cover"
         />
         <meta name="theme-color" content="#f5f5f5" />
-        <link rel="icon" href="/favicon.png" />
+        <link rel="icon" href="/app_favicon.png" />
       </Head>
 
       <NextSeo {...SEO} />

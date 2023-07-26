@@ -11,6 +11,7 @@ import OverlayGrid from '../OverlayGrid';
 import { shortenAddress } from '@/utils/text';
 import CaptionText from '../CaptionText';
 import LabelText from '../LabelText';
+import { useMemo } from 'react';
 
 type AccountModalProps = Omit<AnimatedModalProps, 'ariaLabel'> & {
   wallet: ConnectedWallet;
@@ -23,6 +24,10 @@ const AccountModal = (props: AccountModalProps) => {
   const { data: ethBalance } = useEthBalanceQuery({ wallet });
   const { data: balances, isLoading: isBalancesLoading } = useBalancesQuery({ wallet });
   const { data: ownedNFTs, isLoading: isOwnedNFTsLoading } = useNFTsQuery({ wallet });
+
+  const isNFTsExpandable = useMemo<boolean>(() => {
+    return (ownedNFTs && ownedNFTs.length > 5) ?? false;
+  }, [ownedNFTs]);
 
   /**
    *
@@ -47,10 +52,10 @@ const AccountModal = (props: AccountModalProps) => {
             <LabelText size="sm" text="NFTs" className="mb-3" />
 
             {isOwnedNFTsLoading ? (
-              <LoadingRows rowsCnt={3} fontClassName="Font_data_20px_num" />
+              <LoadingRows rowsCnt={1} fontClassName="text-[80px]" />
             ) : (
               <>
-                <OverlayGrid xUnitPx={32}>
+                <OverlayGrid xUnitPx={32} isExpandable={isNFTsExpandable}>
                   {ownedNFTs?.map((ownedNFT, index) => (
                     <OverlayGrid.Item key={ownedNFT.contract.address}>
                       <NFT

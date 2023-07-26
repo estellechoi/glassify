@@ -1,13 +1,13 @@
 import Image from 'next/image';
-import LOGO_LIGHT_URL from '@/resources/logos/logo_light.svg';
-import LOGO_DARK_URL from '@/resources/logos/logo_dark.svg';
+import LOGO_LIGHT_URL from '@/resources/logos/app_logo_2.svg';
+import LOGO_DARK_URL from '@/resources/logos/app_logo_1.svg';
 
 type AppLogoColor = 'light' | 'dark';
 type AppLogoSize = 'md' | 'lg';
 
 const LOGO_IMG_URL_DICT: Record<AppLogoColor, string> = {
-  light: LOGO_DARK_URL,
-  dark: LOGO_LIGHT_URL,
+  dark: LOGO_DARK_URL,
+  light: LOGO_LIGHT_URL,
 };
 
 const LOGO_SIZE_CLASS_DICT: Record<AppLogoSize, { className: string; px: number }> = {
