@@ -14,11 +14,11 @@
 
 ### 1-1. Preview
 
-<img src="./docs/overview_poppins.png">
+<img src="./docs/preview.png">
 
 <br />
 
-<img src="./docs/overview_poppins_connected.png">
+<img src="./docs/preview_account.png">
 
 
 ### 1-2. Schedule
