@@ -49,6 +49,10 @@ module.exports = {
           'linear-gradient(90deg, var(--color-white-o0) 0%, var(--color-white) 90%, var(--color-white) 100%)',
         primary_left_to_right:
           'linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary) 10% , var(--color-primary-o0) 100%)',
+        primary_bottom_to_top:
+          'linear-gradient(180deg, var(--color-primary-o0) 0%, var(--color-primary) 20%, var(--color-primary) 100%)',
+        primary_inverted_gradient_1:
+          'linear-gradient(90deg, var(--color-white-o35) 0%, var(--color-white-o35) 10%, var(--color-white-o0) 100%)',
       },
       boxShadow: {
         subtle: '0px 1px 4px 4px var(--color-black-o10),',

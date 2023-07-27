@@ -102,7 +102,7 @@ const AppHeader = ({ className = '' }: AppHeaderProps) => {
   }, [isModalOpen, closeModal, openAccountModal, userWallet]);
 
   return (
-    <header className={`flex items-center justify-between px-8 py-9 ${className}`}>
+    <header className={`h-[8.125rem] flex items-center justify-between px-8 py-9 ${className}`}>
       <AppLogo size="lg" color="dark" />
 
       {accountModalButtonProps ? (

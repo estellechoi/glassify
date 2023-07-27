@@ -5,22 +5,28 @@ const SIZE_MAPPING_DICT: Record<NumberTextSize, CoinSize> = {
   sm: 'sm',
   md: 'md',
   lg: 'lg',
+  xl: 'lg',
 };
 
-type CoinAmountProps = {
+export type CoinAmountProps = {
   size: NumberTextSize;
-  formattedAmount?: string;
-  symbol?: string;
   coinSize?: CoinSize;
+  symbol?: string;
+  formattedAmount?: string;
+  amountUnit?: string;
 };
 
-const CoinAmount = ({ formattedAmount, size, coinSize: injectedCoinSize, symbol }: CoinAmountProps) => {
+const CoinAmount = ({ formattedAmount, size, coinSize: injectedCoinSize, symbol, amountUnit }: CoinAmountProps) => {
   const coinSize = injectedCoinSize ?? SIZE_MAPPING_DICT[size];
 
   return (
-    <span className="flex items-center gap-x-2.5">
-      <Coin size={coinSize} symbol={symbol} />
-      <NumberText type="small_fractions" size={size} formattedNumber={formattedAmount} unit={symbol} />
+    <span className="w-full flex items-center justify-between gap-x-2.5">
+      <span className="inline-flex items-center gap-x-2.5">
+        <Coin size={coinSize} symbol={symbol} />
+        <span className="text-white Font_body_sm">{symbol}</span>
+      </span>
+
+      <NumberText size={size} formattedNumber={formattedAmount} unit={amountUnit} />
     </span>
   );
 };

@@ -6,16 +6,16 @@ import { useEffect } from 'react';
 const useSetupTokens = () => {
   const [, setTokensDict] = useAtom(allTokensDictAtom);
 
-  const { data } = useTokensQuery();
+  const { data: tokensData } = useTokensQuery();
 
   useEffect(() => {
     const dict =
-      data?.tokens.reduce((acc, token) => {
+      tokensData?.tokens.reduce((acc, token) => {
         return { ...acc, [token.symbol]: token };
       }, {}) ?? {};
 
     setTokensDict(dict);
-  }, [data]);
+  }, [tokensData]);
 };
 
 export default useSetupTokens;

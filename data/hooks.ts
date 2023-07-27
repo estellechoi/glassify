@@ -7,6 +7,7 @@ import { ethers } from 'ethers';
 import type { ConnectedWallet } from '@/types/wallet';
 import { BigNumber, type FloorPriceError, type FloorPriceMarketplace } from 'alchemy-sdk';
 import axios from 'axios';
+import type { CMCQuoteData } from '@/pages/api/cmc/quotes';
 
 export const useTokensQuery = (refetchInterval = 0) => {
   const fetcher = () => axios.get<UniswapTokensData>(UNISWAP_TOKENS_ENDPOINT).then((res) => res.data);
@@ -102,10 +103,11 @@ export const useNFTsQuery = ({ wallet }: { wallet: ConnectedWallet }, refetchInt
 
     return Promise.all(
       ownedNFTs.map(async (ownedNFT) => {
-        const metadata = await alchemy.nft.getContractMetadata(ownedNFT.contract.address);
+        const marketplace = (await alchemy.nft.getFloorPrice(ownedNFT.contract.address)).looksRare;
+
         return {
           ...ownedNFT,
-          metadata,
+          marketplace,
         };
       })
     );
@@ -118,17 +120,29 @@ export const useNFTsQuery = ({ wallet }: { wallet: ConnectedWallet }, refetchInt
  *
  * @see https://docs.alchemy.com/reference/sdk-getfloorprice
  */
-export const useNFTFloorPriceQuery = (
-  { wallet, contractAddress }: { wallet: ConnectedWallet; contractAddress?: string },
-  refetchInterval = 0
-) => {
-  const chainId = wallet.connector.chainId;
-  const queryKey = ['nftFloorPrice', contractAddress, chainId];
+// export const useNFTFloorPriceQuery = (
+//   { wallet, contractAddress }: { wallet: ConnectedWallet; contractAddress?: string },
+//   refetchInterval = 0
+// ) => {
+//   const chainId = wallet.connector.chainId;
+//   const queryKey = ['nftFloorPrice', contractAddress, chainId];
 
-  const fetcher = async () => {
-    const alchemy = getAlchemy(chainId);
-    return (await alchemy.nft.getFloorPrice(contractAddress ?? '')).looksRare;
-  };
+//   const fetcher = async () => {
+//     const alchemy = getAlchemy(chainId);
+//     return (await alchemy.nft.getFloorPrice(contractAddress ?? '')).looksRare;
+//   };
 
-  return useQuery<FloorPriceMarketplace | FloorPriceError>(queryKey, fetcher, { refetchInterval, enabled: !!contractAddress });
+//   return useQuery<FloorPriceMarketplace | FloorPriceError>(queryKey, fetcher, { refetchInterval, enabled: !!contractAddress });
+// };
+
+/**
+ *
+ * @see https://coinmarketcap.com/api/documentation/v1/#operation/getV2CryptocurrencyQuotesLatest
+ */
+export const useCMCQuotesQuery = (symbols: readonly string[], refetchInterval = 0) => {
+  const symbolsQuery = symbols.join(',');
+  const fetcher = () => axios.get('/api/cmc/quotes', { params: { symbol: symbolsQuery } }).then((res) => res.data);
+  return useQuery<{
+    [symbol: string]: readonly CMCQuoteData[];
+  }>(['cmcQuotes', symbolsQuery], fetcher, { refetchInterval, enabled: symbols.length > 0 });
 };

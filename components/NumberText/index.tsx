@@ -2,12 +2,13 @@ import { FORMAT_LOCALE_FALLBACK } from '@/constants/app';
 import { getNumberParts } from '@/utils/number';
 
 export type NumberTextType = 'normal' | 'small_fractions';
-export type NumberTextSize = 'sm' | 'md' | 'lg';
+export type NumberTextSize = 'sm' | 'md' | 'lg' | 'xl';
 
 const SIZE_CLASS_DICT: Record<NumberTextSize, { integer: string; fractions: string; unit: string }> = {
   sm: { integer: 'Font_data_12px_num', fractions: 'Font_data_12px_num', unit: 'Font_data_12px_unit' },
   md: { integer: 'Font_data_16px_num', fractions: 'Font_data_12px_num', unit: 'Font_data_12px_unit' },
   lg: { integer: 'Font_data_20px_num', fractions: 'Font_data_14px_num', unit: 'Font_data_14px_unit' },
+  xl: { integer: 'Font_data_32px_num', fractions: 'Font_data_20px_num', unit: 'Font_data_20px_unit' },
 };
 
 type NumberTextProps = {

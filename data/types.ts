@@ -1,6 +1,5 @@
 import type { ChainId, EthAddress } from '@/connectors/types';
-import type { NftContract } from 'alchemy-sdk/dist/src/api/nft';
-import type { OwnedNft } from 'alchemy-sdk/dist/src/types/types';
+import type { FloorPriceError, FloorPriceMarketplace, OwnedNft } from 'alchemy-sdk/dist/src/types/types';
 import type BigNumber from 'bignumber.js';
 
 export type UniswapTokenData = Readonly<{
@@ -39,4 +38,4 @@ export type BalanceData = Readonly<{
   symbol: string;
 }>;
 
-export type OwnedNFTData = Readonly<OwnedNft & { metadata: NftContract }>;
+export type OwnedNFTData = Readonly<OwnedNft & { marketplace: FloorPriceMarketplace | FloorPriceError }>;
