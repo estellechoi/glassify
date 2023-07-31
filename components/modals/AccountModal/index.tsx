@@ -1,14 +1,14 @@
+import { useMemo } from 'react';
 import AnimatedModal from '@/components/AnimatedModal';
 import Button from '@/components/Button';
 import AccountAddress from '@/components/AccountAddress';
-import type { ConnectedWallet } from '@/types/wallet';
-import NFTs from './NFTs';
-import Tokens from './Tokens';
-import { useMemo } from 'react';
 import { formatUSD } from '@/utils/number';
-import NumberText from '@/components/NumberText';
 import useBalance from '@/hooks/useBalance';
 import useOwnedNFTs from '@/hooks/useOwnedNFTs';
+import BalanceTotal from './BalanceTotal';
+import NFTs from './NFTs';
+import Tokens from './Tokens';
+import type { ConnectedWallet } from '@/types/wallet';
 import type { AnimatedModalProps } from '@/components/AnimatedModal/Container';
 
 type AccountModalProps = Omit<AnimatedModalProps, 'ariaLabel'> & {
@@ -29,7 +29,7 @@ const AccountModal = (props: AccountModalProps) => {
       <AnimatedModal.Content isOpen={isOpen} className="space-y-3 pb-[5rem] overflow-auto scroll-smooth">
         <AccountAddress wallet={wallet} />
 
-        <NumberText size="xl" type="small_fractions" formattedNumber={formattedTotalUSD} />
+        <BalanceTotal formattedNumber={formattedTotalUSD} isLoading={isBalanceLoading} />
 
         <NFTs ownedNFTs={ownedNFTs} isOwnedNFTsLoading={isOwnedNFTsLoading} />
 

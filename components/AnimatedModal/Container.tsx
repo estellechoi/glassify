@@ -27,6 +27,10 @@ export type AnimatedModalProps = {
   className?: string;
 };
 
+/**
+ *
+ * @todo consider replacing with dialog tag with open attribute and show method
+ */
 const AnimatedModal = ({ isOpen, onClose, size = 'md', ariaLabel, children, className = '' }: AnimatedModalProps) => {
   const widthClassName = MODAL_WIDTH_DICT[size];
   const animateClassName = isOpen ? 'Animate_slide_in_leftward' : 'Animate_slide_in_leftward_back';
@@ -34,6 +38,7 @@ const AnimatedModal = ({ isOpen, onClose, size = 'md', ariaLabel, children, clas
   return (
     <div
       role="dialog"
+      aria-modal
       aria-label={ariaLabel}
       className={`Component fixed top-28 right-5 md:right-10 max-h-[80vh] rounded-3xl bg-primary ${widthClassName} ${animateClassName} ${className}`}
     >

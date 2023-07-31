@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import LabelText from '@/components/LabelText';
 import LoadingRows from '@/components/LoadingRows';
 import NFT from '@/components/NFT';
@@ -42,6 +42,9 @@ const NFTs = ({ ownedNFTs, isOwnedNFTsLoading }: NFTsProps) => {
    * @description to highlight hovered NFT data
    */
   const [hoveredNFT, setHoveredNFT] = useState<OwnedNFT>(ownedNFTs[0]);
+  useEffect(() => {
+    setHoveredNFT(ownedNFTs[0]);
+  }, [ownedNFTs[0]]);
 
   return (
     <section className="px-1 py-3">
