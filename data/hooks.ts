@@ -18,7 +18,7 @@ export const useENSNameQuery = (wallet: ConnectedWallet, refetchInterval = 0) =>
   const queryKey = ['ENSName', wallet.account.address];
 
   const fetcher = async () => {
-    const provider = await new ethers.BrowserProvider(window.ethereum);
+    const provider = await new ethers.BrowserProvider(wallet.connector.provider);
     return provider.lookupAddress(wallet.account.address);
   };
 
@@ -32,7 +32,7 @@ export const useEthBalanceQuery = ({ wallet }: { wallet: ConnectedWallet }, refe
   const queryKey = ['ethBalance', wallet.account.address, chainId];
 
   const fetcher = async () => {
-    const provider = await new ethers.BrowserProvider(window.ethereum);
+    const provider = await new ethers.BrowserProvider(wallet.connector.provider);
     const balance = await provider.getBalance(address);
     const { decimals, symbol } = CHAINS_DICT[chainId].nativeCurrency;
     const value = parseAmount(balance, decimals);

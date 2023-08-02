@@ -13,6 +13,7 @@ import { ModalProvider } from '@/hooks/useModal/ModalProvider';
 import { userWalletAtom } from '@/store/states';
 import { useAtom } from 'jotai';
 import useSetupTokens from '@/hooks/useSetupTokens';
+import dynamic from 'next/dynamic';
 
 const MetaDataUpdater = () => {
   useSetupTokens();

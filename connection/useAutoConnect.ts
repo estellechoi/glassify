@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useAtom } from 'jotai';
 import { LOCAL_STORAGE_KEYS } from '@/constants/app';
 import { userWalletAtom } from '@/store/states';
@@ -14,7 +14,10 @@ const useAutoConnect = (wallets: readonly Wallet[]) => {
 
   const [, setUserWallet] = useAtom(userWalletAtom);
 
-  const lastUsedWallet = wallets.find((wallet) => wallet.type === lastUsedWalletType) ?? null;
+  const lastUsedWallet = useMemo<Wallet | null>(
+    () => wallets.find((wallet) => wallet.type === lastUsedWalletType) ?? null,
+    [wallets, lastUsedWalletType]
+  );
 
   const connect = useCallback(async () => {
     if (!lastUsedWallet?.connector) return;
@@ -27,7 +30,7 @@ const useAutoConnect = (wallets: readonly Wallet[]) => {
       account,
       connector: lastUsedWallet.connector,
     });
-  }, [lastUsedWallet?.connector]);
+  }, [lastUsedWallet]);
 
   useEffect(() => {
     connect();

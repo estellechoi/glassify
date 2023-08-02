@@ -1,14 +1,14 @@
 import useConnector from './useConnector';
-import { initializeMetamask } from './metamask';
 import METAMASK_LOGO_URL from '@/resources/images/wallet_metamask.svg';
 import UNISWAP_WALLET_LOGO_URL from '@/resources/images/wallet_uniswap.svg';
 import { initializeUniswapWallet } from '@/connection/uniswapWallet';
+import { initializeMetamaskMobile } from '@/connection/metamaskMobile';
 import type MetaMask from '@/connectors/MetaMask';
 import type UniswapWallet from '@/connectors/UniswapWallet';
 import type { Wallet } from '@/types/wallet';
 
 const useWallets = (): readonly Wallet[] => {
-  const metamaskConnector = useConnector<MetaMask>(initializeMetamask);
+  const metamaskConnector = useConnector<MetaMask>(initializeMetamaskMobile);
   const metamask: Wallet = {
     type: 'metamask',
     name: 'MetaMask',
@@ -25,7 +25,9 @@ const useWallets = (): readonly Wallet[] => {
     name: 'Uniswap Wallet',
     logoURL: UNISWAP_WALLET_LOGO_URL,
     connector: uniswapWalletConnector,
-    onNoConnector: () => {},
+    onNoConnector: () => {
+      alert('Uniswap Wallet support is coming soon!');
+    },
   };
 
   return [metamask, uniswapWallet];

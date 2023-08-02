@@ -1,6 +1,6 @@
-import type { Connector, EthAccount } from '@/connectors/types';
+import type { Connector, EthAccount, Provider } from '@/connectors/types';
 
-export type WalletType = 'metamask' | 'uniswap';
+export type WalletType = 'metamask' | 'uniswap' | 'metamask_mobile';
 
 export type Wallet = Readonly<{
   type: WalletType;

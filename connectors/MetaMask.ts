@@ -1,4 +1,4 @@
-import { ChainId, Connector, type EthAddress, Provider, ProviderRpcError, EthAccount } from '@/connectors/types';
+import { ChainId, Connector, type EthAddress, ProviderRpcError, EthAccount, MetaMaskSDKProvider } from '@/connectors/types';
 
 /**
  *
@@ -17,27 +17,28 @@ export interface AddEthereumChainParameter {
   iconUrls?: string[]; // Currently ignored.
 }
 
-export type MetaMaskProvider = Provider & {
-  isMetaMask: boolean;
-  isConnected?: () => boolean;
-  // to handle when e.g. metamask and coinbase wallet are both installed
-  providers?: readonly MetaMaskProvider[];
-  get chainId(): string;
-  get accounts(): string[];
-};
+type MetaMastParamOptions = { onError?: (error: Error) => void };
 
 class MetaMask extends Connector {
-  public provider: MetaMaskProvider;
+  public provider: MetaMaskSDKProvider;
 
-  constructor(provider: MetaMaskProvider, onError?: (error: Error) => void) {
+  constructor(provider: MetaMaskSDKProvider, options?: MetaMastParamOptions) {
+    const { onError } = options ?? { onDisconnect: undefined, onError: undefined };
+
     super(provider, onError);
     this.provider = provider;
     this.connect = this.connect.bind(this);
     this.disconnect = this.disconnect.bind(this);
+
+    if (onError)
+      this.provider.on('disconnect', () => {
+        this.onError?.(new Error('MetaMask disconnected'));
+      });
   }
 
   public get chainId(): ChainId {
-    return Number.parseInt(this.provider.chainId, 16);
+    const providerChainId = this.provider.chainId ?? String(ChainId.ETHEREUM);
+    return Number.parseInt(providerChainId, 16);
   }
 
   public async connect(chainIdOrChainParams?: ChainId | AddEthereumChainParameter): Promise<EthAccount | undefined> {
@@ -89,7 +90,7 @@ class MetaMask extends Connector {
   }
 
   public async disconnect(): Promise<void> {
-    //
+    this.provider.handleDisconnect({ terminate: true });
   }
 }
 

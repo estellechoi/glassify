@@ -1,3 +1,5 @@
+import type { SDKProvider } from '@metamask/sdk';
+
 export enum ChainId {
   ETHEREUM = 1,
 }
@@ -16,6 +18,18 @@ export interface RequestArguments {
   readonly method: string;
   readonly params?: readonly unknown[] | object;
 }
+
+/**
+ *
+ * @see https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1193.md#rpc-errors EIP-1193
+ */
+export interface ProviderRpcError extends Error {
+  message: string;
+  code: number;
+  data?: unknown;
+}
+
+export type MetaMaskSDKProvider = SDKProvider;
 
 /**
  *
@@ -51,14 +65,4 @@ export abstract class Connector {
   public abstract get chainId(): ChainId;
   public abstract connect(...args: unknown[]): Promise<EthAccount | undefined>;
   public abstract disconnect(...args: unknown[]): Promise<void>;
-}
-
-/**
- *
- * @see https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1193.md#rpc-errors EIP-1193
- */
-export interface ProviderRpcError extends Error {
-  message: string;
-  code: number;
-  data?: unknown;
 }
