@@ -29,8 +29,6 @@ export interface ProviderRpcError extends Error {
   data?: unknown;
 }
 
-export type MetaMaskSDKProvider = SDKProvider;
-
 /**
  *
  * @see https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1193.md#events EIP-1193
@@ -40,6 +38,22 @@ export interface Provider {
   on(eventName: string | symbol, listener: (...args: any[]) => void): this;
   removeListener(eventName: string | symbol, listener: (...args: any[]) => void): this;
 }
+
+/**
+ *
+ * @see https://github.com/MetaMask/detect-provider/blob/main/src/index.ts
+ */
+export interface MetaMaskEthereumProvider extends Provider {
+  isMetaMask?: boolean;
+  get chainId(): string | undefined;
+  handleDisconnect: undefined;
+  once: (eventName: string | symbol, listener: (...args: any[]) => void) => void;
+  off: (eventName: string | symbol, listener: (...args: any[]) => void) => void;
+  addListener: (eventName: string | symbol, listener: (...args: any[]) => void) => void;
+  removeAllListeners: (event?: string | symbol) => void;
+}
+
+export type MetaMaskSDKProvider = SDKProvider;
 
 export abstract class Connector {
   /**

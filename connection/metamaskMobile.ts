@@ -1,13 +1,9 @@
 import MetaMask from '@/connectors/MetaMask';
+import type { MetaMaskEthereumProvider } from '@/connectors/types';
+import detectEthereumProvider from '@metamask/detect-provider';
 import MetaMaskSDK, { CommunicationLayerPreference, type MetaMaskSDKOptions } from '@metamask/sdk';
 
-/**
- *
- * @see https://docs.metamask.io/wallet/how-to/use-sdk/javascript/
- * @see https://docs.metamask.io/wallet/reference/sdk-js-options/
- * @see https://docs.metamask.io/wallet/how-to/use-sdk/javascript/react/
- */
-export const initializeMetamaskMobile = async (): Promise<MetaMask | undefined> => {
+const initializeMetamaskFromSDK = async (): Promise<MetaMask | undefined> => {
   try {
     const SDK_OPTIONS: MetaMaskSDKOptions = {
       dappMetadata: {
@@ -26,4 +22,16 @@ export const initializeMetamaskMobile = async (): Promise<MetaMask | undefined> 
   } catch (e: unknown) {
     return undefined;
   }
+};
+
+/**
+ *
+ * @see https://docs.metamask.io/wallet/how-to/use-sdk/javascript/
+ * @see https://docs.metamask.io/wallet/reference/sdk-js-options/
+ * @see https://docs.metamask.io/wallet/how-to/use-sdk/javascript/react/
+ */
+export const initializeMetamaskMobile = async (): Promise<MetaMask | undefined> => {
+  const provider: MetaMaskEthereumProvider | null = await detectEthereumProvider();
+  // try using the SDK when the provider is not detected from browser
+  return provider ? new MetaMask(provider) : initializeMetamaskFromSDK();
 };

@@ -1,4 +1,12 @@
-import { ChainId, Connector, type EthAddress, ProviderRpcError, EthAccount, MetaMaskSDKProvider } from '@/connectors/types';
+import {
+  ChainId,
+  Connector,
+  type EthAddress,
+  ProviderRpcError,
+  EthAccount,
+  MetaMaskSDKProvider,
+  MetaMaskEthereumProvider,
+} from '@/connectors/types';
 
 /**
  *
@@ -20,9 +28,9 @@ export interface AddEthereumChainParameter {
 type MetaMastParamOptions = { onError?: (error: Error) => void };
 
 class MetaMask extends Connector {
-  public provider: MetaMaskSDKProvider;
+  public provider: MetaMaskEthereumProvider | MetaMaskSDKProvider;
 
-  constructor(provider: MetaMaskSDKProvider, options?: MetaMastParamOptions) {
+  constructor(provider: MetaMaskEthereumProvider | MetaMaskSDKProvider, options?: MetaMastParamOptions) {
     const { onError } = options ?? { onDisconnect: undefined, onError: undefined };
 
     super(provider, onError);
@@ -42,6 +50,7 @@ class MetaMask extends Connector {
   }
 
   public async connect(chainIdOrChainParams?: ChainId | AddEthereumChainParameter): Promise<EthAccount | undefined> {
+    console.log('connect');
     const addresses: readonly EthAddress[] = (await this.provider.request({ method: 'eth_requestAccounts' })) as EthAddress[];
     const address: EthAddress | undefined = addresses[0];
 
@@ -90,7 +99,7 @@ class MetaMask extends Connector {
   }
 
   public async disconnect(): Promise<void> {
-    this.provider.handleDisconnect({ terminate: true });
+    this.provider.handleDisconnect?.({ terminate: true });
   }
 }
 

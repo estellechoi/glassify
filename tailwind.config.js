@@ -109,6 +109,16 @@ module.exports = {
             opacity: 0,
           },
         },
+        fade_in_reverse: {
+          '0%': {
+            opacity: 0,
+            transform: 'translateX(0.5rem)',
+          },
+          '100%': {
+            opacity: 1,
+            transform: 'translateX(0)',
+          },
+        },
       },
       animation: {
         fast_in_y: 'fast_in_y 0.8s cubic-bezier(0.73, 0, 0, 1) both',
@@ -116,6 +126,7 @@ module.exports = {
         slide_in_x: 'slide_in_x 0.8s cubic-bezier(0.73, 0, 0, 1) both',
         slide_in_x_back: 'slide_out_x 0.8s cubic-bezier(0.73, 0, 0, 1) both',
         fade_in: 'fade_in 0.8s cubic-bezier(0, 0, 0.27, 1) 0.6s both',
+        fade_in_reverse: 'fade_in_reverse 0.8s cubic-bezier(0, 0, 0.27, 1) 0.6s both',
         fade_out: 'fade_out 0.4s cubic-bezier(0, 0, 0.27, 1) both',
       },
     },

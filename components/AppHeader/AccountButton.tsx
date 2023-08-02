@@ -99,9 +99,9 @@ const AccountButton = () => {
   }, [isModalOpen, closeModal, openAccountModal, userWallet]);
 
   return accountModalButtonProps ? (
-    <Button size="md" {...accountModalButtonProps} className="animate-fade_in" />
+    <Button size="md" {...accountModalButtonProps} className="animate-fade_in_reverse" />
   ) : (
-    <Button size="md" {...connectModalButtonProps} className="animate-fade_in" />
+    <Button size="md" {...connectModalButtonProps} className="animate-fade_in_reverse" />
   );
 };
 

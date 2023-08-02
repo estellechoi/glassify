@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import TextMask from './TextMask';
 
 type HeadingTagName = 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
 
@@ -21,31 +22,30 @@ const AnimatedHeadline = ({ tagName, texts, align = 'left', className = '' }: An
   }, []);
 
   const scaleClassName = isVisible ? 'scale-x-100' : 'scale-x-0';
-  const maskTranslateClassName = isVisible ? 'translate-x-full' : '0';
 
-  const Texts = texts.map((text, index) => {
-    const scaleDelayMs = (index + 1) * 700;
-    const maskTranslateDelayMs = scaleDelayMs + 700;
+  const Texts = useMemo<readonly JSX.Element[]>(
+    () =>
+      texts.map((text, index) => {
+        const scaleDelayMs = (index + 1) * 1000;
+        const maskTranslateDelayMs = scaleDelayMs + 1000;
 
-    return (
-      <span
-        key={text}
-        className={`relative w-fit overflow-hidden Transition_700 transition-transform origin-left ${scaleClassName}`}
-        style={{ transitionDelay: `${scaleDelayMs}ms` }}
-      >
-        {text}
+        return (
+          <span
+            key={text}
+            className={`relative w-fit overflow-hidden Transition_1000 transition-transform origin-left ${scaleClassName}`}
+            style={{ transitionDelay: `${scaleDelayMs}ms` }}
+          >
+            {text}
 
-        <span
-          aria-hidden
-          className={`absolute inset-0 bg-black Transition_1000 transition-transform ${maskTranslateClassName}`}
-          style={{ transitionDelay: `${maskTranslateDelayMs}ms` }}
-        ></span>
-      </span>
-    );
-  });
+            <TextMask isOff={isVisible} translateDelayMs={maskTranslateDelayMs} />
+          </span>
+        );
+      }),
+    [texts, isVisible, scaleClassName]
+  );
 
-  const HeadingElement = tagName;
   const alignClassName = align === 'center' ? 'items-center' : align === 'right' ? 'items-end' : 'items-start';
+  const HeadingElement = tagName;
 
   return (
     <HeadingElement
