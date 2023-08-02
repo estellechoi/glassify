@@ -5,6 +5,7 @@ import type { Wallet } from '@/types/wallet';
 import { Connector, EthAccount } from '@/connectors/types';
 import OptionItem from '../OptionItem';
 import type { AnimatedModalProps } from '@/components/AnimatedModal/Container';
+import useProcessing from '@/hooks/useProcessing';
 
 type SelectWalletModalProps = Omit<AnimatedModalProps, 'ariaLabel'> & {
   wallets: readonly Wallet[];
@@ -14,6 +15,8 @@ type SelectWalletModalProps = Omit<AnimatedModalProps, 'ariaLabel'> & {
 const SelectWalletModal = (props: SelectWalletModalProps) => {
   const { wallets, onConnect, onClose, isOpen } = props;
 
+  const { target: connectingWallet, startProcessing: startConnecting, stopProcessing: stopConnecting } = useProcessing<Wallet>();
+
   const onClickConnect = useCallback(
     async (wallet: Wallet) => {
       if (!wallet.connector) {
@@ -21,13 +24,18 @@ const SelectWalletModal = (props: SelectWalletModalProps) => {
         return;
       }
 
+      startConnecting(wallet);
+
       const account = await wallet.connector.connect();
       if (!account) return;
 
       onConnect({ wallet, account, connector: wallet.connector });
+
+      stopConnecting();
+
       onClose();
     },
-    [onConnect, onClose]
+    [onConnect, onClose, startConnecting, stopConnecting]
   );
 
   return (
@@ -36,7 +44,12 @@ const SelectWalletModal = (props: SelectWalletModalProps) => {
         <OptionGrid>
           {wallets.map((wallet) => (
             <OptionGrid.Option key={wallet.name}>
-              <OptionItem imgURL={wallet.logoURL} label={wallet.name} onClick={() => onClickConnect(wallet)} />
+              <OptionItem
+                imgURL={wallet.logoURL}
+                label={wallet.name}
+                onClick={() => onClickConnect(wallet)}
+                isProcessing={connectingWallet?.type === wallet.type}
+              />
             </OptionGrid.Option>
           ))}
         </OptionGrid>

@@ -119,6 +119,14 @@ module.exports = {
             transform: 'translateX(0)',
           },
         },
+        up: {
+          '0%': {
+            transform: 'translateY(0)',
+          },
+          '100%': {
+            transform: 'translateY(-0.125rem)',
+          },
+        },
       },
       animation: {
         fast_in_y: 'fast_in_y 0.8s cubic-bezier(0.73, 0, 0, 1) both',
@@ -128,6 +136,7 @@ module.exports = {
         fade_in: 'fade_in 0.8s cubic-bezier(0, 0, 0.27, 1) 0.6s both',
         fade_in_reverse: 'fade_in_reverse 0.8s cubic-bezier(0, 0, 0.27, 1) 0.6s both',
         fade_out: 'fade_out 0.4s cubic-bezier(0, 0, 0.27, 1) both',
+        bouncing: 'up 400ms ease-in-out infinite alternate',
       },
     },
   },

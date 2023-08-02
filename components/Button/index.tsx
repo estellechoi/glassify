@@ -1,7 +1,16 @@
+import { useMemo } from 'react';
 import ButtonLeadingIcon from './ButtonLeadingIcon';
-import { BUTTON_COLOR_CLASS_DICT, BUTTON_PADDING_CLASS_DICT, TEXT_SIZE_CLASS_DICT } from './constants';
-import type { ButtonColor, ButtonSize, ButtonType } from './types';
+import {
+  BUTTON_COLOR_CLASS_DICT,
+  BUTTON_CURSOR_CLASS_DICT,
+  BUTTON_HEIGHT_CLASS_DICT,
+  BUTTON_PADDING_CLASS_DICT,
+  BUTTON_WAITING_SYMBOL_COLOR_DICT,
+  TEXT_SIZE_CLASS_DICT,
+} from './constants';
+import type { ButtonColor, ButtonSize, ButtonStatus, ButtonType } from './types';
 import type { IconType } from '@/components/Icon';
+import WaitingSymbol from '../WaitingSymbol';
 
 type ButtonProps = {
   iconType: IconType;
@@ -11,7 +20,7 @@ type ButtonProps = {
   type?: ButtonType;
   color?: ButtonColor;
   size?: ButtonSize;
-  disabled?: boolean;
+  status?: ButtonStatus;
   className?: string;
 };
 
@@ -23,24 +32,30 @@ const Button = ({
   type = 'fill',
   color = 'primary',
   size = 'md',
-  disabled = false,
+  status = 'enabled',
   className = '',
 }: ButtonProps) => {
-  const cursorClassName = disabled ? 'cursor-not-allowed' : 'cursor-pointer';
-  const colorClassName = labelHidden ? '' : BUTTON_COLOR_CLASS_DICT[type][disabled ? 'disabled' : color];
+  const cursorClassName = BUTTON_CURSOR_CLASS_DICT[status];
+  const colorClassName = labelHidden ? '' : BUTTON_COLOR_CLASS_DICT[type][status === 'disabled' ? 'disabled' : color];
   const fontClassName = TEXT_SIZE_CLASS_DICT[size];
+  const heightClassName = BUTTON_HEIGHT_CLASS_DICT[size];
   const paddingClassName = BUTTON_PADDING_CLASS_DICT[size];
   const textVisibilityClassName = labelHidden ? 'sr-only' : '';
+
+  const disabled = useMemo<boolean>(() => status === 'disabled' || status === 'processing', [status]);
+  const processing = useMemo<boolean>(() => status === 'processing', [status]);
 
   return (
     <button
       type="button"
       disabled={disabled}
       onClick={onClick}
-      className={`Component group/button w-fit inline-flex justify-center items-center rounded-full transition-transform Transition_500 enabled:hover:scale-110 ${paddingClassName} ${cursorClassName} ${colorClassName} ${className}`}
+      className={`Component group/button w-fit inline-flex justify-between items-center rounded-full transition-transform Transition_500 enabled:hover:scale-110 ${heightClassName} ${paddingClassName} ${cursorClassName} ${colorClassName} ${className}`}
     >
       <ButtonLeadingIcon type={type} color={color} size={size} iconType={iconType} disabled={disabled} />
-      <span className={`truncate ${fontClassName} ${textVisibilityClassName}`}>{label}</span>
+      <span className={`grow truncate ${fontClassName} ${textVisibilityClassName}`}>
+        {processing ? <WaitingSymbol color={BUTTON_WAITING_SYMBOL_COLOR_DICT[type][color]} /> : label}
+      </span>
     </button>
   );
 };

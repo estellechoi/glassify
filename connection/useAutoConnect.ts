@@ -3,6 +3,7 @@ import { useAtom } from 'jotai';
 import { LOCAL_STORAGE_KEYS } from '@/constants/app';
 import { userWalletAtom } from '@/store/states';
 import type { Wallet, WalletType } from '@/types/wallet';
+import useProcessing from '@/hooks/useProcessing';
 
 const useAutoConnect = (wallets: readonly Wallet[]) => {
   const [lastUsedWalletType, setLastUsedWalletType] = useState<WalletType | null>(null);
@@ -19,8 +20,12 @@ const useAutoConnect = (wallets: readonly Wallet[]) => {
     [wallets, lastUsedWalletType]
   );
 
+  const { target: isConnecting, startProcessing: startConnecting, stopProcessing: stopConnecting } = useProcessing<boolean>();
+
   const connect = useCallback(async () => {
     if (!lastUsedWallet?.connector) return;
+
+    startConnecting(true);
 
     const account = await lastUsedWallet.connector.connect();
     if (!account) return;
@@ -30,11 +35,17 @@ const useAutoConnect = (wallets: readonly Wallet[]) => {
       account,
       connector: lastUsedWallet.connector,
     });
-  }, [lastUsedWallet]);
+
+    stopConnecting();
+  }, [lastUsedWallet, startConnecting, stopConnecting, setUserWallet]);
 
   useEffect(() => {
     connect();
   }, [lastUsedWallet?.connector]);
+
+  return {
+    isConnecting,
+  };
 };
 
 export default useAutoConnect;

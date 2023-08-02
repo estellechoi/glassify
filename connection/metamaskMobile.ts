@@ -17,8 +17,8 @@ const initializeMetamaskFromSDK = async (): Promise<MetaMask | undefined> => {
     const metamaskSDK = new MetaMaskSDK(SDK_OPTIONS);
     await metamaskSDK.init();
 
-    const provider = metamaskSDK.activeProvider;
-    return provider ? new MetaMask(provider) : undefined;
+    const provider = metamaskSDK.activeProvider ?? metamaskSDK.getProvider();
+    return new MetaMask(provider);
   } catch (e: unknown) {
     return undefined;
   }

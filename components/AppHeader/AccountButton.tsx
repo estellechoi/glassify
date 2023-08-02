@@ -7,7 +7,7 @@ import { shortenAddress } from '@/utils/text';
 import useWallets from '@/connection/useWallets';
 import useAutoConnect from '@/connection/useAutoConnect';
 import type { IconType } from '@/components/Icon';
-import type { ButtonColor } from '../Button/types';
+import type { ButtonColor, ButtonStatus } from '../Button/types';
 
 const SelectWalletModal = lazy(() => import('@/components/modals/SelectWalletModal'));
 const AccountModal = lazy(() => import('@/components/modals/AccountModal'));
@@ -17,7 +17,7 @@ const AccountButton = () => {
   const [userWallet, setUserWallet] = useAtom(userWalletAtom);
 
   const wallets = useWallets();
-  useAutoConnect(wallets);
+  const { isConnecting: isAutoConnecting } = useAutoConnect(wallets);
 
   const modal = useModal();
   const openConnectModal = useCallback(async () => {
@@ -45,18 +45,21 @@ const AccountButton = () => {
     const label = isModalOpen ? 'Close' : 'Connect';
     const onClick = isModalOpen ? closeModal : openConnectModal;
 
+    const status: ButtonStatus = isAutoConnecting ? 'processing' : 'enabled';
+
     const color: ButtonColor = isModalOpen ? 'primary_inverted' : 'primary';
     const iconType: IconType = isModalOpen ? 'close' : 'login';
     const labelHidden = isModalOpen;
 
     return {
+      status,
       color,
       iconType,
       label,
       onClick,
       labelHidden,
     };
-  }, [isModalOpen, closeModal, openConnectModal]);
+  }, [isModalOpen, closeModal, openConnectModal, isAutoConnecting]);
 
   const openAccountModal = useCallback(async () => {
     const address = userWallet?.account.address;
@@ -82,7 +85,7 @@ const AccountButton = () => {
   const accountModalButtonProps = useMemo(() => {
     if (!userWallet) return undefined;
 
-    const label = shortenAddress(userWallet.account.address);
+    const label = shortenAddress(userWallet.account.address, 2, 4);
     const onClick = isModalOpen ? closeModal : openAccountModal;
 
     const color: ButtonColor = isModalOpen ? 'primary_inverted' : 'primary';
@@ -98,11 +101,10 @@ const AccountButton = () => {
     };
   }, [isModalOpen, closeModal, openAccountModal, userWallet]);
 
-  return accountModalButtonProps ? (
-    <Button size="md" {...accountModalButtonProps} className="animate-fade_in_reverse" />
-  ) : (
-    <Button size="md" {...connectModalButtonProps} className="animate-fade_in_reverse" />
-  );
+  const buttonProps = accountModalButtonProps ?? connectModalButtonProps;
+  const className = `animate-fade_in_reverse ${buttonProps.labelHidden ? '' : 'min-w-[11.875rem]'}`;
+
+  return <Button size="md" {...buttonProps} className={className} />;
 };
 
 export default AccountButton;

@@ -18,6 +18,8 @@ export const userWalletAtom = atom(
 
     if (userWallet?.type) {
       localStorage.setItem(LOCAL_STORAGE_KEYS.LAST_USED_WALLET, userWallet.type);
+    } else {
+      localStorage.removeItem(LOCAL_STORAGE_KEYS.LAST_USED_WALLET);
     }
   }
 );
