@@ -51,6 +51,26 @@ function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: DehydratedS
         />
         <meta name="theme-color" content="#f5f5f5" />
         <link rel="icon" href="/app_favicon.png" />
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="application-name" content="Paper" />
+        <meta name="apple-mobile-web-app-title" content="Paper" />
+        <link rel="apple-touch-icon" href="/app_icon_192.png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="/app_icon_192.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/app_icon_192.png" />
+        <link rel="apple-touch-icon" sizes="167x167" href="/app_icon_192.png" />
+
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png" />
+        <link rel="manifest" href="/manifest.json" />
+        {/* <link rel="mask-icon" href="" color="#F5F5F5" /> */}
+
+        <meta name="description" content="Finance, effortless, all hours" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="msapplication-TileColor" content="#F5F5F5" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="theme-color" content="#F5F5F5" />
       </Head>
 
       <NextSeo {...SEO} />

@@ -1,6 +1,9 @@
 //@ts-check
 const { withSentryConfig } = require('@sentry/nextjs');
 const withBundleAnalyzer = require('@next/bundle-analyzer');
+const withPWA = require('next-pwa')({
+  dest: 'public',
+});
 
 /**
  * @type {import('next').NextConfig}
@@ -74,4 +77,4 @@ const config = withBundleAnalyzer(withBundleAnalyzerOptions)(
   // withSentryConfig(nextConfig, sentryWebpackPluginOptions, sentryOptions)
 );
 
-module.exports = config;
+module.exports = withPWA(config);

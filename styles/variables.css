@@ -72,4 +72,6 @@
     --color-primary-o80: var(--color-gray900-o80);
     --color-primary-o0: var(--color-gray900-o0);
     --color-primary-variant-dark: var(--color-black);
+    --color-ground: var(--color-coolgray100);
+    --color-ground-o10: var(--color-coolgray100-o10);
 }
