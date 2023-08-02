@@ -50,7 +50,6 @@ class MetaMask extends Connector {
   }
 
   public async connect(chainIdOrChainParams?: ChainId | AddEthereumChainParameter): Promise<EthAccount | undefined> {
-    console.log('connect');
     const addresses: readonly EthAddress[] = (await this.provider.request({ method: 'eth_requestAccounts' })) as EthAddress[];
     const address: EthAddress | undefined = addresses[0];
 
