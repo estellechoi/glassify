@@ -50,18 +50,18 @@ function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: DehydratedS
           content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, viewport-fit=cover"
         />
         <meta name="theme-color" content="#f5f5f5" />
-        <link rel="icon" href="/app_favicon.png" />
+        <link rel="icon" href="/icons/app_favicon.png" />
 
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="application-name" content="Paper" />
         <meta name="apple-mobile-web-app-title" content="Paper" />
-        <link rel="apple-touch-icon" href="/app_icon_192.png" />
-        <link rel="apple-touch-icon" sizes="152x152" href="/app_icon_192.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/app_icon_192.png" />
-        <link rel="apple-touch-icon" sizes="167x167" href="/app_icon_192.png" />
+        <link rel="apple-touch-icon" href="/icons/app_icon_192.png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="/icons/app_icon_192.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/icons/app_icon_192.png" />
+        <link rel="apple-touch-icon" sizes="167x167" href="/icons/app_icon_192.png" />
 
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/icons/app_favicon.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/icons/app_favicon.png" />
         <link rel="manifest" href="/manifest.json" />
         {/* <link rel="mask-icon" href="" color="#F5F5F5" /> */}
 
