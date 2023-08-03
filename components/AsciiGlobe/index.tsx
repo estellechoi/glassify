@@ -1,10 +1,11 @@
 'use client';
 
 import * as THREE from 'three';
-import { useCallback, useState } from 'react';
-import { Canvas } from '@react-three/fiber';
+import { PointerEventHandler, useCallback, useState } from 'react';
+import { Canvas, type ThreeEvent } from '@react-three/fiber';
 import { AsciiRenderer } from '@react-three/drei';
 import SphereMesh from './SphereMesh';
+import useCanvasPointerEvent from '../hooks/useCanvasPointerEvent';
 
 type AsciiGlobeProps = {
   onRender?: () => void;
@@ -25,16 +26,18 @@ const AsciiGlobe = ({ onRender }: AsciiGlobeProps) => {
    */
   const sizeStyle = { width: '100vw', height: window.innerWidth / window.innerHeight >= 1 ? '100vh' : '80vh' };
 
+  const { isObejctInteractedEver, persitInteractedObject, moveObjectToCanvasPointer } = useCanvasPointerEvent();
+
   return (
-    <div className={`fixed inset-0 -z-1 transition-all duration-1000 ${visibilityClassName}`} style={sizeStyle}>
-      <Canvas onCreated={onCreated}>
+    <div className={`w-screen h-screen transition-all duration-1000 ${visibilityClassName}`} style={sizeStyle}>
+      <Canvas onCreated={onCreated} onPointerMove={moveObjectToCanvasPointer}>
         <color attach="background" args={[0, 0, 0]} />
 
         <pointLight position={[10, 10, 10]} />
         {/* <pointLight color={new THREE.Color(0xffffff)} intensity={3} distance={0} decay={0} position={[500, 500, 500]} /> */}
         <pointLight color={new THREE.Color(0xffffff)} intensity={3} distance={0} decay={0} position={[-500, -500, -500]} />
 
-        <SphereMesh />
+        <SphereMesh onPointerEnter={isObejctInteractedEver ? undefined : persitInteractedObject} />
 
         {/**
          *

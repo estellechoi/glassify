@@ -17,18 +17,18 @@ const useBalance = (wallet: ConnectedWallet, refetchInterval = 0) => {
     return balancesData.map((balance) => balance.symbol) ?? [];
   }, [balancesData]);
 
-  const { data: cmcQuotesData } = useCMCQuotesQuery(symbols);
+  const { data: cmcQuotesData, isLoading: isCMCQuotesLoading } = useCMCQuotesQuery(symbols);
 
   return useMemo<{ balance: Balance; isLoading: boolean }>(() => {
     const balance = new Balance(balancesData, cmcQuotesData);
 
-    const isLoading = isEthBalanceLoading || isBalancesLoading;
+    const isLoading = isEthBalanceLoading || isBalancesLoading || isCMCQuotesLoading;
 
     return {
       balance,
       isLoading,
     };
-  }, [balancesData, cmcQuotesData, isEthBalanceLoading, isBalancesLoading]);
+  }, [balancesData, cmcQuotesData, isEthBalanceLoading, isBalancesLoading, isCMCQuotesLoading]);
 };
 
 export default useBalance;
