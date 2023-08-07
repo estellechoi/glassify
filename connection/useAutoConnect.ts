@@ -28,7 +28,10 @@ const useAutoConnect = (wallets: readonly Wallet[]) => {
     startConnecting(true);
 
     const account = await lastUsedWallet.connector.connect();
-    if (!account) return;
+    if (!account)  {
+      stopConnecting();
+      return;
+    }
 
     setUserWallet({
       ...lastUsedWallet,

@@ -27,7 +27,10 @@ const SelectWalletModal = (props: SelectWalletModalProps) => {
       startConnecting(wallet);
 
       const account = await wallet.connector.connect();
-      if (!account) return;
+      if (!account) {
+        stopConnecting();
+        return;
+      }
 
       onConnect({ wallet, account, connector: wallet.connector });
 
