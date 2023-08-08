@@ -61,7 +61,7 @@ const TableFieldRow = <T extends TableRowData>({
         <div
           role="columnheader"
           aria-sort="none"
-          className={`hidden md:flex items-center justify-center absolute md:right-2 md:top-0 md:bottom-0 ${TABLE_EXPAND_ICON_GRID_X[type]}`}
+          className={`flex items-center justify-center absolute right-2 inset-y-0 ${TABLE_EXPAND_ICON_GRID_X[type]}`}
         >
           <Button
             iconType={hasAnySubJsxOpen ? 'expand_less' : 'expand_more'}

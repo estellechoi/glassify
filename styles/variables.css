@@ -61,6 +61,12 @@
     --color-sky400-o50: rgba(224, 249, 255, 0.5);
     --color-sky400-o20: rgba(224, 249, 255, 0.2);
     --color-sky400-o10: rgba(224, 249, 255, 0.1);
+    /* red */
+    --color-red400: rgb(250, 43, 57);
+    /* gree */
+    --color-green400: rgb(49, 175, 95);
+     /* rgb(0, 255, 0); */
+    /* rgb(64, 182, 107) */
 }
 
 :root {

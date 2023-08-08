@@ -1,13 +1,9 @@
 import { ReactNode } from 'react';
 
-const Card = ({ children, weak = false, className = '' }: { children: ReactNode; weak?: boolean; className?: string }) => {
-  return (
-    <div
-      className={`px-12 py-[3.25rem] overflow-hidden ${weak ? 'bg-secondary_linear_2' : 'bg-secondary_linear_4'} ${className}`}
-    >
-      {children}
-    </div>
-  );
+type CardProps = { children: ReactNode; className?: string };
+
+const Card = ({ children, className = '' }: CardProps) => {
+  return <div className={`h-fit rounded-2xl Bg_glass Elevation_box_3 overflow-hidden ${className}`}>{children}</div>;
 };
 
 export default Card;

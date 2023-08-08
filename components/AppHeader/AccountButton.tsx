@@ -102,7 +102,7 @@ const AccountButton = () => {
   }, [isModalOpen, closeModal, openAccountModal, userWallet]);
 
   const buttonProps = accountModalButtonProps ?? connectModalButtonProps;
-  const className = `animate-fade_in_reverse ${buttonProps.labelHidden ? '' : 'min-w-[11.875rem]'}`;
+  const className = `animate-fade_in_x_reverse ${buttonProps.labelHidden ? '' : 'min-w-[11.875rem]'}`;
 
   return <Button size="md" {...buttonProps} className={className} />;
 };

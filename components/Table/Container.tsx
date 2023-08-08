@@ -1,7 +1,7 @@
 import { ReactNode, useMemo } from 'react';
 import getReactElements from '../utils/getReactElements';
 import { TEXTS } from '@/constants/app';
-import { TABLE_SPACE_Y_DICT, TABLE_ROW_BG_DICT, TABLE_CONTAINER_BORDER_DICT, TABLE_BG_COLOR_DICT } from './styles';
+import { TABLE_SPACE_Y_DICT, TABLE_ROW_BG_DICT, TABLE_BG_COLOR_DICT } from './styles';
 import TableRow from './Row';
 import type { TableStyle, TableField, TableRowData } from './types';
 import FieldRowPseudo from './FieldRow/Pseudo';
@@ -70,10 +70,9 @@ const TableContainer = <T extends TableRowData>({
   const hasField = useMemo<boolean>(() => getFieldRows(children).length > 0, [children]);
 
   // class names
-  const { bgClassName, borderClassName, gapYClassName } = useMemo(
+  const { bgClassName, gapYClassName } = useMemo(
     () => ({
       bgClassName: TABLE_BG_COLOR_DICT[type],
-      borderClassName: `${TABLE_CONTAINER_BORDER_DICT[type]}`,
       gapYClassName: `${TABLE_SPACE_Y_DICT[type]}`,
     }),
     [type]
@@ -87,10 +86,7 @@ const TableContainer = <T extends TableRowData>({
   );
 
   return (
-    <div
-      role="treegrid"
-      className={`relative w-full ${heightClassName} overflow-hidden ${gapYClassName} ${bgClassName} ${borderClassName}`}
-    >
+    <div role="treegrid" className={`relative w-full ${heightClassName} overflow-hidden ${gapYClassName} ${bgClassName}`}>
       {hasField && (
         <TableFieldRow
           type={type}

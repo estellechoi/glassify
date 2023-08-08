@@ -5,10 +5,10 @@ export const TABLE_BG_COLOR_DICT: Record<TableStyle, string> = {
   primary: 'Bg_glass Elevation_box_3',
 };
 
-export const TABLE_CONTAINER_BORDER_DICT: Record<TableStyle, string> = {
-  primary: 'rounded-2xl',
-  // border-outline_soft border rounded-2xl md:border-0 md:border-b md:last:border-b-0 md:rounded-none
-};
+// export const TABLE_CONTAINER_BORDER_DICT: Record<TableStyle, string> = {
+//   primary: 'rounded-2xl',
+//   border-outline_soft border rounded-2xl md:border-0 md:border-b md:last:border-b-0 md:rounded-none
+// };
 
 export const TABLE_SPACE_Y_DICT: Record<TableStyle, string> = {
   primary: 'flex flex-col gap-y-4 md:block md:space-y-0',
@@ -18,7 +18,7 @@ export const TABLE_FIELD_RIGHT_PADDING = '!pr-24';
 export const TABLE_ROW_RIGHT_PADDING = 'md:pr-24';
 
 export const TABLE_FIELD_GRID_X_DICT: Record<TableStyle, string> = {
-  primary: 'hidden md:flex items-center justify-between gap-x-3 px-4',
+  primary: 'flex items-center justify-between gap-x-3 px-4',
 };
 
 export const TABLE_FIELD_GRID_Y_DICT: Record<TableStyle, string> = {
@@ -27,11 +27,11 @@ export const TABLE_FIELD_GRID_Y_DICT: Record<TableStyle, string> = {
 
 // md:pl-4 md:pr-24
 export const TABLE_ROW_GRID_X_DICT: Record<TableStyle, string> = {
-  primary: 'flex flex-col md:flex-row items-stretch md:items-center justify-between gap-x-3 px-0 md:px-4',
+  primary: 'flex flex-row items-center justify-between gap-x-3 px-0 md:px-4',
 };
 
 export const TABLE_ROW_GRID_Y_DICT: Record<TableStyle, string> = {
-  primary: 'min-h-[4.25rem] gap-y-4 pt-3 pb-4 md:py-3',
+  primary: 'min-h-[4.25rem] gap-y-4 py-3',
 };
 
 export const TABLE_CELL_GRID_X_DICT: Record<TableStyle, string> = {
@@ -53,9 +53,9 @@ export const TABLE_CELL_TEXT_COLOR_DICT: Record<TableStyle, string> = {
 /** cell alignment */
 export const TABLE_CELL_ALIGN_DICT: Record<TableStyle, Record<TableCellAlign, string>> = {
   primary: {
-    left: 'justify-between md:justify-start',
-    center: 'justify-between md:justify-center',
-    right: 'justify-between md:justify-end',
+    left: 'justify-start',
+    center: 'justify-center',
+    right: 'justify-end',
   },
 };
 

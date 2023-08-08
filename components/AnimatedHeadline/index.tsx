@@ -1,16 +1,23 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import TextMask from './TextMask';
 
-type HeadingTagName = 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
+type HeadingTagName = 'h2' | 'h3' | 'h4' | 'h5';
+
+const HEADLINE_FONT_SIZE_CLASS_DICT: Record<HeadingTagName, string> = {
+  h2: 'Font_display_sm md:Font_display_md',
+  h3: 'Font_title_md',
+  h4: 'Font_title_sm',
+  h5: 'Font_title_xs',
+};
 
 export type AnimatedHeadlineProps = {
   tagName: HeadingTagName;
   texts: readonly string[];
-  align?: 'left' | 'center' | 'right';
   className?: string;
+  onAnimationEnd?: () => void;
 };
 
-const AnimatedHeadline = ({ tagName, texts, align = 'left', className = '' }: AnimatedHeadlineProps) => {
+const AnimatedHeadline = ({ tagName, texts, className = '', onAnimationEnd }: AnimatedHeadlineProps) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -22,6 +29,13 @@ const AnimatedHeadline = ({ tagName, texts, align = 'left', className = '' }: An
   }, []);
 
   const scaleClassName = isVisible ? 'scale-x-100' : 'scale-x-0';
+
+  const onItemAnimationEnd = useCallback(
+    (index: number) => {
+      if (index === texts.length - 1) onAnimationEnd?.();
+    },
+    [texts.length, onAnimationEnd]
+  );
 
   const Texts = useMemo<readonly JSX.Element[]>(
     () =>
@@ -37,19 +51,23 @@ const AnimatedHeadline = ({ tagName, texts, align = 'left', className = '' }: An
           >
             {text}
 
-            <TextMask isOff={isVisible} translateDelayMs={maskTranslateDelayMs} />
+            <TextMask
+              isOff={isVisible}
+              translateDelayMs={maskTranslateDelayMs}
+              onAnimationEnd={() => onItemAnimationEnd(index)}
+            />
           </span>
         );
       }),
-    [texts, isVisible, scaleClassName]
+    [texts, isVisible, scaleClassName, onItemAnimationEnd]
   );
 
-  const alignClassName = align === 'center' ? 'items-center' : align === 'right' ? 'items-end' : 'items-start';
   const HeadingElement = tagName;
+  const fontClassName = HEADLINE_FONT_SIZE_CLASS_DICT[tagName];
 
   return (
     <HeadingElement
-      className={`Component flex flex-col ${alignClassName} Font_display_sm md:Font_display_md whitespace-pre text-black ${className}`}
+      className={`Component flex flex-col items-center md:items-start whitespace-pre text-black ${fontClassName} ${className}`}
     >
       {Texts}
     </HeadingElement>

@@ -11,12 +11,14 @@ const useUserAgent = () => {
     };
   }, [parser]);
 
-  const isMobile = useMemo<boolean>(() => device.type === 'mobile' || device.type === 'tablet', [device.type]);
+  const isMobile = useMemo<boolean>(() => device.type === 'mobile', [device.type]);
+  const isMobileOrTablet = useMemo<boolean>(() => device.type === 'mobile' || device.type === 'tablet', [device.type]);
   const isIOS = useMemo<boolean>(() => os.name === 'iOS', [os.name]);
   const isNonIOSMobile = useMemo<boolean>(() => !isIOS && device.type === 'mobile', [isIOS, device.type]);
 
   return {
     isMobile,
+    isMobileOrTablet,
     isIOS,
     isNonIOSMobile,
   };

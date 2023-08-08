@@ -1,6 +1,8 @@
 import { CSSProperties, useMemo } from 'react';
 
-const TextMask = ({ translateDelayMs, isOff }: { translateDelayMs: number; isOff: boolean }) => {
+type TextMaskProps = { translateDelayMs: number; isOff: boolean; onAnimationEnd?: () => void };
+
+const TextMask = ({ translateDelayMs, isOff, onAnimationEnd }: TextMaskProps) => {
   const style = useMemo<CSSProperties>(() => ({ transitionDelay: `${translateDelayMs}ms` }), [translateDelayMs]);
   const maskTranslateClassName = isOff ? 'translate-x-full' : '0';
 
@@ -9,6 +11,7 @@ const TextMask = ({ translateDelayMs, isOff }: { translateDelayMs: number; isOff
       aria-hidden
       className={`absolute inset-0 bg-black Transition_1000 transition-transform ${maskTranslateClassName}`}
       style={style}
+      onTransitionEnd={onAnimationEnd}
     ></span>
   );
 };

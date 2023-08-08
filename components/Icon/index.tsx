@@ -14,6 +14,8 @@ import {
   MdArrowDownward,
   MdExpandMore,
   MdExpandLess,
+  MdArrowDropUp,
+  MdArrowDropDown,
 } from 'react-icons/md';
 
 export type IconSize = 'sm' | 'md' | 'lg' | 'xl';
@@ -34,7 +36,9 @@ export type IconType =
   | 'arrow_up'
   | 'arrow_down'
   | 'expand_more'
-  | 'expand_less';
+  | 'expand_less'
+  | 'increase'
+  | 'decrease';
 
 const ICON_SIZE_CLASS_DICT: Record<IconSize, string> = {
   sm: 'w-3 h-3',
@@ -61,6 +65,8 @@ const ICON_DICT: Record<IconType, React.ElementType> = {
   arrow_down: MdArrowDownward,
   expand_more: MdExpandMore,
   expand_less: MdExpandLess,
+  increase: MdArrowDropUp,
+  decrease: MdArrowDropDown,
 };
 
 type IconProps = {

@@ -70,7 +70,7 @@ const NFTs = ({ ownedNFTs, isOwnedNFTsLoading }: NFTsProps) => {
           </OverlayGrid>
 
           {hoveredNFT && (
-            <div className="pl-1 mt-1 animate-fade_in">
+            <div className="pl-1 mt-1 animate-fade_in_x">
               <CaptionText
                 size="xs"
                 text={hoveredNFT.rawMetadata?.name ?? shortenAddress(hoveredNFT.contract.address, 4, 4)}

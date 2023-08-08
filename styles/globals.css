@@ -12,7 +12,8 @@
     }
 
     *::selection {
-        background-color: #b8b8b8;
+        background-color: var(--color-scarlet500);
+        color: var(--color-white);
     }
 
     ::-webkit-scrollbar {
@@ -67,6 +68,19 @@
         @apply text-8xl leading-[6.5rem] font-semibold;
     }
 
+    /* typography - title */
+    .Font_title_xs {
+        @apply text-base leading-6 font-semibold;
+    }
+
+    .Font_title_sm {
+        @apply text-lg leading-7 font-semibold;
+    }
+
+    .Font_title_md {
+        @apply text-xl leading-8 font-semibold;
+    }
+    
     /* typography - button */
     .Font_button_sm {
         @apply text-sm leading-5 font-semibold;
@@ -187,15 +201,15 @@
      }
 
      .Elevation_box_1 {
-        @apply shadow-sm;
+        box-shadow: 0px 2px 4px 0px var(--color-black-o10);
      }
 
      .Elevation_box_2 {
-        @apply shadow;
+        box-shadow: 0px 4px 10px 0px var(--color-black-o10);
      }
 
      .Elevation_box_3 {
-        @apply shadow-md;
+        box-shadow: 0px 4px 16px 0px var(--color-black-o10);
      }
 
     /* background effect */
@@ -230,19 +244,19 @@
     }
 
     .Animate_fast_in_upward {
-        @apply origin-bottom animate-fast_in_y;
+        @apply animate-fast_in_y;
     }
 
     .Animate_fast_in_upward_back {
-        @apply origin-bottom animate-fast_in_y_back;
+        @apply animate-fast_in_y_back;
     }
 
     .Animate_slide_in_leftward {
-        @apply animate-slide_in_x;
+        @apply animate-fast_in_x;
     }
 
     .Animate_slide_in_leftward_back {
-        @apply animate-slide_in_x_back;
+        @apply animate-fast_in_x_back;
     }
 
     /* @see https://developer.mozilla.org/en-US/docs/Web/CSS/contain */

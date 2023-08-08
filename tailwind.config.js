@@ -37,7 +37,10 @@ module.exports = {
         body: 'var(--color-black)',
         caption: 'var(--color-gray400)',
         caption_dark: 'var(--color-gray800)',
+        /* semantic colors */
         disabled: 'var(--color-gray300)',
+        semantic_bull: 'var(--color-green400)',
+        semantic_bear: 'var(--color-red400)',
       },
       backgroundImage: {
         primary_linear_4: 'linear-gradient(90deg, var(--color-gray900-o4) 0%, var(--color-gray900-o0) 100%)',
@@ -62,21 +65,21 @@ module.exports = {
       keyframes: {
         fast_in_y: {
           '0%': {
-            transform: 'scale(1, 0)',
+            transform: 'translateY(140%)',
           },
           '100%': {
-            transform: 'scale(1, 1)',
+            transform: 'translateY(0)',
           },
         },
-        fast_out_y: {
+        fast_in_y_back: {
           '0%': {
-            transform: 'scale(1, 1)',
+            transform: 'translateY(0)',
           },
           '100%': {
-            transform: 'scale(1, 0)',
+            transform: 'translateY(140%)',
           },
         },
-        slide_in_x: {
+        fast_in_x: {
           '0%': {
             transform: 'translateX(140%)',
           },
@@ -84,7 +87,7 @@ module.exports = {
             transform: 'translateX(0)',
           },
         },
-        slide_out_x: {
+        fast_in_x_back: {
           '0%': {
             transform: 'translateX(0)',
           },
@@ -92,10 +95,20 @@ module.exports = {
             transform: 'translateX(140%)',
           },
         },
-        fade_in: {
+        fade_in_x: {
           '0%': {
             opacity: 0,
             transform: 'translateX(-0.5rem)',
+          },
+          '100%': {
+            opacity: 1,
+            transform: 'translateX(0)',
+          },
+        },
+        fade_in_x_reverse: {
+          '0%': {
+            opacity: 0,
+            transform: 'translateX(0.5rem)',
           },
           '100%': {
             opacity: 1,
@@ -110,16 +123,6 @@ module.exports = {
             opacity: 0,
           },
         },
-        fade_in_reverse: {
-          '0%': {
-            opacity: 0,
-            transform: 'translateX(0.5rem)',
-          },
-          '100%': {
-            opacity: 1,
-            transform: 'translateX(0)',
-          },
-        },
         up: {
           '0%': {
             transform: 'translateY(0)',
@@ -130,12 +133,12 @@ module.exports = {
         },
       },
       animation: {
-        fast_in_y: 'fast_in_y 0.8s cubic-bezier(0.73, 0, 0, 1) both',
-        fast_in_y_back: 'fast_out_y 0.8s cubic-bezier(0.73, 0, 0, 1) both',
-        slide_in_x: 'slide_in_x 0.8s cubic-bezier(0.73, 0, 0, 1) both',
-        slide_in_x_back: 'slide_out_x 0.8s cubic-bezier(0.73, 0, 0, 1) both',
-        fade_in: 'fade_in 0.8s cubic-bezier(0, 0, 0.27, 1) 0.6s both',
-        fade_in_reverse: 'fade_in_reverse 0.8s cubic-bezier(0, 0, 0.27, 1) 0.6s both',
+        fast_in_y: 'fast_in_y 1.4s cubic-bezier(0.73, 0, 0, 1) both',
+        fast_in_y_back: 'fast_in_y_back 1.4s cubic-bezier(0.73, 0, 0, 1) both',
+        fast_in_x: 'fast_in_x 0.8s cubic-bezier(0.73, 0, 0, 1) both',
+        fast_in_x_back: 'fast_in_x_back 0.8s cubic-bezier(0.73, 0, 0, 1) both',
+        fade_in_x: 'fade_in_x 0.8s cubic-bezier(0, 0, 0.27, 1) 0.6s both',
+        fade_in_x_reverse: 'fade_in_x_reverse 0.8s cubic-bezier(0, 0, 0.27, 1) 0.6s both',
         fade_out: 'fade_out 0.4s cubic-bezier(0, 0, 0.27, 1) both',
         bouncing: 'up 400ms ease-in-out infinite alternate',
       },
