@@ -2,12 +2,17 @@ import type { NextPage } from 'next';
 import dynamic from 'next/dynamic';
 import Layout from '@/components/Layout';
 import AppHeadline from '@/components/AppHeadline';
+import { useAtom } from 'jotai';
+import { userWalletAtom } from '@/store/states';
+import BalanceTokensTable from '@/components/tables/BalanceTokensTable';
 
 const AsciiGlobe = dynamic(() => import('@/components/AsciiGlobe'), {
   ssr: false,
 });
 
 const Home: NextPage = () => {
+  const [userWallet] = useAtom(userWalletAtom);
+
   return (
     <>
       <AsciiGlobe />
@@ -17,7 +22,7 @@ const Home: NextPage = () => {
       </div>
 
       <Layout>
-        <section></section>
+        <section className="Padding_page">{userWallet && <BalanceTokensTable wallet={userWallet} />}</section>
       </Layout>
     </>
   );

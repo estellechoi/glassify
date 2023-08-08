@@ -1,7 +1,11 @@
-import { FORMAT_LOCALE_FALLBACK, MAX_DECIMALS } from '@/constants/app';
 import BigNumber from 'bignumber.js';
+import { FORMAT_LOCALE_FALLBACK, MAX_DECIMALS } from '@/constants/app';
 
-type CurrencySymbol = '$';
+/**
+ *
+ * @description stands for which currency is supported by the app
+ */
+export type CurrencySymbol = '$';
 
 type FormatAmountOptions = {
   currencySymbol?: CurrencySymbol;
@@ -12,8 +16,14 @@ type FormatAmountOptions = {
   locale?: string;
 };
 
-export const formatNumber = (value?: BigNumber, decimals?: number, options?: FormatAmountOptions): string => {
-  if (value === undefined) return '-';
+export const formatNumber = (
+  targetValue: BigNumber | number | undefined | null,
+  decimals?: number,
+  options?: FormatAmountOptions
+): string => {
+  if (targetValue === undefined || targetValue === null) return '-';
+
+  const value = new BigNumber(targetValue);
 
   const dp = decimals ?? MAX_DECIMALS;
   const currencySymbol = options?.currencySymbol ?? '';
@@ -38,7 +48,7 @@ export const formatNumber = (value?: BigNumber, decimals?: number, options?: For
   return `${semiequateSymbol}${currencySymbol}${formatter.format(amount.toNumber()).toLocaleLowerCase()}`;
 };
 
-export const formatUSD = (value?: BigNumber, options?: FormatAmountOptions): string => {
+export const formatUSD = (value: BigNumber | number | undefined | null, options?: FormatAmountOptions): string => {
   return formatNumber(value, 2, { currencySymbol: '$', ...options });
 };
 

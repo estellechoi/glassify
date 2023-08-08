@@ -26,6 +26,7 @@ module.exports = {
         primary: 'var(--color-primary)',
         primary_hover: 'var(--color-primary-o80)',
         primary_variant_dark: 'var(--color-primary-variant-dark)',
+        primary_line: 'var(--color-primary-variant-light)',
         secondary: 'var(--color-gray900)',
         secondary_hover: 'var(--color-gray900-o80)',
         glass: 'var(--color-sky400-o10)',

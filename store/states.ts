@@ -9,7 +9,7 @@ import type { UniswapTokenData } from '@/data/types';
  */
 export const allTokensDictAtom = atom<Record<string, UniswapTokenData>>({});
 
-export const userWalletAtomOrigin = atom<ConnectedWallet | null>(null);
+const userWalletAtomOrigin = atom<ConnectedWallet | null>(null);
 
 export const userWalletAtom = atom(
   (get) => get(userWalletAtomOrigin),

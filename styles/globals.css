@@ -186,9 +186,25 @@
         @apply drop-shadow-md;
      }
 
+     .Elevation_box_1 {
+        @apply shadow-sm;
+     }
+
+     .Elevation_box_2 {
+        @apply shadow;
+     }
+
+     .Elevation_box_3 {
+        @apply shadow-md;
+     }
+
     /* background effect */
     .Bg_skeleton {
         @apply bg-skeleton bg-no-repeat;
+    }
+
+    .Bg_glass {
+        @apply bg-glass backdrop-blur-2xl;
     }
 
      /* transition */

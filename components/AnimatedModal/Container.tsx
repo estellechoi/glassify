@@ -40,7 +40,7 @@ const AnimatedModal = ({ isOpen, onClose, size = 'md', ariaLabel, children, clas
       role="dialog"
       aria-modal
       aria-label={ariaLabel}
-      className={`Component fixed top-28 right-5 md:right-10 max-h-[80vh] rounded-3xl bg-primary ${widthClassName} ${animateClassName} ${className}`}
+      className={`Component fixed top-28 right-5 md:right-10 max-h-[80vh] rounded-2xl bg-primary ${widthClassName} ${animateClassName} ${className}`}
     >
       {getContent(children)}
       {getBottomBar(children)}

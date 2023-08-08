@@ -3,7 +3,18 @@ import { IconContext } from 'react-icons';
 import { AiOutlineCheckCircle, AiOutlineLink, AiOutlineLogout } from 'react-icons/ai';
 import { ImCheckboxChecked, ImCheckboxUnchecked } from 'react-icons/im';
 import { IoMdClose } from 'react-icons/io';
-import { MdChevronRight, MdChevronLeft, MdContentCopy, MdLogin, MdMenu, MdMinimize } from 'react-icons/md';
+import {
+  MdChevronRight,
+  MdChevronLeft,
+  MdContentCopy,
+  MdLogin,
+  MdMenu,
+  MdMinimize,
+  MdArrowUpward,
+  MdArrowDownward,
+  MdExpandMore,
+  MdExpandLess,
+} from 'react-icons/md';
 
 export type IconSize = 'sm' | 'md' | 'lg' | 'xl';
 export type IconType =
@@ -19,7 +30,11 @@ export type IconType =
   | 'menu'
   | 'chevron_right'
   | 'chevron_left'
-  | 'minimize';
+  | 'minimize'
+  | 'arrow_up'
+  | 'arrow_down'
+  | 'expand_more'
+  | 'expand_less';
 
 const ICON_SIZE_CLASS_DICT: Record<IconSize, string> = {
   sm: 'w-3 h-3',
@@ -42,6 +57,10 @@ const ICON_DICT: Record<IconType, React.ElementType> = {
   chevron_right: MdChevronRight,
   chevron_left: MdChevronLeft,
   minimize: MdMinimize,
+  arrow_up: MdArrowUpward,
+  arrow_down: MdArrowDownward,
+  expand_more: MdExpandMore,
+  expand_less: MdExpandLess,
 };
 
 type IconProps = {

@@ -48,7 +48,7 @@ function Tooltip({ children, type = 'text', content, placement, followCursor, zI
         content === undefined ? 'invisible -z-1 opacity-0 transition-none' : ''
       }`}
     >
-      <div>{children}</div>
+      <>{children}</>
     </Tippy>
   );
 }

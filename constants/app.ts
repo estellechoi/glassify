@@ -11,3 +11,7 @@ export const LOCAL_STORAGE_KEYS = {
 export const TITLES = {
   HOME: ['Finance', 'Effortless', 'All hours'],
 };
+
+export const TEXTS = {
+  NO_DATA: 'No data found',
+};

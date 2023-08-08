@@ -1,11 +1,9 @@
-import { Children, isValidElement, useCallback, type ReactNode, useMemo, useState } from 'react';
+import { useCallback, type ReactNode, useMemo, useState } from 'react';
 import Item from './Item';
 import Button from '@/components/Button';
+import getReactElements from '@/components/utils/getReactElements';
 
-const getItems = (children: ReactNode) => {
-  const childrenArray = Children.toArray(children);
-  return childrenArray.filter((child) => isValidElement(child) && child.type === Item);
-};
+const getItems = (children: ReactNode) => getReactElements(children, Item);
 
 type ContainerProps = { children: ReactNode; xUnitPx: number; isExpandable?: boolean; className?: string };
 
