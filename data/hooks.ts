@@ -146,3 +146,17 @@ export const useCMCQuotesQuery = (symbols: readonly string[], refetchInterval = 
     [symbol: string]: readonly CMCQuoteData[];
   }>(['cmcQuotes', symbolsQuery], fetcher, { refetchInterval, enabled: symbols.length > 0 });
 };
+
+
+/**
+ *
+ * @see https://coinmarketcap.com/api/documentation/v1/#operation/getV3CryptocurrencyQuotesHistorical
+ * @description this is not free endpoint
+ */
+export const useCMCQuotesHistoryQuery = (symbols: readonly string[], refetchInterval = 0) => {
+  const symbolsQuery = symbols.join(',');
+  const fetcher = () => axios.get('/api/cmc/history', { params: { symbol: symbolsQuery } }).then((res) => res.data);
+  return useQuery<{
+    [symbol: string]: readonly CMCQuoteData[];
+  }>(['cmcQuotes', symbolsQuery], fetcher, { refetchInterval, enabled: symbols.length > 0 });
+};

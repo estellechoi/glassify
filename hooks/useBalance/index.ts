@@ -21,7 +21,6 @@ const useBalance = (wallet: ConnectedWallet, refetchInterval = 0) => {
 
   return useMemo<{ balance: Balance; isLoading: boolean }>(() => {
     const balance = new Balance(balancesData, cmcQuotesData);
-
     const isLoading = isEthBalanceLoading || isBalancesLoading || isCMCQuotesLoading;
 
     return {
