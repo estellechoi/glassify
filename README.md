@@ -14,12 +14,11 @@
 
 ### 1-1. Preview
 
-<img src="./docs/preview.png">
+<img src="./docs/preview_1.png">
+<img src="./docs/preview_2.png">
+<img src="./docs/preview_3.png">
 
 <br />
-
-<img src="./docs/preview_account.png">
-
 
 ### 1-2. Schedule
 
