@@ -1,6 +1,7 @@
 import { Children, ReactNode, isValidElement } from 'react';
 import Content from './Content';
 import BottomBar from './BottomBar';
+import ScreenBackdrop from '@/components/ScreenBackdrop';
 
 const getContent = (children: ReactNode) => {
   const childrenArray = Children.toArray(children);
@@ -36,15 +37,17 @@ const AnimatedModal = ({ isOpen, onClose, size = 'md', ariaLabel, children, clas
   const animateClassName = isOpen ? 'Animate_slide_in_leftward' : 'Animate_slide_in_leftward_back';
 
   return (
-    <div
-      role="dialog"
-      aria-modal
-      aria-label={ariaLabel}
-      className={`Component fixed top-app_header right-0 md:right-10 h-screen_top_padded_as_app_header md:h-screen_padded rounded-tl-2xl rounded-bl-2xl md:rounded-2xl bg-primary Elevation_box_3 ${widthClassName} ${animateClassName} ${className}`}
-    >
-      {getContent(children)}
-      {getBottomBar(children)}
-    </div>
+    <ScreenBackdrop isOpen={isOpen}>
+      <div
+        role="dialog"
+        aria-modal
+        aria-label={ariaLabel}
+        className={`Component fixed top-app_header right-0 md:right-10 h-screen_top_padded_as_app_header md:h-screen_padded rounded-tl-2xl rounded-bl-2xl md:rounded-2xl bg-primary Elevation_box_3 ${widthClassName} ${animateClassName} ${className}`}
+      >
+        {getContent(children)}
+        {getBottomBar(children)}
+      </div>
+    </ScreenBackdrop>
   );
 };
 

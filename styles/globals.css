@@ -16,11 +16,11 @@
         color: var(--color-white);
     }
 
-    ::-webkit-scrollbar {
+    /* ::-webkit-scrollbar {
         -webkit-appearance: none;
         width: 8px;
         height: 4px;
-    }
+    } */
     
     ::-webkit-scrollbar-thumb {
         border-radius: 4px;
@@ -219,6 +219,10 @@
 
     .Bg_glass {
         @apply bg-glass backdrop-blur-2xl;
+    }
+
+    .Bg_glass_transparent {
+        @apply bg-glass backdrop-blur;
     }
 
     .Filter_darken {

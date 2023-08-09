@@ -1,6 +1,6 @@
 import { useMemo, type AriaRole, type ReactNode } from 'react';
 import useUserAgent from '@/hooks/useUserAgent';
-import OverlayBackdrop from './OverlayBackdrop';
+import ScreenBackdrop from '@/components/ScreenBackdrop';
 
 type BottomOverlayProps = { children: ReactNode; isOpen?: boolean; className?: string; role: AriaRole };
 
@@ -23,7 +23,7 @@ const BottomOverlay = ({ children, isOpen, className = '', role }: BottomOverlay
     </div>
   );
 
-  return isMobile ? <OverlayBackdrop isOpen={isOpen}>{Overlay}</OverlayBackdrop> : Overlay;
+  return isMobile ? <ScreenBackdrop isOpen={isOpen}>{Overlay}</ScreenBackdrop> : Overlay;
 };
 
 export default BottomOverlay;
