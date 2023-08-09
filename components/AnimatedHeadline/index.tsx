@@ -66,9 +66,7 @@ const AnimatedHeadline = ({ tagName, texts, className = '', onAnimationEnd }: An
   const fontClassName = HEADLINE_FONT_SIZE_CLASS_DICT[tagName];
 
   return (
-    <HeadingElement
-      className={`Component flex flex-col items-center md:items-start whitespace-pre text-black ${fontClassName} ${className}`}
-    >
+    <HeadingElement className={`Component flex flex-col items-start whitespace-pre text-black ${fontClassName} ${className}`}>
       {Texts}
     </HeadingElement>
   );

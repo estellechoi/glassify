@@ -23,7 +23,6 @@ type TableProps<T extends TableRowData> = {
   onToggleAllSubJsx?: (isOpen: boolean) => void;
   onToggleFoldableOnMobile?: (data: T, isOpen: boolean) => void;
   onSort?: (isAsc: boolean, sortValue: string) => void;
-  isLoading?: boolean;
   showRowClickIcon?: boolean;
   noDataLabel?: string;
   rowsScrollHeight?: string;
@@ -46,7 +45,6 @@ const TableContainer = <T extends TableRowData>({
   onToggleAllSubJsx,
   onToggleFoldableOnMobile,
   onSort,
-  isLoading = false,
   showRowClickIcon = false,
   noDataLabel = TEXTS.NO_DATA,
   rowsScrollHeight,

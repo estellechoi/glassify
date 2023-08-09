@@ -9,7 +9,7 @@ type AppHeaderProps = { className?: string };
 
 const AppHeader = ({ className = '' }: AppHeaderProps) => {
   return (
-    <header className={`h-[8.125rem] flex items-center justify-between px-8 py-9 ${className}`}>
+    <header className={`h-app_header flex items-center justify-between px-8 py-9 ${className}`}>
       <AppLogo size="lg" color="dark" />
 
       <AccountButton />

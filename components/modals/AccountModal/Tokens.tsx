@@ -35,7 +35,7 @@ const Tokens = ({ balances, isBalanceLoading }: TokensProps) => {
         <LoadingRows rowsCnt={3} fontClassName="Font_data_20px_num" />
       ) : (
         balances.map((balance) => (
-          <CoinAmount key={balance.symbol} size="md" symbol={balance.symbol} {...getAmountProps(balance)} />
+          <CoinAmount key={balance.symbol} color="on_primary" size="md" symbol={balance.symbol} {...getAmountProps(balance)} />
         ))
       )}
     </section>

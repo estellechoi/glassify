@@ -183,10 +183,6 @@
         @apply px-6 py-7;
      }
 
-     .Padding_page {
-        @apply px-8 pt-[8.125rem] py-20 md:px-24 md:pt-[8.125rem] md:py-28;
-     }
-
      /* elevation */
      .Elevation_1 {
         @apply drop-shadow-sm;
@@ -212,6 +208,10 @@
         box-shadow: 0px 4px 16px 0px var(--color-black-o10);
      }
 
+     .Elevation_box_4 {
+        box-shadow: 0px -4px 24px 0px var(--color-black-o10);
+     }
+
     /* background effect */
     .Bg_skeleton {
         @apply bg-skeleton bg-no-repeat;
@@ -219,6 +219,10 @@
 
     .Bg_glass {
         @apply bg-glass backdrop-blur-2xl;
+    }
+
+    .Filter_darken {
+        filter: brightness(0.3) hue-rotate(-82deg);
     }
 
      /* transition */
@@ -232,6 +236,11 @@
 
      .Transition_1000 {
         @apply duration-1000 ease-[cubic-bezier(.19,1,.22,1)];
+     }
+
+     .Transition_3000 {
+        transition-duration: 3s;
+        transition-timing-function: linear;
      }
 
     /* animation */

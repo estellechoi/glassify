@@ -15,7 +15,7 @@ const getBottomBar = (children: ReactNode) => {
 type AnimatedModalSize = 'md';
 
 const MODAL_WIDTH_DICT: Record<AnimatedModalSize, string> = {
-  md: 'w-[calc(100vw_-_2.5rem)] md:w-[20rem]',
+  md: 'w-screen md:w-[20rem]',
 };
 
 export type AnimatedModalProps = {
@@ -40,7 +40,7 @@ const AnimatedModal = ({ isOpen, onClose, size = 'md', ariaLabel, children, clas
       role="dialog"
       aria-modal
       aria-label={ariaLabel}
-      className={`Component fixed top-28 right-5 md:right-10 max-h-[80vh] rounded-2xl bg-primary ${widthClassName} ${animateClassName} ${className}`}
+      className={`Component fixed top-app_header right-0 md:right-10 h-screen_top_padded_as_app_header md:h-screen_padded rounded-tl-2xl rounded-bl-2xl md:rounded-2xl bg-primary Elevation_box_3 ${widthClassName} ${animateClassName} ${className}`}
     >
       {getContent(children)}
       {getBottomBar(children)}

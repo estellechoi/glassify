@@ -8,6 +8,7 @@ import CaptionText from '@/components/CaptionText';
 import NumberText from '@/components/NumberText';
 import { formatNumber } from '@/utils/number';
 import type { OwnedNFT } from '@/types/asset';
+import { TEXT_COLOR_CLASS_DICT } from '@/components/styles';
 
 /**
  *
@@ -46,6 +47,8 @@ const NFTs = ({ ownedNFTs, isOwnedNFTsLoading }: NFTsProps) => {
     setHoveredNFT(ownedNFTs[0]);
   }, [ownedNFTs[0]]);
 
+  const colorClassName = TEXT_COLOR_CLASS_DICT.on_primary;
+
   return (
     <section className="px-1 py-3">
       <LabelText size="sm" text="NFTs" className="mb-3" />
@@ -72,6 +75,7 @@ const NFTs = ({ ownedNFTs, isOwnedNFTsLoading }: NFTsProps) => {
           {hoveredNFT && (
             <div className="pl-1 mt-1 animate-fade_in_x">
               <CaptionText
+                color="on_primary"
                 size="xs"
                 text={hoveredNFT.rawMetadata?.name ?? shortenAddress(hoveredNFT.contract.address, 4, 4)}
                 shadowText={ownedNFTs[1] ? `and ${ownedNFTs.length - 1} more` : undefined}
@@ -79,8 +83,9 @@ const NFTs = ({ ownedNFTs, isOwnedNFTsLoading }: NFTsProps) => {
 
               {hoveredNFT && (
                 <span className="flex items-baseline gap-x-1 -mt-1">
-                  <span className="Font_caption_xs text-white_o70">Floor</span>
+                  <span className={`Font_caption_xs opacity-70 ${colorClassName}`}>Floor</span>
                   <NumberText
+                    color="on_primary"
                     size="sm"
                     formattedNumber={formatNumber(hoveredNFT.floorPrice.value, 4)}
                     unit={hoveredNFT.floorPrice.symbol}

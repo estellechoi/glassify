@@ -1,15 +1,17 @@
 import type { NextPage } from 'next';
 import dynamic from 'next/dynamic';
+import { useAtom } from 'jotai';
 import Layout from '@/components/Layout';
 import AppHeadline from '@/components/AppHeadline';
-import { useAtom } from 'jotai';
 import { userWalletAtom } from '@/store/states';
 import { useCallback, useMemo, useState } from 'react';
 import AnimatedHeadline from '@/components/AnimatedHeadline';
+import BalanceTokensBottomOverlay from '@/components/overlays/BalanceTokensBottomOverlay';
 
 const AsciiGlobe = dynamic(() => import('@/components/AsciiGlobe'), {
   ssr: false,
 });
+const AppWallPaper = dynamic(() => import('@/components/AppWallPaper'));
 const BalanceTokensTable = dynamic(() => import('@/components/tables/BalanceTokensTable'));
 
 const Home: NextPage = () => {
@@ -19,19 +21,22 @@ const Home: NextPage = () => {
   const onAppHeadlineAnimationEnd = useCallback(() => setIsAppHeadlineAnimationEnd(true), []);
 
   const appHeadlineTransformClassName = useMemo<string>(
-    () => (!!userWallet && isAppHeadlineAnimationEnd ? '-translate-x-[calc(100%_+_7rem)]' : ''),
+    () =>
+      !!userWallet && isAppHeadlineAnimationEnd ? '-translate-x-[calc(100%_+_2rem)] md:-translate-x-[calc(100%_+_7rem)]' : '',
     [userWallet, isAppHeadlineAnimationEnd]
   );
 
   const [isBalanceTokensTableLoaded, setIsBalanceTokensTableLoaded] = useState<boolean>(false);
   const onBalanceTokensTableLoaded = useCallback(() => setIsBalanceTokensTableLoaded(true), []);
-  const balanceTokensTableAnimationClassName = useMemo<string>(
-    () => (isAppHeadlineAnimationEnd && isBalanceTokensTableLoaded ? 'Animate_fast_in_upward' : 'hidden'),
+  const isBalanceTokensTableOpen = useMemo<boolean>(
+    () => isAppHeadlineAnimationEnd && isBalanceTokensTableLoaded,
     [isAppHeadlineAnimationEnd, isBalanceTokensTableLoaded]
   );
 
   return (
     <>
+      <AppWallPaper show={!userWallet} />
+
       <AsciiGlobe />
 
       <AppHeadline
@@ -40,10 +45,11 @@ const Home: NextPage = () => {
       />
 
       {userWallet && (
-        <article className={`Component fixed inset-x-0 bottom-0 h-min md:Padding_page ${balanceTokensTableAnimationClassName}`}>
-          <AnimatedHeadline tagName="h3" texts={['Tokens']} className="pl-2 mb-3" />
-          <BalanceTokensTable wallet={userWallet} onLoaded={onBalanceTokensTableLoaded} />
-        </article>
+        <BalanceTokensBottomOverlay
+          wallet={userWallet}
+          isOpen={isBalanceTokensTableOpen}
+          onBalanceTokensTableLoaded={onBalanceTokensTableLoaded}
+        />
       )}
 
       <Layout>

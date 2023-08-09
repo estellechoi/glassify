@@ -1,7 +1,11 @@
-import Coin, { type CoinSize } from '@/components/Coin';
 import NumberText, { type NumberTextSize } from '@/components/NumberText';
+import CoinLabel from '@/components/CoinLabel';
+import { CoinLabelSize } from '@/components/CoinLabel/styles';
+import { TextColor } from '@/components/styles';
 
-const SIZE_MAPPING_DICT: Record<NumberTextSize, CoinSize> = {
+export type CoinAmountColor = TextColor;
+
+const COIN_LABEL_SIZE_MAPPING_DICT: Record<NumberTextSize, CoinLabelSize> = {
   sm: 'sm',
   md: 'md',
   lg: 'lg',
@@ -9,24 +13,20 @@ const SIZE_MAPPING_DICT: Record<NumberTextSize, CoinSize> = {
 };
 
 export type CoinAmountProps = {
+  color?: CoinAmountColor;
   size: NumberTextSize;
-  coinSize?: CoinSize;
   symbol?: string;
   formattedAmount?: string;
   amountUnit?: string;
 };
 
-const CoinAmount = ({ formattedAmount, size, coinSize: injectedCoinSize, symbol, amountUnit }: CoinAmountProps) => {
-  const coinSize = injectedCoinSize ?? SIZE_MAPPING_DICT[size];
+const CoinAmount = ({ formattedAmount, color = 'primary', size, symbol, amountUnit }: CoinAmountProps) => {
+  const coinLabelSize = COIN_LABEL_SIZE_MAPPING_DICT[size];
 
   return (
     <span className="w-full flex items-center justify-between gap-x-2.5">
-      <span className="inline-flex items-center gap-x-2.5">
-        <Coin size={coinSize} symbol={symbol} />
-        <span className="text-white Font_body_sm">{symbol}</span>
-      </span>
-
-      <NumberText size={size} formattedNumber={formattedAmount} unit={amountUnit} />
+      <CoinLabel color={color} size={coinLabelSize} symbol={symbol} />
+      <NumberText color={color} size={size} formattedNumber={formattedAmount} unit={amountUnit} />
     </span>
   );
 };

@@ -5,8 +5,17 @@ module.exports = {
   content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
-      height: {
-        navbar: 'var(--height-navbar)',
+      spacing: {
+        app_header: 'var(--size-app-header-height)',
+        screen_top_padded_as_app_header: 'calc(100vh - var(--size-app-header-height))',
+        screen_padded: 'calc(100vh - var(--size-app-header-height) - 3rem)',
+        screen_padded_bottom_double: 'calc(100vh - var(--size-app-header-height) - 6rem)',
+        gap_bottom: '3rem',
+        gap_bottom_double: '6rem',
+        page_x: '6rem',
+      },
+      top: {
+        app_header: 'var(--size-app-header-height)',
       },
       fontFamily: {
         primary: ['Poppins', ...defaultTheme.fontFamily.sans],
@@ -57,10 +66,15 @@ module.exports = {
           'linear-gradient(180deg, var(--color-primary-o0) 0%, var(--color-primary) 20%, var(--color-primary) 100%)',
         primary_inverted_gradient_1:
           'linear-gradient(90deg, var(--color-white-o35) 0%, var(--color-white-o35) 10%, var(--color-white-o0) 100%)',
+        noisy_gradient: 'url(/noisy_gradient.png)',
+        app_gradient: 'url(/app_gradient.png)',
       },
       boxShadow: {
         subtle: '0px 1px 4px 4px var(--color-black-o10),',
         subtle_glass: '0px 1px 4px 4px var(--color-black-o10), inset -2px 2px 4px var(--color-white-o10)',
+      },
+      transitionProperty: {
+        filter: 'filter',
       },
       keyframes: {
         fast_in_y: {

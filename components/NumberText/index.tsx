@@ -2,10 +2,13 @@ import { FORMAT_LOCALE_FALLBACK } from '@/constants/app';
 import { getFormattedNumberParts } from '@/utils/number';
 import CountUpNumber from './CountUpNumber';
 import { useCallback, useMemo, useState } from 'react';
+import { TEXT_COLOR_CLASS_DICT, TextColor } from '@/components/styles';
 
+export type NumberTextColor = TextColor;
 export type NumberTextType = 'normal' | 'small_fractions';
 export type NumberTextSize = 'sm' | 'md' | 'lg' | 'xl';
 
+const COLOR_CLASS_DICT = TEXT_COLOR_CLASS_DICT;
 const SIZE_CLASS_DICT: Record<NumberTextSize, { integer: string; fractions: string; unit: string }> = {
   sm: { integer: 'Font_data_12px_num', fractions: 'Font_data_12px_num', unit: 'Font_data_12px_unit' },
   md: { integer: 'Font_data_16px_num', fractions: 'Font_data_12px_num', unit: 'Font_data_12px_unit' },
@@ -14,6 +17,7 @@ const SIZE_CLASS_DICT: Record<NumberTextSize, { integer: string; fractions: stri
 };
 
 type NumberTextProps = {
+  color?: NumberTextColor;
   type?: NumberTextType;
   formattedNumber?: string;
   unit?: string;
@@ -23,6 +27,7 @@ type NumberTextProps = {
 };
 
 const NumberText = ({
+  color = 'primary',
   type = 'normal',
   formattedNumber,
   unit,
@@ -31,6 +36,7 @@ const NumberText = ({
   animate = false,
 }: NumberTextProps) => {
   // styles
+  const colorClassName = COLOR_CLASS_DICT[color];
   const sizeClassNames = SIZE_CLASS_DICT[size];
   const fractionsSizeClassName = useMemo(
     () => (type === 'small_fractions' ? sizeClassNames.fractions : sizeClassNames.integer),
@@ -45,7 +51,7 @@ const NumberText = ({
   const onFractionsAnimationEnd = useCallback(() => setIsFractionsAnimated(true), []);
 
   return (
-    <span className="text-white flex items-baseline gap-x-1">
+    <span className={`flex items-baseline gap-x-1 ${colorClassName}`}>
       {integer !== null ? (
         <>
           <span className="flex items-baseline">

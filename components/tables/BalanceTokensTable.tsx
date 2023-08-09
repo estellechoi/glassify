@@ -1,18 +1,18 @@
 import { useEffect, useMemo } from 'react';
 import { ConnectedWallet } from '@/types/wallet';
 import useBalance from '@/hooks/useBalance';
-import { formatNumber, formatUSD } from '@/utils/number';
+import { formatUSD } from '@/utils/number';
 import Table from '@/components/Table';
-import Coin from '@/components/Coin';
-import Card from '@/components/Card';
-import Icon from '../Icon';
 import useUserAgent from '@/hooks/useUserAgent';
-import { TableField } from '../Table/types';
-import UpDownNumberText from '../UpDownNumberText';
+import UpDownNumberText from '@/components/UpDownNumberText';
+import type { TableField } from '@/components/Table/types';
+import CoinLabel from '../CoinLabel';
 
 type BalanceTokensTableRow = {
   id: string;
   token: JSX.Element;
+  marketCap: number;
+  marketCapFormatted: string;
   price: number;
   priceFormatted: string;
   priceChange: number;
@@ -38,12 +38,10 @@ const BalanceTokensTable = ({ wallet, onLoaded }: BalanceTokensTableProps) => {
   const rows = useMemo<readonly BalanceTokensTableRow[]>(() => {
     return balance.marketValues.map((marketValue) => {
       const id = marketValue.symbol;
-      const token = (
-        <span className="flex items-center gap-x-2">
-          <Coin symbol={marketValue.symbol} />
-          <span>{marketValue.symbol}</span>
-        </span>
-      );
+      const token = <CoinLabel size="md" symbol={marketValue.symbol} />;
+
+      const marketCap = marketValue.marketCap ?? 0;
+      const marketCapFormatted = formatUSD(marketValue.marketCap, { compact: true });
 
       const price = marketValue.price.USD ?? 0;
       const priceFormatted = formatUSD(marketValue.price.USD, { fixDp: true });
@@ -60,6 +58,8 @@ const BalanceTokensTable = ({ wallet, onLoaded }: BalanceTokensTableProps) => {
       return {
         id,
         token,
+        marketCap,
+        marketCapFormatted,
         price,
         priceFormatted,
         priceChange,
@@ -70,14 +70,23 @@ const BalanceTokensTable = ({ wallet, onLoaded }: BalanceTokensTableProps) => {
         vol24HChangeFormatted,
       };
     });
-  }, [balance]);
+  }, [balance.marketValues]);
 
   const { isMobile } = useUserAgent();
 
   const fields = useMemo<readonly TableField<BalanceTokensTableRow>[]>(() => {
-    const nonMobileOnlyFields: readonly TableField<BalanceTokensTableRow>[] = isMobile
+    const expandedFields: TableField<BalanceTokensTableRow>[] = isMobile
       ? []
       : [
+          {
+            label: 'Market cap',
+            value: 'marketCapFormatted',
+            type: 'number',
+            sortValue: 'marketCap',
+            sortType: 'number',
+            align: 'right',
+            widthRatio: 20,
+          },
           {
             label: 'Volume 24H',
             value: 'vol24HFormatted',
@@ -85,7 +94,7 @@ const BalanceTokensTable = ({ wallet, onLoaded }: BalanceTokensTableProps) => {
             align: 'right',
             sortValue: 'vol24H',
             sortType: 'number',
-            widthRatio: 25,
+            widthRatio: 20,
           },
           {
             label: 'Change',
@@ -122,16 +131,14 @@ const BalanceTokensTable = ({ wallet, onLoaded }: BalanceTokensTableProps) => {
         sortType: 'number',
         widthPx: 100,
       },
-      ...nonMobileOnlyFields,
+      ...expandedFields,
     ];
   }, [isMobile]);
 
   return (
-    <Card>
-      <Table<BalanceTokensTableRow> dSortValue="priceChange" rows={rows} fields={fields} isLoading={isLoading}>
-        <Table.FieldRow />
-      </Table>
-    </Card>
+    <Table<BalanceTokensTableRow> dSortValue="priceChange" rows={rows} fields={fields}>
+      <Table.FieldRow />
+    </Table>
   );
 };
 

@@ -2,7 +2,7 @@ import type { TableCellAlign, TableField, TableStyle } from './types';
 
 /** grid */
 export const TABLE_BG_COLOR_DICT: Record<TableStyle, string> = {
-  primary: 'Bg_glass Elevation_box_3',
+  primary: '',
 };
 
 // export const TABLE_CONTAINER_BORDER_DICT: Record<TableStyle, string> = {
