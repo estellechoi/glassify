@@ -20,13 +20,11 @@ const AccountButton = () => {
 
   const accountModal = useModal();
   const connectModal = useModal();
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const openAccountModal = useCallback(async () => {
     const address = userWallet?.account.address;
     if (!address) return;
 
-    setIsModalOpen(true);
     await accountModal.open((props) => (
       <Suspense>
         <AccountModal
@@ -41,11 +39,9 @@ const AccountButton = () => {
         />
       </Suspense>
     ));
-    setIsModalOpen(false);
   }, [userWallet, accountModal]);
 
   const openConnectModal = useCallback(async () => {
-    setIsModalOpen(true);
     await connectModal.open((props) => (
       <Suspense>
         <SelectWalletModal
@@ -58,7 +54,6 @@ const AccountButton = () => {
         />
       </Suspense>
     ));
-    setIsModalOpen(false);
   }, [connectModal, wallets, setUserWallet]);
 
   const accountModalButtonProps = useMemo(() => {
