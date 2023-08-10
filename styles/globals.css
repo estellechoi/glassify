@@ -180,7 +180,7 @@
 
      /* padding */
      .Padding_modal {
-        @apply px-6 py-7;
+        @apply px-modal_padding_x py-modal_padding_y;
      }
 
      /* elevation */
@@ -222,7 +222,7 @@
     }
 
     .Bg_glass_transparent {
-        @apply bg-glass backdrop-blur;
+        @apply bg-glass backdrop-blur-md;
     }
 
     .Filter_darken {

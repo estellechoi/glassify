@@ -1,5 +1,5 @@
 import { type MouseEventHandler, type ReactNode, useMemo } from 'react';
-import { type OverlayBackdropColor, SCREEN_BACKDROP_BG_CLASS_DICT } from './styles';
+import { type OverlayBackdropColor } from './styles';
 import useOverlayBackdropClassNames from './useOverlayBackdropClassNames';
 
 type OverlayBackdropProps = {

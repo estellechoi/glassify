@@ -17,6 +17,11 @@ module.exports = {
         gap_bottom: '3rem',
         gap_bottom_double: '6rem',
         page_x: '6rem',
+        modal_padding_x: '1.5rem',
+        modal_padding_y: '1.75rem',
+        modal_margin_x: '2.5rem',
+        modal_margin_y: '2.25rem',
+        modal_height: 'calc(100vh - 4.5rem)',
       },
       zIndex: {
         base: 'var(--zindex-context-screen)',
