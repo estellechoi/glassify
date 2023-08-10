@@ -1,37 +1,27 @@
+import { useMemo } from 'react';
 import Tippy from '@tippyjs/react';
 import { followCursor as FollowCursor } from 'tippy.js/headless';
-
-type TipplyPlacement =
-  | 'top'
-  | 'top-start'
-  | 'top-end'
-  | 'left'
-  | 'left-start'
-  | 'left-end'
-  | 'right'
-  | 'right-start'
-  | 'right-end'
-  | 'bottom'
-  | 'bottom-start'
-  | 'bottom-end';
-
-type TooltipType = 'text' | 'any';
-
-const TOOLTIP_STYLES: { [key in TooltipType]: string } = {
-  text: 'text-white bg-caption shadow-subtle pl-2 pr-3 py-1',
-  any: 'text-black bg-glass backdrop-blur-xl border-r border-b border-black_o10 shadow-subtle_glass px-5 py-4',
-};
+import type { Placement } from 'tippy.js';
+import { TOOLTIP_CLASS_DICT, TOOLTIP_HIDDEN_Z_INDEX_CLASS_DICT, type TooltipContext, type TooltipType } from './styles';
 
 type TooltipProps = {
   children: React.ReactNode;
+  context: TooltipContext;
   type?: TooltipType;
   content?: React.ReactNode;
-  placement?: TipplyPlacement;
+  placement?: Placement;
   followCursor?: boolean;
-  zIndex?: number;
 };
 
-function Tooltip({ children, type = 'text', content, placement, followCursor, zIndex = 1 }: TooltipProps) {
+function Tooltip({ children, context, type = 'text', content, placement, followCursor }: TooltipProps) {
+  const className = useMemo<string>(() => TOOLTIP_CLASS_DICT[type], [type]);
+
+  const zIndexClassNames = useMemo(() => TOOLTIP_HIDDEN_Z_INDEX_CLASS_DICT[context], [context]);
+  const visibilityClassName = useMemo<string>(
+    () => (content === undefined ? `${zIndexClassNames.off} invisible opacity-0 transition-none` : zIndexClassNames.on),
+    [content, zIndexClassNames]
+  );
+
   return (
     <Tippy
       plugins={[FollowCursor]}
@@ -42,11 +32,8 @@ function Tooltip({ children, type = 'text', content, placement, followCursor, zI
       followCursor={followCursor}
       hideOnClick={true}
       content={content}
-      zIndex={zIndex}
-      maxWidth={327}
-      className={`tippy-default md:!min-w-max !max-w-xs md:!max-w-none whitespace-pre-wrap break-all ${TOOLTIP_STYLES[type]} ${
-        content === undefined ? 'invisible -z-1 opacity-0 transition-none' : ''
-      }`}
+      maxWidth={328}
+      className={`tippy-default md:!min-w-max !max-w-xs md:!max-w-none whitespace-pre-wrap break-all ${className} ${visibilityClassName}`}
     >
       <>{children}</>
     </Tippy>

@@ -147,7 +147,6 @@ export const useCMCQuotesQuery = (symbols: readonly string[], refetchInterval = 
   }>(['cmcQuotes', symbolsQuery], fetcher, { refetchInterval, enabled: symbols.length > 0 });
 };
 
-
 /**
  *
  * @see https://coinmarketcap.com/api/documentation/v1/#operation/getV3CryptocurrencyQuotesHistorical

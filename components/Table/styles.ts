@@ -118,4 +118,4 @@ export const getTableCellWidthStyle = <T>(field: TableField<T>) => {
 };
 
 export const getHidableAreaClassName = (isOpen: boolean) =>
-  `relative transition-all ease-out ${isOpen ? '' : '-z-10 max-h-0 !border-b-0 opacity-0'}`;
+  `relative transition-all ease-out ${isOpen ? '' : 'z-hidden_on_base max-h-0 !border-b-0 opacity-0'}`;

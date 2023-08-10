@@ -18,8 +18,15 @@ const WaitingSymbol = ({ color = 'white' }: WaitingSymbolProps) => {
   return (
     <div className="flex justify-center items-center gap-x-0">
       <WaitingSymbolUnit color={color} className="animate-bouncing" />
-      <WaitingSymbolUnit color={color} className={is2ndStarted ? 'animate-bouncing' : ''} />
-      <WaitingSymbolUnit color={color} className={is3rdStarted ? 'animate-bouncing' : ''} />
+      <WaitingSymbolUnit color={color} className="animate-bouncing_delayed_1" />
+      <WaitingSymbolUnit color={color} className="animate-bouncing_delayed_2" />
+      <WaitingSymbolUnit color={color} className="animate-bouncing_delayed_3" />
+      <WaitingSymbolUnit color={color} className="animate-bouncing_delayed_4" />
+
+      {/* <WaitingSymbolUnit color={color} className={is2ndStarted ? 'animate-bouncing_delayed_1' : ''} />
+      <WaitingSymbolUnit color={color} className={is3rdStarted ? 'animate-bouncing_delayed_2' : ''} />
+      <WaitingSymbolUnit color={color} className={is3rdStarted ? 'animate-bouncing_delayed_3' : ''} />
+      <WaitingSymbolUnit color={color} className={is3rdStarted ? 'animate-bouncing_delayed_4' : ''} /> */}
     </div>
   );
 };

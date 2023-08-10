@@ -9,6 +9,7 @@ import {
   TABLE_FIELD_RIGHT_PADDING,
 } from '../styles';
 import { TableField, TableRowData, TableStyle } from '../types';
+import { TooltipContext } from '@/components/Tooltip/styles';
 
 type TableFieldRowProps<T> = {
   type: TableStyle;
@@ -21,6 +22,7 @@ type TableFieldRowProps<T> = {
   needRightSpace: boolean;
   hasAnySubJsx: boolean;
   hasAnySubJsxOpen: boolean;
+  tooltipContext: TooltipContext;
 };
 
 const TableFieldRow = <T extends TableRowData>({
@@ -34,6 +36,7 @@ const TableFieldRow = <T extends TableRowData>({
   needRightSpace,
   hasAnySubJsx,
   hasAnySubJsxOpen,
+  tooltipContext,
 }: TableFieldRowProps<T>) => {
   return (
     <div
@@ -54,6 +57,7 @@ const TableFieldRow = <T extends TableRowData>({
             isAsc={isAsc}
             sortBy={sortBy}
             sortValue={sortValue}
+            tooltipContext={tooltipContext}
           />
         ))}
 

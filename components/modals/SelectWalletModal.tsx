@@ -19,23 +19,24 @@ const SelectWalletModal = (props: SelectWalletModalProps) => {
 
   const onClickConnect = useCallback(
     async (wallet: Wallet) => {
-      if (!wallet.connector) {
+      const connector = await wallet.getConnector();
+
+      if (!connector) {
         wallet.onNoConnector();
         return;
       }
 
       startConnecting(wallet);
 
-      const account = await wallet.connector.connect();
+      const account = await connector.connect();
       if (!account) {
         stopConnecting();
         return;
       }
 
-      onConnect({ wallet, account, connector: wallet.connector });
-
       stopConnecting();
 
+      onConnect({ wallet, account, connector });
       onClose();
     },
     [onConnect, onClose, startConnecting, stopConnecting]

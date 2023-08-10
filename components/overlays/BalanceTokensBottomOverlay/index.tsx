@@ -18,7 +18,7 @@ const BalanceTokensBottomOverlay = ({
   return (
     <BottomOverlay role="article" isOpen={isOpen} className={className}>
       {/* <AnimatedHeadline tagName="h3" texts={['Market change']} className="hiddn md:flex pl-2 mb-3" /> */}
-      <BalanceTokensTable wallet={wallet} onLoaded={onBalanceTokensTableLoaded} />
+      <BalanceTokensTable tooltipContext="overlay" wallet={wallet} onLoaded={onBalanceTokensTableLoaded} />
     </BottomOverlay>
   );
 };

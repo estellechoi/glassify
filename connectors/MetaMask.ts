@@ -2,28 +2,12 @@ import {
   ChainId,
   Connector,
   type EthAddress,
-  ProviderRpcError,
-  EthAccount,
-  MetaMaskSDKProvider,
-  MetaMaskEthereumProvider,
+  type ProviderRpcError,
+  type EthAccount,
+  type MetaMaskSDKProvider,
+  type MetaMaskEthereumProvider,
+  type AddEthereumChainParameter,
 } from '@/connectors/types';
-
-/**
- *
- * @see https://github.com/ethereum/EIPs/blob/master/EIPS/eip-3085.md#parameters EIP-3085
- */
-export interface AddEthereumChainParameter {
-  chainId: ChainId;
-  chainName: string;
-  nativeCurrency: {
-    name: string;
-    symbol: string; // 2-6 characters long
-    decimals: 18;
-  };
-  rpcUrls: string[];
-  blockExplorerUrls?: string[];
-  iconUrls?: string[]; // Currently ignored.
-}
 
 type MetaMastParamOptions = { onError?: (error: Error) => void };
 
@@ -31,9 +15,10 @@ class MetaMask extends Connector {
   public provider: MetaMaskEthereumProvider | MetaMaskSDKProvider;
 
   constructor(provider: MetaMaskEthereumProvider | MetaMaskSDKProvider, options?: MetaMastParamOptions) {
-    const { onError } = options ?? { onDisconnect: undefined, onError: undefined };
+    const onError = options?.onError;
 
     super(provider, onError);
+
     this.provider = provider;
     this.connect = this.connect.bind(this);
     this.disconnect = this.disconnect.bind(this);
@@ -85,14 +70,13 @@ class MetaMask extends Connector {
             params: addEthereumChainParams,
           });
 
-          this.connect(addEthereumChainParams ? desiredChainId : undefined);
+          return this.connect(addEthereumChainParams ? desiredChainId : undefined);
         }
 
         this.onError?.(error);
+        return undefined;
       })
-      .then(() => {
-        this.connect(desiredChainId);
-      });
+      .then(() => this.connect(desiredChainId));
 
     return undefined;
   }

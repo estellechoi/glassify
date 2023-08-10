@@ -13,63 +13,25 @@ const SelectWalletModal = lazy(() => import('@/components/modals/SelectWalletMod
 const AccountModal = lazy(() => import('@/components/modals/AccountModal'));
 
 const AccountButton = () => {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [userWallet, setUserWallet] = useAtom(userWalletAtom);
 
   const wallets = useWallets();
-  const { isConnecting: isAutoConnecting } = useAutoConnect(wallets);
+  const { isConnecting } = useAutoConnect(wallets);
 
-  const modal = useModal();
-  const openConnectModal = useCallback(async () => {
-    setIsModalOpen(true);
-    await modal.open((props) => (
-      <Suspense>
-        <SelectWalletModal
-          {...props}
-          wallets={wallets}
-          onConnect={({ wallet, account, connector }) => {
-            setUserWallet({ ...wallet, account, connector });
-          }}
-        />
-      </Suspense>
-    ));
-    setIsModalOpen(false);
-  }, [modal, wallets, setUserWallet]);
-
-  const closeModal = useCallback(() => {
-    modal.close();
-    setIsModalOpen(false);
-  }, [modal]);
-
-  const connectModalButtonProps = useMemo(() => {
-    const label = isModalOpen ? 'Close' : 'Connect';
-    const onClick = isModalOpen ? closeModal : openConnectModal;
-
-    const status: ButtonStatus = isAutoConnecting ? 'processing' : 'enabled';
-
-    const color: ButtonColor = isModalOpen ? 'primary_inverted' : 'primary';
-    const iconType: IconType = isModalOpen ? 'close' : 'login';
-    const labelHidden = isModalOpen;
-
-    return {
-      status,
-      color,
-      iconType,
-      label,
-      onClick,
-      labelHidden,
-    };
-  }, [isModalOpen, closeModal, openConnectModal, isAutoConnecting]);
+  const accountModal = useModal();
+  const connectModal = useModal();
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const openAccountModal = useCallback(async () => {
     const address = userWallet?.account.address;
     if (!address) return;
 
     setIsModalOpen(true);
-    await modal.open((props) => (
+    await accountModal.open((props) => (
       <Suspense>
         <AccountModal
           {...props}
+          id={accountModal.id}
           wallet={userWallet}
           onDisconnect={() => {
             userWallet?.connector?.disconnect();
@@ -80,31 +42,69 @@ const AccountButton = () => {
       </Suspense>
     ));
     setIsModalOpen(false);
-  }, [userWallet, modal]);
+  }, [userWallet, accountModal]);
+
+  const openConnectModal = useCallback(async () => {
+    setIsModalOpen(true);
+    await connectModal.open((props) => (
+      <Suspense>
+        <SelectWalletModal
+          {...props}
+          id={connectModal.id}
+          wallets={wallets}
+          onConnect={({ wallet, account, connector }) => {
+            setUserWallet({ ...wallet, account, connector });
+          }}
+        />
+      </Suspense>
+    ));
+    setIsModalOpen(false);
+  }, [connectModal, wallets, setUserWallet]);
 
   const accountModalButtonProps = useMemo(() => {
     if (!userWallet) return undefined;
 
     const label = shortenAddress(userWallet.account.address, 2, 4);
-    const onClick = isModalOpen ? closeModal : openAccountModal;
-
-    const color: ButtonColor = isModalOpen ? 'primary_inverted' : 'primary';
-    const iconType: IconType = isModalOpen ? 'close' : 'menu';
-    const labelHidden = isModalOpen;
+    const onClick = openAccountModal;
+    const color: ButtonColor = 'primary';
+    const iconType: IconType = 'menu';
 
     return {
       color,
       iconType,
       label,
       onClick,
-      labelHidden,
     };
-  }, [isModalOpen, closeModal, openAccountModal, userWallet]);
+  }, [openAccountModal, userWallet]);
+
+  const connectModalButtonProps = useMemo(() => {
+    const label = 'Connect';
+    const onClick = openConnectModal;
+    const status: ButtonStatus = isConnecting || connectModal.isOpen ? 'processing' : 'enabled';
+    const color: ButtonColor = 'primary';
+    const iconType: IconType = 'login';
+
+    return {
+      status,
+      color,
+      iconType,
+      label,
+      onClick,
+    };
+  }, [openConnectModal, isConnecting, connectModal.isOpen]);
 
   const buttonProps = accountModalButtonProps ?? connectModalButtonProps;
-  const className = `animate-fade_in_x_reverse ${buttonProps.labelHidden ? '' : 'min-w-[11.875rem]'}`;
+  const modal = userWallet ? accountModal : connectModal;
 
-  return <Button size="md" {...buttonProps} className={className} />;
+  return (
+    <Button
+      size="md"
+      className="min-w-[11.875rem] animate-fade_in_x_reverse"
+      aria-expanded={modal.isOpen}
+      aria-controls={modal.id}
+      {...buttonProps}
+    />
+  );
 };
 
 export default AccountButton;

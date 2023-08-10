@@ -2,11 +2,12 @@ import { ReactNode, useMemo } from 'react';
 import getReactElements from '../utils/getReactElements';
 import { TEXTS } from '@/constants/app';
 import { TABLE_SPACE_Y_DICT, TABLE_ROW_BG_DICT, TABLE_BG_COLOR_DICT } from './styles';
-import TableRow from './Row';
+import Row from './Row';
 import type { TableStyle, TableField, TableRowData } from './types';
 import FieldRowPseudo from './FieldRow/Pseudo';
 import TableFieldRow from './FieldRow/FieldRow';
 import useSortedRows from './hooks/useSortedRows';
+import type { TooltipContext } from '@/components/Tooltip/styles';
 
 const getFieldRows = (children: ReactNode) => getReactElements(children, FieldRowPseudo);
 
@@ -26,6 +27,7 @@ type TableProps<T extends TableRowData> = {
   showRowClickIcon?: boolean;
   noDataLabel?: string;
   rowsScrollHeight?: string;
+  tooltipContext: TooltipContext;
 };
 
 /**
@@ -48,6 +50,7 @@ const TableContainer = <T extends TableRowData>({
   showRowClickIcon = false,
   noDataLabel = TEXTS.NO_DATA,
   rowsScrollHeight,
+  tooltipContext,
 }: TableProps<T>) => {
   /** @summary sorting & filtering */
   const { sortedRows, isAsc, sortValue, sortBy } = useSortedRows({
@@ -97,6 +100,7 @@ const TableContainer = <T extends TableRowData>({
           needRightSpace={needRightSpace}
           hasAnySubJsx={hasAnySubJsx}
           hasAnySubJsxOpen={hasAnySubJsxOpen}
+          tooltipContext={tooltipContext}
         />
       )}
 
@@ -107,7 +111,7 @@ const TableContainer = <T extends TableRowData>({
         style={{ height: rowsScrollHeight, scrollbarGutter: 'stable' }}
       >
         {sortedRows.map((row) => (
-          <TableRow
+          <Row
             key={row.id}
             type={type}
             hasMouseEffect={hasMouseEffect}
@@ -118,6 +122,7 @@ const TableContainer = <T extends TableRowData>({
             onToggleSubJsx={onToggleRowSubJsx}
             onToggleFoldableOnMobile={onToggleFoldableOnMobile}
             needRightSpace={needRightSpace}
+            tooltipContext={tooltipContext}
           />
         ))}
 

@@ -81,7 +81,7 @@ function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: DehydratedS
             <Hydrate state={pageProps.dehydratedState}>
               <MetaDataUpdater />
               <ModalProvider>
-                <AppHeader className="fixed top-0 left-0 right-0 z-10" />
+                <AppHeader className="fixed top-0 left-0 right-0 z-navigation" />
                 <Component {...pageProps} />
               </ModalProvider>
             </Hydrate>

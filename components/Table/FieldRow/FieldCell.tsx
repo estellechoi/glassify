@@ -3,6 +3,7 @@ import Icon from '@/components/Icon';
 import { TABLE_CELL_TEXT_COLOR_DICT, TABLE_FIELD_TYPO_DICT, getTableCellAlignClassName, getTableCellWidthStyle } from '../styles';
 import type { TableField, TableRowData, TableStyle } from '../types';
 import Tooltip from '@/components/Tooltip';
+import type { TooltipContext } from '@/components/Tooltip/styles';
 
 type FieldCellProps<T> = {
   type: TableStyle;
@@ -12,6 +13,7 @@ type FieldCellProps<T> = {
   isAsc?: boolean;
   sortValue?: string;
   sortBy: (field: TableField<T>) => void;
+  tooltipContext: TooltipContext;
 };
 
 const FieldCell = <T extends TableRowData>({
@@ -22,6 +24,7 @@ const FieldCell = <T extends TableRowData>({
   sortValue,
   sortBy,
   className = '',
+  tooltipContext,
 }: FieldCellProps<T>) => {
   const isSortingField = useMemo<boolean>(
     () => sortValue === (field.sortValue ?? field.value),
@@ -48,7 +51,9 @@ const FieldCell = <T extends TableRowData>({
       }}
     >
       <div className={`${className} flex items-center gap-x-1 ${TABLE_FIELD_TYPO_DICT[type]}`}>
-        <Tooltip content={field.tooltipContent}>{field.label}</Tooltip>
+        <Tooltip content={field.tooltipContent} context={tooltipContext}>
+          {field.label}
+        </Tooltip>
       </div>
 
       {isSortingField && <Icon type={isAsc ? 'arrow_up' : 'arrow_down'} size="md" className="text-secondary" />}

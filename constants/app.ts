@@ -15,3 +15,5 @@ export const TITLES = {
 export const TEXTS = {
   NO_DATA: 'No data found',
 };
+
+export const IS_DEV = process.env.NODE_ENV === 'development';

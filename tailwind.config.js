@@ -5,6 +5,10 @@ module.exports = {
   content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        primary: ['Poppins', ...defaultTheme.fontFamily.sans],
+        num: ['"Azeret Mono"', 'monospace', ...defaultTheme.fontFamily.mono],
+      },
       spacing: {
         app_header: 'var(--size-app-header-height)',
         screen_top_padded_as_app_header: 'calc(100vh - var(--size-app-header-height))',
@@ -14,12 +18,22 @@ module.exports = {
         gap_bottom_double: '6rem',
         page_x: '6rem',
       },
-      top: {
-        app_header: 'var(--size-app-header-height)',
-      },
-      fontFamily: {
-        primary: ['Poppins', ...defaultTheme.fontFamily.sans],
-        num: ['"Azeret Mono"', 'monospace', ...defaultTheme.fontFamily.mono],
+      zIndex: {
+        base: 'var(--zindex-context-screen)',
+        overlay: 'var(--zindex-context-elevated)',
+        navigation: 'var(--zindex-context-navigation)',
+        top_context: 'var(--zindex-context-off_canvas)',
+        instant_interaction: 'var(--zindex-context-instant-interaction)',
+        hidden_on_base: 'calc(var(--zindex-context-screen) + var(--zindex-below))',
+        hidden_on_top_context: 'calc(var(--zindex-context-off_canvas) + var(--zindex-below))',
+        tooltip_on_base: 'calc(var(--zindex-context-screen) + var(--zindex-above))',
+        tooltip_on_overlay: 'calc(var(--zindex-context-elevated) + var(--zindex-above))',
+        tooltip_on_navigation: 'calc(var(--zindex-context-navigation) + var(--zindex-above))',
+        tooltip_on_top_context: 'calc(var(--zindex-context-off_canvas) + var(--zindex-above))',
+        tooltip_hidden_on_base: 'calc(var(--zindex-context-screen) + var(--zindex-below))',
+        tooltip_hidden_on_overlay: 'calc(var(--zindex-context-elevated) + var(--zindex-below))',
+        tooltip_hidden_on_navigation: 'calc(var(--zindex-context-navigation) + var(--zindex-below))',
+        tooltip_hidden_on_top_context: 'calc(var(--zindex-context-off_canvas) + var(--zindex-below))',
       },
       colors: {
         /* color tokens */
@@ -52,6 +66,8 @@ module.exports = {
         semantic_bear: 'var(--color-red400)',
       },
       backgroundImage: {
+        // app_gradient:
+        //   'radial-gradient(101.87% 60.85% at 47.70% 50.00%, #C8FF2C 0%, #FFF72C 34.90%, #E1FF2C 51.56%, #FFAB2C 73.96%, #FF782C 100%)',
         primary_linear_4: 'linear-gradient(90deg, var(--color-gray900-o4) 0%, var(--color-gray900-o0) 100%)',
         secondary_linear_4: 'linear-gradient(90deg, var(--color-gray900-o4) 0%, var(--color-gray900-o0) 100%)',
         secondary_linear_2: 'linear-gradient(90deg, var(--color-gray900-o2) 0%, var(--color-gray900-o0) 100%)',
@@ -66,8 +82,6 @@ module.exports = {
           'linear-gradient(180deg, var(--color-primary-o0) 0%, var(--color-primary) 20%, var(--color-primary) 100%)',
         primary_inverted_gradient_1:
           'linear-gradient(90deg, var(--color-white-o35) 0%, var(--color-white-o35) 10%, var(--color-white-o0) 100%)',
-        noisy_gradient: 'url(/noisy_gradient.png)',
-        app_gradient: 'url(/app_gradient.png)',
       },
       boxShadow: {
         subtle: '0px 1px 4px 4px var(--color-black-o10),',
@@ -107,6 +121,22 @@ module.exports = {
           },
           '100%': {
             transform: 'translateX(140%)',
+          },
+        },
+        fade_in: {
+          '0%': {
+            opacity: 0,
+          },
+          '100%': {
+            opacity: 1,
+          },
+        },
+        fade_in_reverse: {
+          '0%': {
+            opacity: 1,
+          },
+          '100%': {
+            opacity: 0,
           },
         },
         fade_in_x: {
@@ -151,10 +181,16 @@ module.exports = {
         fast_in_y_back: 'fast_in_y_back 1.4s cubic-bezier(0.73, 0, 0, 1) both',
         fast_in_x: 'fast_in_x 0.8s cubic-bezier(0.73, 0, 0, 1) both',
         fast_in_x_back: 'fast_in_x_back 0.8s cubic-bezier(0.73, 0, 0, 1) both',
+        fade_in: 'fade_in 0.4s cubic-bezier(0, 0, 0.27, 1) both',
+        fade_out: 'fade_in_reverse 0.4s cubic-bezier(0, 0, 0.27, 1) both',
         fade_in_x: 'fade_in_x 0.8s cubic-bezier(0, 0, 0.27, 1) 0.6s both',
         fade_in_x_reverse: 'fade_in_x_reverse 0.8s cubic-bezier(0, 0, 0.27, 1) 0.6s both',
         fade_out: 'fade_out 0.4s cubic-bezier(0, 0, 0.27, 1) both',
-        bouncing: 'up 400ms ease-in-out infinite alternate',
+        bouncing: 'up 0.4s ease-in-out infinite alternate',
+        bouncing_delayed_1: 'up 0.4s ease-in-out 0.1s infinite alternate',
+        bouncing_delayed_2: 'up 0.4s ease-in-out 0.2s infinite alternate',
+        bouncing_delayed_3: 'up 0.4s ease-in-out 0.3s infinite alternate',
+        bouncing_delayed_4: 'up 0.4s ease-in-out 0.4s infinite alternate',
       },
     },
   },

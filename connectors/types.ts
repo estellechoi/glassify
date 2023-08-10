@@ -80,3 +80,20 @@ export abstract class Connector {
   public abstract connect(...args: unknown[]): Promise<EthAccount | undefined>;
   public abstract disconnect(...args: unknown[]): Promise<void>;
 }
+
+/**
+ *
+ * @see https://github.com/ethereum/EIPs/blob/master/EIPS/eip-3085.md#parameters EIP-3085
+ */
+export interface AddEthereumChainParameter {
+  chainId: ChainId;
+  chainName: string;
+  nativeCurrency: {
+    name: string;
+    symbol: string; // 2-6 characters long
+    decimals: 18;
+  };
+  rpcUrls: string[];
+  blockExplorerUrls?: string[];
+  iconUrls?: string[]; // Currently ignored.
+}

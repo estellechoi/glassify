@@ -3,6 +3,20 @@
 }
 
 :root {
+    --zindex-base: 0;
+    --zindex-above: 4;
+    --zindex-below: -4;
+}
+
+:root {
+    --zindex-context-screen: var(--zindex-base);
+    --zindex-context-elevated: var(--zindex-above);
+    --zindex-context-navigation: calc(var(--zindex-above) * 2);
+    --zindex-context-off_canvas: calc(var(--zindex-above) * 3);
+    --zindex-context-instant-interaction: calc(var(--zindex-above) * 4);
+}
+
+:root {
     /* black */
     --color-black: #000;
     --color-black-o70: rgba(0, 0, 0, 0.7);

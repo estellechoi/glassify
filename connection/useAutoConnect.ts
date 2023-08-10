@@ -23,20 +23,26 @@ const useAutoConnect = (wallets: readonly Wallet[]) => {
   const { target: isConnecting, startProcessing: startConnecting, stopProcessing: stopConnecting } = useProcessing<boolean>();
 
   const connect = useCallback(async () => {
-    if (!lastUsedWallet?.connector) return;
+    if (!lastUsedWallet) return;
+
+    const connector = await lastUsedWallet.getConnector();
+    if (!connector) return;
 
     startConnecting(true);
 
-    const account = await lastUsedWallet.connector.connect();
-    if (!account)  {
+    const account = await connector.connect();
+    if (!account) {
       stopConnecting();
       return;
     }
 
+    const { type, name, logoURL } = lastUsedWallet;
     setUserWallet({
-      ...lastUsedWallet,
+      type,
+      name,
+      logoURL,
       account,
-      connector: lastUsedWallet.connector,
+      connector,
     });
 
     stopConnecting();
@@ -44,7 +50,7 @@ const useAutoConnect = (wallets: readonly Wallet[]) => {
 
   useEffect(() => {
     connect();
-  }, [lastUsedWallet?.connector]);
+  }, [lastUsedWallet]);
 
   return {
     isConnecting,

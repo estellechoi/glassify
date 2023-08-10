@@ -11,11 +11,15 @@ const ModalControllerRefForwarder = ({ modalElement: ModalElement, onClosed }: M
 
   /**
    *
-   * @description closing animation duration is considered.
+   * @description timer is required for closing animation duration
    */
   const onClose = useCallback(() => {
     setIsOpen(false);
-    const timer = setTimeout(onClosed, 800);
+
+    const timer = setTimeout(() => {
+      onClosed();
+    }, 800);
+
     return () => clearTimeout(timer);
   }, [onClosed]);
 

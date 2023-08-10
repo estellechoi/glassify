@@ -1,6 +1,6 @@
 import { atom } from 'jotai';
 import { LOCAL_STORAGE_KEYS } from '@/constants/app';
-import type { ConnectedWallet, Wallet } from '@/types/wallet';
+import type { ConnectedWallet } from '@/types/wallet';
 import type { UniswapTokenData } from '@/data/types';
 
 /**

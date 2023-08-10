@@ -12,7 +12,7 @@ const useModal = () => {
 
   const [id] = useState(() => String(elementId++));
 
-  const { open, close } = context;
+  const { open, close, getIsOpen } = context;
 
   const modalRef = useRef<ModalRef | null>(null);
 
@@ -28,9 +28,8 @@ const useModal = () => {
   }, [id, open, close]);
 
   const openModal = useCallback(
-    (modalElement: ModalElement): Promise<void> => {
+    (ModalElement: ModalElement): Promise<void> => {
       return new Promise<void>((resolve) => {
-        const ModalElement = modalElement;
         handlers.open(({ isOpen, onClose }) => (
           <ModalElement
             isOpen={isOpen}
@@ -45,14 +44,16 @@ const useModal = () => {
     [handlers]
   );
 
-  const overlay = useMemo(() => {
+  const modal = useMemo(() => {
     return {
+      id: `modal-${id}`,
+      isOpen: getIsOpen(id),
       open: openModal,
       close: handlers.close,
     };
-  }, [openModal, handlers.close]);
+  }, [id, openModal, handlers.close, getIsOpen]);
 
-  return overlay;
+  return modal;
 };
 
 export default useModal;

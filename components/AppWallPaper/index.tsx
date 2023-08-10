@@ -14,7 +14,7 @@ const AppWallPaper = ({ show }: AppWallPaperProps) => {
   const visibilityTransitionClassName = `transition-[filter,opacity] Transition_3000 ${visibilityClassName}`;
 
   return (
-    <div aria-hidden className={`fixed inset-0 z-0 w-screen h-screen pointer-events-none ${visibilityTransitionClassName}`}>
+    <div aria-hidden className={`fixed z-base inset-0 w-screen h-screen pointer-events-none ${visibilityTransitionClassName}`}>
       <Image fill src={AppGradientImgURL} alt="app background" className="text-[0] text-transparent" />
     </div>
   );

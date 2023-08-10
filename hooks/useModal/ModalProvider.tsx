@@ -1,7 +1,7 @@
-import React, { createContext, PropsWithChildren, ReactNode, useCallback, useMemo, useState } from 'react';
-import type { CloseFunction, OpenFunction } from './types';
+import React, { createContext, Fragment, PropsWithChildren, ReactNode, useCallback, useMemo, useState } from 'react';
+import type { CloseFunction, OpenFunction, IsOpenGetter } from './types';
 
-export const ModalContext = createContext<{ open: OpenFunction; close: CloseFunction } | null>(null);
+export const ModalContext = createContext<{ open: OpenFunction; close: CloseFunction; getIsOpen: IsOpenGetter } | null>(null);
 
 export const ModalProvider = ({ children }: PropsWithChildren<any>) => {
   const [modalMap, setModalMap] = useState<Map<string, ReactNode>>(new Map());
@@ -22,13 +22,15 @@ export const ModalProvider = ({ children }: PropsWithChildren<any>) => {
     });
   }, []);
 
-  const context = useMemo(() => ({ open, close }), [open, close]);
+  const getIsOpen = useCallback((id: string) => modalMap.has(id), [modalMap]);
+
+  const context = useMemo(() => ({ open, close, getIsOpen }), [open, close, getIsOpen]);
 
   return (
     <ModalContext.Provider value={context}>
       {children}
       {[...modalMap.entries()].map(([id, element]) => (
-        <React.Fragment key={id}>{element}</React.Fragment>
+        <Fragment key={id}>{element}</Fragment>
       ))}
     </ModalContext.Provider>
   );

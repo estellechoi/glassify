@@ -6,7 +6,8 @@ import Table from '@/components/Table';
 import useUserAgent from '@/hooks/useUserAgent';
 import UpDownNumberText from '@/components/UpDownNumberText';
 import type { TableField } from '@/components/Table/types';
-import CoinLabel from '../CoinLabel';
+import CoinLabel from '@/components/CoinLabel';
+import type { TooltipContext } from '@/components/Tooltip/styles';
 
 type BalanceTokensTableRow = {
   id: string;
@@ -26,9 +27,10 @@ type BalanceTokensTableRow = {
 type BalanceTokensTableProps = {
   wallet: ConnectedWallet;
   onLoaded?: () => void;
+  tooltipContext: TooltipContext;
 };
 
-const BalanceTokensTable = ({ wallet, onLoaded }: BalanceTokensTableProps) => {
+const BalanceTokensTable = ({ wallet, onLoaded, tooltipContext }: BalanceTokensTableProps) => {
   const { balance, isLoading } = useBalance(wallet);
 
   useEffect(() => {
@@ -136,7 +138,7 @@ const BalanceTokensTable = ({ wallet, onLoaded }: BalanceTokensTableProps) => {
   }, [isMobile]);
 
   return (
-    <Table<BalanceTokensTableRow> dSortValue="priceChange" rows={rows} fields={fields}>
+    <Table<BalanceTokensTableRow> dSortValue="priceChange" tooltipContext={tooltipContext} rows={rows} fields={fields}>
       <Table.FieldRow />
     </Table>
   );
