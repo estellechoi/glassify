@@ -6,7 +6,7 @@ import AppHeadline from '@/components/AppHeadline';
 import { userWalletAtom } from '@/store/states';
 import { useCallback, useMemo, useState } from 'react';
 import AnimatedHeadline from '@/components/AnimatedHeadline';
-import BalanceTokensBottomOverlay from '@/components/overlays/BalanceTokensBottomOverlay';
+import BalanceTokensCard from '@/components/cards/BalanceTokensCard';
 
 const AsciiGlobe = dynamic(() => import('@/components/AsciiGlobe'), {
   ssr: false,
@@ -44,16 +44,15 @@ const Home: NextPage = () => {
         onAnimationEnd={onAppHeadlineAnimationEnd}
       />
 
-      {userWallet && (
-        <BalanceTokensBottomOverlay
-          wallet={userWallet}
-          isOpen={isBalanceTokensTableOpen}
-          onBalanceTokensTableLoaded={onBalanceTokensTableLoaded}
-        />
-      )}
-
       <Layout>
-        <></>
+        {userWallet && (
+          <BalanceTokensCard
+            wallet={userWallet}
+            isOpen={isBalanceTokensTableOpen}
+            onBalanceTokensTableLoaded={onBalanceTokensTableLoaded}
+            className="md:mx-page_x md:mb-page_bottom"
+          />
+        )}
       </Layout>
     </>
   );

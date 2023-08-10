@@ -7,7 +7,7 @@ const BottomOverlay = ({ children, isOpen, className = '', role }: BottomOverlay
   const refinedClassName = useBottomOverlayClassName(isOpen);
 
   return (
-    <div role={role} className={`${refinedClassName} ${className}`}>
+    <div role="dialog" className={`${refinedClassName} ${className}`}>
       {children}
     </div>
   );
