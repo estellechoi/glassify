@@ -22,7 +22,7 @@ const unlockScroll = (ctx: DocumentContext) => {
   disposables.dispose();
 };
 
-const useDocumentOverflowLockedEffect = (enabled: boolean, escapedElement?: HTMLElement | null): boolean => {
+const useScrollLock = (enabled: boolean, escapedElement?: HTMLElement | null): boolean => {
   const isLocked = !!document;
 
   const { isIOS } = useUserAgent();
@@ -43,10 +43,6 @@ const useDocumentOverflowLockedEffect = (enabled: boolean, escapedElement?: HTML
   }, [enabled, escapedElement?.ownerDocument]);
 
   return isLocked;
-};
-
-const useScrollLock = (enabled: boolean, escapedElement?: HTMLElement | null) => {
-  return useDocumentOverflowLockedEffect(enabled, escapedElement);
 };
 
 export default useScrollLock;
