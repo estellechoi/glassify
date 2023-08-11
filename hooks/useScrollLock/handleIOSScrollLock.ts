@@ -6,9 +6,7 @@ interface Options {
 }
 
 const handleIOSScrollLock = (): ScrollLockStep<Options> => {
-  //   if (!isIOS()) {
-  //     return {};
-  //   }
+  //   if (!isIOS) return {};
 
   let scrollPosition: number;
 
