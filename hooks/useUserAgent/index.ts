@@ -1,27 +1,20 @@
-import { useMemo, useState } from 'react';
-import { UAParser } from 'ua-parser-js';
+import { userAgentAtom } from '@/store/states';
+import { useAtom } from 'jotai';
+import { useMemo } from 'react';
 
 const useUserAgent = () => {
-  const [parser] = useState(() => new UAParser(window.navigator.userAgent));
+  const [userAgent] = useAtom(userAgentAtom);
 
-  const { os, device } = useMemo(() => {
-    return {
-      device: parser.getDevice(),
-      os: parser.getOS(),
-    };
-  }, [parser]);
-
-  const isMobile = useMemo<boolean>(() => device.type === 'mobile', [device.type]);
-  const isMobileOrTablet = useMemo<boolean>(() => device.type === 'mobile' || device.type === 'tablet', [device.type]);
-  const isIOS = useMemo<boolean>(() => os.name === 'iOS', [os.name]);
-  const isNonIOSMobile = useMemo<boolean>(() => !isIOS && device.type === 'mobile', [isIOS, device.type]);
-
-  return {
-    isMobile,
-    isMobileOrTablet,
-    isIOS,
-    isNonIOSMobile,
-  };
+  return useMemo(
+    () =>
+      userAgent ?? {
+        isMobile: false,
+        isMobileOrTablet: false,
+        isIOS: false,
+        isNonIOSMobile: false,
+      },
+    [userAgent]
+  );
 };
 
 export default useUserAgent;

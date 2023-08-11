@@ -6,13 +6,15 @@ import { Connector, EthAccount } from '@/connectors/types';
 import OptionItem from '../OptionItem';
 import type { AnimatedModalProps } from '@/components/AnimatedModal/Container';
 import useProcessing from '@/hooks/useProcessing';
+import useUserAgent from '@/hooks/useUserAgent';
+import BottomSheet from '../BottomSheet';
 
-type SelectWalletModalProps = Omit<AnimatedModalProps, 'ariaLabel'> & {
+type SelectWalletOverlayProps = Omit<AnimatedModalProps, 'ariaLabel'> & {
   wallets: readonly Wallet[];
   onConnect: ({ wallet, account, connector }: { wallet: Wallet; account: EthAccount; connector: Connector }) => void;
 };
 
-const SelectWalletModal = (props: SelectWalletModalProps) => {
+const SelectWalletOverlay = (props: SelectWalletOverlayProps) => {
   const { wallets, onConnect, onClose, isOpen } = props;
 
   const { target: connectingWallet, startProcessing: startConnecting, stopProcessing: stopConnecting } = useProcessing<Wallet>();
@@ -42,24 +44,36 @@ const SelectWalletModal = (props: SelectWalletModalProps) => {
     [onConnect, onClose, startConnecting, stopConnecting]
   );
 
-  return (
-    <AnimatedModal {...props} ariaLabel="Select wallet">
+  const Content = (
+    <OptionGrid>
+      {wallets.map((wallet) => (
+        <OptionGrid.Option key={wallet.name}>
+          <OptionItem
+            imgURL={wallet.logoURL}
+            label={wallet.name}
+            onClick={() => onClickConnect(wallet)}
+            isProcessing={connectingWallet?.type === wallet.type}
+          />
+        </OptionGrid.Option>
+      ))}
+    </OptionGrid>
+  );
+
+  const ARIA_LABEL = 'Select wallet';
+
+  const { isMobile } = useUserAgent();
+
+  return isMobile ? (
+    <BottomSheet {...props} isOpen={isOpen} ariaLabel={ARIA_LABEL} className="Padding_modal">
+      {Content}
+    </BottomSheet>
+  ) : (
+    <AnimatedModal {...props} ariaLabel={ARIA_LABEL}>
       <AnimatedModal.Content isOpen={isOpen} className="Padding_modal">
-        <OptionGrid>
-          {wallets.map((wallet) => (
-            <OptionGrid.Option key={wallet.name}>
-              <OptionItem
-                imgURL={wallet.logoURL}
-                label={wallet.name}
-                onClick={() => onClickConnect(wallet)}
-                isProcessing={connectingWallet?.type === wallet.type}
-              />
-            </OptionGrid.Option>
-          ))}
-        </OptionGrid>
+        {Content}
       </AnimatedModal.Content>
     </AnimatedModal>
   );
 };
 
-export default SelectWalletModal;
+export default SelectWalletOverlay;

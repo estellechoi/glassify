@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import OverlayBackdrop from '@/components/OverlayBackdrop';
 import getReactElements from '@/components/utils/getReactElements';
+import type { OverlayProps } from '@/components/types';
 import Content from './Content';
 import BottomBar from './BottomBar';
 
@@ -13,12 +14,8 @@ const MODAL_WIDTH_DICT: Record<AnimatedModalSize, string> = {
   md: 'w-screen md:w-[20rem]',
 };
 
-export type AnimatedModalProps = {
-  id?: string;
-  isOpen: boolean;
-  onClose: () => void;
+export type AnimatedModalProps = OverlayProps & {
   size?: AnimatedModalSize;
-  ariaLabel: string;
   children?: React.ReactNode;
   className?: string;
 };

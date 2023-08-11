@@ -23,3 +23,7 @@ export const userWalletAtom = atom(
     }
   }
 );
+
+export const userAgentAtom = atom<
+  { isMobile: boolean; isMobileOrTablet: boolean; isIOS: boolean; isNonIOSMobile: boolean } | undefined
+>(undefined);

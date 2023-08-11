@@ -1,4 +1,4 @@
-import { useCallback, useContext, useMemo, useRef, useState } from 'react';
+import { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import type { ModalElement, ModalRef } from './types';
 import { ModalController } from './ModalController';
 import { ModalContext } from './ModalProvider';
@@ -12,7 +12,7 @@ const useModal = () => {
 
   const [id] = useState(() => String(elementId++));
 
-  const { open, close, getIsOpen } = context;
+  const { open, close, entries, getIsOpen } = context;
 
   const modalRef = useRef<ModalRef | null>(null);
 

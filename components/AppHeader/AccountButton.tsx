@@ -9,8 +9,8 @@ import useAutoConnect from '@/connection/useAutoConnect';
 import type { IconType } from '@/components/Icon';
 import type { ButtonColor, ButtonStatus } from '../Button/types';
 
-const SelectWalletModal = lazy(() => import('@/components/modals/SelectWalletModal'));
-const AccountModal = lazy(() => import('@/components/modals/AccountModal'));
+const SelectWalletOverlay = lazy(() => import('@/components/overlays/SelectWalletOverlay'));
+const AccountOverlay = lazy(() => import('@/components/overlays/AccountOverlay'));
 
 const AccountButton = () => {
   const [userWallet, setUserWallet] = useAtom(userWalletAtom);
@@ -27,7 +27,7 @@ const AccountButton = () => {
 
     await accountModal.open((props) => (
       <Suspense>
-        <AccountModal
+        <AccountOverlay
           {...props}
           id={accountModal.id}
           wallet={userWallet}
@@ -44,7 +44,7 @@ const AccountButton = () => {
   const openConnectModal = useCallback(async () => {
     await connectModal.open((props) => (
       <Suspense>
-        <SelectWalletModal
+        <SelectWalletOverlay
           {...props}
           id={connectModal.id}
           wallets={wallets}
@@ -94,7 +94,7 @@ const AccountButton = () => {
   return (
     <Button
       size="md"
-      className="min-w-[11.875rem] animate-fade_in_x_reverse"
+      className="min-w-[11.875rem] animate-fade_out_x"
       aria-expanded={modal.isOpen}
       aria-controls={modal.id}
       {...buttonProps}

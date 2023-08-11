@@ -5,14 +5,12 @@ import Layout from '@/components/Layout';
 import AppHeadline from '@/components/AppHeadline';
 import { userWalletAtom } from '@/store/states';
 import { useCallback, useMemo, useState } from 'react';
-import AnimatedHeadline from '@/components/AnimatedHeadline';
 import BalanceTokensCard from '@/components/cards/BalanceTokensCard';
 
 const AsciiGlobe = dynamic(() => import('@/components/AsciiGlobe'), {
   ssr: false,
 });
 const AppWallPaper = dynamic(() => import('@/components/AppWallPaper'));
-const BalanceTokensTable = dynamic(() => import('@/components/tables/BalanceTokensTable'));
 
 const Home: NextPage = () => {
   const [userWallet] = useAtom(userWalletAtom);

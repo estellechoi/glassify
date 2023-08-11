@@ -10,10 +10,10 @@ import { SEO } from 'next-seo.config';
 import SentryErrorBoundary from '@/components/ErrorBoundary/SentryErrorBoundary';
 import AppHeader from '@/components/AppHeader';
 import { ModalProvider } from '@/hooks/useModal/ModalProvider';
-import { userWalletAtom } from '@/store/states';
-import { useAtom } from 'jotai';
 import useSetupTokens from '@/hooks/useSetupTokens';
 import dynamic from 'next/dynamic';
+
+const UserAgentDetector = dynamic(() => import('@/components/UserAgentDetector'), { ssr: false });
 
 const MetaDataUpdater = () => {
   useSetupTokens();
@@ -37,8 +37,6 @@ function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: DehydratedS
       },
     });
   }
-
-  const [userWallet] = useAtom(userWalletAtom);
 
   return (
     <>
@@ -80,6 +78,8 @@ function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: DehydratedS
           <QueryClientProvider client={queryClientRef.current}>
             <Hydrate state={pageProps.dehydratedState}>
               <MetaDataUpdater />
+              <UserAgentDetector />
+
               <ModalProvider>
                 <AppHeader className="fixed top-0 left-0 right-0 z-navigation" />
                 <Component {...pageProps} />
