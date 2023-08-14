@@ -13,14 +13,12 @@ type OptionItemProps = {
 };
 
 const OptionItem = ({ imgURL, label, onClick, isProcessing = false, disabled, trailingTag }: OptionItemProps) => {
-  const cursorClassName = useMemo<string>(
-    () => (disabled ? 'cursor-not-allowed pointer-events-none' : 'cursor-pointer'),
-    [disabled]
-  );
+  const cursorClassName = useMemo<string>(() => (disabled ? 'cursor-not-allowed' : 'cursor-pointer'), [disabled]);
   const opacityClassName = useMemo<string>(() => (disabled ? 'opacity-40' : ''), [disabled]);
+  const contentPointerEvents = useMemo<string>(() => (disabled ? 'pointer-events-none' : ''), [disabled]);
 
   const Content = (
-    <span className="flex items-center gap-x-1.5 px-1 py-1.5">
+    <span className={`group/option-item flex items-center gap-x-1.5 px-1 py-1.5 ${contentPointerEvents}`}>
       <Image src={imgURL} alt={label} width={28} height={28} quality={100} />
 
       {isProcessing ? (
@@ -35,7 +33,7 @@ const OptionItem = ({ imgURL, label, onClick, isProcessing = false, disabled, tr
   );
 
   return (
-    <button type="button" onClick={onClick} className={`Component group/option-item ${cursorClassName} ${opacityClassName}`}>
+    <button type="button" onClick={onClick} disabled={disabled} className={`Component ${cursorClassName} ${opacityClassName}`}>
       {Content}
     </button>
   );

@@ -8,19 +8,20 @@ import UpDownNumberText from '@/components/UpDownNumberText';
 import type { TableField } from '@/components/Table/types';
 import CoinLabel from '@/components/CoinLabel';
 import type { TooltipContext } from '@/components/Tooltip/styles';
+import LoadingRows from '../LoadingRows';
 
 type BalanceTokensTableRow = {
   id: string;
   token: JSX.Element;
   marketCap: number;
-  marketCapFormatted: string;
   price: number;
-  priceFormatted: string;
   priceChange: number;
-  priceChangeFormatted: JSX.Element;
   vol24H: number;
-  vol24HFormatted: string;
   vol24HChange: number;
+  marketCapFormatted: string | JSX.Element;
+  priceFormatted: string | JSX.Element;
+  priceChangeFormatted: JSX.Element;
+  vol24HFormatted: string | JSX.Element;
   vol24HChangeFormatted: JSX.Element;
 };
 
@@ -115,6 +116,7 @@ const BalanceTokensTable = ({ wallet, onLoaded, tooltipContext }: BalanceTokensT
         value: 'token',
         type: 'jsx',
         widthRatio: 20,
+        loaderType: 'coin_label',
       },
       {
         label: 'Price',
@@ -138,7 +140,13 @@ const BalanceTokensTable = ({ wallet, onLoaded, tooltipContext }: BalanceTokensT
   }, [isMobile]);
 
   return (
-    <Table<BalanceTokensTableRow> dSortValue="priceChange" tooltipContext={tooltipContext} rows={rows} fields={fields}>
+    <Table<BalanceTokensTableRow>
+      dSortValue="priceChange"
+      tooltipContext={tooltipContext}
+      rows={rows}
+      fields={fields}
+      isLoading={isLoading}
+    >
       <Table.FieldRow />
     </Table>
   );

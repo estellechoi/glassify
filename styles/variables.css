@@ -41,6 +41,7 @@
     --color-gray800: #3d3d3d;
     --color-gray900: #1d1d1d;
     --color-gray900-o80: rgba(29, 29, 29, 0.8);
+    --color-gray900-o35: rgba(29, 29, 29, 0.35);
     --color-gray900-o10: rgba(29, 29, 29, 0.1);
     --color-gray900-o4: rgba(29, 29, 29, 0.04);
     --color-gray900-o2: rgba(29, 29, 29, 0.02);
@@ -90,6 +91,7 @@
 :root {
     --color-primary: var(--color-gray900);
     --color-primary-o80: var(--color-gray900-o80);
+    --color-primary-o35: var(--color-gray900-o35);
     --color-primary-o0: var(--color-gray900-o0);
     --color-primary-variant-dark: var(--color-black);
     --color-primary-variant-light: var(--color-gray300);

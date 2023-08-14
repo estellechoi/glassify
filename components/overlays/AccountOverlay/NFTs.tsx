@@ -54,7 +54,10 @@ const NFTs = ({ ownedNFTs, isOwnedNFTsLoading }: NFTsProps) => {
       <LabelText size="sm" text="NFTs" className="mb-3" />
 
       {isOwnedNFTsLoading ? (
-        <LoadingRows rowsCnt={1} fontClassName="text-[80px]" />
+        <>
+          <LoadingRows color="on_primary" fontClassName="text-[5rem]" className="w-[1em]" />
+          <LoadingRows color="on_primary" fontClassName="text-[1rem]" className="w-[1em] mt-1" />
+        </>
       ) : (
         <>
           <OverlayGrid xUnitPx={32} isExpandable={isNFTsExpandable}>

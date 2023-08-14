@@ -24,6 +24,7 @@ type RowProps<T extends TableRowData> = {
   showRowClickIcon?: boolean;
   needRightSpace: boolean;
   tooltipContext: TooltipContext;
+  isLoading: boolean;
 };
 
 const Row = <T extends TableRowData>({
@@ -37,6 +38,7 @@ const Row = <T extends TableRowData>({
   showRowClickIcon = false,
   needRightSpace,
   tooltipContext,
+  isLoading,
 }: RowProps<T>) => {
   /** subjsx */
   const isSubJsxOpen = useMemo<boolean>(() => data.isSubJsxOpen ?? true, [data.isSubJsxOpen]);
@@ -87,7 +89,15 @@ const Row = <T extends TableRowData>({
         onMouseLeave={onMouseLeave}
       >
         {fields.map((field, index) => (
-          <RowCell key={field.value} colIndex={index} data={data} field={field} type={type} tooltipContext={tooltipContext} />
+          <RowCell
+            key={field.value}
+            colIndex={index}
+            data={data}
+            field={field}
+            type={type}
+            tooltipContext={tooltipContext}
+            isLoading={isLoading}
+          />
         ))}
       </div>
 

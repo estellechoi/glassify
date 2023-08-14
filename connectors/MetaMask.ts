@@ -23,9 +23,13 @@ class MetaMask extends Connector {
     this.connect = this.connect.bind(this);
     this.disconnect = this.disconnect.bind(this);
 
-    this.provider.on('disconnect', () => {
-      options?.onMissConnection?.(new Error('MetaMask disconnected'));
-    });
+    /**
+     *
+     * @description this works too often when using MetaMask mobile
+     */
+    // this.provider.on('disconnect', () => {
+    //   options?.onMissConnection?.(new Error('MetaMask disconnected'));
+    // });
   }
 
   public get chainId(): ChainId {

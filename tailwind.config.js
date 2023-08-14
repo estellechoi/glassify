@@ -10,15 +10,18 @@ module.exports = {
         num: ['"Azeret Mono"', 'monospace', ...defaultTheme.fontFamily.mono],
       },
       spacing: {
+        safe_top: 'env(safe-area-inset-top, 44px)',
+        safe_bottom: '36px',
         app_header: 'var(--size-app-header-height)',
         bottom_sheet_max_height: 'calc(100vh - var(--size-app-header-height) - 2.25rem)',
         page_bottom: '3rem',
         page_x: '6rem',
         modal_padding_x: '1.5rem',
-        modal_padding_y: '1.75rem',
+        modal_padding_y: '2.25rem',
+        modal_padding_safe_bottom: 'calc(2.25rem + 36px)',
         modal_margin_x: '2.5rem',
         modal_margin_y: '2.25rem',
-        modal_height: 'calc(100vh - 4.5rem)',
+        modal_height: 'calc(100vh - 4.75rem)',
       },
       zIndex: {
         base: 'var(--zindex-context-screen)',
@@ -74,7 +77,8 @@ module.exports = {
         primary_linear_4: 'linear-gradient(90deg, var(--color-gray900-o4) 0%, var(--color-gray900-o0) 100%)',
         secondary_linear_4: 'linear-gradient(90deg, var(--color-gray900-o4) 0%, var(--color-gray900-o0) 100%)',
         secondary_linear_2: 'linear-gradient(90deg, var(--color-gray900-o2) 0%, var(--color-gray900-o0) 100%)',
-        skeleton: 'linear-gradient(90deg, var(--color-white-o35) 0%, var(--color-white-o10) 100%)',
+        skeleton_on_primary: 'linear-gradient(90deg, var(--color-white-o35) 0%, var(--color-white-o10) 100%)',
+        skeleton_primary: 'linear-gradient(90deg, var(--color-primary-o35) 0%, var(--color-primary-o0) 100%)',
         primary_right_to_left:
           'linear-gradient(90deg, var(--color-primary-o0) 0%, var(--color-primary) 90% , var(--color-primary) 100%)',
         primary_inverted_right_to_left:
@@ -92,6 +96,9 @@ module.exports = {
       },
       transitionProperty: {
         filter: 'filter',
+      },
+      transitionTimingFunction: {
+        momentum: 'cubic-bezier(0.73, 0, 0, 1)',
       },
       keyframes: {
         fast_in_y: {

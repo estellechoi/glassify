@@ -28,6 +28,7 @@ type TableProps<T extends TableRowData> = {
   noDataLabel?: string;
   rowsScrollHeight?: string;
   tooltipContext: TooltipContext;
+  isLoading?: boolean;
 };
 
 /**
@@ -51,6 +52,7 @@ const TableContainer = <T extends TableRowData>({
   noDataLabel = TEXTS.NO_DATA,
   rowsScrollHeight,
   tooltipContext,
+  isLoading = false,
 }: TableProps<T>) => {
   /** @summary sorting & filtering */
   const { sortedRows, isAsc, sortValue, sortBy } = useSortedRows({
@@ -123,6 +125,7 @@ const TableContainer = <T extends TableRowData>({
             onToggleFoldableOnMobile={onToggleFoldableOnMobile}
             needRightSpace={needRightSpace}
             tooltipContext={tooltipContext}
+            isLoading={isLoading}
           />
         ))}
 

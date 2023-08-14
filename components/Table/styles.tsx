@@ -1,4 +1,6 @@
-import type { TableCellAlign, TableField, TableStyle } from './types';
+import { ElementType } from 'react';
+import type { TableCellAlign, TableCellLoaderType, TableField, TableRowData, TableStyle } from './types';
+import LoadingRows from '@/components/LoadingRows';
 
 /** grid */
 export const TABLE_BG_COLOR_DICT: Record<TableStyle, string> = {
@@ -99,14 +101,20 @@ export const TABLE_EXPAND_ICON_GRID_X: Record<TableStyle, string> = {
   primary: 'px-1 md:px-2',
 };
 
+export const TABLE_CELL_LOADER_DICT: Record<TableCellLoaderType, ElementType> = {
+  span: LoadingRows,
+  grid: LoadingRows,
+  coin_label: LoadingRows,
+};
+
 /** style generators */
-export const getTableCellAlignClassName = <T>(field: TableField<T>, type: TableStyle) => {
+export const getTableCellAlignClassName = <T extends TableRowData>(field: TableField<T>, type: TableStyle) => {
   return `${TABLE_CELL_ALIGN_DICT[type][field.align ?? 'left']} ${
     field.widthPx !== undefined || field.widthRatio !== undefined ? 'grow-0 shrink-0' : 'grow shrink'
   } ${field.widthPx !== undefined ? 'truncate' : ''}`;
 };
 
-export const getTableCellWidthStyle = <T>(field: TableField<T>) => {
+export const getTableCellWidthStyle = <T extends TableRowData>(field: TableField<T>) => {
   return {
     flexBasis:
       field.widthPx !== undefined

@@ -1,6 +1,10 @@
+import type { LoaderStyle } from '@/components/LoadingRows/styles';
+
+export type TableStyle = 'primary';
 export type TableDataType = 'number' | 'jsx';
 export type TableSortType = 'bignumber' | 'number' | 'string';
 export type TableCellAlign = 'left' | 'right' | 'center';
+export type TableCellLoaderType = LoaderStyle;
 
 /** row */
 export type TableRowData = {
@@ -32,6 +36,7 @@ export type TableFieldBase<T> = {
   foldableOnMobile?: boolean;
   hide?: boolean;
   generateClassName?: (data: T) => string;
+  loaderType?: TableCellLoaderType;
 };
 
 export interface TableFieldNumber<T> extends TableFieldBase<T> {
@@ -43,5 +48,3 @@ export interface TableFieldJsx<T> extends TableFieldBase<T> {
 }
 
 export type TableField<T> = TableFieldNumber<T> | TableFieldJsx<T>;
-
-export type TableStyle = 'primary';

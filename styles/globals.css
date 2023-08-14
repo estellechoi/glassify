@@ -180,7 +180,7 @@
 
      /* padding */
      .Padding_modal {
-        @apply px-modal_padding_x py-modal_padding_y;
+        @apply px-modal_padding_x pt-modal_padding_y pb-modal_padding_safe_bottom md:pb-modal_padding_y;
      }
 
      /* elevation */
@@ -213,8 +213,12 @@
      }
 
     /* background effect */
-    .Bg_skeleton {
-        @apply bg-skeleton bg-no-repeat;
+    .Bg_skeleton_on_primary {
+        @apply bg-skeleton_on_primary bg-no-repeat;
+    }
+
+    .Bg_skeleton_primary {
+        @apply bg-skeleton_primary bg-no-repeat;
     }
 
     .Bg_glass {
@@ -230,6 +234,10 @@
     }
 
      /* transition */
+     .Transition_momentum {
+        @apply ease-momentum duration-[800ms];
+     }
+
      .Transition_500 {
         @apply duration-500 ease-[cubic-bezier(.19,1,.22,1)];
      }
