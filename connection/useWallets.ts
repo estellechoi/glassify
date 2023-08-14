@@ -1,5 +1,5 @@
 import METAMASK_LOGO_URL from '@/resources/images/wallet_metamask.svg';
-import UNISWAP_WALLET_LOGO_URL from '@/resources/images/wallet_uniswap.svg';
+import UNISWAP_WALLET_LOGO from '@/resources/images/wallet_uniswap.png';
 import { initializeUniswapWallet } from '@/connection/uniswapWallet';
 import { initializeMetamask } from '@/connection/metamask';
 import type { Wallet } from '@/types/wallet';
@@ -25,11 +25,12 @@ const useWallets = (): readonly Wallet[] => {
   const uniswapWallet: Wallet = {
     type: 'uniswap',
     name: 'Uniswap Wallet',
-    logoURL: UNISWAP_WALLET_LOGO_URL,
+    logoURL: UNISWAP_WALLET_LOGO.src,
     getConnector: () => initializeUniswapWallet({ onError: deleteUserWallet }),
     onNoConnector: () => {
       alert('Uniswap Wallet support is coming soon!');
     },
+    isComing: true,
   };
 
   return [metamask, uniswapWallet];

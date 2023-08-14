@@ -8,6 +8,7 @@ export type Wallet = Readonly<{
   logoURL: string;
   getConnector: () => Promise<Connector | null>;
   onNoConnector: () => void;
+  isComing?: boolean;
 }>;
 
 export type ConnectedWallet = Readonly<

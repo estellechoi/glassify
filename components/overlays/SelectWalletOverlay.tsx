@@ -51,6 +51,8 @@ const SelectWalletOverlay = (props: SelectWalletOverlayProps) => {
           <OptionItem
             imgURL={wallet.logoURL}
             label={wallet.name}
+            trailingTag={wallet.isComing ? { size: 'sm', label: 'Soon' } : undefined}
+            disabled={wallet.isComing}
             onClick={() => onClickConnect(wallet)}
             isProcessing={connectingWallet?.type === wallet.type}
           />

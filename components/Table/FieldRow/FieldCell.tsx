@@ -56,7 +56,7 @@ const FieldCell = <T extends TableRowData>({
         </Tooltip>
       </div>
 
-      {isSortingField && <Icon type={isAsc ? 'arrow_up' : 'arrow_down'} size="md" className="text-secondary" />}
+      {isSortingField && <Icon type={isAsc ? 'arrow_up' : 'arrow_down'} size="md" className="text-primary_variant_dark" />}
     </div>
   );
 };
