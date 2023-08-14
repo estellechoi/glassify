@@ -9,7 +9,7 @@ import {
   type AddEthereumChainParameter,
 } from '@/connectors/types';
 
-type MetaMastParamOptions = { onError?: (error: Error) => void };
+type MetaMastParamOptions = { onError?: (error: Error) => void; onMissConnection?: (error: Error) => void };
 
 class MetaMask extends Connector {
   public provider: MetaMaskEthereumProvider | MetaMaskSDKProvider;
@@ -24,7 +24,7 @@ class MetaMask extends Connector {
     this.disconnect = this.disconnect.bind(this);
 
     this.provider.on('disconnect', () => {
-      this.onError?.(new Error('MetaMask disconnected'));
+      options?.onMissConnection?.(new Error('MetaMask disconnected'));
     });
   }
 

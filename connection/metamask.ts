@@ -1,14 +1,19 @@
 import MetaMask from '@/connectors/MetaMask';
 import detectEthereumProvider from '@metamask/detect-provider';
 import MetaMaskSDK, { CommunicationLayerPreference, type MetaMaskSDKOptions } from '@metamask/sdk';
-import type { MetaMaskEthereumProvider } from '@/connectors/types';
 import { IS_DEV } from '@/constants/app';
+import type { MetaMaskEthereumProvider } from '@/connectors/types';
+
+type InitializeMetaMaskOptions = {
+  onError?: () => void;
+  onMissConnection?: () => void;
+};
 
 /**
  *
  * @description recommend to use this funciton to initialize MetaMask on desktop as fallback
  */
-const initializeMetamaskFromSDK = async (options?: { onError?: () => void }): Promise<MetaMask | null> => {
+const initializeMetamaskFromSDK = async (options?: InitializeMetaMaskOptions): Promise<MetaMask | null> => {
   try {
     const SDK_OPTIONS: MetaMaskSDKOptions = {
       logging: { developerMode: IS_DEV },
@@ -41,6 +46,7 @@ const initializeMetamaskFromSDK = async (options?: { onError?: () => void }): Pr
             metamaskSDK.terminate();
             options?.onError?.();
           },
+          onMissConnection: options?.onMissConnection,
         })
       : null;
     // return null;
@@ -56,8 +62,10 @@ const initializeMetamaskFromSDK = async (options?: { onError?: () => void }): Pr
  * @see https://docs.metamask.io/wallet/reference/sdk-js-options/
  * @see https://docs.metamask.io/wallet/how-to/use-sdk/javascript/react/
  */
-export const initializeMetamask = async (options?: { onError?: () => void }): Promise<MetaMask | null> => {
+export const initializeMetamask = async (options?: InitializeMetaMaskOptions): Promise<MetaMask | null> => {
   const provider: MetaMaskEthereumProvider | null = await detectEthereumProvider();
   // try using the SDK when the provider is not detected from browser
-  return provider?.isMetaMask ? new MetaMask(provider, { onError: options?.onError }) : initializeMetamaskFromSDK(options);
+  return provider?.isMetaMask
+    ? new MetaMask(provider, { onError: options?.onError, onMissConnection: options?.onMissConnection })
+    : initializeMetamaskFromSDK(options);
 };
