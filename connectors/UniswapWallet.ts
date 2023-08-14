@@ -9,8 +9,8 @@ class UniswapWallet extends Connector {
     return ChainId.ETHEREUM;
   }
 
-  public async connect(): Promise<undefined> {
-    return undefined;
+  public async connect(): Promise<null> {
+    return null;
   }
 
   public async disconnect(): Promise<void> {}

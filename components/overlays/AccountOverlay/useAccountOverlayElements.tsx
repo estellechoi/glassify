@@ -2,7 +2,6 @@ import AccountAddress from '@/components/AccountAddress';
 import type { OverlayProps } from '@/components/types';
 import useBalance from '@/hooks/useBalance';
 import useOwnedNFTs from '@/hooks/useOwnedNFTs';
-import useUserAgent from '@/hooks/useUserAgent';
 import type { ConnectedWallet } from '@/types/wallet';
 import { formatUSD } from '@/utils/number';
 import { useMemo } from 'react';
@@ -13,11 +12,11 @@ import Button from '@/components/Button';
 
 export type AccountOverlayProps = Omit<OverlayProps, 'ariaLabel'> & {
   wallet: ConnectedWallet;
-  onDisconnect?: () => void;
+  onWillDisconnect?: () => void;
 };
 
 const useAccountOverlayElements = (props: AccountOverlayProps) => {
-  const { wallet, onDisconnect } = props;
+  const { wallet, onWillDisconnect } = props;
 
   const { balance, isLoading: isBalanceLoading } = useBalance(wallet);
   const { ownedNFTs, isLoading: isOwnedNFTsLoading } = useOwnedNFTs(wallet);
@@ -34,7 +33,14 @@ const useAccountOverlayElements = (props: AccountOverlayProps) => {
   );
 
   const DisconnectButton = (
-    <Button iconType="disconnect" label="Disconnect" type="outline" color="primary_inverted" size="sm" onClick={onDisconnect} />
+    <Button
+      iconType="disconnect"
+      label="Disconnect"
+      type="outline"
+      color="primary_inverted"
+      size="sm"
+      onClick={onWillDisconnect}
+    />
   );
 
   return { Content, DisconnectButton };

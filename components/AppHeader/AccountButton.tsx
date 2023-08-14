@@ -31,7 +31,7 @@ const AccountButton = () => {
           {...props}
           id={accountModal.id}
           wallet={userWallet}
-          onDisconnect={() => {
+          onWillDisconnect={() => {
             userWallet?.connector?.disconnect();
             setUserWallet(null);
             props.onClose();

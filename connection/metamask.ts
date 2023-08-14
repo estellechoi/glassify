@@ -8,13 +8,13 @@ import { IS_DEV } from '@/constants/app';
  *
  * @description recommend to use this funciton to initialize MetaMask on desktop as fallback
  */
-const initializeMetamaskFromSDK = async (): Promise<MetaMask | undefined> => {
+const initializeMetamaskFromSDK = async (options?: { onError?: () => void }): Promise<MetaMask | null> => {
   try {
     const SDK_OPTIONS: MetaMaskSDKOptions = {
       logging: { developerMode: IS_DEV },
       dappMetadata: {
         name: 'Paper',
-        url: 'https://paper-vert.vercel.app',
+        // url: 'https://paper-vert.vercel.app',
       },
       communicationLayerPreference: CommunicationLayerPreference.SOCKET,
       preferDesktop: false,
@@ -30,10 +30,23 @@ const initializeMetamaskFromSDK = async (): Promise<MetaMask | undefined> => {
      */
     await metamaskSDK.init();
 
-    return new MetaMask(metamaskSDK.activeProvider ?? metamaskSDK.getProvider());
+    /**
+     *
+     * @todo handle the case user dismisses sdk modal.
+     */
+    const provider = metamaskSDK.activeProvider ?? metamaskSDK.getProvider();
+    return provider.isMetaMask
+      ? new MetaMask(provider, {
+          onError: () => {
+            metamaskSDK.terminate();
+            options?.onError?.();
+          },
+        })
+      : null;
+    // return null;
   } catch (e: unknown) {
     console.log('MetaMask initialization failed', e);
-    return undefined;
+    return null;
   }
 };
 
@@ -43,8 +56,8 @@ const initializeMetamaskFromSDK = async (): Promise<MetaMask | undefined> => {
  * @see https://docs.metamask.io/wallet/reference/sdk-js-options/
  * @see https://docs.metamask.io/wallet/how-to/use-sdk/javascript/react/
  */
-export const initializeMetamask = async (): Promise<MetaMask | undefined> => {
+export const initializeMetamask = async (options?: { onError?: () => void }): Promise<MetaMask | null> => {
   const provider: MetaMaskEthereumProvider | null = await detectEthereumProvider();
   // try using the SDK when the provider is not detected from browser
-  return provider ? new MetaMask(provider) : initializeMetamaskFromSDK();
+  return provider?.isMetaMask ? new MetaMask(provider, { onError: options?.onError }) : initializeMetamaskFromSDK(options);
 };

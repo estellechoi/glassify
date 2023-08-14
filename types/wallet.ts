@@ -6,7 +6,7 @@ export type Wallet = Readonly<{
   type: WalletType;
   name: string;
   logoURL: string;
-  getConnector: () => Promise<Connector | undefined>;
+  getConnector: () => Promise<Connector | null>;
   onNoConnector: () => void;
 }>;
 

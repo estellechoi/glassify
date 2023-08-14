@@ -77,7 +77,7 @@ export abstract class Connector {
   }
 
   public abstract get chainId(): ChainId;
-  public abstract connect(...args: unknown[]): Promise<EthAccount | undefined>;
+  public abstract connect(...args: unknown[]): Promise<EthAccount | null>;
   public abstract disconnect(...args: unknown[]): Promise<void>;
 }
 

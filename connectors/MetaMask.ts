@@ -23,10 +23,9 @@ class MetaMask extends Connector {
     this.connect = this.connect.bind(this);
     this.disconnect = this.disconnect.bind(this);
 
-    if (onError)
-      this.provider.on('disconnect', () => {
-        this.onError?.(new Error('MetaMask disconnected'));
-      });
+    this.provider.on('disconnect', () => {
+      this.onError?.(new Error('MetaMask disconnected'));
+    });
   }
 
   public get chainId(): ChainId {
@@ -34,13 +33,13 @@ class MetaMask extends Connector {
     return Number.parseInt(providerChainId, 16);
   }
 
-  public async connect(chainIdOrChainParams?: ChainId | AddEthereumChainParameter): Promise<EthAccount | undefined> {
+  public async connect(chainIdOrChainParams?: ChainId | AddEthereumChainParameter): Promise<EthAccount | null> {
     const addresses: readonly EthAddress[] = (await this.provider.request({ method: 'eth_requestAccounts' })) as EthAddress[];
     const address: EthAddress | undefined = addresses[0];
 
     if (!address) {
       this.onError?.(new Error('No accounts returned'));
-      return undefined;
+      return null;
     }
 
     const detectedChainId = Number.parseInt((await this.provider.request({ method: 'eth_chainId' })) as string, 16);
@@ -74,11 +73,11 @@ class MetaMask extends Connector {
         }
 
         this.onError?.(error);
-        return undefined;
+        return null;
       })
       .then(() => this.connect(desiredChainId));
 
-    return undefined;
+    return null;
   }
 
   public async disconnect(): Promise<void> {
