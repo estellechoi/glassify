@@ -1,7 +1,7 @@
 import AppLogo from '@/components/AppLogo';
 import dynamic from 'next/dynamic';
 
-const AccountButton = dynamic(() => import('@/components/AppHeader/AccountButton'), {
+const AccountButton = dynamic(() => import('@/components/buttons/AccountButton'), {
   ssr: false,
 });
 

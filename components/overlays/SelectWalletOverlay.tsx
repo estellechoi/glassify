@@ -9,9 +9,11 @@ import useProcessing from '@/hooks/useProcessing';
 import useUserAgent from '@/hooks/useUserAgent';
 import BottomSheet from '../BottomSheet';
 
+export type OnConnect = (args: { wallet: Wallet; account: EthAccount; connector: Connector }) => void;
+
 type SelectWalletOverlayProps = Omit<AnimatedModalProps, 'ariaLabel'> & {
   wallets: readonly Wallet[];
-  onConnect: ({ wallet, account, connector }: { wallet: Wallet; account: EthAccount; connector: Connector }) => void;
+  onConnect: OnConnect;
 };
 
 const SelectWalletOverlay = (props: SelectWalletOverlayProps) => {

@@ -1,5 +1,5 @@
 import { type RefObject, useCallback, useState } from 'react';
-import useTouchDraggableRef from '@/components/hooks/useTouchDrag';
+import useTouchDraggableRef from '@/components/hooks/useTouchDraggableRef';
 
 const useBottomSheetTouchDrag = ({ onDragEnd }: { onDragEnd: () => void }) => {
   const [dismissingDragY] = useState<number | undefined>(() => (window?.innerHeight ? window.innerHeight * 0.36 : undefined));

@@ -9,6 +9,13 @@ module.exports = {
         primary: ['Poppins', ...defaultTheme.fontFamily.sans],
         num: ['"Azeret Mono"', 'monospace', ...defaultTheme.fontFamily.mono],
       },
+      borderRadius: {
+        button: '9999px',
+        icon: '9999px',
+        tag: '9999px',
+        card: '1rem',
+        row: 'md',
+      },
       spacing: {
         safe_top: 'env(safe-area-inset-top, 44px)',
         safe_bottom: '36px',

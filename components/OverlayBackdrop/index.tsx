@@ -8,10 +8,9 @@ type OverlayBackdropProps = {
   color?: OverlayBackdropColor;
   isOpen?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement>;
-  lockScroll?: boolean;
 };
 
-const OverlayBackdrop = ({ children, color = 'glass', isOpen = false, onClick, lockScroll = true }: OverlayBackdropProps) => {
+const OverlayBackdrop = ({ children, color = 'glass', isOpen = false, onClick }: OverlayBackdropProps) => {
   const className = useOverlayBackdropClassNames(color, isOpen);
   const props = {
     'aria-hidden': !isOpen,
@@ -29,7 +28,7 @@ const OverlayBackdrop = ({ children, color = 'glass', isOpen = false, onClick, l
   // lock scroll when overlay is open
   const buttonRef = useRef<HTMLButtonElement>(null);
   const divRef = useRef<HTMLDivElement>(null);
-  useScrollLock(isOpen && lockScroll, buttonRef?.current ?? divRef?.current);
+  useScrollLock(isOpen, buttonRef?.current ?? divRef?.current);
 
   return onClick ? (
     <button type="button" ref={buttonRef} {...props} onClick={handleClick}>

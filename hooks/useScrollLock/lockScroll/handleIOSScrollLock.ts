@@ -1,5 +1,5 @@
-import { getDisposables } from './getDisposables';
-import type { ScrollLockStep } from './types';
+import { getDisposables } from '../getDisposables';
+import type { ScrollLockStep } from '../types';
 
 interface Options {
   escapedElement?: HTMLElement | null;

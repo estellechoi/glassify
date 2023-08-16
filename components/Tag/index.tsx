@@ -23,7 +23,7 @@ const Tag = ({ color = 'secondary', size, label }: TagProps) => {
   const colorClassName = COLOR_CLASS_DICS[color];
   const paddingClassName = SIZE_CLASS_DICS[size];
   const fontClassName = FONT_CLASS_DICS[size];
-  const radiusClassName = 'rounded-full';
+  const radiusClassName = 'rounded-tag';
 
   return <span className={`${colorClassName} ${paddingClassName} ${fontClassName} ${radiusClassName}`}>{label}</span>;
 };

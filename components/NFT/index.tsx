@@ -31,7 +31,7 @@ const NFT = ({ thumbnailURL, mediaFormat, name = 'NFT', size = 'md', caption, on
       onMouseOver={onMouseEnter}
     >
       <div
-        className={`group/nft bg-primary border-2 border-white rounded-2xl overflow-hidden ${imgSize.className} ${
+        className={`group/nft bg-primary border-2 border-white rounded-card overflow-hidden ${imgSize.className} ${
           thumbnailURL ? '' : 'animate-pulse'
         }`}
       >

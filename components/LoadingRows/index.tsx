@@ -37,7 +37,7 @@ export default function LoadingRows({
     () => <span className={`grow-0 shrink-0 w-[1em] h-[1em] rounded-full ${bgClassName} mr-1.5`}></span>,
     [bgClassName]
   );
-  const RowSkeleton = useMemo(() => <span className={`grow basis-full rounded-md ${bgClassName}`}></span>, [bgClassName]);
+  const RowSkeleton = useMemo(() => <span className={`grow basis-full rounded-row ${bgClassName}`}></span>, [bgClassName]);
 
   return (
     <span className={`relative animate-pulse min-w-[50%] grid grid-cols-3 gap-x-[0.5em] gap-y-[0.8em] ${className}`}>

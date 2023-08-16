@@ -58,7 +58,7 @@ const ButtonLeadingIcon = ({ type, color, size, iconType, disabled }: ButtonLead
   const iconSize = ICON_SIZE_CLASS_DICT[size];
 
   return (
-    <span className={`relative rounded-full transition-all Transition_500 ${iconPaddingClassName} ${iconColorClassName}`}>
+    <span className={`relative rounded-icon transition-all Transition_500 ${iconPaddingClassName} ${iconColorClassName}`}>
       <Icon
         type={iconType}
         size={iconSize}
@@ -67,7 +67,7 @@ const ButtonLeadingIcon = ({ type, color, size, iconType, disabled }: ButtonLead
 
       <span
         aria-hidden
-        className={`absolute inset-0.5 flex items-center justify-center rounded-full Transition_500 transition-all origin-center scale-0 translate-x-4 opacity-0 group-enabled/button:group-hover/button:scale-100 group-hover/button:translate-x-0 group-hover/button:opacity-100 ${iconInvertColorClassName}`}
+        className={`absolute inset-0.5 flex items-center justify-center rounded-icon Transition_500 transition-all origin-center scale-0 translate-x-4 opacity-0 group-enabled/button:group-hover/button:scale-100 group-hover/button:translate-x-0 group-hover/button:opacity-100 ${iconInvertColorClassName}`}
       >
         <Icon
           type={iconType}

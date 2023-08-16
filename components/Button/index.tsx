@@ -12,7 +12,7 @@ import type { ButtonColor, ButtonSize, ButtonStatus, ButtonType } from './types'
 import type { IconType } from '@/components/Icon';
 import WaitingSymbol from '../WaitingSymbol';
 
-type ButtonProps = Readonly<
+export type ButtonProps = Readonly<
   {
     iconType: IconType;
     label: string;
@@ -53,7 +53,7 @@ const Button = ({
       type="button"
       disabled={disabled}
       onClick={onClick}
-      className={`Component group/button w-fit inline-flex justify-between items-center rounded-full transition-transform Transition_500 enabled:hover:scale-110 ${heightClassName} ${paddingClassName} ${cursorClassName} ${colorClassName} ${className}`}
+      className={`Component group/button w-fit inline-flex justify-between items-center rounded-button transition-transform Transition_500 enabled:hover:scale-110 ${heightClassName} ${paddingClassName} ${cursorClassName} ${colorClassName} ${className}`}
       {...intrinsicProps}
     >
       <ButtonLeadingIcon type={type} color={color} size={size} iconType={iconType} disabled={disabled} />

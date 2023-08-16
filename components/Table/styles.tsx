@@ -7,11 +7,6 @@ export const TABLE_BG_COLOR_DICT: Record<TableStyle, string> = {
   primary: '',
 };
 
-// export const TABLE_CONTAINER_BORDER_DICT: Record<TableStyle, string> = {
-//   primary: 'rounded-2xl',
-//   border-outline_soft border rounded-2xl md:border-0 md:border-b md:last:border-b-0 md:rounded-none
-// };
-
 export const TABLE_SPACE_Y_DICT: Record<TableStyle, string> = {
   primary: 'flex flex-col gap-y-4 md:block md:space-y-0',
 };
