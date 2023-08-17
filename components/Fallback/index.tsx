@@ -1,4 +1,4 @@
-import Layout from '@/components/Layout';
+import Layout from '@/components/Main';
 import type { FallbackProps } from '@/components/ErrorBoundary/types';
 
 const Fallback = ({ error, resetErrorBoundary }: FallbackProps) => {

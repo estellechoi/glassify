@@ -1,5 +1,7 @@
-import AppLogo from '@/components/AppLogo';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
+import AppLogo from '@/components/AppLogo';
+import useAppHeaderClassName from './useAppHeaderClassName';
 
 const AccountButton = dynamic(() => import('@/components/buttons/AccountButton'), {
   ssr: false,
@@ -8,9 +10,14 @@ const AccountButton = dynamic(() => import('@/components/buttons/AccountButton')
 type AppHeaderProps = { className?: string };
 
 const AppHeader = ({ className = '' }: AppHeaderProps) => {
+  const defaultClassName = useAppHeaderClassName();
+
   return (
-    <header className={`h-app_header flex items-center justify-between px-8 py-9 ${className}`}>
-      <AppLogo size="lg" color="dark" />
+    <header className={`${defaultClassName} ${className}`}>
+      <Link href="/">
+        <AppLogo size="lg" color="dark" />
+      </Link>
+
       <AccountButton />
     </header>
   );

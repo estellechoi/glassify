@@ -12,6 +12,7 @@ import AppHeader from '@/components/AppHeader';
 import { ModalProvider } from '@/hooks/useModal/ModalProvider';
 import useSetupTokens from '@/hooks/useSetupTokens';
 import dynamic from 'next/dynamic';
+import AppFooter from '@/components/AppFooter';
 
 const UserAgentDetector = dynamic(() => import('@/components/UserAgentDetector'), { ssr: false });
 
@@ -83,6 +84,7 @@ function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: DehydratedS
               <ModalProvider>
                 <AppHeader className="fixed top-0 left-0 right-0 z-navigation" />
                 <Component {...pageProps} />
+                <AppFooter />
               </ModalProvider>
             </Hydrate>
           </QueryClientProvider>

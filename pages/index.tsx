@@ -1,12 +1,11 @@
 import type { NextPage } from 'next';
 import dynamic from 'next/dynamic';
 import { useAtom } from 'jotai';
-import Layout from '@/components/Layout';
+import Main from '@/components/Main';
 import AppHeadline from '@/components/AppHeadline';
 import { userWalletAtom } from '@/store/states';
 import { useCallback, useMemo, useState } from 'react';
 import BalanceTokensCard from '@/components/cards/BalanceTokensCard';
-import AppFooter from '@/components/AppFooter';
 
 const AsciiGlobe = dynamic(() => import('@/components/AsciiGlobe'), {
   ssr: false,
@@ -43,7 +42,7 @@ const Home: NextPage = () => {
         onAnimationEnd={onAppHeadlineAnimationEnd}
       />
 
-      <Layout>
+      <Main>
         {userWallet && (
           <BalanceTokensCard
             wallet={userWallet}
@@ -52,9 +51,7 @@ const Home: NextPage = () => {
             className="md:mx-page_x md:mb-page_bottom"
           />
         )}
-      </Layout>
-
-      <AppFooter />
+      </Main>
     </>
   );
 };

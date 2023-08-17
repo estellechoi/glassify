@@ -187,6 +187,10 @@
         @apply px-modal_padding_x pt-modal_padding_y pb-modal_padding_safe_bottom md:pb-modal_padding_y;
      }
 
+     .Padding_page {
+        @apply px-page_x_mobile pt-page_top pb-page_padding_safe_bottom md:px-page_x md:pb-page_bottom;
+     }
+
      /* elevation */
      .Elevation_1 {
         @apply drop-shadow-sm;
@@ -229,7 +233,7 @@
         @apply bg-glass backdrop-blur-2xl;
     }
 
-    .Bg_glass_transparent {
+    .Bg_glass_thin {
         @apply bg-glass backdrop-blur-md;
     }
 
