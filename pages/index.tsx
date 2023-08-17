@@ -33,8 +33,6 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <AppWallPaper show={!userWallet} />
-
       <AsciiGlobe />
 
       <AppHeadline
@@ -42,7 +40,7 @@ const Home: NextPage = () => {
         onAnimationEnd={onAppHeadlineAnimationEnd}
       />
 
-      <Main>
+      <Main className="min-h-screen">
         {userWallet && (
           <BalanceTokensCard
             wallet={userWallet}

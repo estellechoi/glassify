@@ -18,7 +18,7 @@ const TermsAndPolicyButton = () => {
   return (
     <Button
       type="text"
-      color="primary_inverted"
+      color="on_primary"
       size="xs"
       label="Terms & Policy"
       aria-expanded={termsAndPolicyModal.isOpen}

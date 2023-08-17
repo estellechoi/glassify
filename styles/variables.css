@@ -95,6 +95,7 @@
     --color-primary-o0: var(--color-gray900-o0);
     --color-primary-variant-dark: var(--color-black);
     --color-primary-variant-light: var(--color-gray300);
+    --color-primary-variant-soft: var(--color-gray500);
 }
 
 :root {

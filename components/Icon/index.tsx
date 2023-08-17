@@ -19,7 +19,9 @@ import {
   MdNorthEast,
   MdArrowForward,
   MdArrowBack,
+  MdEmail,
 } from 'react-icons/md';
+import { FaGithub } from 'react-icons/fa';
 
 export type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 export type IconType =
@@ -44,7 +46,9 @@ export type IconType =
   | 'expand_more'
   | 'expand_less'
   | 'increase'
-  | 'decrease';
+  | 'decrease'
+  | 'email'
+  | 'github';
 
 const ICON_SIZE_CLASS_DICT: Record<IconSize, string> = {
   xs: 'w-2 h-2',
@@ -77,6 +81,8 @@ const ICON_DICT: Record<IconType, React.ElementType> = {
   expand_less: MdExpandLess,
   increase: MdArrowDropUp,
   decrease: MdArrowDropDown,
+  email: MdEmail,
+  github: FaGithub,
 };
 
 type IconProps = {

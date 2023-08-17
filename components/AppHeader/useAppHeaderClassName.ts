@@ -8,7 +8,7 @@ const useAppHeaderClassName = () => {
     () => `transition-[backdrop-filter,background-color] ${isYScrolled ? 'Bg_glass_thin' : ''}`,
     [isYScrolled]
   );
-  const gridClassName = 'h-app_header flex items-center justify-between px-8';
+  const gridClassName = 'Component h-app_header_height flex items-center justify-between px-app_header_padding_x';
 
   return `${gridClassName} ${bgClassName}`;
 };

@@ -33,14 +33,7 @@ const useAccountOverlayElements = (props: AccountOverlayProps) => {
   );
 
   const DisconnectButton = (
-    <Button
-      iconType="disconnect"
-      label="Disconnect"
-      type="outline"
-      color="primary_inverted"
-      size="sm"
-      onClick={onWillDisconnect}
-    />
+    <Button iconType="disconnect" label="Disconnect" type="outline" color="on_primary" size="sm" onClick={onWillDisconnect} />
   );
 
   return { Content, DisconnectButton };

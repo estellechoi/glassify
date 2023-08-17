@@ -10,15 +10,12 @@ type AppWallPaperProps = {
  * @description Next.js Image component is preferred to CSS background image because of performance.
  */
 const AppWallPaper = ({ show }: AppWallPaperProps) => {
-  const visibilityClassName = show ? 'Filter_darken opacity-0' : 'opacity-40';
+  const visibilityClassName = show ? 'opacity-40' : 'Filter_darken opacity-0';
   const visibilityTransitionClassName = `transition-[filter,opacity] Transition_3000 ${visibilityClassName}`;
 
   return (
-    <div
-      aria-hidden
-      className={`Component fixed z-base inset-0 w-screen h-screen pointer-events-none ${visibilityTransitionClassName}`}
-    >
-      <Image fill src={AppGradientImgURL} alt="app background" className="text-[0] text-transparent" />
+    <div className={`Component fixed z-wall inset-0 w-screen h-screen pointer-events-none ${visibilityTransitionClassName}`}>
+      <Image fill src={AppGradientImgURL} alt="yellowish gradient background" className="text-[0] text-transparent" />
     </div>
   );
 };

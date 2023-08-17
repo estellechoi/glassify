@@ -20,7 +20,9 @@ module.exports = {
       spacing: {
         safe_top: 'env(safe-area-inset-top, 44px)',
         safe_bottom: '36px',
-        app_header: 'var(--size-app-header-height)',
+        app_header_height: 'var(--size-app-header-height)',
+        app_header_padding_x: '2rem',
+        app_header_padding_y: '2.75rem',
         bottom_sheet_max_height: 'calc(100vh - var(--size-app-header-height) - 2.25rem)',
         page_bottom: '6rem',
         page_top: 'calc(var(--size-app-header-height) + 2.25rem)',
@@ -40,6 +42,7 @@ module.exports = {
       },
       zIndex: {
         base: 'var(--zindex-context-screen)',
+        wall: 'calc(var(--zindex-context-screen) - 1)',
         overlay: 'var(--zindex-context-elevated)',
         navigation: 'var(--zindex-context-navigation)',
         top_context: 'var(--zindex-context-off_canvas)',
@@ -70,9 +73,11 @@ module.exports = {
         primary_hover: 'var(--color-primary-o80)',
         primary_variant_dark: 'var(--color-primary-variant-dark)',
         primary_variant_light: 'var(--color-primary-variant-light)',
-        primary_line: 'var(--color-primary-variant-light)',
+        primary_line_light: 'var(--color-primary-variant-light)',
+        primary_line_dark: 'var(--color-primary-variant-soft)',
         secondary: 'var(--color-scarlet600)',
         secondary_hover: 'var(--color-scarlet600-o80)',
+        secondary_line: 'var(--color-scarlet300)',
         glass: 'var(--color-sky400-o10)',
         ground: 'var(--color-ground)',
         ground_o: 'var(--color-ground-o10)',
@@ -80,11 +85,12 @@ module.exports = {
         ground_dark_o: 'var(--color-gray900-o10)',
         body: 'var(--color-black)',
         caption: 'var(--color-gray400)',
-        caption_dark: 'var(--color-gray800)',
+        caption_dark: 'var(--color-gray600)',
         /* semantic colors */
         disabled: 'var(--color-gray300)',
         semantic_bull: 'var(--color-green400)',
         semantic_bear: 'var(--color-red400)',
+        semantic_danger: 'var(--color-red400)',
       },
       backgroundImage: {
         // app_gradient:

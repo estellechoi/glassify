@@ -17,15 +17,18 @@ export type TagProps = {
   color?: TagColor;
   size: TagSize;
   label: string;
+  className?: string;
 };
 
-const Tag = ({ color = 'secondary', size, label }: TagProps) => {
+const Tag = ({ color = 'secondary', size, label, className = '' }: TagProps) => {
   const colorClassName = COLOR_CLASS_DICS[color];
   const paddingClassName = SIZE_CLASS_DICS[size];
   const fontClassName = FONT_CLASS_DICS[size];
   const radiusClassName = 'rounded-tag';
 
-  return <span className={`${colorClassName} ${paddingClassName} ${fontClassName} ${radiusClassName}`}>{label}</span>;
+  return (
+    <span className={`${colorClassName} ${paddingClassName} ${fontClassName} ${radiusClassName} ${className}`}>{label}</span>
+  );
 };
 
 export default Tag;

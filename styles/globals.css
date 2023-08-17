@@ -1,3 +1,4 @@
+@import './reset.css';
 @import './fonts.css';
 @import './variables.css';
 @import './tippy.css';
@@ -70,15 +71,15 @@
 
     /* typography - title */
     .Font_title_xs {
-        @apply text-base leading-6 font-semibold;
+        @apply text-base leading-tight font-semibold;
     }
 
     .Font_title_sm {
-        @apply text-lg leading-7 font-semibold;
+        @apply text-lg leading-tight font-semibold;
     }
 
     .Font_title_md {
-        @apply text-xl leading-8 font-semibold;
+        @apply text-xl leading-tight font-semibold;
     }
     
     /* typography - button */
@@ -167,19 +168,19 @@
 
     /* typography - caption */
     .Font_caption_xs {
-        @apply text-xs leading-6 font-normal;
+        @apply text-xs leading-snug font-normal;
     }
     
     .Font_caption_sm {
-        @apply text-sm leading-6 font-normal;
+        @apply text-sm leading-snug font-normal;
     }
 
     .Font_caption_md {
-        @apply text-base leading-6 font-normal;
+        @apply text-base leading-snug font-normal;
     }
 
     .Font_caption_lg {
-        @apply text-xl leading-6 font-normal;
+        @apply text-xl leading-snug font-normal;
     }
 
      /* padding */
@@ -238,7 +239,7 @@
     }
 
     .Filter_darken {
-        filter: brightness(0.3) hue-rotate(-82deg);
+        backdrop-filter: brightness(0.3) hue-rotate(-82deg);
     }
 
      /* transition */

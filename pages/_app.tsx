@@ -13,6 +13,9 @@ import { ModalProvider } from '@/hooks/useModal/ModalProvider';
 import useSetupTokens from '@/hooks/useSetupTokens';
 import dynamic from 'next/dynamic';
 import AppFooter from '@/components/AppFooter';
+import { useAtom } from 'jotai';
+import { userWalletAtom } from '@/store/states';
+import AppWallPaper from '@/components/AppWallPaper';
 
 const UserAgentDetector = dynamic(() => import('@/components/UserAgentDetector'), { ssr: false });
 
@@ -38,6 +41,8 @@ function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: DehydratedS
       },
     });
   }
+
+  const [userWallet] = useAtom(userWalletAtom);
 
   return (
     <>
@@ -82,6 +87,7 @@ function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: DehydratedS
               <UserAgentDetector />
 
               <ModalProvider>
+                <AppWallPaper show={!!userWallet} />
                 <AppHeader className="fixed top-0 left-0 right-0 z-navigation" />
                 <Component {...pageProps} />
                 <AppFooter />

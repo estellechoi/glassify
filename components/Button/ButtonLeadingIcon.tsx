@@ -4,19 +4,19 @@ import type { ButtonColor, ButtonSize, ButtonType } from './types';
 const ICON_COLOR_CLASS_DICT: Record<ButtonType, Record<ButtonColor | 'disabled', string>> = {
   fill: {
     primary: 'bg-white text-primary',
-    primary_inverted: 'bg-primary text-white',
+    on_primary: 'bg-primary text-white',
     secondary: 'bg-white text-secondary',
     disabled: 'bg-white text-disabled',
   },
   outline: {
-    primary: 'text-primary border border-primary',
-    primary_inverted: 'text-white border border-white',
-    secondary: 'text-secondary border border-secondary',
+    primary: 'text-primary border border-solid border-primary',
+    on_primary: 'text-white border border-solid border-white',
+    secondary: 'text-secondary border border-solid border-secondary',
     disabled: 'text-disabled',
   },
   text: {
     primary: 'text-primary',
-    primary_inverted: 'text-white',
+    on_primary: 'text-white',
     secondary: 'text-secondary',
     disabled: 'text-disabled',
   },
@@ -25,17 +25,17 @@ const ICON_COLOR_CLASS_DICT: Record<ButtonType, Record<ButtonColor | 'disabled',
 const ICON_INVERT_COLOR_CLASS_DICT: Record<ButtonType, Record<ButtonColor, string>> = {
   fill: {
     primary: 'bg-primary text-white',
-    primary_inverted: 'bg-white text-primary',
+    on_primary: 'bg-white text-primary',
     secondary: 'bg-secondary text-white',
   },
   outline: {
-    primary: 'text-primary border border-primary',
-    primary_inverted: 'text-white border border-white',
-    secondary: 'text-secondary border border-secondary',
+    primary: 'text-primary border border-solid border-primary',
+    on_primary: 'text-white border border-solid border-white',
+    secondary: 'text-secondary border border-solid border-secondary',
   },
   text: {
     primary: 'text-primary',
-    primary_inverted: 'text-white',
+    on_primary: 'text-white',
     secondary: 'text-secondary',
   },
 };

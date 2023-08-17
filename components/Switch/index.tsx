@@ -36,7 +36,9 @@ const Switch = <T extends string | JSX.Element>({
   );
 
   return (
-    <div className={`relative w-max inline-flex items-center justify-between border border-caption rounded-button ${className}`}>
+    <div
+      className={`relative w-max inline-flex items-center justify-between border border-solid border-caption rounded-button ${className}`}
+    >
       <span
         aria-hidden
         className={`absolute inset-y-0.5 left-0.5 w-[calc(50%_-_0.125rem)] bg-primary_inverted_gradient_1 rounded-button ${gradientTransformClassName}`}

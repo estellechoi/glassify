@@ -7,7 +7,7 @@ const Title = ({ children, href }: { children: ReactNode; href?: string }) => {
   return (
     <dt className="text-ground Font_label_14px">
       {href ? (
-        <A href={href} className="inline-flex items-center gap-x-1 transition-opacity hover:opacity-80">
+        <A href={href} className="inline-flex items-center gap-x-1">
           {children}
           <Icon type="external_link" size="md" className="text-caption" />
         </A>

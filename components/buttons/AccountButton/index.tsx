@@ -5,13 +5,9 @@ const AccountButton = () => {
   const { buttonProps, modal } = useAccountOrConnectButton();
 
   return (
-    <Button
-      size="md"
-      className="min-w-[11.875rem] animate-fade_out_x"
-      aria-expanded={modal.isOpen}
-      aria-controls={modal.id}
-      {...buttonProps}
-    />
+    <div className="animate-fade_out_x">
+      <Button size="md" className="min-w-[11.875rem]" aria-expanded={modal.isOpen} aria-controls={modal.id} {...buttonProps} />
+    </div>
   );
 };
 
