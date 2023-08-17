@@ -1,4 +1,4 @@
-import type { ScrollLockStep } from './types';
+import type { ScrollLockStep } from '../types';
 
 const preventScroll = (): ScrollLockStep => {
   return {
