@@ -58,7 +58,7 @@ const Container = ({ children, xUnitPx, isExpandable = false, className = '' }: 
       {isExpandable && (
         <Button
           label="View more"
-          color="primary_inverted"
+          color="on_primary"
           type="outline"
           size="sm"
           iconType={isExpanded ? 'chevron_left' : 'chevron_right'}
