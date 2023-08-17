@@ -14,13 +14,13 @@ const AppFooter = () => {
       <h2 className="sr-only">Summary of the App</h2>
 
       <section className="flex items-start justify-between gap-x-40">
-        <article>
+        <article className="basis-full grow shrink md:basis-1/2">
           <h3 className="flex items-center Font_title_md mb-5">
             Stay tuned <Tag label="Soon" size="sm" className="ml-2" />
           </h3>
           <p className="Font_body_md mb-4">Join our newsletter to get notified about our newest releases.</p>
 
-          <form ref={form} className="basis-full grow shrink md:basis-1/3 flex items-start gap-x-4">
+          <form ref={form} className="flex items-start gap-x-4">
             <TextInput
               form={form.current}
               type="email"
@@ -33,7 +33,7 @@ const AppFooter = () => {
           </form>
         </article>
 
-        <article className="basis-full grow shrink md:basis-1/2">
+        <article className="basis-full grow shrink md:basis-1/3">
           <h3 className="flex items-center Font_title_md mb-5">Explore more</h3>
 
           <div>
