@@ -57,15 +57,15 @@ const Container = ({ children, xUnitPx, isExpandable = false, className = '' }: 
 
       {isExpandable && (
         <Button
-          aria-hidden
+          label="View more"
           color="primary_inverted"
           type="outline"
           size="sm"
           iconType={isExpanded ? 'chevron_left' : 'chevron_right'}
-          label="View more"
           labelHidden
           className="absolute inset-y-0 right-0 z-[11]"
           onClick={onToggleExpand}
+          aria-hidden
         />
       )}
     </ul>

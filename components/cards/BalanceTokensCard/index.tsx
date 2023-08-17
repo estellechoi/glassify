@@ -18,7 +18,7 @@ const BalanceTokensCard = ({ wallet, isOpen, className = '', onBalanceTokensTabl
   return isMobile ? (
     <article className={className}>{Table}</article>
   ) : (
-    <Card className={className}>
+    <Card color="glass" className={className}>
       {/* <AnimatedHeadline tagName="h3" texts={['Market change']} className="hiddn md:flex pl-2 mb-3" /> */}
       {Table}
     </Card>

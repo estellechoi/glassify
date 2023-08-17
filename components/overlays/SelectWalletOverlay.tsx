@@ -68,8 +68,8 @@ const SelectWalletOverlay = (props: SelectWalletOverlayProps) => {
   const { isMobile } = useUserAgent();
 
   return isMobile ? (
-    <BottomSheet {...props} isOpen={isOpen} ariaLabel={ARIA_LABEL} className="Padding_modal">
-      {Content}
+    <BottomSheet {...props} isOpen={isOpen} ariaLabel={ARIA_LABEL}>
+      <BottomSheet.Content className="Padding_modal">{Content}</BottomSheet.Content>
     </BottomSheet>
   ) : (
     <AnimatedModal {...props} ariaLabel={ARIA_LABEL}>

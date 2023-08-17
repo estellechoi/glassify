@@ -82,37 +82,41 @@
     }
     
     /* typography - button */
+    .Font_button_xs {
+        @apply text-xs leading-tight font-medium;
+    }
+
     .Font_button_sm {
-        @apply text-sm leading-5 font-semibold;
+        @apply text-sm leading-tight font-medium;
     }
 
     .Font_button_md {
-        @apply text-base leading-5 font-semibold;
+        @apply text-base leading-tight font-medium;
     }
 
     .Font_button_lg {
-        @apply text-lg leading-5 font-semibold;
+        @apply text-lg leading-tight font-medium;
     }
 
     .Font_button_xl {
-        @apply text-xl leading-5 font-semibold;
+        @apply text-xl leading-tight font-medium;
     }
 
     /* typography - body */
     .Font_body_xs {
-        @apply text-xs leading-6 font-medium;
+        @apply text-xs leading-snug font-normal;
     }
     
     .Font_body_sm {
-        @apply text-sm leading-6 font-medium;
+        @apply text-sm leading-snug font-normal;
     }
 
     .Font_body_md {
-        @apply text-base leading-6 font-medium;
+        @apply text-base leading-snug font-normal;
     }
 
     .Font_body_lg {
-        @apply text-xl leading-6 font-medium;
+        @apply text-xl leading-snug font-normal;
     }
 
     /** typography - label */

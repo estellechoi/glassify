@@ -14,11 +14,11 @@ import WaitingSymbol from '../WaitingSymbol';
 
 export type ButtonProps = Readonly<
   {
-    iconType: IconType;
+    type?: ButtonType;
+    iconType?: IconType;
     label: string;
     onClick?: () => void;
     labelHidden?: boolean;
-    type?: ButtonType;
     color?: ButtonColor;
     size?: ButtonSize;
     status?: ButtonStatus;
@@ -27,11 +27,11 @@ export type ButtonProps = Readonly<
 >;
 
 const Button = ({
+  type = 'fill',
   iconType,
   label,
   onClick,
   labelHidden = false,
-  type = 'fill',
   color = 'primary',
   size = 'md',
   status = 'enabled',
@@ -41,22 +41,33 @@ const Button = ({
   const disabled = useMemo<boolean>(() => status === 'disabled' || status === 'processing', [status]);
   const processing = useMemo<boolean>(() => status === 'processing', [status]);
 
-  const cursorClassName = BUTTON_CURSOR_CLASS_DICT[status];
-  const colorClassName = labelHidden ? '' : BUTTON_COLOR_CLASS_DICT[type][status === 'disabled' ? 'disabled' : color];
-  const fontClassName = TEXT_SIZE_CLASS_DICT[size];
-  const heightClassName = BUTTON_HEIGHT_CLASS_DICT[size];
-  const paddingClassName = BUTTON_PADDING_CLASS_DICT[size];
-  const textVisibilityClassName = labelHidden ? 'sr-only' : '';
+  // class names
+  const cursorClassName = useMemo(() => BUTTON_CURSOR_CLASS_DICT[status], [status]);
+  const colorClassName = useMemo(
+    () => (labelHidden ? '' : BUTTON_COLOR_CLASS_DICT[type][status === 'disabled' ? 'disabled' : color]),
+    [labelHidden, type, color, status]
+  );
+  const { fontClassName, heightClassName, paddingClassName } = useMemo(
+    () => ({
+      fontClassName: TEXT_SIZE_CLASS_DICT[size],
+      heightClassName: BUTTON_HEIGHT_CLASS_DICT[size],
+      paddingClassName: BUTTON_PADDING_CLASS_DICT[size],
+    }),
+    [size]
+  );
+  const textVisibilityClassName = useMemo(() => (labelHidden ? 'sr-only' : ''), [labelHidden]);
+  const hoverAnimationClassName = 'transition-transform Transition_500 enabled:hover:scale-105';
 
   return (
     <button
       type="button"
       disabled={disabled}
       onClick={onClick}
-      className={`Component group/button w-fit inline-flex justify-between items-center rounded-button transition-transform Transition_500 enabled:hover:scale-110 ${heightClassName} ${paddingClassName} ${cursorClassName} ${colorClassName} ${className}`}
+      className={`Component group/button w-fit inline-flex justify-between items-center rounded-button ${hoverAnimationClassName} ${heightClassName} ${paddingClassName} ${cursorClassName} ${colorClassName} ${className}`}
       {...intrinsicProps}
     >
-      <ButtonLeadingIcon type={type} color={color} size={size} iconType={iconType} disabled={disabled} />
+      {iconType && <ButtonLeadingIcon type={type} color={color} size={size} iconType={iconType} disabled={disabled} />}
+
       <span className={`grow truncate ${fontClassName} ${textVisibilityClassName}`}>
         {processing ? <WaitingSymbol color={BUTTON_WAITING_SYMBOL_COLOR_DICT[type][color]} /> : label}
       </span>

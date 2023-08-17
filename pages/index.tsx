@@ -6,6 +6,7 @@ import AppHeadline from '@/components/AppHeadline';
 import { userWalletAtom } from '@/store/states';
 import { useCallback, useMemo, useState } from 'react';
 import BalanceTokensCard from '@/components/cards/BalanceTokensCard';
+import AppFooter from '@/components/AppFooter';
 
 const AsciiGlobe = dynamic(() => import('@/components/AsciiGlobe'), {
   ssr: false,
@@ -52,6 +53,8 @@ const Home: NextPage = () => {
           />
         )}
       </Layout>
+
+      <AppFooter />
     </>
   );
 };

@@ -14,8 +14,10 @@ const AccountOverlay = (props: AccountOverlayProps) => {
 
   return isMobile ? (
     <BottomSheet {...props} ariaLabel={ARIA_LABEL} className="h-[80vh] Padding_modal">
-      {Content}
-      {DisconnectButton}
+      <BottomSheet.Content>
+        {Content}
+        {DisconnectButton}
+      </BottomSheet.Content>
     </BottomSheet>
   ) : (
     <AnimatedModal ariaLabel={ARIA_LABEL} className="h-[80vh] Padding_modal" {...props}>

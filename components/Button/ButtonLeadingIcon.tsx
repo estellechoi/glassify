@@ -14,6 +14,12 @@ const ICON_COLOR_CLASS_DICT: Record<ButtonType, Record<ButtonColor | 'disabled',
     secondary: 'text-secondary border border-secondary',
     disabled: 'text-disabled',
   },
+  text: {
+    primary: 'text-primary',
+    primary_inverted: 'text-white',
+    secondary: 'text-secondary',
+    disabled: 'text-disabled',
+  },
 };
 
 const ICON_INVERT_COLOR_CLASS_DICT: Record<ButtonType, Record<ButtonColor, string>> = {
@@ -27,9 +33,15 @@ const ICON_INVERT_COLOR_CLASS_DICT: Record<ButtonType, Record<ButtonColor, strin
     primary_inverted: 'text-white border border-white',
     secondary: 'text-secondary border border-secondary',
   },
+  text: {
+    primary: 'text-primary',
+    primary_inverted: 'text-white',
+    secondary: 'text-secondary',
+  },
 };
 
 const ICON_PADDING_CLASS_DICT: Record<ButtonSize, string> = {
+  xs: 'p-1',
   sm: 'p-2',
   md: 'p-3',
   lg: 'p-4',
@@ -37,6 +49,7 @@ const ICON_PADDING_CLASS_DICT: Record<ButtonSize, string> = {
 };
 
 const ICON_SIZE_CLASS_DICT: Record<ButtonSize, IconSize> = {
+  xs: 'xs',
   sm: 'sm',
   md: 'md',
   lg: 'lg',

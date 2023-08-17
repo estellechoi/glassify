@@ -12,7 +12,7 @@ import Button from '@/components/Button';
 
 export type AccountOverlayProps = Omit<OverlayProps, 'ariaLabel'> & {
   wallet: ConnectedWallet;
-  onWillDisconnect?: () => void | Promise<void>;
+  onWillDisconnect?: () => void;
 };
 
 const useAccountOverlayElements = (props: AccountOverlayProps) => {

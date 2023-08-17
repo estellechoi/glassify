@@ -16,9 +16,12 @@ import {
   MdExpandLess,
   MdArrowDropUp,
   MdArrowDropDown,
+  MdNorthEast,
+  MdArrowForward,
+  MdArrowBack,
 } from 'react-icons/md';
 
-export type IconSize = 'sm' | 'md' | 'lg' | 'xl';
+export type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 export type IconType =
   | 'close'
   | 'copy'
@@ -35,12 +38,16 @@ export type IconType =
   | 'minimize'
   | 'arrow_up'
   | 'arrow_down'
+  | 'arrow_forward'
+  | 'arrow_back'
+  | 'external_link'
   | 'expand_more'
   | 'expand_less'
   | 'increase'
   | 'decrease';
 
 const ICON_SIZE_CLASS_DICT: Record<IconSize, string> = {
+  xs: 'w-2 h-2',
   sm: 'w-3 h-3',
   md: 'w-4 h-4',
   lg: 'w-6 h-6',
@@ -63,6 +70,9 @@ const ICON_DICT: Record<IconType, React.ElementType> = {
   minimize: MdMinimize,
   arrow_up: MdArrowUpward,
   arrow_down: MdArrowDownward,
+  arrow_forward: MdArrowForward,
+  arrow_back: MdArrowBack,
+  external_link: MdNorthEast,
   expand_more: MdExpandMore,
   expand_less: MdExpandLess,
   increase: MdArrowDropUp,
