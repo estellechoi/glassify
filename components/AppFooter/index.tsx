@@ -13,14 +13,14 @@ const AppFooter = () => {
     <footer className="relative grid grid-cols-1 gap-y-20 px-app_header_padding_x py-app_header_padding_y bg-primary text-ground">
       <h2 className="sr-only">Summary of the App</h2>
 
-      <section className="flex items-start justify-between gap-x-40">
+      <section className="flex flex-col items-start justify-between gap-x-40 gap-y-app_header_padding_y md:flex-row">
         <article className="basis-full grow shrink md:basis-1/2">
           <h3 className="flex items-center Font_title_md mb-5">
             Stay tuned <Tag label="Soon" size="sm" className="ml-2" />
           </h3>
           <p className="Font_body_md mb-4">Join our newsletter to get notified about our newest releases.</p>
 
-          <form ref={form} className="flex items-start gap-x-4">
+          <form ref={form} className="flex flex-col items-end gap-4 md:flex-row md:items-start">
             <TextInput
               form={form.current}
               type="email"
@@ -29,11 +29,11 @@ const AppFooter = () => {
               errorMsg="Valid email address is required."
               disabled
             />
-            <Button color="on_primary" label="Subscribe" iconType="email" status="disabled" />
+            <Button color="on_primary" label="Subscribe" iconType="email" status="disabled" className="w-full md:w-fit" />
           </form>
         </article>
 
-        <article className="basis-full grow shrink md:basis-1/3">
+        <article className="basis-full grow shrink md:basis-1/2">
           <h3 className="flex items-center Font_title_md mb-5">Explore more</h3>
 
           <div>

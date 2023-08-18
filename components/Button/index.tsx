@@ -67,7 +67,7 @@ const Button = ({
       type="button"
       disabled={disabled}
       onClick={onClick}
-      className={`Component group/button w-fit inline-flex justify-between items-center rounded-button ${heightClassName} ${paddingClassName} ${cursorClassName} ${colorClassName} ${className}`}
+      className={`Component group/button relative w-fit inline-flex justify-between items-center rounded-button ${heightClassName} ${paddingClassName} ${cursorClassName} ${colorClassName} ${className}`}
       {...intrinsicProps}
     >
       {iconType && <ButtonLeadingIcon type={type} color={color} size={size} iconType={iconType} disabled={disabled} />}
