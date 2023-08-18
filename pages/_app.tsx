@@ -16,6 +16,10 @@ import AppFooter from '@/components/AppFooter';
 import { useAtom } from 'jotai';
 import { userWalletAtom } from '@/store/states';
 import AppWallPaper from '@/components/AppWallPaper';
+import AnalyticsProvider from '@/hooks/useAnalytics/AnalyticsProvider';
+import { googleAnalytics, mixpanel } from '@/constants/app';
+import GoogleAnalyticsReporter from '@/analytics/googleAnalytics/GoogleAnalyticsReporter';
+import MixPanelReporter from '@/analytics/mixpanel/MixPanelReporter';
 
 const UserAgentDetector = dynamic(() => import('@/components/UserAgentDetector'), { ssr: false });
 
@@ -81,19 +85,31 @@ function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: DehydratedS
 
       <SentryErrorBoundary fallbackComponent={Fallback} onReset={reset}>
         <Suspense>
-          <QueryClientProvider client={queryClientRef.current}>
-            <Hydrate state={pageProps.dehydratedState}>
-              <MetaDataUpdater />
-              <UserAgentDetector />
-
-              <ModalProvider>
-                <AppWallPaper show={!!userWallet} />
-                <AppHeader className="fixed top-0 left-0 right-0 z-navigation" />
-                <Component {...pageProps} />
-                <AppFooter />
-              </ModalProvider>
-            </Hydrate>
-          </QueryClientProvider>
+          <AnalyticsProvider
+            items={[
+              {
+                analytics: googleAnalytics,
+                initializer: GoogleAnalyticsReporter,
+              },
+              {
+                analytics: mixpanel,
+                initializer: MixPanelReporter,
+              },
+            ]}
+          >
+            <QueryClientProvider client={queryClientRef.current}>
+              <Hydrate state={pageProps.dehydratedState}>
+                <MetaDataUpdater />
+                <UserAgentDetector />
+                <ModalProvider>
+                  <AppWallPaper show={!!userWallet} />
+                  <AppHeader className="fixed top-0 left-0 right-0 z-navigation" />
+                  <Component {...pageProps} />
+                  <AppFooter />
+                </ModalProvider>
+              </Hydrate>
+            </QueryClientProvider>
+          </AnalyticsProvider>
         </Suspense>
       </SentryErrorBoundary>
     </>

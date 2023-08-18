@@ -17,6 +17,7 @@
     "downlevelIteration": true,
     "baseUrl": ".",
     "paths": {
+      "@/analytics/*": ["analytics/*"],
       "@/components/*": ["components/*"],
       "@/connection/*": ["connection/*"],
       "@/connectors/*": ["connectors/*"],

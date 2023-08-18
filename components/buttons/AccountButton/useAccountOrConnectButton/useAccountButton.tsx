@@ -1,4 +1,4 @@
-import { Suspense, lazy, useCallback, useMemo } from 'react';
+import { Suspense, lazy, useCallback, useEffect, useMemo } from 'react';
 import { useAtom } from 'jotai';
 import useModal from '@/hooks/useModal';
 import { userWalletAtom } from '@/store/states';
@@ -7,6 +7,8 @@ import type { IconType } from '@/components/Icon';
 import type { ButtonColor } from '../../../Button/types';
 import type { ModalElement } from '@/hooks/useModal/types';
 import { ButtonProps } from '@/components/Button';
+import useAnalytics from '@/hooks/useAnalytics';
+import { EventCategory } from '@/analytics/constants';
 
 const AccountOverlay = lazy(() => import('@/components/overlays/AccountOverlay'));
 
@@ -53,6 +55,13 @@ const useAccountButton = (): {
       onClick,
     };
   }, [openAccountModal, userWallet]);
+
+  // report
+  const { sendEvent } = useAnalytics();
+
+  useEffect(() => {
+    if (!userWallet) sendEvent(EventCategory.WALLET_CONNECTION, 'disconnect');
+  }, [userWallet]);
 
   return {
     accountModalButtonProps,

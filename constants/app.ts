@@ -1,3 +1,9 @@
+import GoogleAnalytics from '@/analytics/googleAnalytics/GoogleAnalytics';
+import Mixpanel from '@/analytics/mixpanel/Mixpanel';
+
+export const googleAnalytics = new GoogleAnalytics('google analytics');
+export const mixpanel = new Mixpanel('mixpanel');
+
 export const FORMAT_LOCALE_FALLBACK = 'en';
 
 export const MAX_DECIMALS = 18;

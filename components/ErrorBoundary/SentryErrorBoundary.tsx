@@ -1,10 +1,21 @@
 /** @memo wip */
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { ErrorBoundary } from '@sentry/nextjs';
-import { ErrorBoundaryProps } from './types';
+import { EventCategory } from '@/analytics/constants';
+import { googleAnalytics, mixpanel } from '@/constants/app';
+import type { ErrorBoundaryProps } from './types';
 
 const SentryErrorBoundary = ({ children, fallbackComponent, onReset }: { children: ReactNode } & ErrorBoundaryProps) => {
-  // this is to follow typescript rule for react component to be in upper case
+  useEffect(() => {
+    [googleAnalytics, mixpanel].forEach((analytics) => {
+      analytics.sendEvent(EventCategory.ERROR_BOUNDARY, 'rendered');
+    });
+  }, []);
+
+  /**
+   *
+   * @description this is to follow typescript rule for react component to be in upper case
+   */
   const FallbackComponent = fallbackComponent;
 
   return (
