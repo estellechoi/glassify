@@ -4,6 +4,7 @@ import type { Analytics } from '@/analytics/types';
 export const AnalyticsContext = createContext<{
   sendEvent: Analytics['sendEvent'];
   identify: Analytics['identify'];
+  resetUser: Analytics['resetUser'];
 } | null>(null);
 
 type AnalyticsProviderProps = PropsWithChildren<{
@@ -39,7 +40,16 @@ const AnalyticsProvider = ({ children, items }: AnalyticsProviderProps) => {
     [items]
   );
 
-  const context = useMemo(() => ({ sendEvent, identify }), [sendEvent, identify]);
+  const resetUser: Analytics['resetUser'] = useCallback(
+    (...args) => {
+      items.forEach((item) => {
+        item.analytics.resetUser(...args);
+      });
+    },
+    [items]
+  );
+
+  const context = useMemo(() => ({ sendEvent, identify, resetUser }), [sendEvent, identify, resetUser]);
 
   return (
     <AnalyticsContext.Provider value={context}>

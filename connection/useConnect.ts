@@ -33,6 +33,7 @@ const useConnect = () => {
       stopConnecting();
 
       identify(account.address);
+      sendEvent(EventCategory.WALLET_CONNECTION, 'Connect Wallet', { address: account.address });
 
       return { wallet, account, connector };
     },

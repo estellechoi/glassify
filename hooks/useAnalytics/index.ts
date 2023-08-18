@@ -6,9 +6,9 @@ const useAnalytics = () => {
 
   if (context === null) throw new Error('useAnalytics must be used within a AnalyticsProvider');
 
-  const { sendEvent, identify } = context;
+  const { sendEvent, identify, resetUser } = context;
 
-  return { sendEvent, identify };
+  return { sendEvent, identify, resetUser };
 };
 
 export default useAnalytics;
