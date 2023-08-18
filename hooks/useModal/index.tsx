@@ -3,16 +3,18 @@ import type { ModalElement, ModalRef } from './types';
 import { ModalController } from './ModalController';
 import { ModalContext } from './ModalProvider';
 
-let elementId = 1;
-
 const useModal = () => {
   const context = useContext(ModalContext);
 
   if (context === null) throw new Error('useModal must be used within a ModalProvider');
 
-  const [id] = useState(() => String(elementId++));
+  const { prevId, setPrevId, open, close, entries, getIsOpen } = context;
 
-  const { open, close, entries, getIsOpen } = context;
+  const [id] = useState(() => String(prevId + 1));
+
+  useEffect(() => {
+    setPrevId(Number(id));
+  }, []);
 
   const modalRef = useRef<ModalRef | null>(null);
 

@@ -9,12 +9,14 @@ import type { ModalElement } from '@/hooks/useModal/types';
 import { ButtonProps } from '@/components/Button';
 import useAnalytics from '@/hooks/useAnalytics';
 import { EventCategory } from '@/analytics/constants';
+import { ConnectedWallet } from '@/types/wallet';
 
 const AccountOverlay = lazy(() => import('@/components/overlays/AccountOverlay'));
 
 const useAccountButton = (): {
   accountModalButtonProps: Pick<ButtonProps, 'color' | 'iconType' | 'label' | 'onClick'> | undefined;
   accountModal: ReturnType<typeof useModal> | undefined;
+  userWallet: ConnectedWallet | null;
 } => {
   const [userWallet, setUserWallet] = useAtom(userWalletAtom);
 
@@ -64,8 +66,9 @@ const useAccountButton = (): {
   }, [userWallet]);
 
   return {
+    userWallet,
     accountModalButtonProps,
-    accountModal: userWallet ? accountModal : undefined,
+    accountModal: useMemo(() => (userWallet ? accountModal : undefined), [userWallet, accountModal]),
   };
 };
 
