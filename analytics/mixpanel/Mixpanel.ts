@@ -1,8 +1,10 @@
-import mixpanel, { type Persistence } from 'mixpanel-browser';
-import { Analytics } from '../types';
+import mixpanel, { type Mixpanel as LoadedMixpanel, type Persistence } from 'mixpanel-browser';
 import { EventCategory } from '../constants';
+import { Analytics } from '../types';
 
 export default class Mixpanel extends Analytics {
+  private loadedMixpanel: LoadedMixpanel | null = null;
+
   public initialize(
     token: string,
     options?: {
@@ -11,20 +13,28 @@ export default class Mixpanel extends Analytics {
       persistence?: Persistence;
       verbose?: boolean;
     }
-  ): void {
-    mixpanel.init(token, options);
+  ): Promise<void> {
+    return new Promise((resolve) => {
+      mixpanel.init(token, {
+        ...options,
+        loaded: (loadedMixpanel) => {
+          this.loadedMixpanel = loadedMixpanel;
+          resolve();
+        },
+      });
+    });
   }
 
   public sendEvent(category: EventCategory, action: string, options?: Record<string, string>): void {
-    mixpanel.track(action, { category, ...(options ?? {}) });
+    this.loadedMixpanel?.track(action, { category, ...(options ?? {}) });
   }
 
   public identify(userId: string): void {
-    mixpanel.identify(userId);
+    this.loadedMixpanel?.identify(userId);
     this.sendEvent(EventCategory.WALLET_CONNECTION, 'connect');
   }
 
   public setChainId(chainId: number): void {
-    mixpanel.register({ chainId });
+    this.loadedMixpanel?.register({ chainId });
   }
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import Mixpanel from '@/analytics/mixpanel/Mixpanel';
 import { isDevMode } from '../constants';
 import type { AnalyticsInitializerProps } from '../types';
@@ -8,11 +8,14 @@ import type { AnalyticsInitializerProps } from '../types';
 const MIXPANEL_TOKEN: string | undefined = process.env.NEXT_PUBLIC_MIXPANEL_TOKEN;
 
 const MixPanelReporter = ({ analytics: mixpanel }: AnalyticsInitializerProps<Mixpanel>) => {
-  // initialize
-  useEffect(() => {
+  const initialize = useCallback(async () => {
     if (!MIXPANEL_TOKEN) return;
 
-    mixpanel.initialize(MIXPANEL_TOKEN, { debug: isDevMode, track_pageview: true, persistence: 'localStorage' });
+    await mixpanel.initialize(MIXPANEL_TOKEN, { debug: isDevMode, track_pageview: true, persistence: 'localStorage' });
+  }, [mixpanel]);
+
+  useEffect(() => {
+    initialize();
   }, []);
 
   return null;

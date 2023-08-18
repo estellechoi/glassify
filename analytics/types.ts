@@ -7,7 +7,7 @@ export abstract class Analytics {
     this.name = name;
   }
 
-  public abstract initialize(id: string, options?: any): void;
+  public abstract initialize(id: string, options?: any): void | Promise<void>;
   public abstract sendEvent(category: EventCategory, action: string, ...args: any[]): void;
   public abstract identify(userId: string): void;
   public abstract setChainId(chainId: number): void;
