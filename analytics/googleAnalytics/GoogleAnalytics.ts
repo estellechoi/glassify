@@ -53,7 +53,7 @@ export default class GoogleAnalytics extends Analytics {
     if (!ReactGA.isInitialized) return;
 
     ReactGA.gtag('config', ReactGA._currentMeasurementId, { user_id: userId });
-    this.sendEvent(EventCategory.WALLET_CONNECTION, 'connect');
+    this.sendEvent(EventCategory.WALLET_CONNECTION, 'Connect Wallet');
   }
 
   /**

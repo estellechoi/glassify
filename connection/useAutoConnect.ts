@@ -4,6 +4,7 @@ import { LOCAL_STORAGE_KEYS } from '@/constants/app';
 import { userWalletAtom } from '@/store/states';
 import type { Wallet, WalletType } from '@/types/wallet';
 import useProcessing from '@/hooks/useProcessing';
+import useConnect from './useConnect';
 
 const useAutoConnect = (wallets: readonly Wallet[]) => {
   const [lastUsedWalletType, setLastUsedWalletType] = useState<WalletType | null>(null);
@@ -20,40 +21,30 @@ const useAutoConnect = (wallets: readonly Wallet[]) => {
     [wallets, lastUsedWalletType]
   );
 
-  const { target: isConnecting, startProcessing: startConnecting, stopProcessing: stopConnecting } = useProcessing<boolean>();
+  const { connect, connectingWallet } = useConnect();
 
-  const connect = useCallback(async () => {
+  const connectAndSetWallet = useCallback(async () => {
     if (!lastUsedWallet) return;
 
-    const connector = await lastUsedWallet.getConnector();
-    if (!connector) return;
+    const connectedData = await connect(lastUsedWallet);
+    if (!connectedData) return;
 
-    startConnecting(true);
-
-    const account = await connector.connect();
-    if (!account) {
-      stopConnecting();
-      return;
-    }
-
-    const { type, name, logoURL } = lastUsedWallet;
+    const { type, name, logoURL } = connectedData.wallet;
     setUserWallet({
       type,
       name,
       logoURL,
-      account,
-      connector,
+      account: connectedData.account,
+      connector: connectedData.connector,
     });
-
-    stopConnecting();
-  }, [lastUsedWallet, startConnecting, stopConnecting, setUserWallet]);
+  }, [lastUsedWallet, connect, setUserWallet]);
 
   useEffect(() => {
-    connect();
+    connectAndSetWallet();
   }, [lastUsedWallet]);
 
   return {
-    isConnecting,
+    isConnecting: !!connectingWallet,
   };
 };
 

@@ -8,6 +8,9 @@ import type { AnimatedModalProps } from '@/components/AnimatedModal/Container';
 import useProcessing from '@/hooks/useProcessing';
 import useUserAgent from '@/hooks/useUserAgent';
 import BottomSheet from '../BottomSheet';
+import useAnalytics from '@/hooks/useAnalytics';
+import { EventCategory } from '@/analytics/constants';
+import useConnect from '@/connection/useConnect';
 
 export type OnConnect = (args: { wallet: Wallet; account: EthAccount; connector: Connector }) => void;
 
@@ -19,31 +22,17 @@ type SelectWalletOverlayProps = Omit<AnimatedModalProps, 'ariaLabel'> & {
 const SelectWalletOverlay = (props: SelectWalletOverlayProps) => {
   const { wallets, onConnect, onClose, isOpen } = props;
 
-  const { target: connectingWallet, startProcessing: startConnecting, stopProcessing: stopConnecting } = useProcessing<Wallet>();
+  const { connect, connectingWallet } = useConnect();
 
   const onClickConnect = useCallback(
     async (wallet: Wallet) => {
-      const connector = await wallet.getConnector();
+      const connectedData = await connect(wallet);
+      if (!connectedData) return;
 
-      if (!connector) {
-        wallet.onNoConnector();
-        return;
-      }
-
-      startConnecting(wallet);
-
-      const account = await connector.connect();
-      if (!account) {
-        stopConnecting();
-        return;
-      }
-
-      stopConnecting();
-
-      onConnect({ wallet, account, connector });
+      onConnect(connectedData);
       onClose();
     },
-    [onConnect, onClose, startConnecting, stopConnecting]
+    [connect, onConnect, onClose]
   );
 
   const Content = (

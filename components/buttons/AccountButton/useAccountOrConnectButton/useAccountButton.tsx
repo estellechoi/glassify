@@ -60,7 +60,7 @@ const useAccountButton = (): {
   const { sendEvent } = useAnalytics();
 
   useEffect(() => {
-    if (!userWallet) sendEvent(EventCategory.WALLET_CONNECTION, 'disconnect');
+    if (!userWallet) sendEvent(EventCategory.WALLET_CONNECTION, 'Disconnect Wallet');
   }, [userWallet]);
 
   return {

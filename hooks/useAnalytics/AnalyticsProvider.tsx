@@ -3,6 +3,7 @@ import type { Analytics } from '@/analytics/types';
 
 export const AnalyticsContext = createContext<{
   sendEvent: Analytics['sendEvent'];
+  identify: Analytics['identify'];
 } | null>(null);
 
 type AnalyticsProviderProps = PropsWithChildren<{
@@ -29,7 +30,16 @@ const AnalyticsProvider = ({ children, items }: AnalyticsProviderProps) => {
     [items]
   );
 
-  const context = useMemo(() => ({ sendEvent }), [sendEvent]);
+  const identify: Analytics['identify'] = useCallback(
+    (...args) => {
+      items.forEach((item) => {
+        item.analytics.identify(...args);
+      });
+    },
+    [items]
+  );
+
+  const context = useMemo(() => ({ sendEvent, identify }), [sendEvent, identify]);
 
   return (
     <AnalyticsContext.Provider value={context}>

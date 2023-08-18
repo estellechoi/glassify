@@ -31,7 +31,7 @@ export default class Mixpanel extends Analytics {
 
   public identify(userId: string): void {
     this.loadedMixpanel?.identify(userId);
-    this.sendEvent(EventCategory.WALLET_CONNECTION, 'connect');
+    this.sendEvent(EventCategory.WALLET_CONNECTION, 'Connect Wallet');
   }
 
   public setChainId(chainId: number): void {

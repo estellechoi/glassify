@@ -8,7 +8,7 @@ import type { ErrorBoundaryProps } from './types';
 const SentryErrorBoundary = ({ children, fallbackComponent, onReset }: { children: ReactNode } & ErrorBoundaryProps) => {
   useEffect(() => {
     [googleAnalytics, mixpanel].forEach((analytics) => {
-      analytics.sendEvent(EventCategory.ERROR_BOUNDARY, 'rendered');
+      analytics.sendEvent(EventCategory.ERROR_BOUNDARY, 'Error Boundary Mounted');
     });
   }, []);
 
