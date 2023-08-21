@@ -1,5 +1,3 @@
-import { useMemo } from 'react';
-import Tooltip from '@/components/Tooltip';
 import {
   CELL_FONT_CLASS_GETTER,
   TABLE_CELL_BORDER_DICT,
@@ -11,20 +9,16 @@ import {
   getTableCellWidthStyle,
 } from './styles';
 import type { TableField, TableRowData, TableStyle } from './types';
-import type { TooltipContext } from '@/components/Tooltip/styles';
 
 type RowCellProps<T> = {
   type: TableStyle;
   data: T;
   field: TableField<T>;
   colIndex: number;
-  tooltipContext: TooltipContext;
   isLoading: boolean;
 };
 
-const RowCell = <T extends TableRowData>({ data, field, type, colIndex, tooltipContext, isLoading }: RowCellProps<T>) => {
-  const cellTooltipContent = useMemo<JSX.Element | undefined>(() => data[`${field.value}TooltipContent`], [data, field.value]);
-
+const RowCell = <T extends TableRowData>({ data, field, type, colIndex, isLoading }: RowCellProps<T>) => {
   if (data[field.value] === undefined || data[field.value] === null) return <></>;
 
   const colorClassName = TABLE_CELL_TEXT_COLOR_DICT[type];
@@ -45,9 +39,9 @@ const RowCell = <T extends TableRowData>({ data, field, type, colIndex, tooltipC
       {isLoading ? (
         <Loader fontClassName={getCellFontClassName(field.type)} className="w-1/2" type={field.loaderType} />
       ) : (
-        <Tooltip content={cellTooltipContent} context={tooltipContext}>
-          <div className={`${colorClassName} ${getCellFontClassName(field.type)}`}>{data[field.value]}</div>
-        </Tooltip>
+        <div className={`flex flex-col justify-center ${colorClassName} ${getCellFontClassName(field.type)}`}>
+          {data[field.value]}
+        </div>
       )}
     </div>
   );

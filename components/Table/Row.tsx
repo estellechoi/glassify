@@ -11,7 +11,6 @@ import {
 import type { TableField, TableRowData, TableStyle } from './types';
 import RowCell from './RowCell';
 import useMouseEffect from './hooks/useMouseEffect';
-import type { TooltipContext } from '@/components/Tooltip/styles';
 
 type RowProps<T extends TableRowData> = {
   data: T;
@@ -23,7 +22,6 @@ type RowProps<T extends TableRowData> = {
   hasMouseEffect?: boolean;
   showRowClickIcon?: boolean;
   needRightSpace: boolean;
-  tooltipContext: TooltipContext;
   isLoading: boolean;
 };
 
@@ -37,7 +35,6 @@ const Row = <T extends TableRowData>({
   hasMouseEffect,
   showRowClickIcon = false,
   needRightSpace,
-  tooltipContext,
   isLoading,
 }: RowProps<T>) => {
   /** subjsx */
@@ -89,15 +86,7 @@ const Row = <T extends TableRowData>({
         onMouseLeave={onMouseLeave}
       >
         {fields.map((field, index) => (
-          <RowCell
-            key={field.value}
-            colIndex={index}
-            data={data}
-            field={field}
-            type={type}
-            tooltipContext={tooltipContext}
-            isLoading={isLoading}
-          />
+          <RowCell key={field.value} colIndex={index} data={data} field={field} type={type} isLoading={isLoading} />
         ))}
       </div>
 

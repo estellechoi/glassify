@@ -14,6 +14,7 @@ type FormatAmountOptions = {
   fixDp?: boolean;
   roundMode?: BigNumber.RoundingMode;
   locale?: string;
+  abs?: boolean;
 };
 
 export const formatNumber = (
@@ -28,6 +29,7 @@ export const formatNumber = (
   const dp = decimals ?? MAX_DECIMALS;
   const currencySymbol = options?.currencySymbol ?? '';
   const semiequateSymbol = options?.semiequate ? '≈' : '';
+  const abs = options?.abs ?? false;
 
   const mindp = options?.fixDp ? dp : undefined;
 
@@ -41,11 +43,13 @@ export const formatNumber = (
 
   if (value.isZero()) return `${semiequateSymbol}${currencySymbol}${formatter.format(0)}`;
 
+  const directionSymbol = !abs && value.isNegative() ? '-' : '';
+
   const min = new BigNumber(1).shiftedBy(-dp);
-  if (value.lt(min)) return `${semiequateSymbol}<${currencySymbol}${formatter.format(min.toNumber())}`;
+  if (value.abs().lt(min)) return `${semiequateSymbol}${directionSymbol}<${currencySymbol}${formatter.format(min.toNumber())}`;
 
   const amount = value.dp(dp, options?.roundMode ?? BigNumber.ROUND_DOWN);
-  return `${semiequateSymbol}${currencySymbol}${formatter.format(amount.toNumber()).toLocaleLowerCase()}`;
+  return `${semiequateSymbol}${directionSymbol}${currencySymbol}${formatter.format(amount.abs().toNumber()).toLocaleLowerCase()}`;
 };
 
 export const formatUSD = (value: BigNumber | number | undefined | null, options?: FormatAmountOptions): string => {

@@ -89,7 +89,7 @@ export const TABLE_FIELD_TYPO_DICT: Record<TableStyle, string> = {
 };
 
 export const CELL_FONT_CLASS_GETTER: Record<TableStyle, (dataType: 'number' | 'jsx') => string> = {
-  primary: (dataType: 'number' | 'jsx') => (dataType === 'number' ? 'Font_data_14px_num md:Font_data_16px_num' : 'Font_body_md'),
+  primary: (dataType: 'number' | 'jsx') => (dataType === 'number' ? 'Font_data_14px_num md:Font_data_16px_num' : 'Font_body_sm'),
 };
 
 export const TABLE_EXPAND_ICON_GRID_X: Record<TableStyle, string> = {

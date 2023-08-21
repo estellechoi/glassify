@@ -14,10 +14,12 @@ const COIN_SIZE_DICT: Record<CoinSize, { px: number; className: string }> = {
 type CoinProps = {
   symbol?: string;
   size?: CoinSize;
+  logoURL?: string;
 };
 
-const Coin = ({ symbol, size = 'md' }: CoinProps) => {
+const Coin = ({ symbol, size = 'md', logoURL: injectedLogoURL }: CoinProps) => {
   const logoURL = useCoinLogoURL(symbol);
+  const renderingLogoURL = injectedLogoURL ?? logoURL;
 
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const onLoaded = useCallback(() => {
@@ -26,6 +28,7 @@ const Coin = ({ symbol, size = 'md' }: CoinProps) => {
 
   const [isError, setIsError] = useState<boolean>(false);
   const onError = useCallback(() => {
+    console.log('error');
     setIsError(true);
   }, []);
 
@@ -33,12 +36,12 @@ const Coin = ({ symbol, size = 'md' }: CoinProps) => {
   const sizeClassName = COIN_SIZE_DICT[size].className;
   const opacityClassName = `transition-opacity ${isLoaded ? 'opacity-100' : 'opacity-0'}`;
 
-  return !isError && logoURL ? (
+  return !isError && renderingLogoURL ? (
     <Image
       alt={`${symbol} logo`}
-      src={logoURL}
+      src={renderingLogoURL}
       {...pxSizes}
-      className={`${sizeClassName} ${opacityClassName}`}
+      className={`rounded-full ${sizeClassName} ${opacityClassName}`}
       onLoadingComplete={onLoaded}
       onError={onError}
     />

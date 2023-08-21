@@ -6,7 +6,7 @@ export type CardSize = 'sm' | 'md';
 const CARD_BG_COLOR_DICT: Record<CardColor, string> = {
   primary: 'bg-primary text-ground',
   on_primary: 'bg-ground text-primary',
-  glass: 'Bg_glass Elevation_box_3',
+  glass: 'Bg_glass border border-solid border-primary_line_light',
 };
 
 const CARD_RADIUS_CLASS_DICT: Record<CardSize, string> = {

@@ -1,10 +1,11 @@
 import type { NextPage } from 'next';
 import Main from '@/components/Main';
+import Heading from '@/components/Heading';
 
 const TermsOfUse: NextPage = () => {
   return (
     <Main className="Padding_page Font_body_md space-y-page_gap">
-      <h2 className="Font_display_xs">Terms of Use</h2>
+      <Heading tagName="h2">Terms of Use</Heading>
 
       <p>
         These Terms of Use (the &quot;Agreement&quot;) explain the terms and conditions by which you may access and use the

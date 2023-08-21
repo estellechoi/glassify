@@ -7,7 +7,7 @@ import type { TableStyle, TableField, TableRowData } from './types';
 import FieldRowPseudo from './FieldRow/Pseudo';
 import TableFieldRow from './FieldRow/FieldRow';
 import useSortedRows from './hooks/useSortedRows';
-import type { TooltipContext } from '@/components/Tooltip/styles';
+import type { TooltipLayer } from '@/components/Tooltip/styles';
 
 const getFieldRows = (children: ReactNode) => getReactElements(children, FieldRowPseudo);
 
@@ -27,7 +27,7 @@ type TableProps<T extends TableRowData> = {
   showRowClickIcon?: boolean;
   noDataLabel?: string;
   rowsScrollHeight?: string;
-  tooltipContext: TooltipContext;
+  tooltipContext: TooltipLayer;
   isLoading?: boolean;
 };
 
@@ -51,8 +51,8 @@ const TableContainer = <T extends TableRowData>({
   showRowClickIcon = false,
   noDataLabel = TEXTS.NO_DATA,
   rowsScrollHeight,
-  tooltipContext,
   isLoading = false,
+  tooltipContext,
 }: TableProps<T>) => {
   /** @summary sorting & filtering */
   const { sortedRows, isAsc, sortValue, sortBy } = useSortedRows({
@@ -124,7 +124,6 @@ const TableContainer = <T extends TableRowData>({
             onToggleSubJsx={onToggleRowSubJsx}
             onToggleFoldableOnMobile={onToggleFoldableOnMobile}
             needRightSpace={needRightSpace}
-            tooltipContext={tooltipContext}
             isLoading={isLoading}
           />
         ))}

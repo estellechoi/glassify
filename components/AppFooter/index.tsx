@@ -5,6 +5,7 @@ import TermsAndPolicyButton from './TermsAndPolicyButton';
 import TextInput from '@/components/TextInput';
 import Button from '@/components/Button';
 import Tag from '@/components/Tag';
+import Heading from '../Heading';
 
 const AppFooter = () => {
   const form = useRef<HTMLFormElement>(null);
@@ -15,9 +16,9 @@ const AppFooter = () => {
 
       <section className="flex flex-col items-start justify-between gap-x-40 gap-y-app_header_padding_y md:flex-row">
         <article className="basis-full grow shrink md:basis-1/2">
-          <h3 className="flex items-center Font_title_md mb-5">
+          <Heading tagName="h3" className="flex items-center mb-5">
             Stay tuned <Tag label="Soon" size="sm" className="ml-2" />
-          </h3>
+          </Heading>
           <p className="Font_body_md mb-4">Join our newsletter to get notified about our newest releases.</p>
 
           <form ref={form} className="flex flex-col items-end gap-4 md:flex-row md:items-start">
@@ -34,7 +35,9 @@ const AppFooter = () => {
         </article>
 
         <article className="basis-full grow shrink md:basis-1/2">
-          <h3 className="flex items-center Font_title_md mb-5">Explore more</h3>
+          <Heading tagName="h3" className="mb-5">
+            Explore more
+          </Heading>
 
           <div>
             <A href="https://github.com/estellechoi/glassify">

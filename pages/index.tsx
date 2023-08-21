@@ -5,12 +5,12 @@ import Main from '@/components/Main';
 import AppHeadline from '@/components/AppHeadline';
 import { userWalletAtom } from '@/store/states';
 import { useCallback, useMemo, useState } from 'react';
-import BalanceTokensCard from '@/components/cards/BalanceTokensCard';
+import GainersLosersTables from '@/components/tables/GainersLosersTables';
+import BalanceTokensTable from '@/components/tables/BalanceTokensTable';
 
 const AsciiGlobe = dynamic(() => import('@/components/AsciiGlobe'), {
   ssr: false,
 });
-const AppWallPaper = dynamic(() => import('@/components/AppWallPaper'));
 
 const Home: NextPage = () => {
   const [userWallet] = useAtom(userWalletAtom);
@@ -40,12 +40,15 @@ const Home: NextPage = () => {
         onAnimationEnd={onAppHeadlineAnimationEnd}
       />
 
-      <Main className="min-h-screen">
+      <Main className="min-h-screen pb-page_bottom">
+        <GainersLosersTables className="md:mx-page_x md:mb-page_bottom" />
+
         {userWallet && (
-          <BalanceTokensCard
+          <BalanceTokensTable
+            tooltipContext="base"
             wallet={userWallet}
-            isOpen={isBalanceTokensTableOpen}
-            onBalanceTokensTableLoaded={onBalanceTokensTableLoaded}
+            // isOpen={isBalanceTokensTableOpen}
+            onLoaded={onBalanceTokensTableLoaded}
             className="md:mx-page_x md:mb-page_bottom"
           />
         )}

@@ -11,6 +11,7 @@
   "dependencies": {
     "@cosmjs/stargate": "^0.29.5",
     "@ethersproject/address": "^5.7.0",
+    "@floating-ui/react": "^0.25.1",
     "@headlessui/react": "1.7.3",
     "@metamask/detect-provider": "^2.0.0",
     "@metamask/sdk": "^0.5.6",
@@ -19,7 +20,6 @@
     "@react-three/fiber": "8.9.1",
     "@sentry/nextjs": "^7.38.0",
     "@tanstack/react-query": "4.13.0",
-    "@tippyjs/react": "^4.2.6",
     "@uniswap/sdk-core": "^3.0.2",
     "@uniswap/v3-periphery": "^1.1.1",
     "@uniswap/v3-sdk": "^3.9.0",

@@ -8,6 +8,8 @@ import type { ConnectedWallet } from '@/types/wallet';
 import { BigNumber, type FloorPriceError, type FloorPriceMarketplace } from 'alchemy-sdk';
 import axios from 'axios';
 import type { CMCQuoteData } from '@/pages/api/cmc/quotes';
+import { CMCListingItemData } from '@/pages/api/cmc/listings';
+import { CMCMetadataItemData } from '@/pages/api/cmc/metadata';
 
 export const useTokensQuery = (refetchInterval = 0) => {
   const fetcher = () => axios.get<UniswapTokensData>(UNISWAP_TOKENS_ENDPOINT).then((res) => res.data);
@@ -145,6 +147,56 @@ export const useCMCQuotesQuery = (symbols: readonly string[], refetchInterval = 
   return useQuery<{
     [symbol: string]: readonly CMCQuoteData[];
   }>(['cmcQuotes', symbolsQuery], fetcher, { refetchInterval, enabled: symbols.length > 0 });
+};
+
+/**
+ *
+ * @see https://coinmarketcap.com/api/documentation/v1/#operation/getV1CryptocurrencyListingsLatest
+ */
+export const useCMCLatestListingsQuery = (options?: { limit?: number }, refetchInterval = 0) => {
+  const fetcher = () =>
+    axios.get('/api/cmc/listings', { params: { limit: options?.limit, sort: 'date_added' } }).then((res) => res.data);
+  return useQuery<readonly CMCListingItemData[]>(['cmcLatestListings', options?.limit ?? 100], fetcher, { refetchInterval });
+};
+
+/**
+ *
+ * @see https://coinmarketcap.com/api/documentation/v1/#operation/getV1CryptocurrencyListingsLatest
+ */
+export const useCMCGainersQuery = (options?: { limit?: number; period?: '24h' | '7d' }, refetchInterval = 0) => {
+  const period = options?.period ?? '24h';
+  const sort = period === '24h' ? 'percent_change_24h' : 'percent_change_7d';
+
+  const fetcher = () =>
+    axios.get('/api/cmc/listings', { params: { limit: options?.limit, sort, sort_dir: 'desc' } }).then((res) => res.data);
+  return useQuery<readonly CMCListingItemData[]>(['cmcGainers', period, options?.limit ?? 100], fetcher, { refetchInterval });
+};
+
+/**
+ *
+ * @see https://coinmarketcap.com/api/documentation/v1/#operation/getV1CryptocurrencyListingsLatest
+ */
+export const useCMCLosersQuery = (options?: { limit?: number; period?: '24h' | '7d' }, refetchInterval = 0) => {
+  const period = options?.period ?? '24h';
+  const sort = period === '24h' ? 'percent_change_24h' : 'percent_change_7d';
+
+  const fetcher = () =>
+    axios.get('/api/cmc/listings', { params: { limit: options?.limit, sort, sort_dir: 'asc' } }).then((res) => res.data);
+  return useQuery<readonly CMCListingItemData[]>(['cmcLosers', period, options?.limit ?? 100], fetcher, { refetchInterval });
+};
+
+/**
+ *
+ * @see https://coinmarketcap.com/api/documentation/v1/#operation/getV2CryptocurrencyInfo
+ */
+export const useCMCCoinMetadata = (ids: readonly number[], refetchInterval = 0) => {
+  const idsQuery = ids.join(',');
+
+  const fetcher = () => axios.get('/api/cmc/metadata', { params: { id: idsQuery } }).then((res) => res.data);
+  return useQuery<{ [id: string]: CMCMetadataItemData }>(['cmcMetaData', idsQuery], fetcher, {
+    refetchInterval,
+    enabled: ids.length > 0,
+  });
 };
 
 /**

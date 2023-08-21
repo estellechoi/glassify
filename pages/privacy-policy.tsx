@@ -1,11 +1,12 @@
 import type { NextPage } from 'next';
 import Main from '@/components/Main';
 import A from '@/components/A';
+import Heading from '@/components/Heading';
 
 const PrivacyPolicy: NextPage = () => {
   return (
     <Main className="Padding_page Font_body_md space-y-page_gap">
-      <h2 className="Font_display_xs">Privacy Policy</h2>
+      <Heading tagName="h2">Privacy Policy</Heading>
 
       <p>
         <em>Last modified: Aug 17, 2023</em>

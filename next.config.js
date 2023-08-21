@@ -29,6 +29,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'lh3.googleusercontent.com',
       },
+      {
+        protocol: 'https',
+        hostname: 's2.coinmarketcap.com',
+      },
       /**
        *
        * @todo remove this

@@ -111,10 +111,6 @@ module.exports = {
         primary_inverted_gradient_1:
           'linear-gradient(90deg, var(--color-white-o35) 0%, var(--color-white-o35) 10%, var(--color-white-o0) 100%)',
       },
-      boxShadow: {
-        subtle: '0px 1px 4px 4px var(--color-black-o10),',
-        subtle_glass: '0px 1px 4px 4px var(--color-black-o10), inset -2px 2px 4px var(--color-white-o10)',
-      },
       transitionProperty: {
         filter: 'filter',
       },

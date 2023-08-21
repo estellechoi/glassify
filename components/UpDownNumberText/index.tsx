@@ -30,7 +30,7 @@ const UpDownNumberText = ({ number, unit, color = 'primary' }: UpDownNumberTextP
   return (
     <span className={`inline-flex items-center Font_data_16px_num ${colorClassName}`}>
       {iconType && <Icon type={iconType} size="lg" />}
-      {formatNumber(number, 1, { fixDp: true })}
+      {formatNumber(number, 1, { fixDp: true, abs: true })}
       {!!number ? unit : ''}
     </span>
   );

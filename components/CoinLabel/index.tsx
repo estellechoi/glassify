@@ -3,18 +3,24 @@ import { COLOR_CLASS_DICT, CoinLabelColor, CoinLabelSize, SIZE_DICT } from './st
 
 type CoinLabelProps = {
   symbol?: string;
+  description?: string;
   size?: CoinLabelSize;
   color?: CoinLabelColor;
+  logoURL?: string;
 };
 
-const CoinLabel = ({ symbol, size = 'md', color = 'primary' }: CoinLabelProps) => {
-  const { coinSize, fontClassName } = SIZE_DICT[size];
+const CoinLabel = ({ symbol, description, size = 'md', color = 'primary', logoURL }: CoinLabelProps) => {
+  const { coinSize, fontClassName, descriptionFontClassName } = SIZE_DICT[size];
   const colorClassName = COLOR_CLASS_DICT[color];
+  const captionColorClassName = color === 'primary' ? 'text-caption_dark' : 'text-caption';
 
   return (
     <span className="inline-flex items-center gap-x-2">
-      <Coin size={coinSize} symbol={symbol} />
-      <span className={`${colorClassName} ${fontClassName}`}>{symbol}</span>
+      <Coin size={coinSize} symbol={symbol} logoURL={logoURL} />
+      <span className={`inline-flex flex-col ${colorClassName} ${fontClassName}`}>
+        {symbol}
+        {description && <span className={`${captionColorClassName} ${descriptionFontClassName}`}>{description}</span>}
+      </span>
     </span>
   );
 };

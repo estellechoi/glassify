@@ -7,8 +7,9 @@ import useUserAgent from '@/hooks/useUserAgent';
 import UpDownNumberText from '@/components/UpDownNumberText';
 import type { TableField } from '@/components/Table/types';
 import CoinLabel from '@/components/CoinLabel';
-import type { TooltipContext } from '@/components/Tooltip/styles';
-import LoadingRows from '../LoadingRows';
+import type { TooltipLayer } from '@/components/Tooltip/styles';
+import Card from '../Card';
+import Heading from '../Heading';
 
 type BalanceTokensTableRow = {
   id: string;
@@ -28,10 +29,11 @@ type BalanceTokensTableRow = {
 type BalanceTokensTableProps = {
   wallet: ConnectedWallet;
   onLoaded?: () => void;
-  tooltipContext: TooltipContext;
+  tooltipContext: TooltipLayer;
+  className?: string;
 };
 
-const BalanceTokensTable = ({ wallet, onLoaded, tooltipContext }: BalanceTokensTableProps) => {
+const BalanceTokensTable = ({ wallet, onLoaded, tooltipContext, className = '' }: BalanceTokensTableProps) => {
   const { balance, isLoading } = useBalance(wallet);
 
   useEffect(() => {
@@ -41,7 +43,7 @@ const BalanceTokensTable = ({ wallet, onLoaded, tooltipContext }: BalanceTokensT
   const rows = useMemo<readonly BalanceTokensTableRow[]>(() => {
     return balance.marketValues.map((marketValue) => {
       const id = marketValue.symbol;
-      const token = <CoinLabel size="md" symbol={marketValue.symbol} />;
+      const token = <CoinLabel size="lg" symbol={marketValue.symbol} />;
 
       const marketCap = marketValue.marketCap ?? 0;
       const marketCapFormatted = formatUSD(marketValue.marketCap, { compact: true });
@@ -139,16 +141,25 @@ const BalanceTokensTable = ({ wallet, onLoaded, tooltipContext }: BalanceTokensT
     ];
   }, [isMobile]);
 
+  const Content = useMemo<JSX.Element>(() => {
+    return (
+      <Table<BalanceTokensTableRow>
+        dSortValue="priceChange"
+        tooltipContext={tooltipContext}
+        rows={rows}
+        fields={fields}
+        isLoading={isLoading}
+      >
+        <Table.FieldRow />
+      </Table>
+    );
+  }, [rows, fields, isLoading, tooltipContext]);
+
   return (
-    <Table<BalanceTokensTableRow>
-      dSortValue="priceChange"
-      tooltipContext={tooltipContext}
-      rows={rows}
-      fields={fields}
-      isLoading={isLoading}
-    >
-      <Table.FieldRow />
-    </Table>
+    <article className={`space-y-4 ${className}`}>
+      <Heading tagName="h3">My Holdings</Heading>
+      {isMobile ? Content : <Card color="glass">{Content}</Card>}
+    </article>
   );
 };
 
