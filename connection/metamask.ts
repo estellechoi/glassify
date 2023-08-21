@@ -6,7 +6,6 @@ import type { MetaMaskEthereumProvider } from '@/connectors/types';
 
 type InitializeMetaMaskOptions = {
   onError?: () => void;
-  onMissConnection?: () => void;
 };
 
 /**
@@ -46,7 +45,6 @@ const initializeMetamaskFromSDK = async (options?: InitializeMetaMaskOptions): P
             metamaskSDK.terminate();
             options?.onError?.();
           },
-          onMissConnection: options?.onMissConnection,
         })
       : null;
     // return null;
@@ -65,7 +63,5 @@ const initializeMetamaskFromSDK = async (options?: InitializeMetaMaskOptions): P
 export const initializeMetamask = async (options?: InitializeMetaMaskOptions): Promise<MetaMask | null> => {
   const provider: MetaMaskEthereumProvider | null = await detectEthereumProvider();
   // try using the SDK when the provider is not detected from browser
-  return provider?.isMetaMask
-    ? new MetaMask(provider, { onError: options?.onError, onMissConnection: options?.onMissConnection })
-    : initializeMetamaskFromSDK(options);
+  return provider?.isMetaMask ? new MetaMask(provider, { onError: options?.onError }) : initializeMetamaskFromSDK(options);
 };

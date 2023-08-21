@@ -22,13 +22,20 @@ const useAccountButton = (): {
 
   const accountModal = useModal();
 
+  // report
+  const { sendEvent, resetUser } = useAnalytics();
+
   const onWillDisconnect = useCallback(
     async (props: Parameters<ModalElement>[0]) => {
       await userWallet?.connector?.disconnect();
       setUserWallet(null);
+
+      sendEvent(EventCategory.WALLET_CONNECTION, 'Disconnect Wallet');
+      resetUser();
+
       props.onClose();
     },
-    [userWallet, setUserWallet]
+    [userWallet, setUserWallet, sendEvent, resetUser]
   );
 
   const openAccountModal = useCallback(async () => {
@@ -57,16 +64,6 @@ const useAccountButton = (): {
       onClick,
     };
   }, [openAccountModal, userWallet]);
-
-  // report
-  const { sendEvent, resetUser } = useAnalytics();
-
-  useEffect(() => {
-    if (!userWallet) {
-      sendEvent(EventCategory.WALLET_CONNECTION, 'Disconnect Wallet');
-      resetUser();
-    }
-  }, [userWallet]);
 
   return {
     userWallet,

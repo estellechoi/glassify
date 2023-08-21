@@ -29,8 +29,14 @@ export default class Mixpanel extends Analytics {
     this.loadedMixpanel?.track(action, { category, ...(options ?? {}) });
   }
 
+  /**
+   *
+   * @see https://docs.mixpanel.com/docs/tracking/how-tos/identifying-users#what-is-distinct-id
+   * @see https://docs.mixpanel.com/docs/tracking/how-tos/user-profiles
+   */
   public identify(userId: string): void {
     this.loadedMixpanel?.identify(userId);
+    this.loadedMixpanel?.people.set_once({ $name: userId, 'First Identified Date': new Date() });
   }
 
   public resetUser(): void {
