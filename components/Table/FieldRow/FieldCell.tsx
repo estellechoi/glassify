@@ -3,7 +3,7 @@ import Icon from '@/components/Icon';
 import { TABLE_CELL_TEXT_COLOR_DICT, TABLE_FIELD_TYPO_DICT, getTableCellAlignClassName, getTableCellWidthStyle } from '../styles';
 import type { TableField, TableRowData, TableStyle } from '../types';
 import Tooltip from '@/components/Tooltip';
-import type { TooltipContext } from '@/components/Tooltip/styles';
+import type { TooltipLayer } from '@/components/Tooltip/styles';
 
 type FieldCellProps<T> = {
   type: TableStyle;
@@ -13,7 +13,7 @@ type FieldCellProps<T> = {
   isAsc?: boolean;
   sortValue?: string;
   sortBy: (field: TableField<T>) => void;
-  tooltipContext: TooltipContext;
+  tooltipContext: TooltipLayer;
 };
 
 const FieldCell = <T extends TableRowData>({
@@ -51,7 +51,7 @@ const FieldCell = <T extends TableRowData>({
       }}
     >
       <div className={`${className} flex items-center gap-x-1 ${TABLE_FIELD_TYPO_DICT[type]}`}>
-        <Tooltip content={field.tooltipContent} context={tooltipContext}>
+        <Tooltip content={field.tooltipContent} layer={tooltipContext}>
           {field.label}
         </Tooltip>
       </div>
