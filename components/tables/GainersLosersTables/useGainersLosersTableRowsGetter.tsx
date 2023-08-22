@@ -9,7 +9,7 @@ import Tooltip from '@/components/Tooltip';
 export type GainersLosersTableRow = {
   id: string;
   token: JSX.Element;
-  platform: string;
+  chain: string;
   price: number;
   priceFormatted: string | JSX.Element;
   priceChange24h: number;
@@ -32,9 +32,7 @@ const useGainersLosersTableRowsGetter = (ids: readonly number[]) => {
             </Tooltip>
           );
 
-          // const tokenTooltipContent = metadata?.description;
-
-          const platform = item.platform?.name ?? '';
+          const chain = metadata?.platform.name ?? item.platform?.name ?? '';
 
           const price = item.quote.USD.price ?? 0;
           const priceFormatted = formatUSD(item.quote.USD.price, { fixDp: true });
@@ -45,7 +43,7 @@ const useGainersLosersTableRowsGetter = (ids: readonly number[]) => {
           return {
             id,
             token,
-            platform,
+            chain,
             price,
             priceFormatted,
             priceChange24h,

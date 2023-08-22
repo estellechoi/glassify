@@ -71,15 +71,19 @@
     --color-scarlet700: #f14123;
     --color-scarlet800: #e33a1e;
     --color-scarlet900: #c92c15;
+    /* blue */
+    --color-blue200: #8BB5FF;
+    --color-blue400: #0094FF;
     /* sky */
     --color-sky400: #E0F9FF;
     --color-sky400-o50: rgba(224, 249, 255, 0.5);
     --color-sky400-o20: rgba(224, 249, 255, 0.2);
     --color-sky400-o10: rgba(224, 249, 255, 0.1);
+    --color-sky500: #E1FBFF;
     /* red */
     --color-red400: rgb(250, 43, 57);
     /* gree */
-    --color-green400: rgb(49, 175, 95);
+    --color-green400: #01BF08;
      /* rgb(0, 255, 0); */
     /* rgb(64, 182, 107) */
 }

@@ -46,7 +46,7 @@
     }
 
     .dark body {
-        @apply bg-ground_dark text-white;
+        @apply bg-primary text-white;
     }
 }
 
@@ -237,8 +237,13 @@
         @apply bg-glass backdrop-blur-md;
     }
 
+    /* backdrop-filter */
     .Filter_darken {
         backdrop-filter: brightness(0.3) hue-rotate(-82deg);
+    }
+
+    .Filter_brighten {
+        backdrop-filter: brightness(1.2) hue-rotate(82deg);
     }
 
      /* transition */

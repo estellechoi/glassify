@@ -21,6 +21,13 @@ const GainersLosersTable = ({ rows, isLoading }: GainersLosersTableProps) => {
           loaderType: 'coin_label',
         },
         {
+          label: 'Chain',
+          value: 'chain',
+          type: 'jsx',
+          widthPx: 200,
+          loaderType: 'coin_label',
+        },
+        {
           label: 'Price',
           value: 'priceFormatted',
           type: 'number',

@@ -83,9 +83,14 @@ module.exports = {
         ground_o: 'var(--color-ground-o10)',
         ground_dark: 'var(--color-gray900)',
         ground_dark_o: 'var(--color-gray900-o10)',
+        ground_effected: 'var(--color-sky400)',
         body: 'var(--color-black)',
         caption: 'var(--color-gray400)',
         caption_dark: 'var(--color-gray600)',
+        effected: 'var(--color-blue400)',
+        effected_varient_light: 'var(--color-blue200)',
+        effected_whitened: 'var(--color-sky400)',
+        effected_whitened_varient_light: 'var(--color-sky400)',
         /* semantic colors */
         disabled: 'var(--color-gray300)',
         semantic_bull: 'var(--color-green400)',
@@ -110,6 +115,7 @@ module.exports = {
           'linear-gradient(180deg, var(--color-primary-o0) 0%, var(--color-primary) 20%, var(--color-primary) 100%)',
         primary_inverted_gradient_1:
           'linear-gradient(90deg, var(--color-white-o35) 0%, var(--color-white-o35) 10%, var(--color-white-o0) 100%)',
+        effected_gradient: 'linear-gradient(180deg, var(--color-blue200) 0%, var(--color-sky500) 100%)',
       },
       transitionProperty: {
         filter: 'filter',

@@ -90,7 +90,6 @@ const BalanceTokensTable = ({ wallet, onLoaded, tooltipContext, className = '' }
             sortValue: 'marketCap',
             sortType: 'number',
             align: 'right',
-            widthRatio: 20,
           },
           {
             label: 'Volume 24H',
@@ -108,7 +107,7 @@ const BalanceTokensTable = ({ wallet, onLoaded, tooltipContext, className = '' }
             align: 'right',
             sortValue: 'vol24HChange',
             sortType: 'number',
-            widthPx: 100,
+            widthPx: 120,
           },
         ];
 
@@ -120,6 +119,7 @@ const BalanceTokensTable = ({ wallet, onLoaded, tooltipContext, className = '' }
         widthRatio: 20,
         loaderType: 'coin_label',
       },
+      ...expandedFields,
       {
         label: 'Price',
         value: 'priceFormatted',
@@ -127,6 +127,7 @@ const BalanceTokensTable = ({ wallet, onLoaded, tooltipContext, className = '' }
         sortValue: 'price',
         sortType: 'number',
         align: 'right',
+        widthRatio: 20,
       },
       {
         label: 'Change',
@@ -135,9 +136,8 @@ const BalanceTokensTable = ({ wallet, onLoaded, tooltipContext, className = '' }
         align: 'right',
         sortValue: 'priceChange',
         sortType: 'number',
-        widthPx: 100,
+        widthPx: 120,
       },
-      ...expandedFields,
     ];
   }, [isMobile]);
 
