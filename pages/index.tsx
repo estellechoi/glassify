@@ -7,6 +7,7 @@ import { userWalletAtom } from '@/store/states';
 import { useCallback, useMemo, useState } from 'react';
 import GainersLosersTables from '@/components/tables/GainersLosersTables';
 import BalanceTokensTable from '@/components/tables/BalanceTokensTable';
+import ExchangesTable from '@/components/tables/ExchangesTable';
 
 const AsciiGlobe = dynamic(() => import('@/components/AsciiGlobe'), {
   ssr: false,
@@ -41,6 +42,8 @@ const Home: NextPage = () => {
       />
 
       <Main className="min-h-screen pb-page_bottom">
+        <ExchangesTable className="md:mx-page_x md:mb-page_bottom" />
+
         <GainersLosersTables className="md:mx-page_x md:mb-page_bottom" />
 
         {userWallet && (

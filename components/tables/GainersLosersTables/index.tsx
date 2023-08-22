@@ -10,8 +10,6 @@ const GainersLosersTables = ({ className = '' }: { className?: string }) => {
   const { data: gainersData, isLoading: isGainersDataLoading } = useCMCGainersQuery({ limit: 5 });
   const { data: losersData, isLoading: isLosersDataLoading } = useCMCLosersQuery({ limit: 5 });
 
-  console.log('gainersData', gainersData);
-
   const ids = useMemo<readonly number[]>(() => {
     const allIds = [gainersData, losersData].reduce<number[]>((acc, data) => {
       const ids = data?.map((item) => item.id) ?? [];

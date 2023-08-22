@@ -10,6 +10,8 @@ import axios from 'axios';
 import type { CMCQuoteData } from '@/pages/api/cmc/quotes';
 import { CMCListingItemData } from '@/pages/api/cmc/listings';
 import { CMCMetadataItemData } from '@/pages/api/cmc/metadata';
+import { ExchangeDetailData } from '@/pages/api/cmc/exchanges/metadata';
+import { ExchangeData } from '@/pages/api/cmc/exchanges';
 
 export const useTokensQuery = (refetchInterval = 0) => {
   const fetcher = () => axios.get<UniswapTokensData>(UNISWAP_TOKENS_ENDPOINT).then((res) => res.data);
@@ -189,11 +191,37 @@ export const useCMCLosersQuery = (options?: { limit?: number; period?: '24h' | '
  *
  * @see https://coinmarketcap.com/api/documentation/v1/#operation/getV2CryptocurrencyInfo
  */
-export const useCMCCoinMetadata = (ids: readonly number[], refetchInterval = 0) => {
+export const useCMCCoinMetadataQuery = (ids: readonly number[], refetchInterval = 0) => {
   const idsQuery = ids.join(',');
 
   const fetcher = () => axios.get('/api/cmc/metadata', { params: { id: idsQuery } }).then((res) => res.data);
   return useQuery<{ [id: string]: CMCMetadataItemData }>(['cmcMetaData', idsQuery], fetcher, {
+    refetchInterval,
+    enabled: ids.length > 0,
+  });
+};
+
+/**
+ *
+ * @see https://coinmarketcap.com/api/documentation/v1/#operation/getV1ExchangeMap
+ */
+export const useCMCExchangesQuery = (options?: { limit?: number }, refetchInterval = 0) => {
+  const fetcher = () =>
+    axios.get('/api/cmc/exchanges', { params: { sort: 'volume_24h', limit: options?.limit ?? 10 } }).then((res) => res.data);
+  return useQuery<readonly ExchangeData[]>(['cmcExchanges', options?.limit], fetcher, {
+    refetchInterval,
+  });
+};
+
+/**
+ *
+ * @see https://coinmarketcap.com/api/documentation/v1/#operation/getV1ExchangeInfo
+ */
+export const useCMCExchangesMetadataQuery = (ids: readonly number[], refetchInterval = 0) => {
+  const idsQuery = ids.join(',');
+
+  const fetcher = () => axios.get('/api/cmc/exchanges/metadata', { params: { id: idsQuery } }).then((res) => res.data);
+  return useQuery<{ [id: string]: ExchangeDetailData }>(['cmcExchangesMetaData', idsQuery], fetcher, {
     refetchInterval,
     enabled: ids.length > 0,
   });

@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import CoinLabel from '@/components/CoinLabel';
-import { useCMCCoinMetadata } from '@/data/hooks';
+import { useCMCCoinMetadataQuery } from '@/data/hooks';
 import { CMCListingItemData } from '@/pages/api/cmc/listings';
 import { formatUSD } from '@/utils/number';
 import UpDownNumberText from '@/components/UpDownNumberText';
@@ -17,7 +17,7 @@ export type GainersLosersTableRow = {
 };
 
 const useGainersLosersTableRowsGetter = (ids: readonly number[]) => {
-  const { data: coinMetadata } = useCMCCoinMetadata(ids);
+  const { data: coinMetadata } = useCMCCoinMetadataQuery(ids);
 
   const getRows = useCallback(
     (data: readonly CMCListingItemData[] | undefined): readonly GainersLosersTableRow[] => {
