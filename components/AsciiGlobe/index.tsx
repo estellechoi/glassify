@@ -1,8 +1,8 @@
 'use client';
 
 import * as THREE from 'three';
-import { PointerEventHandler, useCallback, useState } from 'react';
-import { Canvas, type ThreeEvent } from '@react-three/fiber';
+import { useCallback, useState } from 'react';
+import { Canvas } from '@react-three/fiber';
 import { AsciiRenderer } from '@react-three/drei';
 import SphereMesh from './SphereMesh';
 import useCanvasPointerEvent from '../hooks/useCanvasPointerEvent';
