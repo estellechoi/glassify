@@ -1,11 +1,12 @@
 'use client';
 
 import * as THREE from 'three';
-import { useCallback, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { AsciiRenderer } from '@react-three/drei';
 import SphereMesh from './SphereMesh';
 import useCanvasPointerEvent from '../hooks/useCanvasPointerEvent';
+import { ShaderEvents } from '../TestShader';
 
 type AsciiGlobeProps = {
   onRender?: () => void;
@@ -38,7 +39,6 @@ const AsciiGlobe = ({ onRender, className = '' }: AsciiGlobeProps) => {
         <color attach="background" args={[0, 0, 0]} />
 
         <pointLight position={[10, 10, 10]} />
-        {/* <pointLight color={new THREE.Color(0xffffff)} intensity={3} distance={0} decay={0} position={[500, 500, 500]} /> */}
         <pointLight color={new THREE.Color(0xffffff)} intensity={3} distance={0} decay={0} position={[-500, -500, -500]} />
 
         <SphereMesh onPointerEnter={isObejctInteractedEver ? undefined : persitInteractedObject} />
@@ -48,7 +48,12 @@ const AsciiGlobe = ({ onRender, className = '' }: AsciiGlobeProps) => {
          * @see https://github.com/pmndrs/drei#asciirenderer
          * @see https://codesandbox.io/s/vq9wsl?file=/src/Canvas.js example
          */}
-        <AsciiRenderer fgColor="#000" bgColor="transparent" characters=" .:-+*=%@#" invert={true} />
+        <AsciiRenderer
+          fgColor="#000"
+          bgColor="transparent"
+          characters=" .:-+*=%@#"
+          // invert={true}
+        />
       </Canvas>
     </div>
   );

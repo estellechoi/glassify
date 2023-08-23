@@ -1,10 +1,11 @@
 import { type MeshProps, useFrame, useThree, extend } from '@react-three/fiber';
-import { useRef } from 'react';
+import { Ref, forwardRef, useRef } from 'react';
 import { Mesh } from 'three';
+import TestShader, { ShaderEvents } from '../TestShader';
 
 extend({ Mesh });
 
-const SphereMesh = (props: MeshProps) => {
+const SphereMeshForwarder = (props: MeshProps, shaderRef?: Ref<ShaderEvents>) => {
   const meshRef = useRef<Mesh>(null);
   const viewport = useThree((state) => state.viewport);
   //   const meshScale = new THREE.Vector3(1, 1, 1)
@@ -26,5 +27,7 @@ const SphereMesh = (props: MeshProps) => {
     </mesh>
   );
 };
+
+const SphereMesh = forwardRef(SphereMeshForwarder);
 
 export default SphereMesh;
