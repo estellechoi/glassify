@@ -27,24 +27,18 @@ const Home: NextPage = () => {
 
   const [isBalanceTokensTableLoaded, setIsBalanceTokensTableLoaded] = useState<boolean>(false);
   const onBalanceTokensTableLoaded = useCallback(() => setIsBalanceTokensTableLoaded(true), []);
-  const isBalanceTokensTableOpen = useMemo<boolean>(
-    () => isAppHeadlineAnimationEnd && isBalanceTokensTableLoaded,
-    [isAppHeadlineAnimationEnd, isBalanceTokensTableLoaded]
-  );
 
   return (
     <>
-      <AsciiGlobe />
+      <AsciiGlobe className="fixed inset-0" />
 
-      <AppHeadline
-        className={`fixed left-8 bottom-20 md:left-24 md:bottom-[8.125rem] transition-transform Transition_1000 ${appHeadlineTransformClassName}`}
-        onAnimationEnd={onAppHeadlineAnimationEnd}
-      />
-
-      <Main className="min-h-screen pb-page_bottom">
-        <ExchangesTable className="md:mx-page_x md:mb-page_bottom" />
-
-        <GainersLosersTables className="md:mx-page_x md:mb-page_bottom" />
+      <Main className="min-h-screen pt-app_header_height pb-page_bottom">
+        <section className="relative h-screen">
+          <AppHeadline
+            className={`absolute left-8 bottom-page_padding_safe_bottom md:left-24 md:bottom-48 transition-transform Transition_1000 ${appHeadlineTransformClassName}`}
+            onAnimationEnd={onAppHeadlineAnimationEnd}
+          />
+        </section>
 
         {userWallet && (
           <BalanceTokensTable
@@ -55,6 +49,10 @@ const Home: NextPage = () => {
             className="md:mx-page_x md:mb-page_bottom"
           />
         )}
+
+        <GainersLosersTables className="md:mx-page_x md:mb-page_bottom" />
+
+        <ExchangesTable className="md:mx-page_x md:mb-page_bottom" />
       </Main>
     </>
   );

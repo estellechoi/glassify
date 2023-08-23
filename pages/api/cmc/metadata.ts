@@ -30,7 +30,7 @@ export type CMCMetadataItemData = Readonly<{
     slug: string;
     symbol: string;
     token_address: string;
-  };
+  } | null;
   self_reported_circulating_supply: number | null;
   self_reported_market_cap: number | null;
   self_reported_tags: readonly string[] | null;

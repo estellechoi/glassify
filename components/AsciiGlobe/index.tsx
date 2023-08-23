@@ -9,9 +9,10 @@ import useCanvasPointerEvent from '../hooks/useCanvasPointerEvent';
 
 type AsciiGlobeProps = {
   onRender?: () => void;
+  className?: string;
 };
 
-const AsciiGlobe = ({ onRender }: AsciiGlobeProps) => {
+const AsciiGlobe = ({ onRender, className = '' }: AsciiGlobeProps) => {
   const [isRendered, setIsRendered] = useState<boolean>(false);
 
   const onCreated = useCallback(() => {
@@ -29,7 +30,10 @@ const AsciiGlobe = ({ onRender }: AsciiGlobeProps) => {
   const { isObejctInteractedEver, persitInteractedObject, moveObjectToCanvasPointer } = useCanvasPointerEvent();
 
   return (
-    <div className={`Component w-screen h-screen transition-all duration-1000 ${visibilityClassName}`} style={sizeStyle}>
+    <div
+      className={`Component w-screen h-screen transition-all duration-1000 ${visibilityClassName} ${className}`}
+      style={sizeStyle}
+    >
       <Canvas onCreated={onCreated} onPointerMove={moveObjectToCanvasPointer}>
         <color attach="background" args={[0, 0, 0]} />
 

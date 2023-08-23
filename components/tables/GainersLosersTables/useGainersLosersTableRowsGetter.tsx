@@ -32,7 +32,7 @@ const useGainersLosersTableRowsGetter = (ids: readonly number[]) => {
             </Tooltip>
           );
 
-          const chain = metadata?.platform.name ?? item.platform?.name ?? '';
+          const chain = metadata?.platform?.name ?? item.platform?.name ?? '';
 
           const price = item.quote.USD.price ?? 0;
           const priceFormatted = formatUSD(item.quote.USD.price, { fixDp: true });
