@@ -11,6 +11,7 @@ import {
   useState,
 } from 'react';
 import { Mesh, ShaderMaterial, Vector2 } from 'three';
+import { TEST_CUSTOM_GLSL } from './customGLSLs';
 
 export const INITIAL_UNIFORMS: ShaderMaterialProps['uniforms'] = {
   u_time: { value: 1.0 },
@@ -75,8 +76,8 @@ const TestShaderForwarder: ForwardRefRenderFunction<ShaderEvents, {}> = ({}, ref
     <shaderMaterial
       attach="material"
       ref={shaderMaterialRef}
-      vertexShader={VERTEX_SHADER}
-      fragmentShader={FRAGMENT_SHADER}
+      vertexShader={TEST_CUSTOM_GLSL.vertex}
+      fragmentShader={TEST_CUSTOM_GLSL.fragment}
       uniforms={uniforms}
     />
   );

@@ -6,7 +6,6 @@ import { Canvas } from '@react-three/fiber';
 import { AsciiRenderer } from '@react-three/drei';
 import SphereMesh from './SphereMesh';
 import useCanvasPointerEvent from '../hooks/useCanvasPointerEvent';
-import { ShaderEvents } from '../TestShader';
 
 type AsciiGlobeProps = {
   onRender?: () => void;

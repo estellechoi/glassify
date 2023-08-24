@@ -8,6 +8,7 @@ import { useCallback, useMemo, useState } from 'react';
 import GainersLosersTables from '@/components/tables/GainersLosersTables';
 import BalanceTokensTable from '@/components/tables/BalanceTokensTable';
 import ExchangesTable from '@/components/tables/ExchangesTable';
+import MosaiqedCanvas from '@/components/MosaiqedCanvas';
 
 const AsciiGlobe = dynamic(() => import('@/components/AsciiGlobe'), {
   ssr: false,
@@ -34,6 +35,8 @@ const Home: NextPage = () => {
 
       <Main className="min-h-screen pt-app_header_height pb-page_bottom">
         <section className="relative h-screen">
+          <MosaiqedCanvas />
+
           <AppHeadline
             className={`absolute left-8 bottom-page_padding_safe_bottom md:left-24 md:bottom-48 transition-transform Transition_1000 ${appHeadlineTransformClassName}`}
             onAnimationEnd={onAppHeadlineAnimationEnd}
