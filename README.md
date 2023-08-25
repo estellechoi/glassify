@@ -17,6 +17,9 @@
 <img src="./docs/preview_1.png">
 <img src="./docs/preview_2.png">
 <img src="./docs/preview_3.png">
+<img src="./docs/preview_4.png">
+<img src="./docs/preview_5.png">
+<img src="./docs/preview_6.png">
 
 <br />
 
