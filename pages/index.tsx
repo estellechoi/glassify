@@ -11,7 +11,7 @@ import DisplacementCanvas from '@/components/DisplacementCanvas';
 import StayEffortlessImg from '@/resources/images/tg_stay_effortless.png';
 import StillEarningImg from '@/resources/images/tg_still_achieving.png';
 // import DisplacementImg from '@/resources/textures/texture_noise.jpg';
-import DisplacementImg from '@/resources/textures/texture_blocks.jpg';
+import DisplacementImg from '@/resources/textures/texture_blocks_random.jpg';
 
 const AsciiGlobe = dynamic(() => import('@/components/AsciiGlobe'), {
   ssr: false,
