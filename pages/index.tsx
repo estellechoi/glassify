@@ -2,13 +2,16 @@ import type { NextPage } from 'next';
 import dynamic from 'next/dynamic';
 import { useAtom } from 'jotai';
 import Main from '@/components/Main';
-import AppHeadline from '@/components/AppHeadline';
 import { userWalletAtom } from '@/store/states';
 import { useCallback, useMemo, useState } from 'react';
 import GainersLosersTables from '@/components/tables/GainersLosersTables';
 import BalanceTokensTable from '@/components/tables/BalanceTokensTable';
 import ExchangesTable from '@/components/tables/ExchangesTable';
-import MosaiqedCanvas from '@/components/MosaiqedCanvas';
+import DisplacementCanvas from '@/components/DisplacementCanvas';
+import StayEffortlessImg from '@/resources/images/tg_stay_effortless.png';
+import StillEarningImg from '@/resources/images/tg_still_achieving.png';
+// import DisplacementImg from '@/resources/textures/texture_noise.jpg';
+import DisplacementImg from '@/resources/textures/texture_blocks.jpg';
 
 const AsciiGlobe = dynamic(() => import('@/components/AsciiGlobe'), {
   ssr: false,
@@ -22,7 +25,7 @@ const Home: NextPage = () => {
 
   const appHeadlineTransformClassName = useMemo<string>(
     () =>
-      !!userWallet && isAppHeadlineAnimationEnd ? '-translate-x-[calc(100%_+_2rem)] md:-translate-x-[calc(100%_+_7rem)]' : '',
+      !!userWallet && isAppHeadlineAnimationEnd ? '-translate-x-[calc(100%_+_2rem)] md:-translate-x-[calc(100%_+_10rem)]' : '',
     [userWallet, isAppHeadlineAnimationEnd]
   );
 
@@ -34,13 +37,14 @@ const Home: NextPage = () => {
       <AsciiGlobe className="fixed inset-0" />
 
       <Main className="min-h-screen pt-app_header_height pb-page_bottom">
-        <section className="relative h-screen">
-          <MosaiqedCanvas />
-
-          <AppHeadline
-            className={`absolute left-8 bottom-page_padding_safe_bottom md:left-24 md:bottom-48 transition-transform Transition_1000 ${appHeadlineTransformClassName}`}
-            onAnimationEnd={onAppHeadlineAnimationEnd}
+        <section className="relative w-full h-screen_exept_app_header flex items-center justify-center px-page_x_mobile md:px-page_x md:mb-page_bottom">
+          <DisplacementCanvas
+            className="w-full overflow-hidden"
+            textureImage1={StayEffortlessImg}
+            textureImage2={StillEarningImg}
+            displacementImage={DisplacementImg}
           />
+          {/* <MosaiqedCanvas className="w-screen h-screen" /> */}
         </section>
 
         {userWallet && (
