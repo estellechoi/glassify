@@ -5,7 +5,7 @@ import { useCallback, useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { AsciiRenderer } from '@react-three/drei';
 import SphereMesh from './SphereMesh';
-import useCanvasPointerEvent from '../hooks/useCanvasPointerEvent';
+import useCanvasPointerEvent from '../../hooks/useCanvasPointerEvent';
 
 type AsciiGlobeProps = {
   onRender?: () => void;

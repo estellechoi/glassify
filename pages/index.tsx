@@ -1,19 +1,15 @@
 import type { NextPage } from 'next';
 import dynamic from 'next/dynamic';
-import { useAtom } from 'jotai';
-import Main from '@/components/Main';
-import { userWalletAtom } from '@/store/states';
 import { useCallback, useMemo, useState } from 'react';
+import { useAtom } from 'jotai';
+import { userWalletAtom } from '@/store/states';
+import Main from '@/components/Main';
 import GainersLosersTables from '@/components/tables/GainersLosersTables';
 import BalanceTokensTable from '@/components/tables/BalanceTokensTable';
 import ExchangesTable from '@/components/tables/ExchangesTable';
-import DisplacementCanvas from '@/components/DisplacementCanvas';
-import StayEffortlessImg from '@/resources/images/tg_stay_effortless.png';
-import StillEarningImg from '@/resources/images/tg_still_achieving.png';
-// import DisplacementImg from '@/resources/textures/texture_noise.jpg';
-import DisplacementImg from '@/resources/textures/texture_blocks_random.jpg';
+import AppSlogunDisplacingCanvas from '@/components/canvases/AppSlogunDisplacingCanvas';
 
-const AsciiGlobe = dynamic(() => import('@/components/AsciiGlobe'), {
+const AsciiGlobe = dynamic(() => import('@/components/canvases/AsciiGlobe'), {
   ssr: false,
 });
 
@@ -38,12 +34,7 @@ const Home: NextPage = () => {
 
       <Main className="min-h-screen pt-app_header_height pb-page_bottom">
         <section className="relative w-full h-screen_exept_app_header flex items-center justify-center px-page_x_mobile md:px-page_x md:mb-page_bottom">
-          <DisplacementCanvas
-            className="w-full overflow-hidden"
-            textureImage1={StayEffortlessImg}
-            textureImage2={StillEarningImg}
-            displacementImage={DisplacementImg}
-          />
+          <AppSlogunDisplacingCanvas className="w-full overflow-hidden" />
           {/* <MosaiqedCanvas className="w-screen h-screen" /> */}
         </section>
 

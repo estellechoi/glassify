@@ -83,14 +83,14 @@ const BalanceTokensTable = ({ wallet, onLoaded, tooltipContext, className = '' }
     const expandedFields: TableField<BalanceTokensTableRow>[] = isMobile
       ? []
       : [
-          {
-            label: 'Market cap',
-            value: 'marketCapFormatted',
-            type: 'number',
-            sortValue: 'marketCap',
-            sortType: 'number',
-            align: 'right',
-          },
+          // {
+          //   label: 'Market cap',
+          //   value: 'marketCapFormatted',
+          //   type: 'number',
+          //   sortValue: 'marketCap',
+          //   sortType: 'number',
+          //   align: 'right',
+          // },
           {
             label: 'Volume 24H',
             value: 'vol24HFormatted',

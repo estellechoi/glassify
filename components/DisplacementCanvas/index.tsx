@@ -1,7 +1,7 @@
 'use client';
 
 import type { StaticImageData } from 'next/image';
-import { CSSProperties, useEffect, useMemo, useRef, useState } from 'react';
+import { CSSProperties, EventHandler, UIEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTexture } from '@react-three/drei';
 import { Canvas, useFrame, MeshProps, useThree } from '@react-three/fiber';
 import { type ShaderMaterial } from 'three';
@@ -99,7 +99,7 @@ const DisplacementMesh = ({ textureImage1, textureImage2, displacementImage }: D
     const width = size.width / viewport.factor;
     const height = size.height / viewport.factor;
     return [width, height, 1];
-  }, [size.width, size.height, viewport.factor, viewport.aspect]);
+  }, [size.width, size.height, viewport.factor]);
 
   return (
     <mesh scale={meshDimension} onPointerOver={() => setIsHovered(true)} onPointerOut={() => setIsHovered(false)}>
@@ -118,18 +118,24 @@ const DisplacementCanvas = ({
 
   const [dimension, setDimension] = useState<CanvasDimension>();
 
-  useEffect(() => {
+  const updateDimension = useCallback(() => {
     if (!ref.current) return;
 
     const aspect = meshProps.textureImage1.width / meshProps.textureImage1.height;
     const width = ref.current.clientWidth;
     const height = width / aspect;
+
     setDimension({ width, height, aspect });
   }, [meshProps.textureImage1]);
 
-  const visibilityClassName = !!dimension ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2';
+  useEffect(() => {
+    updateDimension();
 
-  console.log('dimension', dimension);
+    window.addEventListener('resize', updateDimension);
+    return () => window.removeEventListener('resize', updateDimension);
+  }, [updateDimension]);
+
+  const visibilityClassName = !!dimension ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2';
 
   return (
     <div
