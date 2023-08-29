@@ -1,11 +1,12 @@
 'use client';
 
 import * as THREE from 'three';
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { AsciiRenderer } from '@react-three/drei';
 import SphereMesh from './SphereMesh';
-import useCanvasPointerEvent from '../../hooks/useCanvasPointerEvent';
+import useCanvasFadeInClassName from '@/components/hooks/useCanvasFadeInClassName';
+import useCanvasPointerCoordinates from '@/components/hooks/useCanvasPointerCoordinates';
 
 type AsciiGlobeProps = {
   onRender?: () => void;
@@ -13,21 +14,19 @@ type AsciiGlobeProps = {
 };
 
 const AsciiGlobe = ({ onRender, className = '' }: AsciiGlobeProps) => {
-  const [isRendered, setIsRendered] = useState<boolean>(false);
+  const { isCreated, onCreated, className: visibilityClassName } = useCanvasFadeInClassName();
 
-  const onCreated = useCallback(() => {
-    setIsRendered(true);
-    onRender?.();
-  }, [onRender]);
+  useEffect(() => {
+    if (isCreated) onRender?.();
+  }, [isCreated]);
 
-  const visibilityClassName = isRendered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2';
   /**
    *
    * @warning @react-three/fiber Canvas fill parent's size, which must be in inline styles
    */
   const sizeStyle = { width: '100vw', height: window.innerWidth / window.innerHeight >= 1 ? '100vh' : '80vh' };
 
-  const { isObejctInteractedEver, persitInteractedObject, moveObjectToCanvasPointer } = useCanvasPointerEvent();
+  const { isObejctInteractedEver, persistInteractedObject, moveObjectToCanvasPointer } = useCanvasPointerCoordinates();
 
   return (
     <div
@@ -40,7 +39,7 @@ const AsciiGlobe = ({ onRender, className = '' }: AsciiGlobeProps) => {
         <pointLight position={[10, 10, 10]} />
         <pointLight color={new THREE.Color(0xffffff)} intensity={3} distance={0} decay={0} position={[-500, -500, -500]} />
 
-        <SphereMesh onPointerEnter={isObejctInteractedEver ? undefined : persitInteractedObject} />
+        <SphereMesh onPointerEnter={isObejctInteractedEver ? undefined : persistInteractedObject} />
 
         {/**
          *

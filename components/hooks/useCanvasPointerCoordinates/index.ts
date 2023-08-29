@@ -1,7 +1,7 @@
 import type { ThreeEvent } from '@react-three/fiber';
 import { PointerEventHandler, useCallback, useEffect, useState } from 'react';
 
-const useCanvasPointerEvent = () => {
+const useCanvasPointerCoordinates = () => {
   const [lastObject, setLastObject] = useState<THREE.Object3D<THREE.Event> | undefined>(undefined);
   const [isObejctInteractedEver, setIsObejctInteractedEver] = useState<boolean>(false);
 
@@ -14,7 +14,7 @@ const useCanvasPointerEvent = () => {
     [lastObject]
   );
 
-  const persitInteractedObject = useCallback(
+  const persistInteractedObject = useCallback(
     (event: ThreeEvent<PointerEvent>) => {
       const itersectedObject: THREE.Object3D<THREE.Event> | undefined = event.intersections[0]?.eventObject;
       setLastObject(itersectedObject);
@@ -24,30 +24,46 @@ const useCanvasPointerEvent = () => {
     [isObejctInteractedEver]
   );
 
-  const [prevClientXY, setPrevClientXY] = useState<{ x: number; y: number }>();
+  const [coordinates, setCoordinates] = useState<{ x: number; y: number } | null>(null);
 
-  const moveObjectToCanvasPointer = useCallback<PointerEventHandler<HTMLDivElement>>(
-    (event) => {
+  const updateCoordinates = useCallback((event: ThreeEvent<PointerEvent>) => {
+    const { clientX, clientY } = event;
+
+    if (!clientX || !clientY) {
+      const coordinates = null;
+      setCoordinates(coordinates);
+      return null;
+    }
+
+    const coordinates = { x: clientX, y: clientY };
+    setCoordinates(coordinates);
+    return coordinates;
+  }, []);
+
+  const moveObjectToCanvasPointer = useCallback(
+    (event: ThreeEvent<PointerEvent>) => {
       if (!lastObject) return;
 
       const { x, y, z } = lastObject.position;
       const { clientX, clientY } = event;
 
-      const xPlus = (prevClientXY ? prevClientXY.x < clientX : clientX > window.innerWidth / 2) ? 0.006 : -0.006;
-      const yPlus = (prevClientXY ? prevClientXY.y < clientY : clientY > window.innerHeight / 2) ? -0.006 : 0.006;
+      const xPlus = (coordinates ? coordinates.x < clientX : clientX > window.innerWidth / 2) ? 0.006 : -0.006;
+      const yPlus = (coordinates ? coordinates.y < clientY : clientY > window.innerHeight / 2) ? -0.006 : 0.006;
       lastObject.position.set(x + xPlus, y + yPlus, z);
 
-      setPrevClientXY({ x: clientX, y: clientY });
+      updateCoordinates(event);
     },
-    [lastObject, prevClientXY]
+    [lastObject, coordinates, updateCoordinates]
   );
 
   return {
+    coordinates,
     isObejctInteractedEver,
     followPointer,
-    persitInteractedObject,
+    persistInteractedObject,
+    updateCoordinates,
     moveObjectToCanvasPointer,
   };
 };
 
-export default useCanvasPointerEvent;
+export default useCanvasPointerCoordinates;

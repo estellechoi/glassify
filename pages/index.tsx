@@ -8,6 +8,7 @@ import GainersLosersTables from '@/components/tables/GainersLosersTables';
 import BalanceTokensTable from '@/components/tables/BalanceTokensTable';
 import ExchangesTable from '@/components/tables/ExchangesTable';
 import AppSlogunDisplacingCanvas from '@/components/canvases/AppSlogunDisplacingCanvas';
+import PixelateCanvas from '@/components/PixelateCanvas';
 
 const AsciiGlobe = dynamic(() => import('@/components/canvases/AsciiGlobe'), {
   ssr: false,
@@ -35,8 +36,9 @@ const Home: NextPage = () => {
       <Main className="min-h-screen pt-app_header_height pb-page_bottom">
         <section className="relative w-full h-screen_exept_app_header flex items-center justify-center px-page_x_mobile md:px-page_x md:mb-page_bottom">
           <AppSlogunDisplacingCanvas className="w-full overflow-hidden" />
-          {/* <MosaiqedCanvas className="w-screen h-screen" /> */}
         </section>
+
+        <PixelateCanvas className="w-full overflow-hidden" />
 
         {userWallet && (
           <BalanceTokensTable
