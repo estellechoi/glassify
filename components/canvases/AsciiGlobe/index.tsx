@@ -1,7 +1,7 @@
 'use client';
 
 import * as THREE from 'three';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { AsciiRenderer } from '@react-three/drei';
 import SphereMesh from './SphereMesh';
@@ -33,13 +33,16 @@ const AsciiGlobe = ({ onRender, className = '' }: AsciiGlobeProps) => {
       className={`Component w-screen h-screen transition-all duration-1000 ${visibilityClassName} ${className}`}
       style={sizeStyle}
     >
-      <Canvas onCreated={onCreated} onPointerMove={moveObjectToCanvasPointer}>
+      <Canvas onCreated={onCreated}>
         <color attach="background" args={[0, 0, 0]} />
 
         <pointLight position={[10, 10, 10]} />
         <pointLight color={new THREE.Color(0xffffff)} intensity={3} distance={0} decay={0} position={[-500, -500, -500]} />
 
-        <SphereMesh onPointerEnter={isObejctInteractedEver ? undefined : persistInteractedObject} />
+        <SphereMesh
+          onPointerEnter={isObejctInteractedEver ? undefined : persistInteractedObject}
+          onPointerMove={moveObjectToCanvasPointer}
+        />
 
         {/**
          *
