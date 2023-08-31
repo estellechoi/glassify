@@ -1,0 +1,61 @@
+name: Deploy production
+
+on:
+  push:
+    branches: ["main"]
+
+  # allow to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# allow only one concurrent deployment
+# do NOT cancel in-progress runs as we want to complete the one in progress.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      # url: ${{ steps.deploy-to-production.outputs.url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup dependencies
+        uses: ./.github/actions/setup
+
+      - name: Restore cache for next build output
+        uses: actions/cache@v3
+        continue-on-error: true
+        with:
+          path: |
+            .next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-
+            
+      - name: Build
+        run: ${{ steps.detect-package-manager.outputs.runner }} build
+        env:
+          NEXT_PUBLIC_SENTRY_DSN: ${{ secrets.NEXT_PUBLIC_SENTRY_DSN }}
+          NEXT_PUBLIC_SENTRY_AUTH_TOKEN: ${{ secrets.NEXT_PUBLIC_SENTRY_AUTH_TOKEN }}
+          NEXT_PUBLIC_ALCHEMY_MAINNET_API_KEY: ${{ secrets.NEXT_PUBLIC_ALCHEMY_MAINNET_API_KEY }}
+          NEXT_PUBLIC_CMC_API_KEY: ${{ secrets.NEXT_PUBLIC_CMC_API_KEY }}
+          NEXT_PUBLIC_GOOGLE_ANALYTICS_MEAUSUREMENT_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_ANALYTICS_MEAUSUREMENT_ID }}
+          NEXT_PUBLIC_MIXPANEL_TOKEN: ${{ secrets.NEXT_PUBLIC_MIXPANEL_TOKEN }}
+
+      - name: Bump and tag version
+        id: github-tag-action
+        uses: mathieudutour/github-tag-action@d745f2e74aaf1ee82e747b181f7a0967978abee0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          release_branches: main
+          default_bump: patch
+
+      - name: Deploy
+        run: ./.github/actions/amplify
+
+      # - name: Notify result

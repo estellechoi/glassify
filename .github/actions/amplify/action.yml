@@ -1,0 +1,32 @@
+name: Deploy to AWS Amplify
+
+runs:
+  using: composite
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Setup node
+      uses: actions/setup-node@v3
+      with:
+        node-version: "20"
+
+    # - name: Setup @aws-amplify/cli
+    #   uses: ambientlight/amplify-cli-action@0.3.0
+    #   with:
+    #     amplify_command: configure
+    #     amplify_env: prod
+    #   env:
+    #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    #     AWS_REGION: us-east-1
+
+    # - name: Deploy
+    #   uses: ambientlight/amplify-cli-action@0.3.0
+    #   with:
+    #     amplify_command: publish
+    #     amplify_env: prod
+    #   env:
+    #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    #     AWS_REGION: us-east-1      
