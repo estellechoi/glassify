@@ -24,6 +24,7 @@ runs:
           echo "Unable to determine package manager"
           exit 1
         fi
+      shell: bash
 
     - name: Setup node
       uses: actions/setup-node@v3
@@ -48,6 +49,7 @@ runs:
     - if: steps.install-cache.outputs.cache-hit != 'true'
       name: Install dependencies
       run: ${{ steps.detect-package-manager.outputs.runner }} ${{ steps.detect-package-manager.outputs.command }}
+      shell: bash
 
     # uncomment this if you want to use patch-package
     # - name: Patch dependencies
