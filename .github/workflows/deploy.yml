@@ -55,7 +55,7 @@ jobs:
           release_branches: main
           default_bump: patch
 
-      - name: Deploy
-        run: ./.github/actions/amplify
+      - name: Deploy to AWS Amplify
+        uses: ./.github/actions/amplify
 
       # - name: Notify result
