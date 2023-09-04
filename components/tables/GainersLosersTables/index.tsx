@@ -5,8 +5,9 @@ import GainersLosersTable from './GainersLosersTable';
 import useUserAgent from '@/hooks/useUserAgent';
 import Card from '@/components/Card';
 import useGainersLosersTableRowsGetter from './useGainersLosersTableRowsGetter';
+import { TooltipLayer } from '@/components/Tooltip/styles';
 
-const GainersLosersTables = ({ className = '' }: { className?: string }) => {
+const GainersLosersTables = ({ className = '', tooltipLayer }: { className?: string; tooltipLayer: TooltipLayer }) => {
   const { data: gainersData, isLoading: isGainersDataLoading } = useCMCGainersQuery({ limit: 5 });
   const { data: losersData, isLoading: isLosersDataLoading } = useCMCLosersQuery({ limit: 5 });
   const { data: latestListingsData, isLoading: isLatestListingsDataLoading } = useCMCLatestListingsQuery({ limit: 5 });
@@ -24,35 +25,41 @@ const GainersLosersTables = ({ className = '' }: { className?: string }) => {
 
   const TopGainers = useMemo<JSX.Element>(() => {
     const rows = getRows(gainersData);
-    return <GainersLosersTable rows={rows} isLoading={isGainersDataLoading} />;
-  }, [getRows, gainersData, isGainersDataLoading]);
+    return <GainersLosersTable tooltipContext={tooltipLayer} rows={rows} isLoading={isGainersDataLoading} />;
+  }, [getRows, tooltipLayer, gainersData, isGainersDataLoading]);
 
   const TopLosers = useMemo<JSX.Element>(() => {
     const rows = getRows(losersData);
-    return <GainersLosersTable rows={rows} isLoading={isLosersDataLoading} />;
-  }, [getRows, losersData, isLosersDataLoading]);
+    return <GainersLosersTable tooltipContext={tooltipLayer} rows={rows} isLoading={isLosersDataLoading} />;
+  }, [getRows, tooltipLayer, losersData, isLosersDataLoading]);
 
   const NewListings = useMemo<JSX.Element>(() => {
     const rows = getRows(latestListingsData);
-    return <GainersLosersTable rows={rows} isLoading={isLatestListingsDataLoading} />;
-  }, [getRows, latestListingsData, isLatestListingsDataLoading]);
+    return <GainersLosersTable tooltipContext={tooltipLayer} rows={rows} isLoading={isLatestListingsDataLoading} />;
+  }, [getRows, tooltipLayer, latestListingsData, isLatestListingsDataLoading]);
 
   const { isMobile } = useUserAgent();
 
   return (
     <div className={`space-y-20 ${className}`}>
       <article className="space-y-4">
-        <Heading tagName="h3">Top Gainers</Heading>
+        <Heading tagName="h3" className="px-page_x_mobile md:px-0">
+          Top Gainers
+        </Heading>
         {isMobile ? TopGainers : <Card color="glass">{TopGainers}</Card>}
       </article>
 
       <article className="space-y-4">
-        <Heading tagName="h3">Top Losers</Heading>
+        <Heading tagName="h3" className="px-page_x_mobile md:px-0">
+          Top Losers
+        </Heading>
         {isMobile ? TopLosers : <Card color="glass">{TopLosers}</Card>}
       </article>
 
       <article className="space-y-4">
-        <Heading tagName="h3">New Listing</Heading>
+        <Heading tagName="h3" className="px-page_x_mobile md:px-0">
+          New Listing
+        </Heading>
         {isMobile ? NewListings : <Card color="glass">{NewListings}</Card>}
       </article>
     </div>

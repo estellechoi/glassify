@@ -219,7 +219,7 @@ module.exports = {
         fade_in: 'fade_in 0.4s cubic-bezier(0, 0, 0.27, 1) both',
         fade_out: 'fade_in_reverse 0.4s cubic-bezier(0, 0, 0.27, 1) both',
         fade_in_x: 'fade_in_x 0.8s cubic-bezier(0, 0, 0.27, 1) 0.6s both',
-        fade_out_x: 'fade_in_x_reverse 0.8s cubic-bezier(0, 0, 0.27, 1) 0.6s both',
+        fade_in_x_reverse: 'fade_in_x_reverse 0.8s cubic-bezier(0, 0, 0.27, 1) 0.6s both',
         // fade_out: 'fade_out 0.4s cubic-bezier(0, 0, 0.27, 1) both',
         bouncing: 'up 0.4s ease-in-out infinite alternate',
         bouncing_delayed_1: 'up 0.4s ease-in-out 0.1s infinite alternate',

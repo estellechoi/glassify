@@ -22,6 +22,7 @@ type BalanceTokensTableRow = {
   marketCapFormatted: string | JSX.Element;
   priceFormatted: string | JSX.Element;
   priceChangeFormatted: JSX.Element;
+  priceChangeResponsive: JSX.Element;
   vol24HFormatted: string | JSX.Element;
   vol24HChangeFormatted: JSX.Element;
 };
@@ -48,17 +49,27 @@ const BalanceTokensTable = ({ wallet, onLoaded, tooltipContext, className = '' }
       const marketCap = marketValue.marketCap ?? 0;
       const marketCapFormatted = formatUSD(marketValue.marketCap, { compact: true });
 
-      const price = marketValue.price.USD ?? 0;
-      const priceFormatted = formatUSD(marketValue.price.USD, { fixDp: true });
-
-      const priceChange = marketValue.priceChange24H ?? -1000000;
-      const priceChangeFormatted = <UpDownNumberText number={priceChange} unit="%" />;
+      const vol24HChange = marketValue.vol24HChangePercentage ?? -1000000;
+      const vol24HChangeFormatted = <UpDownNumberText number={vol24HChange} unit="%" />;
 
       const vol24H = marketValue.vol24H ?? 0;
       const vol24HFormatted = formatUSD(marketValue.vol24H, { compact: true });
 
-      const vol24HChange = marketValue.vol24HChangePercentage ?? -1000000;
-      const vol24HChangeFormatted = <UpDownNumberText number={vol24HChange} unit="%" />;
+      const priceChange = marketValue.priceChange24H ?? -1000000;
+      const priceChangeFormatted = <UpDownNumberText number={priceChange} unit="%" />;
+
+      const price = marketValue.price.USD ?? 0;
+      const priceFormatted = formatUSD(marketValue.price.USD, { fixDp: true });
+
+      const priceChangeResponsive = (
+        <>
+          <div className="hidden md:block">{priceChangeFormatted}</div>
+          <div className="md:hidden flex flex-col text-right">
+            {priceFormatted}
+            {priceChangeFormatted}
+          </div>
+        </>
+      );
 
       return {
         id,
@@ -69,6 +80,7 @@ const BalanceTokensTable = ({ wallet, onLoaded, tooltipContext, className = '' }
         priceFormatted,
         priceChange,
         priceChangeFormatted,
+        priceChangeResponsive,
         vol24H,
         vol24HFormatted,
         vol24HChange,
@@ -92,7 +104,7 @@ const BalanceTokensTable = ({ wallet, onLoaded, tooltipContext, className = '' }
           //   align: 'right',
           // },
           {
-            label: 'Volume 24H',
+            label: 'Vol. 24H',
             value: 'vol24HFormatted',
             type: 'number',
             align: 'right',
@@ -109,6 +121,15 @@ const BalanceTokensTable = ({ wallet, onLoaded, tooltipContext, className = '' }
             sortType: 'number',
             widthPx: 120,
           },
+          {
+            label: 'Price',
+            value: 'priceFormatted',
+            type: 'number',
+            sortValue: 'price',
+            sortType: 'number',
+            align: 'right',
+            // widthRatio: 20,
+          },
         ];
 
     return [
@@ -121,17 +142,8 @@ const BalanceTokensTable = ({ wallet, onLoaded, tooltipContext, className = '' }
       },
       ...expandedFields,
       {
-        label: 'Price',
-        value: 'priceFormatted',
-        type: 'number',
-        sortValue: 'price',
-        sortType: 'number',
-        align: 'right',
-        widthRatio: 20,
-      },
-      {
-        label: 'Change',
-        value: 'priceChangeFormatted',
+        label: isMobile ? 'Price' : 'Change',
+        value: 'priceChangeResponsive',
         type: 'jsx',
         align: 'right',
         sortValue: 'priceChange',
@@ -157,7 +169,9 @@ const BalanceTokensTable = ({ wallet, onLoaded, tooltipContext, className = '' }
 
   return (
     <article className={`space-y-4 ${className}`}>
-      <Heading tagName="h3">My Holdings</Heading>
+      <Heading tagName="h3" className="px-page_x_mobile md:px-0">
+        My Holdings
+      </Heading>
       {isMobile ? Content : <Card color="glass">{Content}</Card>}
     </article>
   );

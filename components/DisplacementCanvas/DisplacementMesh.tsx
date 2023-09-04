@@ -1,14 +1,14 @@
 import type { StaticImageData } from 'next/image';
-import { useMemo, useRef, useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import { useTexture } from '@react-three/drei';
-import { useFrame, useThree } from '@react-three/fiber';
+import { type ThreeEvent, useFrame, useThree } from '@react-three/fiber';
 import { MathUtils } from 'three/src/math/MathUtils';
 import type { Texture, ShaderMaterial } from 'three';
 import usePlaneMeshScale from '@/components/hooks/usePlaneMeshScale';
 import type { ShaderMaterialInitialArgs } from '@/components/types';
 import { DISPLACEMENT_GLSL_MAP } from './glsl';
 
-type DisplacementShaderUniforms = {
+export type DisplacementShaderUniforms = {
   tex: { value: Texture };
   tex2: { value: Texture };
   disp: { value: Texture };
@@ -21,12 +21,36 @@ export type DisplacementMeshProps = {
   textureImage1: StaticImageData;
   textureImage2: StaticImageData;
   displacementImage: StaticImageData;
+  onPointerOver?: (event: ThreeEvent<PointerEvent>) => void;
+  onPointerOut?: (event: ThreeEvent<PointerEvent>) => void;
 };
 
-const DisplacementMesh = ({ textureImage1, textureImage2, displacementImage }: DisplacementMeshProps) => {
+const DisplacementMesh = ({
+  textureImage1,
+  textureImage2,
+  displacementImage,
+  onPointerOver,
+  onPointerOut,
+}: DisplacementMeshProps) => {
   const ref = useRef<ShaderMaterial>(null);
 
   const [isHovered, setIsHovered] = useState(false);
+
+  const handlePointerOver = useCallback(
+    (event: ThreeEvent<PointerEvent>) => {
+      setIsHovered(true);
+      onPointerOver?.(event);
+    },
+    [onPointerOver]
+  );
+
+  const handlePointerOut = useCallback(
+    (event: ThreeEvent<PointerEvent>) => {
+      setIsHovered(false);
+      onPointerOut?.(event);
+    },
+    [onPointerOut]
+  );
 
   useFrame(() => {
     if (ref.current)
@@ -54,7 +78,7 @@ const DisplacementMesh = ({ textureImage1, textureImage2, displacementImage }: D
   const meshDimension = usePlaneMeshScale(size, viewport);
 
   return (
-    <mesh scale={meshDimension} onPointerOver={() => setIsHovered(true)} onPointerOut={() => setIsHovered(false)}>
+    <mesh scale={meshDimension} onPointerOver={handlePointerOver} onPointerOut={handlePointerOut}>
       <planeGeometry attach="geometry" args={[1, 1]} />
       <shaderMaterial ref={ref} attach="material" args={[args]} />
     </mesh>

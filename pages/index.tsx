@@ -7,8 +7,9 @@ import Main from '@/components/Main';
 import GainersLosersTables from '@/components/tables/GainersLosersTables';
 import BalanceTokensTable from '@/components/tables/BalanceTokensTable';
 import ExchangesTable from '@/components/tables/ExchangesTable';
-import AppSlogunDisplacingCanvas from '@/components/canvases/AppSlogunDisplacingCanvas';
-import PixelateCanvas from '@/components/PixelateCanvas';
+import AppSlogunSection from '@/components/home/AppSlogunSection';
+import MobileAppLaunchSection from '@/components/home/MobileAppLaunchSection';
+import useUserAgent from '@/hooks/useUserAgent';
 
 const AsciiGlobe = dynamic(() => import('@/components/canvases/AsciiGlobe'), {
   ssr: false,
@@ -17,43 +18,36 @@ const AsciiGlobe = dynamic(() => import('@/components/canvases/AsciiGlobe'), {
 const Home: NextPage = () => {
   const [userWallet] = useAtom(userWalletAtom);
 
-  const [isAppHeadlineAnimationEnd, setIsAppHeadlineAnimationEnd] = useState<boolean>(false);
-  const onAppHeadlineAnimationEnd = useCallback(() => setIsAppHeadlineAnimationEnd(true), []);
-
-  const appHeadlineTransformClassName = useMemo<string>(
-    () =>
-      !!userWallet && isAppHeadlineAnimationEnd ? '-translate-x-[calc(100%_+_2rem)] md:-translate-x-[calc(100%_+_10rem)]' : '',
-    [userWallet, isAppHeadlineAnimationEnd]
-  );
-
   const [isBalanceTokensTableLoaded, setIsBalanceTokensTableLoaded] = useState<boolean>(false);
   const onBalanceTokensTableLoaded = useCallback(() => setIsBalanceTokensTableLoaded(true), []);
 
+  const { isMobile } = useUserAgent();
+  const [isAppLaunched, setIsAppLaunched] = useState<boolean>(!isMobile);
+
   return (
     <>
-      <AsciiGlobe className="fixed inset-0" />
+      <AsciiGlobe className={`fixed inset-0 ${isAppLaunched ? 'hidden md:block' : ''}`} />
 
-      <Main className="min-h-screen pt-app_header_height pb-page_bottom">
-        <section className="relative w-full h-screen_exept_app_header flex items-center justify-center px-page_x_mobile md:px-page_x md:mb-page_bottom">
-          <AppSlogunDisplacingCanvas className="w-full overflow-hidden" />
-        </section>
+      {!isAppLaunched && <MobileAppLaunchSection onClickLaunch={() => setIsAppLaunched(true)} />}
 
-        <PixelateCanvas className="w-full overflow-hidden" />
+      {isAppLaunched && (
+        <Main className="min-h-screen pt-app_header_height pb-page_bottom">
+          <AppSlogunSection className="hidden md:flex" />
 
-        {userWallet && (
-          <BalanceTokensTable
-            tooltipContext="base"
-            wallet={userWallet}
-            // isOpen={isBalanceTokensTableOpen}
-            onLoaded={onBalanceTokensTableLoaded}
-            className="md:mx-page_x md:mb-page_bottom"
-          />
-        )}
+          {userWallet && (
+            <BalanceTokensTable
+              tooltipContext="base"
+              wallet={userWallet}
+              onLoaded={onBalanceTokensTableLoaded}
+              className="mt-20 md:mx-page_x"
+            />
+          )}
 
-        <GainersLosersTables className="md:mx-page_x md:mb-page_bottom" />
+          <GainersLosersTables tooltipLayer="base" className="mt-20 md:mx-page_x" />
 
-        <ExchangesTable className="md:mx-page_x md:mb-page_bottom" />
-      </Main>
+          <ExchangesTable tooltipLayer="base" className="mt-20 md:mx-page_x" />
+        </Main>
+      )}
     </>
   );
 };

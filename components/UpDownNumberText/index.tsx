@@ -12,9 +12,10 @@ type UpDownNumberTextProps = {
   number: number | BigNumber | undefined | null;
   unit?: string;
   color?: UpDownNumberTextColor;
+  className?: string;
 };
 
-const UpDownNumberText = ({ number, unit, color = 'primary' }: UpDownNumberTextProps) => {
+const UpDownNumberText = ({ number, unit, color = 'primary', className = '' }: UpDownNumberTextProps) => {
   const fallbackedNumber = useMemo<BigNumber>(() => new BigNumber(number ?? 0), [number]);
 
   const colorClassName = useMemo<string>(
@@ -28,7 +29,7 @@ const UpDownNumberText = ({ number, unit, color = 'primary' }: UpDownNumberTextP
   );
 
   return (
-    <span className={`inline-flex items-center Font_data_16px_num ${colorClassName}`}>
+    <span className={`inline-flex items-center Font_data_16px_num ${colorClassName} ${className}`}>
       {iconType && <Icon type={iconType} size="lg" />}
       {formatNumber(number, 1, { fixDp: true, abs: true })}
       {!!number ? unit : ''}

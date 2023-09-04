@@ -8,31 +8,31 @@ export const TABLE_BG_COLOR_DICT: Record<TableStyle, string> = {
 };
 
 export const TABLE_SPACE_Y_DICT: Record<TableStyle, string> = {
-  primary: 'flex flex-col gap-y-4 md:block md:space-y-0',
+  primary: 'flex flex-col gap-y-1 md:gap-y-4 md:block md:space-y-0',
 };
 
 export const TABLE_FIELD_RIGHT_PADDING = '!pr-24';
 export const TABLE_ROW_RIGHT_PADDING = 'md:pr-24';
 
 export const TABLE_FIELD_GRID_X_DICT: Record<TableStyle, string> = {
-  primary: 'flex items-center justify-between gap-x-3 px-4',
+  primary: 'flex items-center justify-between gap-x-1 md:gap-x-3 px-page_x_mobile md:px-card_padding_x',
 };
 
 export const TABLE_FIELD_GRID_Y_DICT: Record<TableStyle, string> = {
-  primary: 'min-h-[2.75rem] py-2',
+  primary: 'min-h-[2.75rem] py-1',
 };
 
 // md:pl-4 md:pr-24
 export const TABLE_ROW_GRID_X_DICT: Record<TableStyle, string> = {
-  primary: 'flex flex-row items-center justify-between gap-x-3 px-0 md:px-4',
+  primary: 'flex flex-row items-center justify-between gap-x-1 md:gap-x-3 px-page_x_mobile md:px-card_padding_x',
 };
 
 export const TABLE_ROW_GRID_Y_DICT: Record<TableStyle, string> = {
-  primary: 'min-h-[4.25rem] gap-y-4 py-3',
+  primary: 'min-h-[4.25rem] py-1',
 };
 
 export const TABLE_CELL_GRID_X_DICT: Record<TableStyle, string> = {
-  primary: 'flex items-center gap-x-1 pl-3 pr-3 first:pr-2 md:pl-0 md:pr-0 md:first-pr-0',
+  primary: 'flex items-center gap-x-1',
 };
 
 export const TABLE_CELL_GRID_Y_DICT: Record<TableStyle, string> = {
@@ -50,9 +50,9 @@ export const TABLE_CELL_TEXT_COLOR_DICT: Record<TableStyle, string> = {
 /** cell alignment */
 export const TABLE_CELL_ALIGN_DICT: Record<TableStyle, Record<TableCellAlign, string>> = {
   primary: {
-    left: 'justify-start',
-    center: 'justify-center',
-    right: 'justify-end',
+    left: 'justify-start text-left',
+    center: 'justify-center text-center',
+    right: 'justify-end text-right',
   },
 };
 

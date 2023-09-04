@@ -8,6 +8,7 @@ import CoinLabel from '@/components/CoinLabel';
 import { formatNumber, formatUSD } from '@/utils/number';
 import A from '@/components/A';
 import Icon from '@/components/Icon';
+import type { TooltipLayer } from '@/components/Tooltip/styles';
 
 type ExchangesTableRow = {
   id: string;
@@ -21,9 +22,10 @@ type ExchangesTableRow = {
 
 type ExchangesTableProps = {
   className?: string;
+  tooltipLayer: TooltipLayer;
 };
 
-const ExchangesTable = ({ className = '' }: ExchangesTableProps) => {
+const ExchangesTable = ({ className = '', tooltipLayer }: ExchangesTableProps) => {
   const { data: exchangesData, isLoading: isExchangesDataLoading } = useCMCExchangesQuery({ limit: 5 });
 
   const ids = useMemo<readonly number[]>(() => {
@@ -68,7 +70,7 @@ const ExchangesTable = ({ className = '' }: ExchangesTableProps) => {
   const Content = useMemo<JSX.Element>(() => {
     return (
       <Table<ExchangesTableRow>
-        tooltipContext="base"
+        tooltipContext={tooltipLayer}
         dSortValue="vol24H"
         rows={rows}
         fields={[
@@ -88,16 +90,16 @@ const ExchangesTable = ({ className = '' }: ExchangesTableProps) => {
             align: 'right',
             sortValue: 'fee',
             sortType: 'number',
-            widthRatio: 20,
+            // widthRatio: 20,
           },
           {
-            label: 'Spot Volume',
+            label: 'Spot Vol.',
             value: 'vol24HFormatted',
             type: 'number',
             align: 'right',
             sortValue: 'vol24H',
             sortType: 'number',
-            widthRatio: 20,
+            widthRatio: 36,
           },
         ]}
         isLoading={isExchangesDataLoading || isExchangesMetadataLoading}
@@ -105,13 +107,15 @@ const ExchangesTable = ({ className = '' }: ExchangesTableProps) => {
         <Table.FieldRow />
       </Table>
     );
-  }, [rows, isExchangesDataLoading, isExchangesMetadataLoading]);
+  }, [rows, isExchangesDataLoading, isExchangesMetadataLoading, tooltipLayer]);
 
   const { isMobile } = useUserAgent();
 
   return (
     <article className={`space-y-4 ${className}`}>
-      <Heading tagName="h3">Hot Exchanges</Heading>
+      <Heading tagName="h3" className="px-page_x_mobile md:px-0">
+        Hot Exchanges
+      </Heading>
       {isMobile ? Content : <Card color="glass">{Content}</Card>}
     </article>
   );

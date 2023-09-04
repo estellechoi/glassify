@@ -14,6 +14,7 @@ export type GainersLosersTableRow = {
   priceFormatted: string | JSX.Element;
   priceChange24h: number;
   priceChange24hFormatted: JSX.Element;
+  priceChange24hResponsive: JSX.Element;
 };
 
 const useGainersLosersTableRowsGetter = (ids: readonly number[]) => {
@@ -40,6 +41,16 @@ const useGainersLosersTableRowsGetter = (ids: readonly number[]) => {
           const priceChange24h = item.quote.USD.percent_change_24h ?? 0;
           const priceChange24hFormatted = <UpDownNumberText number={priceChange24h} unit="%" />;
 
+          const priceChange24hResponsive = (
+            <>
+              <div className="hidden md:block">{priceChange24hFormatted}</div>
+              <div className="md:hidden flex flex-col text-right">
+                {priceFormatted}
+                {priceChange24hFormatted}
+              </div>
+            </>
+          );
+
           return {
             id,
             token,
@@ -48,6 +59,7 @@ const useGainersLosersTableRowsGetter = (ids: readonly number[]) => {
             priceFormatted,
             priceChange24h,
             priceChange24hFormatted,
+            priceChange24hResponsive,
           };
         }) ?? []
       );

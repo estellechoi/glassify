@@ -1,13 +1,18 @@
 import Button from '@/components/Button';
 import useAccountOrConnectButton from './useAccountOrConnectButton';
+import { ButtonSize } from '@/components/Button/types';
 
-const AccountButton = () => {
+const AccountButton = ({ size, className = '' }: { size?: ButtonSize; className?: string }) => {
   const { buttonProps, modal } = useAccountOrConnectButton();
 
   return (
-    <div className="animate-fade_out_x">
-      <Button size="md" className="min-w-[11.875rem]" aria-expanded={modal.isOpen} aria-controls={modal.id} {...buttonProps} />
-    </div>
+    <Button
+      size={size}
+      className={`min-w-[11.875rem] ${className}`}
+      aria-expanded={modal.isOpen}
+      aria-controls={modal.id}
+      {...buttonProps}
+    />
   );
 };
 

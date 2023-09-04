@@ -18,7 +18,7 @@ const AppHeader = ({ className = '' }: AppHeaderProps) => {
         <AppLogo size="lg" color="dark" />
       </Link>
 
-      <AccountButton />
+      <AccountButton className="animate-fade_in_x_reverse" />
     </header>
   );
 };
