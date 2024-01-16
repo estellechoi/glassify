@@ -15,6 +15,10 @@ const AsciiGlobe = dynamic(() => import('@/components/canvases/AsciiGlobe'), {
   ssr: false,
 });
 
+const TelegramWidget = dynamic(() => import('@/components/home/TelegramWidget'), {
+  ssr: false,
+});
+
 const Home: NextPage = () => {
   const [userWallet] = useAtom(userWalletAtom);
 
@@ -33,6 +37,8 @@ const Home: NextPage = () => {
       {isAppLaunched && (
         <Main className="min-h-screen pt-app_header_height pb-page_bottom">
           <AppSlogunSection className="hidden md:flex" />
+
+          <TelegramWidget className="mt-20 md:mx-page_x" />
 
           {userWallet && (
             <BalanceTokensTable
